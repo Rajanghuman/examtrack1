@@ -1,0 +1,1631 @@
+{
+  "jobs": [
+    {
+      "id": "ssc-cgl-2026",
+      "title": "SSC CGL 2026",
+      "organization": "Staff Selection Commission",
+      "category": "SSC",
+      "state": "All India",
+      "vacancies": 12256,
+      "salary": "Pay Level 4 (\u20b925,500\u2013\u20b981,100) to Level 8 (\u20b947,600\u2013\u20b91,51,100) \u2014 AAO is highest at Level 8",
+      "applyStart": "21 May 2026",
+      "lastDate": "22 Jun 2026",
+      "feeLastDate": "23 Jun 2026",
+      "correctionWindow": "29 Jun \u2013 01 Jul 2026 (1st correction \u20b9200, 2nd correction \u20b9500)",
+      "examDate": "Tier 1: Aug-Sep 2026 | Tier 2: Dec 2026",
+      "applyUrl": "https://ssc.gov.in",
+      "notificationUrl": "https://ssc.gov.in/candidate-corner/notification",
+      "isNew": false,
+      "isTrending": true,
+      "status": "Active \u2014 Last Date 22 Jun 2026",
+      "eligibility": {
+        "age": "18\u201327 (Tax Asst/JSO/Auditor/UDC) | 18\u201330 (ASO/Inspector) | 20\u201330 (AAO/Sub-Inspector CBI) | 18\u201332 (DGFT Section Head) \u2014 as on 01 Aug 2026",
+        "education": "Bachelor's degree from recognised university (additional subject requirements for JSO, Statistical Investigator, Auditor)",
+        "nationality": "Indian"
+      },
+      "selectionProcess": [
+        "Tier 1 \u2014 CBT, 100Q, 200 marks, 60 mins with 15-min SECTIONAL TIMER per section \u2014 QUALIFYING ONLY, not in final merit",
+        "Tier 2 Paper 1 \u2014 Compulsory for all: Section I (Math 30Q+Reasoning 30Q, 60 mins) + Section II (English 45Q+GA 25Q, 60 mins) + Section III CKT 20Q qualifying + Section IV DEST qualifying",
+        "Tier 2 Paper 2 \u2014 Statistics, 100Q, 200 marks, 2 hrs \u2014 for JSO/SI posts ONLY",
+        "Tier 2 Paper 3 \u2014 Finance & Economics, 100Q, 200 marks, 2 hrs \u2014 for AAO/Asst Accounts Officer ONLY",
+        "Document Verification",
+        "Medical/PMT for Inspector and Sub-Inspector posts"
+      ],
+      "syllabus": {
+        "Tier 1 \u2014 4 sections, 15 min each": "General Intelligence & Reasoning (25Q, 50 marks) | General Awareness (25Q, 50 marks) | Quantitative Aptitude (25Q, 50 marks) | English Comprehension (25Q, 50 marks). Negative: 0.50 per wrong. QUALIFYING ONLY.",
+        "Tier 2 Paper 1 Section I": "Mathematical Abilities (30Q, 90 marks, 30 min) + Reasoning & GI (30Q, 90 marks, 30 min). Negative: 1 mark per wrong.",
+        "Tier 2 Paper 1 Section II": "English Language & Comprehension (45Q, 135 marks, 40 min) + General Awareness (25Q, 75 marks, 20 min). Negative: 1 mark per wrong.",
+        "Tier 2 Paper 1 Section III": "Computer Knowledge Test \u2014 20Q, 60 marks, 15 min. Qualifying only (higher standard for ASO/Inspector/Postal Asst posts). Negative: 1 mark per wrong.",
+        "Tier 2 Paper 1 Section IV (Session II)": "Data Entry Speed Test (DEST) \u2014 ~2000 key depressions in 15 min. Qualifying only. No negative marking.",
+        "Tier 2 Paper 2 (JSO only)": "Statistics \u2014 100Q, 200 marks, 2 hrs. Negative: 0.50 per wrong.",
+        "Tier 2 Paper 3 (AAO only)": "General Studies \u2014 Finance & Economics \u2014 100Q, 200 marks, 2 hrs. Negative: 0.50 per wrong."
+      },
+      "importantDates": {
+        "notificationDate": "21 May 2026",
+        "applyStart": "21 May 2026",
+        "lastDate": "22 Jun 2026",
+        "feeLastDate": "23 Jun 2026",
+        "correctionWindow": "29 Jun \u2013 1 Jul 2026",
+        "tier1ExamDate": "Aug\u2013Sep 2026 (tentative)",
+        "tier2ExamDate": "Dec 2026 (tentative)"
+      },
+      "note": "MAJOR 2026 CHANGES: (1) 15-min sectional timer introduced in Tier 1 \u2014 sections auto-close. (2) AAO/Asst Accounts posts back (Paper 3). (3) Tier 2 Paper 1 Section I has hard 30+30 min split. No interview. OTR on new ssc.gov.in portal required.",
+      "applicationFee": "\u20b9100 (Women/SC/ST/PwBD/ESM exempt)",
+      "vacancyNote": "12,256 (OFFICIAL \u2014 from notification 21 May 2026)",
+      "fee": 0,
+      "qualification": "Bachelor's degree from recognised university (additional subject requirements for JSO, Statistical Investigator, Auditor)",
+      "categories": [
+        "SSC"
+      ],
+      "ageMin": 18,
+      "ageMax": 32,
+      "notes": "New this year: Sectional timing in both Tier 1 and Tier 2. Application correction window: 29 Jun - 1 Jul 2026.",
+      "applyLink": "https://ssc.gov.in",
+      "officialLink": "https://ssc.gov.in",
+      "posts": 12256
+    },
+    {
+      "id": "rrb-ntpc-2026",
+      "title": "RRB NTPC 2026",
+      "organization": "Railway Recruitment Board",
+      "category": "Railway",
+      "state": "All India",
+      "vacancies": 8868,
+      "salary": "\u20b919,900 \u2013 \u20b992,300 (Pay Level 2\u20136, varies by post)",
+      "applyStart": "Oct\u2013Nov 2025 (closed)",
+      "lastDate": "Nov 2025 (closed)",
+      "examDate": "Graduate CBT 1: Mar 2026 (COMPLETED) | UG CBT 1: 7 May \u2013 21 Jun 2026 (ONGOING)",
+      "applyUrl": "https://rrbapply.gov.in",
+      "isNew": false,
+      "isTrending": true,
+      "status": "EXAM ONGOING \u2014 UG Phase 2 Exam 13-20 Jun 2026",
+      "eligibility": {
+        "age": "18\u201333 years (Graduate), 18\u201330 years (UG level posts)",
+        "education": "Graduate posts: Graduation from recognised university | UG posts: 12th pass from recognised board",
+        "nationality": "Indian"
+      },
+      "selectionProcess": [
+        "CBT Stage 1 (Screening)",
+        "CBT Stage 2 (Merit)",
+        "Typing Skill Test / Computer Based Aptitude Test (as applicable)",
+        "Document Verification",
+        "Medical Examination"
+      ],
+      "syllabus": {
+        "CBT Stage 1": "Mathematics (30Q), General Intelligence & Reasoning (30Q), General Awareness (40Q) \u2014 100 questions, 90 mins, 1/3 negative marking",
+        "CBT Stage 2 Graduate": "Mathematics (35Q), General Intelligence & Reasoning (35Q), General Awareness (50Q), General Science (30Q) \u2014 150 questions, 90 mins",
+        "CBT Stage 2 Undergraduate": "Mathematics (35Q), General Intelligence & Reasoning (35Q), General Awareness (50Q) \u2014 120 questions, 90 mins"
+      },
+      "importantDates": {
+        "lastDate": "30 Jun 2026",
+        "examDate": "To be announced"
+      },
+      "notificationNo": "CEN 06/2025 (Graduate Level), CEN 07/2025 (Undergraduate Level)",
+      "vacancyBreakdown": {
+        "Graduate Level (CEN 06/2025)": 5810,
+        "Undergraduate Level (CEN 07/2025)": 3058
+      },
+      "note": "Applications are CLOSED. This is CEN 06/2025 + CEN 07/2025. Exam already started. No fresh applications. Total 8868 vacancies (NOT 11558 \u2014 that was 2024 cycle).",
+      "vacancyNote": "8,868 (OFFICIAL \u2014 CEN 06/2025 + CEN 07/2025)",
+      "fee": 0,
+      "qualification": "Graduate posts: Graduation from recognised university | UG posts: 12th pass from recognised board",
+      "categories": [
+        "Railway"
+      ],
+      "ageMin": 18,
+      "ageMax": 33,
+      "admitCardLink": "https://rrb.digialm.com",
+      "notes": "UG Phase 2 admit card releasing 9 Jun 2026. Download at rrb.digialm.com. Phase 2 exam: 13-20 Jun 2026.",
+      "applyLink": "https://rrbapply.gov.in",
+      "officialLink": "https://indianrailways.gov.in"
+    },
+    {
+      "id": "rrb-alp-2026",
+      "title": "RRB ALP Recruitment 2026",
+      "organization": "Railway Recruitment Board",
+      "category": "Railway",
+      "state": "All India",
+      "vacancies": 11127,
+      "salary": "\u20b919,900 \u2013 \u20b935,000 (Pay Level 2) + Railway allowances",
+      "applyStart": "15 May 2026",
+      "lastDate": "14 Jun 2026",
+      "examDate": "CBT 1: August 2026 (tentative)",
+      "applyUrl": "https://rrbapply.gov.in",
+      "notificationNo": "CEN 01/2026",
+      "isNew": true,
+      "isTrending": true,
+      "status": "\u26a0\ufe0f URGENT \u2014 Last Date 14 Jun 2026",
+      "eligibility": {
+        "age": "18\u201330 years as on 01 Jul 2026",
+        "education": "10th pass from recognised board + ITI certificate in relevant trade (Electrician, Fitter, Mechanic, Welder etc.) OR Diploma/Engineering in relevant stream",
+        "nationality": "Indian"
+      },
+      "selectionProcess": [
+        "CBT 1 \u2014 75Q, 75 marks, 60 mins, 1/3 negative marking \u2014 SCREENING only, marks NOT in final merit. Min qualifying: UR/EWS 40%, OBC/SC 30%, ST 25%",
+        "CBT 2 Part A \u2014 100Q, 100 marks, 90 mins, 1/3 negative marking \u2014 COUNTS in final merit (50% weightage). Min qualifying: UR/EWS 40%, OBC 30%, SC 30%, ST 25%",
+        "CBT 2 Part B \u2014 75Q, 75 marks, 60 mins, 1/3 negative marking \u2014 QUALIFYING only (min 35% all categories). Trade-specific questions",
+        "CBAT (Computer Based Aptitude Test) \u2014 for ALP post only. No negative marking. Min 42 marks in EACH test battery. Counts 50% in final merit",
+        "Document Verification",
+        "Medical Examination"
+      ],
+      "syllabus": {
+        "CBT 1 \u2014 4 subjects": "Mathematics (20Q) | General Intelligence & Reasoning (25Q) | General Science (20Q) | General Awareness & Current Affairs (10Q) \u2014 Total 75Q, 75 marks, 60 mins. NOTE: Some sources wrongly say GA removed \u2014 it is NOT removed in CEN 01/2026. GA has 10 questions.",
+        "CBT 2 Part A \u2014 4 subjects": "Mathematics | General Intelligence & Reasoning | Basic Science & Engineering (Engineering Drawing, Units, Mass/Weight, Work/Power, Basic Electricity, Levers, IT Literacy etc.) | General Awareness on Current Affairs \u2014 100Q, 90 mins",
+        "CBT 2 Part B": "Trade-specific technical questions as per ITI/Diploma syllabus (prescribed by DGT at dgt.gov.in) \u2014 75Q, 60 mins. Min 35% required to qualify. NOT counted in merit.",
+        "CBAT Test Batteries": "Memory Test | Following Directions Test | Depth Perception Test | Concentration Test | Perceptual Speed Test \u2014 Min 42 marks in each battery",
+        "Final Merit": "50% CBT 2 Part A marks + 50% CBAT marks (NEW in CEN 01/2026 \u2014 was 70%+30% before)"
+      },
+      "importantDates": {
+        "applyStart": "15 May 2026",
+        "lastDate": "14 Jun 2026",
+        "examDate": "To be announced"
+      },
+      "note": "KEY 2026 CHANGE: Final merit now 50% CBT-2 Part A + 50% CBAT (earlier 70%+30%). CBT 1 still has General Awareness (10Q) \u2014 NOT removed. CBAT marks now equally important as CBT 2 Part A.",
+      "vacancyNote": "11,127 (OFFICIAL \u2014 CEN 01/2026)",
+      "fee": 0,
+      "qualification": "10th pass from recognised board + ITI certificate in relevant trade (Electrician, Fitter, Mechanic, Welder etc.) OR Diploma/Engineering in relevant stream",
+      "categories": [
+        "Railway"
+      ],
+      "ageMin": 18,
+      "ageMax": 30,
+      "applyLink": "https://rrbapply.gov.in",
+      "officialLink": "https://indianrailways.gov.in",
+      "ageLimit": "18-30 years (as on 01 July 2026)",
+      "posts": 11127
+    },
+    {
+      "id": "rrb-technician-2026",
+      "title": "RRB Technician Recruitment 2026",
+      "organization": "Railway Recruitment Board",
+      "category": "Railway",
+      "state": "All India",
+      "vacancies": 6565,
+      "salary": "\u20b919,900 \u2013 \u20b935,000 (Pay Level 2\u20135)",
+      "applyStart": "30 Jun 2026 (OFFICIAL)",
+      "lastDate": "29 Jul 2026 (OFFICIAL)",
+      "notificationDate": "29 Jun 2026 (OFFICIAL)",
+      "examDate": "To be announced",
+      "applyUrl": "https://rrbapply.gov.in",
+      "notificationNo": "CEN 02/2026",
+      "isNew": true,
+      "isTrending": false,
+      "status": "Upcoming",
+      "eligibility": {
+        "age": "18\u201336 years",
+        "education": "Grade III: 10th + ITI in relevant trade OR 10+2 with Physics & Maths (for Signal & Telecom posts) | Grade I Signal: B.Sc Physics/Maths or Diploma in Electronics/Electrical Engineering",
+        "nationality": "Indian"
+      },
+      "selectionProcess": [
+        "CBT \u2014 100 objective questions, 90 mins",
+        "Document Verification",
+        "Medical Examination"
+      ],
+      "syllabus": {
+        "CBT": "Mathematics (30Q), General Intelligence & Reasoning (30Q), General Science (40Q) including Physics, Chemistry, Life Sciences \u2014 total 100 questions, 90 mins, 1/3 negative marking",
+        "Note": "Minimum qualifying marks: 40% General, 30% SC/ST/OBC"
+      },
+      "importantDates": {
+        "notificationDate": "29 Jun 2026",
+        "applyStart": "30 Jun 2026",
+        "lastDate": "29 Jul 2026",
+        "examDate": "To be announced"
+      },
+      "vacancyNote": "6,565 (OFFICIAL \u2014 CEN 02/2026)",
+      "fee": 0,
+      "qualification": "Grade III: 10th + ITI in relevant trade OR 10+2 with Physics & Maths (for Signal & Telecom posts) | Grade I Signal: B.Sc Physics/Maths or Diploma in Electronics/Electrical Engineering",
+      "categories": [
+        "Railway"
+      ],
+      "ageMin": 18,
+      "ageMax": 36,
+      "applyLink": "https://rrbapply.gov.in",
+      "officialLink": "https://indianrailways.gov.in"
+    },
+    {
+      "id": "punjab-police-constable-2026",
+      "title": "Punjab Police Constable 2026",
+      "organization": "Punjab Police Department",
+      "category": "Police",
+      "state": "Punjab",
+      "vacancies": 3298,
+      "salary": "\u20b919,900 \u2013 \u20b963,200 (Pay Level 4)",
+      "applyStart": "10 Mar 2026",
+      "lastDate": "30 Mar 2026",
+      "examDate": "Jun\u2013Jul 2026 (TENTATIVE \u2014 not officially announced)",
+      "applyUrl": "https://punjabpolice.gov.in",
+      "isNew": false,
+      "isTrending": true,
+      "status": "Application Closed \u2014 Exam Pending (Jun\u2013Jul 2026 tentative)",
+      "eligibility": {
+        "age": "18\u201328 years",
+        "education": "10+2 from recognised board",
+        "language": "Punjabi at Matriculation level",
+        "nationality": "Indian, Punjab domicile preferred"
+      },
+      "selectionProcess": [
+        "Computer Based Test (CBT) Paper 1 \u2014 100 questions, 2 hours",
+        "Computer Based Test (CBT) Paper 2 \u2014 50 questions, 1 hour (min 50% required)",
+        "Physical Measurement Test (PMT)",
+        "Physical Screening Test (PST)",
+        "Document Verification",
+        "Medical Examination"
+      ],
+      "syllabus": {
+        "Paper 1": "General Knowledge, Current Affairs, Mental Ability, Numerical Ability, Reasoning, Computer Basics, Punjab History & Culture \u2014 100 questions",
+        "Paper 2": "Punjabi language \u2014 50 questions (minimum 50% required to qualify)"
+      },
+      "importantDates": {
+        "applyStart": "10 Mar 2026",
+        "lastDate": "30 Mar 2026",
+        "examDate": "Jun\u2013Jul 2026 (tentative)"
+      },
+      "note": "Application was open 10\u201330 Mar 2026. Exam expected Jun\u2013Jul 2026. Admit card will be released on official Punjab Police website before exam.",
+      "vacancyNote": "3,298 (OFFICIAL \u2014 official notification)",
+      "fee": 0,
+      "qualification": "10+2 from recognised board",
+      "categories": [
+        "Police"
+      ],
+      "ageMin": 18,
+      "ageMax": 28,
+      "applyLink": "https://punjabpolice.gov.in",
+      "officialLink": "https://punjabpolice.gov.in"
+    },
+    {
+      "id": "ibps-po-2026",
+      "title": "IBPS PO 2026",
+      "organization": "Institute of Banking Personnel Selection",
+      "category": "Banking",
+      "state": "All India",
+      "vacancies": 5000,
+      "salary": "Basic \u20b948,480. In-hand approx \u20b974,000\u2013\u20b976,000/month (X-city)",
+      "applyStart": "Expected Jun 2026 (TENTATIVE \u2014 with notification release)",
+      "lastDate": "To be announced",
+      "examDate": "Prelims: 22\u201323 Aug 2026 (OFFICIAL \u2014 IBPS Calendar 2026) | Mains: 4 Oct 2026 (OFFICIAL \u2014 IBPS Calendar 2026)",
+      "applyUrl": "https://www.ibps.in",
+      "notificationNo": "CRP PO/MT XV (expected)",
+      "isNew": false,
+      "isTrending": true,
+      "status": "Notification Expected June 2026",
+      "eligibility": {
+        "age": "20\u201330 years",
+        "education": "Graduation in any discipline from recognised university",
+        "nationality": "Indian"
+      },
+      "selectionProcess": [
+        "Preliminary Examination \u2014 Qualifying, marks not counted in final merit",
+        "Mains Examination \u2014 Objective + Descriptive (Letter/Essay writing)",
+        "Interview",
+        "Final Merit: Mains 80% + Interview 20%",
+        "Document Verification"
+      ],
+      "syllabus": {
+        "Prelims": "English Language (30Q, 20 mins), Quantitative Aptitude (35Q, 20 mins), Reasoning Ability (35Q, 20 mins) \u2014 100Q, 60 mins total. Negative marking: 0.25 per wrong answer. QUALIFYING \u2014 not counted in merit.",
+        "Mains Objective": "Reasoning & Computer Aptitude (45Q, 60 mins), Data Analysis & Interpretation (35Q, 45 mins), General Economy & Banking Awareness (40Q, 35 mins), English Language (35Q, 40 mins)",
+        "Mains Descriptive": "English Letter Writing + Essay \u2014 30 mins, 25 marks"
+      },
+      "importantDates": {
+        "notificationDate": "Jun 2026 (expected)",
+        "prelimsDate": "Sep\u2013Oct 2026",
+        "mainsDate": "Nov 2026"
+      },
+      "note": "Prelims and Mains dates confirmed from official IBPS Calendar 2026 released 16 Jan 2026. Notification expected Jun 2026. Vacancies for 11 participating PSBs.",
+      "vacancyNote": "Not yet announced (ESTIMATED: 5000\u20136000 based on 2025 cycle of 5208)",
+      "fee": 0,
+      "qualification": "Graduation in any discipline from recognised university",
+      "categories": [
+        "Banking"
+      ],
+      "ageMin": 20,
+      "ageMax": 30,
+      "applyLink": "https://ibps.in",
+      "officialLink": "https://ibps.in"
+    },
+    {
+      "id": "army-agniveer-gd-2026",
+      "title": "Army Agniveer GD 2026",
+      "organization": "Indian Army",
+      "category": "Army",
+      "state": "All India",
+      "vacancies": 25000,
+      "salary": "Year 1: \u20b930,000/month | Year 4: \u20b940,000/month | Seva Nidhi on exit: \u20b911.71 Lakhs",
+      "applyStart": "Next batch dates: To be announced",
+      "lastDate": "Current batch closed",
+      "examDate": "CEE ongoing Jun 2026 (for current batch)",
+      "applyUrl": "https://joinindianarmy.nic.in",
+      "isNew": false,
+      "isTrending": true,
+      "status": "CEE Written Exam Ongoing \u2014 Jun 2026",
+      "eligibility": {
+        "age": "17.5 to 21 years",
+        "education": "10th pass with 45% overall and 33% in each subject (simple pass for Board with grading system)",
+        "gender": "Male only (Agniveer GD)",
+        "nationality": "Indian"
+      },
+      "selectionProcess": [
+        "Common Entrance Exam (CEE) \u2014 Written Test",
+        "Physical Fitness Test (PFT)",
+        "Physical Measurement Test (PMT)",
+        "Medical Examination",
+        "Document Verification"
+      ],
+      "syllabus": {
+        "CEE": "General Knowledge (15Q), General Science (15Q), Mathematics (15Q), Computer Science (5Q) \u2014 50 questions, 60 mins, 0.25 negative marking per wrong answer. Minimum 32 marks required to qualify (general).",
+        "PFT": "1.6 km run in 5 min 30 sec (Group 1), 9 Beam (Pull-ups), 27 Sit-ups in 2 mins, 9 Dips in 1 min",
+        "Physical Standards": "Height min 170 cm, Weight min 50 kg, Chest min 77 cm (5 cm expansion)"
+      },
+      "importantDates": {
+        "examDate": "Jun 2026 (ongoing)"
+      },
+      "note": "CEE (Common Entrance Exam) conducted at rally bharti venues. Different from online CBT exams. No fresh application currently \u2014 exam for previously registered candidates is ongoing.",
+      "vacancyNote": "25,000 (ESTIMATED \u2014 official figure not confirmed per cycle)",
+      "fee": 0,
+      "qualification": "10th pass with 45% overall and 33% in each subject (simple pass for Board with grading system)",
+      "categories": [
+        "Army"
+      ],
+      "ageMin": 17,
+      "ageMax": 21,
+      "applyLink": "https://joinindianarmy.nic.in",
+      "officialLink": "https://joinindianarmy.nic.in"
+    },
+    {
+      "id": "navy-agniveer-apprentice-2026",
+      "title": "Indian Navy Agniveer Apprentice 2026",
+      "organization": "Indian Navy",
+      "category": "Army",
+      "state": "All India",
+      "vacancies": 0,
+      "salary": "\u20b930,000/month (Year 1) to \u20b940,000/month (Year 4)",
+      "applyStart": "05 Jun 2026 (OFFICIAL)",
+      "lastDate": "29 Jun 2026 17:00 hrs (OFFICIAL)",
+      "examDate": "To be announced (TENTATIVE: exam expected Aug\u2013Sep 2026)",
+      "applyUrl": "https://joinindiannavy.gov.in",
+      "notificationNo": "INET 2/2026",
+      "isNew": true,
+      "isTrending": true,
+      "status": "Active \u2014 Last Date 29 Jun 2026 17:00 hrs",
+      "eligibility": {
+        "gender": "Unmarried MALE ONLY (females NOT eligible for Apprentice entry)",
+        "age": "01/2027 Batch: Born 01 Dec 2004 \u2013 31 May 2008 | 02/2027 Batch: Born 01 May 2005 \u2013 31 Oct 2009 | Both batches: apply if born 01 Dec 2004 \u2013 31 Oct 2009",
+        "education": "10th (Matriculation) with minimum 50% marks + 3-year Diploma from AICTE-recognised Polytechnic in Engineering/Electrical trade with minimum 50% marks",
+        "maritalStatus": "Must remain unmarried for entire 4-year tenure \u2014 violation = dismissal",
+        "nationality": "Indian"
+      },
+      "selectionProcess": "Stage 1: INET (100 MCQ, 1hr, -0.25 per wrong) \u2192 Stage 2: PFT + Written + Medical \u2192 Stage 3: Final Medicals at INS Chilka",
+      "syllabus": "English, General Awareness, Science, Mathematics, Trade Specific (Diploma level)",
+      "importantDates": {
+        "applyStart": "05 Jun 2026",
+        "lastDate": "29 Jun 2026",
+        "correctionWindow": "Till 06 Jul 2026",
+        "examDate": "To be announced"
+      },
+      "correctionWindow": "Till 06 Jul 2026",
+      "gender": "Unmarried MALE only (females NOT eligible)",
+      "trainingDetails": {
+        "01/2027 batch": "Training commences Dec 2026 at INS Chilka, Odisha",
+        "02/2027 batch": "Training commences May 2027 at INS Chilka, Odisha"
+      },
+      "note": "MALE ONLY. Two batches (01/2027 and 02/2027) being recruited simultaneously under INET 2/2026. Applications via joinindiannavy.gov.in only OR through CSC at \u20b9550+18%GST. Live photo captured during application.",
+      "vacancyNote": "Not disclosed \u2014 trade-wise vacancies decided by service requirement (OFFICIAL notification states this)",
+      "fee": 0,
+      "qualification": "Matric (50%) + 3-year AICTE Diploma (50%) in Engineering/Electrical trade",
+      "categories": [
+        "Army"
+      ],
+      "ageMin": 17,
+      "ageMax": 21,
+      "applyLink": "https://joinindiannavy.gov.in",
+      "applicationFee": "\u20b9550 + 18% GST",
+      "batches": "01/2027 (born 01/12/2004-31/05/2009) | 02/2027 (born 01/05/2005-31/10/2009)",
+      "trainingLocation": "INS Chilka, Odisha",
+      "officialLink": "https://joinindiannavy.gov.in"
+    },
+    {
+      "id": "psssb-clerk-2026",
+      "title": "PSSSB Clerk 2026",
+      "organization": "Punjab Subordinate Services Selection Board",
+      "category": "SSC",
+      "state": "Punjab",
+      "vacancies": 1150,
+      "salary": "\u20b919,900 \u2013 \u20b963,200 (Pay Level 4)",
+      "applyStart": "To be announced (notification not yet released)",
+      "lastDate": "To be announced",
+      "examDate": "To be announced",
+      "applyUrl": "https://sssb.punjab.gov.in",
+      "isNew": false,
+      "isTrending": false,
+      "status": "Notification NOT yet released \u2014 Expected 2026",
+      "eligibility": {
+        "age": "18\u201337 years",
+        "education": "Graduation from recognised university",
+        "language": "Punjabi at Matriculation level (compulsory)",
+        "nationality": "Indian, Punjab domicile"
+      },
+      "selectionProcess": [
+        "Written Examination Part A \u2014 Punjabi (qualifying, min 50%)",
+        "Written Examination Part B \u2014 General subjects (merit basis)",
+        "Typing Test",
+        "Document Verification"
+      ],
+      "syllabus": {
+        "Part B": "General Knowledge, Current Affairs, Reasoning, Numerical Ability, Computer Basics, Punjab History & Culture"
+      },
+      "importantDates": {
+        "examDate": "To be announced"
+      },
+      "vacancyNote": "1,150 (ESTIMATED \u2014 based on earlier announcement, official notification not yet released)",
+      "fee": 0,
+      "qualification": "Graduation from recognised university",
+      "categories": [
+        "SSC"
+      ],
+      "ageMin": 18,
+      "ageMax": 37,
+      "applyLink": "https://sssb.punjab.gov.in",
+      "officialLink": "https://sssb.punjab.gov.in"
+    },
+    {
+      "id": "punjab-teaching-2026",
+      "title": "Punjab Teacher Recruitment 2026",
+      "organization": "Education Recruitment Board Punjab",
+      "category": "Teaching",
+      "state": "Punjab",
+      "vacancies": 8393,
+      "salary": "\u20b929,200 \u2013 \u20b992,300 (varies by post)",
+      "applyStart": "To be announced",
+      "lastDate": "To be announced",
+      "examDate": "To be announced",
+      "applyUrl": "https://educationrecruitmentboard.com",
+      "isNew": false,
+      "isTrending": false,
+      "status": "Notification NOT yet released \u2014 Expected 2026",
+      "eligibility": {
+        "age": "18\u201337 years",
+        "education": "B.Ed / D.El.Ed + PSTET qualification mandatory",
+        "language": "Punjabi at Matriculation level",
+        "nationality": "Indian, Punjab domicile"
+      },
+      "selectionProcess": [
+        "PSTET Score Shortlisting",
+        "Written Examination",
+        "Document Verification"
+      ],
+      "syllabus": {
+        "Written Exam": "Subject Knowledge, Child Development & Pedagogy, General Knowledge, Punjabi Language"
+      },
+      "importantDates": {
+        "examDate": "To be announced"
+      },
+      "vacancyNote": "8,393 (ESTIMATED \u2014 based on earlier government announcement, official notification not released)",
+      "fee": 0,
+      "qualification": "B.Ed / D.El.Ed + PSTET qualification mandatory",
+      "categories": [
+        "Teaching"
+      ],
+      "ageMin": 18,
+      "ageMax": 37,
+      "applyLink": "https://educationrecruitmentboard.com",
+      "officialLink": "https://educationrecruitmentboard.com"
+    },
+    {
+      "id": "upsc-cse-2026",
+      "title": "UPSC CSE 2026",
+      "organization": "Union Public Service Commission",
+      "category": "UPSC",
+      "state": "All India",
+      "vacancies": 979,
+      "salary": "\u20b956,100 \u2013 \u20b92,50,000 (IAS/IPS/IFS \u2014 Pay Matrix Level 10\u201318)",
+      "applyStart": "Closed",
+      "lastDate": "Closed",
+      "examDate": "Prelims: 25 May 2026 (COMPLETED) | Mains: Sep 2026 (TENTATIVE) | Interview: Jan\u2013Mar 2027 (TENTATIVE)",
+      "applyUrl": "https://upsconline.nic.in",
+      "isNew": false,
+      "isTrending": true,
+      "status": "Prelims Done 25 May 2026 \u2014 Result Expected Jun 2026",
+      "eligibility": {
+        "age": "21\u201332 years (General), relaxation for reserved categories",
+        "education": "Bachelor's degree in any discipline from recognised university",
+        "attempts": "6 attempts for General, 9 for OBC, unlimited for SC/ST",
+        "nationality": "Indian"
+      },
+      "selectionProcess": [
+        "Preliminary Examination (Objective) \u2014 Screening",
+        "Mains Examination (Descriptive) \u2014 Merit",
+        "Personality Test / Interview",
+        "Final Merit & Allocation"
+      ],
+      "syllabus": {
+        "Prelims Paper 1": "Current Events, History of India, Indian Polity, Geography, Economic & Social Development, General Science \u2014 100 questions, 200 marks, 2 hours",
+        "Prelims Paper 2 (CSAT)": "Comprehension, Interpersonal Skills, Logical Reasoning, Analytical Ability, Decision Making, Basic Numeracy \u2014 80 questions, 200 marks, 2 hours (qualifying, min 33%)",
+        "Mains": "9 papers \u2014 Essay (250 marks), 4 GS Papers (250 marks each), 2 Optional Papers (250 marks each), 2 qualifying papers (Indian Language + English)"
+      },
+      "importantDates": {
+        "prelimsDate": "25 May 2026",
+        "prelimsResultExpected": "Jun 2026 (TENTATIVE)",
+        "mainsDate": "Sep 2026",
+        "interviewDate": "Jan\u2013Mar 2027"
+      },
+      "vacancyNote": "979 (OFFICIAL \u2014 UPSC notification)",
+      "fee": 0,
+      "qualification": "Bachelor's degree in any discipline from recognised university",
+      "categories": [
+        "UPSC"
+      ],
+      "ageMin": 21,
+      "ageMax": 32,
+      "applyLink": "https://upsc.gov.in",
+      "officialLink": "https://upsc.gov.in"
+    },
+    {
+      "id": "nhm-punjab-staff-nurse-2026",
+      "title": "NHM Punjab Staff Nurse 2026",
+      "organization": "National Health Mission Punjab",
+      "category": "Health",
+      "state": "Punjab",
+      "vacancies": 2475,
+      "salary": "\u20b927,000 \u2013 \u20b935,000/month (contractual)",
+      "applyStart": "To be announced",
+      "lastDate": "To be announced",
+      "examDate": "To be announced",
+      "applyUrl": "https://nhm.punjab.gov.in",
+      "isNew": false,
+      "isTrending": false,
+      "status": "Notification NOT yet released \u2014 Expected 2026",
+      "eligibility": {
+        "age": "18\u201337 years",
+        "education": "B.Sc Nursing or GNM from recognised institution + valid RN/RM registration",
+        "language": "Punjabi at Matriculation level",
+        "nationality": "Indian, Punjab domicile"
+      },
+      "selectionProcess": [
+        "Written Examination / Merit Based",
+        "Document Verification",
+        "Medical Fitness"
+      ],
+      "syllabus": {
+        "Written Exam": "Nursing subjects, Anatomy, Physiology, Medical-Surgical Nursing, Community Health Nursing, General Knowledge"
+      },
+      "importantDates": {
+        "examDate": "To be announced"
+      },
+      "vacancyNote": "2,475 (ESTIMATED \u2014 based on earlier NHM Punjab announcement, official notification not yet released)",
+      "fee": 0,
+      "qualification": "B.Sc Nursing or GNM from recognised institution + valid RN/RM registration",
+      "categories": [
+        "Health"
+      ],
+      "ageMin": 18,
+      "ageMax": 37,
+      "applyLink": "https://nhm.punjab.gov.in",
+      "officialLink": "https://nhm.punjab.gov.in"
+    },
+    {
+      "id": "ssc-chsl-2026",
+      "title": "SSC CHSL 2026",
+      "organization": "Staff Selection Commission",
+      "category": "SSC",
+      "state": "All India",
+      "vacancies": 3000,
+      "salary": "\u20b919,900 \u2013 \u20b981,100 (Pay Level 2\u20134)",
+      "applyStart": "Not yet announced (TENTATIVE: expected Jun 2026)",
+      "lastDate": "Not yet announced",
+      "examDate": "Tier 1: Jul\u2013Sep 2026 (TENTATIVE \u2014 per SSC Annual Calendar)",
+      "applyUrl": "https://ssc.gov.in",
+      "isNew": false,
+      "isTrending": false,
+      "status": "Notification NOT yet released as of 04 Jun 2026",
+      "eligibility": {
+        "age": "18\u201327 years",
+        "education": "12th pass (Intermediate) from recognised board",
+        "nationality": "Indian"
+      },
+      "selectionProcess": [
+        "Tier 1 \u2014 Computer Based Examination (Qualifying)",
+        "Tier 2 \u2014 Computer Based Examination + Skill Test (Typing/DEO)",
+        "Document Verification"
+      ],
+      "syllabus": {
+        "Tier 1": "General Intelligence (25Q), General Awareness (25Q), Quantitative Aptitude (25Q), English Language (25Q) \u2014 100 questions, 60 mins, 0.50 negative marking",
+        "Tier 2": "Session 1: Mathematical Abilities + Reasoning + English Language + General Awareness + Computer Knowledge | Session 2: Skill Test (Typing/DEO)"
+      },
+      "importantDates": {
+        "examDate": "To be announced"
+      },
+      "note": "Notification was expected 30 Apr 2026 but delayed. Not released as of 4 Jun 2026. 3712 was the 2024 figure. 2026 vacancies will be announced with notification.",
+      "vacancyNote": "Not yet announced (ESTIMATED: 3000\u20136000 based on past trends; 2024 was 3712)",
+      "fee": 0,
+      "qualification": "12th pass (Intermediate) from recognised board",
+      "categories": [
+        "SSC"
+      ],
+      "ageMin": 18,
+      "ageMax": 27,
+      "applyLink": "https://ssc.gov.in",
+      "officialLink": "https://ssc.gov.in"
+    },
+    {
+      "id": "dsssb-2026",
+      "title": "DSSSB Recruitment 2026",
+      "organization": "Delhi Subordinate Services Selection Board",
+      "category": "SSC",
+      "state": "Delhi",
+      "vacancies": 1979,
+      "salary": "\u20b925,500 \u2013 \u20b981,100 (varies by post)",
+      "applyStart": "16 Jun 2026 (OFFICIAL)",
+      "lastDate": "15 Jul 2026 (OFFICIAL)",
+      "examDate": "To be announced",
+      "applyUrl": "https://dsssbonline.nic.in",
+      "notificationNo": "Advt. 03/2026",
+      "isNew": true,
+      "isTrending": true,
+      "status": "Opening 16 Jun 2026",
+      "eligibility": {
+        "age": "18\u201327 years for scientific posts | up to 30\u201332 years for technical/teaching posts \u2014 varies by post",
+        "education": "Ranges from Matric/ITI (technical posts) to Master's degree (scientific/teaching posts) \u2014 varies by post code",
+        "nationality": "Indian"
+      },
+      "selectionProcess": [
+        "Written Examination (CBT) \u2014 Objective MCQ",
+        "Skill Test (for applicable posts)",
+        "Document Verification"
+      ],
+      "syllabus": {
+        "General Section": "General Awareness (20Q), General Intelligence & Reasoning Ability (20Q), Arithmetic & Numerical Ability (20Q), Hindi Language (10Q), English Language (10Q)",
+        "Technical Section": "Post-specific subject knowledge \u2014 Computer Science for TGT, Science for JSA, etc."
+      },
+      "importantDates": {
+        "notificationDate": "29 May 2026",
+        "applyStart": "16 Jun 2026",
+        "lastDate": "15 Jul 2026",
+        "examDate": "To be announced"
+      },
+      "notificationDate": "01 Jun 2026",
+      "posts": "Junior Scientific Assistant (Biology/Chemistry/Physics), TGT Computer Science, Special Educator (Primary), Technical Assistant, Fitter Grade-II, Lift Operator, Electrical Overseer/Sub-Inspector, IT Assistant Grade-A",
+      "note": "Only one application per post code allowed. No corrections after submission. Fee \u20b9100 via SBI e-Pay only.",
+      "vacancyNote": "1,979 (OFFICIAL \u2014 Advt. 03/2026 dated 01 Jun 2026)",
+      "fee": 0,
+      "qualification": "Ranges from Matric/ITI (technical posts) to Master's degree (scientific/teaching posts) \u2014 varies by post code",
+      "categories": [
+        "SSC"
+      ],
+      "ageMin": 18,
+      "ageMax": 32,
+      "applyLink": "https://dsssb.delhi.gov.in",
+      "officialLink": "https://dsssb.delhi.gov.in"
+    },
+    {
+      "id": "punjab-haryana-hc-clerk-2026",
+      "title": "Punjab & Haryana High Court Clerk 2026",
+      "organization": "Punjab and Haryana High Court",
+      "category": "SSC",
+      "state": "Punjab, Haryana",
+      "vacancies": 1265,
+      "salary": "\u20b919,900 \u2013 \u20b963,200 (Pay Level 4)",
+      "applyStart": "Active",
+      "lastDate": "23 Jun 2026 (OFFICIAL)",
+      "examDate": "To be announced",
+      "applyUrl": "https://sssc.gov.in",
+      "isNew": true,
+      "isTrending": true,
+      "status": "Active \u2014 Last Date 23 Jun 2026",
+      "eligibility": {
+        "age": "18\u201342 years (General) | 18\u201347 years (SC/BC)",
+        "education": "Bachelor's degree in Arts or Science from recognised university",
+        "computer": "Basic computer knowledge \u2014 Word Processing & Spreadsheet required",
+        "language": "Matriculation with Hindi or Sanskrit as one subject (OR +2/BA/MA Hindi)",
+        "nationality": "Indian"
+      },
+      "selectionProcess": "CBT (GK + English) \u2192 CPT (Spreadsheet + Typing) \u2192 Document Verification",
+      "syllabus": "General Knowledge, English Composition (Essay, Letter, Precis, Translation)",
+      "importantDates": {
+        "lastDate": "23 Jun 2026",
+        "examDate": "To be announced"
+      },
+      "note": "Last date 23 Jun 2026. Both Punjab and Haryana candidates can apply. Computer skill test (MS Word & Excel) is part of selection.",
+      "vacancyNote": "1,265 (OFFICIAL)",
+      "fee": 0,
+      "qualification": "Bachelor's degree in Arts or Science from recognised university",
+      "categories": [
+        "SSC"
+      ],
+      "ageMin": 18,
+      "ageMax": 42,
+      "applyLink": "https://cdn3.digialm.com/EForms/configuredHtml/32046/96555/Index.html",
+      "officialLink": "https://sssc.gov.in",
+      "notificationPdf": "https://sssc.gov.in/storage/notices/haryana clerk 36C.pdf",
+      "examPattern": "100 marks CBT | Negative marking 1/4 | Min 33% per subject, 40% aggregate"
+    },
+    {
+      "id": "haryana-police-constable-2026",
+      "title": "Haryana Police Constable 2026",
+      "organization": "Haryana Staff Selection Commission",
+      "category": "Police",
+      "state": "Haryana",
+      "vacancies": 5500,
+      "salary": "\u20b921,700 \u2013 \u20b969,100 (Pay Level 3)",
+      "applyStart": "11 Jan 2026",
+      "lastDate": "25 Jan 2026",
+      "examDate": "Knowledge Test: To be announced (PMT/PET ongoing from 20 Apr 2026)",
+      "applyUrl": "https://hssc.gov.in",
+      "notificationNo": "Advt. 01/2026",
+      "isNew": true,
+      "isTrending": true,
+      "status": "PMT Stage Ongoing",
+      "eligibility": {
+        "age": "18\u201325 years (Constable, General) | Reserved categories get age relaxation as per Haryana Govt rules",
+        "education": "12th (Intermediate) pass from recognised board",
+        "language": "Hindi or Sanskrit up to Matric level",
+        "mandatory": "Valid HSSC Group C CET score required",
+        "nationality": "Indian, Haryana domicile preferred"
+      },
+      "selectionProcess": [
+        "HSSC Group C CET Score \u2014 initial shortlisting basis",
+        "Physical Measurement Test (PMT) \u2014 qualifying, ongoing from 20 Apr 2026",
+        "Physical Efficiency Test (PET) \u2014 qualifying",
+        "Knowledge Test (Written Exam) \u2014 97% weightage in final selection",
+        "Document Verification",
+        "Medical Examination"
+      ],
+      "syllabus": {
+        "Knowledge Test \u2014 100 marks total": "General Studies, General Science, Current Affairs (national/state), General Reasoning & Mental Aptitude, Numerical Ability, Agriculture & Animal Husbandry, Computer Basics (10% weightage), Haryana GK & History (20% weightage) \u2014 10+2 level questions",
+        "PET Male": "2.5 km run in 12 mins",
+        "PET Female": "1 km run in 6 mins",
+        "PMT Male": "Height 170 cm min, Chest 83\u201387 cm",
+        "PMT Female": "Height 158 cm min"
+      },
+      "importantDates": {
+        "applyStart": "11 Jan 2026",
+        "lastDate": "25 Jan 2026",
+        "pmtStart": "20 Apr 2026",
+        "examDate": "To be announced"
+      },
+      "vacancyBreakdown": {
+        "Constable GD Male": 4400,
+        "Constable GD Female": 600,
+        "Constable GRP (Govt Railway Police)": 500
+      },
+      "note": "Knowledge Test carries 97% weightage in final merit \u2014 most important stage. CET used only for shortlisting. PMT started 20 Apr 2026. Application window was 11\u201325 Jan 2026 (extended to 31 Jan 2026) \u2014 CLOSED.",
+      "vacancyNote": "5,500 (OFFICIAL \u2014 Advt. 01/2026)",
+      "fee": 0,
+      "qualification": "12th (Intermediate) pass from recognised board",
+      "categories": [
+        "Police"
+      ],
+      "ageMin": 18,
+      "ageMax": 25,
+      "applyLink": "https://hssc.gov.in",
+      "officialLink": "https://hssc.gov.in"
+    },
+    {
+      "id": "up-police-constable-2026",
+      "title": "UP Police Constable 2026",
+      "organization": "UP Police Recruitment & Promotion Board",
+      "category": "Police",
+      "state": "Uttar Pradesh",
+      "vacancies": 32679,
+      "salary": "\u20b921,700 \u2013 \u20b969,100 (Pay Level 3)",
+      "applyStart": "31 Dec 2025",
+      "lastDate": "30 Jan 2026",
+      "examDate": "8\u201310 Jun 2026 (OFFICIAL \u2014 written exam ongoing)",
+      "applyUrl": "https://uppbpb.gov.in",
+      "isNew": true,
+      "isTrending": true,
+      "status": "Written Exam Ongoing (8\u201310 Jun 2026)",
+      "eligibility": {
+        "age": "18\u201322 years Male General | 18\u201325 years Female General | Age relaxation for reserved categories as per UP govt rules",
+        "education": "12th pass (Intermediate) from recognised board",
+        "mandatory": "One-Time Registration (OTR) on UPPRPB portal required",
+        "nationality": "Indian"
+      },
+      "selectionProcess": [
+        "Written Examination \u2014 150 questions, 300 marks, 2 hours, NO negative marking, offline mode",
+        "Physical Standard Test (PST)",
+        "Physical Efficiency Test (PET)",
+        "Document Verification",
+        "Medical Examination"
+      ],
+      "syllabus": {
+        "Written Test \u2014 4 subjects": "General Hindi (75 marks) | General Knowledge & Current Affairs (75 marks) | Numerical & Mental Ability (75 marks) | Mental Aptitude/IQ/Reasoning (75 marks) \u2014 150 MCQ questions, 300 marks total, 2 hours, conducted OFFLINE (paper-based), NO negative marking \u2014 attempt ALL 150 questions",
+        "PST Male": "Height 168cm (Gen/OBC/SC) | 160cm (ST) | Chest 79\u201384 cm",
+        "PST Female": "Height 152cm (Gen/OBC/SC) | 147cm (ST)",
+        "PET Male": "4.8 km run in 25 mins",
+        "PET Female": "2.4 km run in 14 mins"
+      },
+      "importantDates": {
+        "applyStart": "31 Dec 2025",
+        "lastDate": "30 Jan 2026",
+        "examDate": "08\u201310 Jun 2026"
+      },
+      "note": "NO negative marking \u2014 attempt all 150 questions. 2 marks each = 300 marks total. Exam offline in 2 shifts at 1180 centres in 75 UP districts. Over 28.86 lakh candidates registered.",
+      "vacancyBreakdown": {
+        "Constable Civil Police": 10469,
+        "Constable PAC/Armed Police": 15131,
+        "Constable Special Security Force": 1341,
+        "Lady Constable Women Battalion": 2282,
+        "Constable Mounted Police": 71,
+        "Jail Warder": 3385
+      },
+      "vacancyNote": "32,679 (OFFICIAL \u2014 Advt. 07/2025)",
+      "fee": 0,
+      "qualification": "12th pass (Intermediate) from recognised board",
+      "categories": [
+        "Police"
+      ],
+      "ageMin": 18,
+      "ageMax": 22,
+      "applyLink": "https://uppbpb.gov.in",
+      "officialLink": "https://uppbpb.gov.in"
+    },
+    {
+      "id": "upsssc-lower-pcs-2026",
+      "title": "UPSSSC Lower PCS 2026",
+      "organization": "UP Subordinate Services Selection Commission",
+      "category": "SSC",
+      "state": "Uttar Pradesh",
+      "vacancies": 2516,
+      "salary": "\u20b925,500 \u2013 \u20b91,12,400 (Pay Level 4\u20136, varies by post)",
+      "applyStart": "29 May 2026 (OFFICIAL)",
+      "lastDate": "18 Jun 2026 (OFFICIAL)",
+      "correctionWindow": "Till 25 Jun 2026 (OFFICIAL)",
+      "examDate": "To be announced",
+      "applyUrl": "https://upsssc.gov.in",
+      "notificationNo": "Advt. No. 07-Pariksha/2026",
+      "isNew": true,
+      "isTrending": true,
+      "status": "Active",
+      "eligibility": {
+        "age": "21\u201340 years",
+        "education": "Bachelor's degree from recognised university",
+        "mandatory": "Valid UP PET 2025 score required \u2014 candidates without PET score cannot apply",
+        "nationality": "Indian, UP domicile"
+      },
+      "selectionProcess": [
+        "PET-2025 Score Based Shortlisting \u2014 15 times vacancies per category",
+        "Main Written Examination \u2014 100 MCQ, 2 hours",
+        "Document Verification"
+      ],
+      "syllabus": {
+        "Main Exam": "General Hindi, General Knowledge & Current Affairs, General Science, Computer Awareness, Data Interpretation, Environment, Uttar Pradesh GK \u2014 100 questions, 2 hours",
+        "Note": "Exact syllabus varies slightly by post \u2014 check official notification for post-specific requirements"
+      },
+      "importantDates": {
+        "applyStart": "29 May 2026",
+        "lastDate": "18 Jun 2026",
+        "correctionWindow": "Till 25 Jun 2026",
+        "examDate": "To be announced"
+      },
+      "note": "Originally 2285 vacancies \u2014 officially revised to 2516 via corrigendum dated 29 May 2026. Only candidates with valid UPSSSC PET-2025 scorecard can apply. No interview stage.",
+      "vacancyNote": "2,516 (OFFICIAL \u2014 revised via corrigendum 29 May 2026)",
+      "fee": 0,
+      "qualification": "Bachelor's degree from recognised university",
+      "categories": [
+        "SSC"
+      ],
+      "ageMin": 21,
+      "ageMax": 40,
+      "applyLink": "https://upsssc.gov.in",
+      "officialLink": "https://upsssc.gov.in"
+    },
+    {
+      "id": "rpsc-ras-2026",
+      "title": "RPSC RAS 2026",
+      "organization": "Rajasthan Public Service Commission",
+      "category": "UPSC",
+      "state": "Rajasthan",
+      "vacancies": 607,
+      "salary": "\u20b956,100 \u2013 \u20b91,77,500 (Pay Matrix Level 14)",
+      "applyStart": "To be announced (TENTATIVE: Jun 2026)",
+      "lastDate": "To be announced",
+      "examDate": "Prelims: To be announced (TENTATIVE: Mid 2026)",
+      "applyUrl": "https://rpsc.rajasthan.gov.in",
+      "isNew": true,
+      "isTrending": false,
+      "status": "Notification Released \u2014 Apply Dates Pending",
+      "eligibility": {
+        "age": "21\u201340 years",
+        "education": "Bachelor's degree from recognised university",
+        "nationality": "Indian, Rajasthan domicile preferred"
+      },
+      "selectionProcess": [
+        "Preliminary Examination (Objective)",
+        "Main Examination (Descriptive)",
+        "Interview / Personality Test",
+        "Document Verification"
+      ],
+      "syllabus": {
+        "Prelims": "General Knowledge & General Science \u2014 200 marks, 3 hours, 1/3 negative marking",
+        "Mains Paper 1": "General Studies \u2014 History, Art & Culture, Geography, Indian Polity (200 marks)",
+        "Mains Paper 2": "General Studies \u2014 Economic Concepts, Indian Economy, Rajasthan Economy (200 marks)",
+        "Mains Paper 3": "General Studies \u2014 Indian Political System, World Politics, Current Affairs (200 marks)",
+        "Mains Paper 4": "General Knowledge \u2014 Rajasthan specific, Science & Technology, Ethics (200 marks)"
+      },
+      "importantDates": {
+        "notificationDate": "May 2026",
+        "applyStart": "Jun 2026",
+        "examDate": "To be announced"
+      },
+      "note": "607 vacancies officially announced. Apply dates not yet released. RSMSSB and RPSC are planning major 2026 drive with 1 lakh+ vacancies across different exams.",
+      "vacancyNote": "607 (OFFICIAL \u2014 RPSC notification)",
+      "fee": 0,
+      "qualification": "Bachelor's degree from recognised university",
+      "categories": [
+        "UPSC"
+      ],
+      "ageMin": 21,
+      "ageMax": 40,
+      "applyLink": "https://rpsc.rajasthan.gov.in",
+      "officialLink": "https://rpsc.rajasthan.gov.in"
+    },
+    {
+      "id": "jkssb-multipost-2026",
+      "title": "JKSSB Multi-Post Recruitment 2026",
+      "organization": "J&K Services Selection Board",
+      "category": "SSC",
+      "state": "Jammu & Kashmir",
+      "vacancies": 130,
+      "salary": "\u20b918,000 \u2013 \u20b956,900 (Pay Level SL1 to Level 6F, varies by post)",
+      "applyStart": "22 Jun 2026 (OFFICIAL)",
+      "lastDate": "21 Jul 2026 (OFFICIAL)",
+      "examDate": "To be announced",
+      "applyUrl": "https://jkssb.nic.in",
+      "notificationNo": "Advt. 04/2026",
+      "isNew": true,
+      "isTrending": false,
+      "status": "Opening 22 Jun 2026",
+      "eligibility": {
+        "age": "18\u201340 years (varies by post)",
+        "education": "10th / 12th / ITI / Diploma / Graduation \u2014 varies by post",
+        "domicile": "J&K domicile certificate required",
+        "nationality": "Indian"
+      },
+      "selectionProcess": [
+        "Written / OMR Examination",
+        "Document Verification",
+        "Medical Examination"
+      ],
+      "syllabus": {
+        "Written Test": "General Knowledge, General English, Basic Mathematics, Reasoning \u2014 plus post-specific technical knowledge for technical posts",
+        "Negative Marking": "0.25 marks deducted per wrong answer",
+        "Posts": "Electrician, Plumber, Laboratory Assistant, Computer Assistant, Library Assistant, Horticulture Technician, Head Weaver, Binder, Press Mechanic, Refrigerator Mechanic, Boiler Mechanic, Junior Grader, Machine Man, Senior Horticulture Technician"
+      },
+      "importantDates": {
+        "notificationDate": "May 2026",
+        "applyStart": "22 Jun 2026",
+        "lastDate": "21 Jul 2026",
+        "examDate": "To be announced"
+      },
+      "note": "J&K domicile certificate is mandatory. Applications online only at jkssb.nic.in. 0.25 negative marking.",
+      "vacancyNote": "130 (OFFICIAL \u2014 Advt. 04/2026)",
+      "fee": 0,
+      "qualification": "10th / 12th / ITI / Diploma / Graduation \u2014 varies by post",
+      "categories": [
+        "SSC"
+      ],
+      "ageMin": 18,
+      "ageMax": 40,
+      "applyLink": "https://jkssb.nic.in",
+      "officialLink": "https://jkssb.nic.in"
+    },
+    {
+      "id": "psssb-ada-2026",
+      "title": "PSSSB Assistant District Attorney 2026",
+      "organization": "Punjab Subordinate Services Selection Board",
+      "category": "SSC",
+      "state": "Punjab",
+      "vacancies": 170,
+      "salary": "\u20b940,000 \u2013 \u20b91,25,000 (Group B Gazetted)",
+      "applyStart": "30 Apr 2026 (OFFICIAL \u2014 CLOSED)",
+      "lastDate": "20 May 2026 (OFFICIAL \u2014 CLOSED)",
+      "examDate": "To be announced",
+      "applyUrl": "https://sssb.punjab.gov.in",
+      "notificationNo": "Advt. 09/2026",
+      "isNew": true,
+      "isTrending": false,
+      "status": "Application Closed \u2014 Exam Pending",
+      "eligibility": {
+        "age": "21\u201342 years as on 01 Jan 2026",
+        "education": "LLB degree from recognised university OR Barrister (England/Ireland) OR Member of Faculty of Advocates of Scotland + minimum 2 years practice at bar + eligible to enrol as Advocate under Advocates Act 1961",
+        "language": "Punjabi at Matriculation level (compulsory)",
+        "nationality": "Indian, Punjab domicile"
+      },
+      "selectionProcess": [
+        "Written Examination Part A \u2014 Punjabi Language (qualifying, min 50%)",
+        "Written Examination Part B \u2014 Law MCQ (merit basis)",
+        "Document Verification"
+      ],
+      "syllabus": {
+        "Part B Law Paper": "Constitutional Law, Indian Penal Code, Code of Criminal Procedure, Code of Civil Procedure, Indian Evidence Act, Law of Contracts, Property Law, Administrative Law, Punjabi Legal Terminology"
+      },
+      "importantDates": {
+        "applyStart": "30 Apr 2026",
+        "lastDate": "20 May 2026",
+        "examDate": "To be announced"
+      },
+      "note": "Application closed 20 May 2026. Exam date not yet announced. Check sssb.punjab.gov.in for exam schedule updates.",
+      "vacancyNote": "170 (OFFICIAL \u2014 Advt. 09/2026)",
+      "fee": 0,
+      "qualification": "LLB degree from recognised university OR Barrister (England/Ireland) OR Member of Faculty of Advocates of Scotland + minimum 2 years practice at bar + eligible to enrol as Advocate under Advocates Act 1961",
+      "categories": [
+        "SSC"
+      ],
+      "ageMin": 21,
+      "ageMax": 42,
+      "applyLink": "https://sssb.punjab.gov.in",
+      "officialLink": "https://sssb.punjab.gov.in"
+    },
+    {
+      "id": "psssb-veterinary-inspector-2026",
+      "title": "PSSSB Veterinary Inspector 2026",
+      "organization": "Punjab Subordinate Services Selection Board",
+      "category": "SSC",
+      "state": "Punjab",
+      "vacancies": 150,
+      "salary": "\u20b929,200 \u2013 \u20b992,300 (Pay Level 5)",
+      "applyStart": "04 May 2026 (OFFICIAL \u2014 CLOSED)",
+      "lastDate": "25 May 2026 (OFFICIAL \u2014 CLOSED)",
+      "examDate": "To be announced",
+      "applyUrl": "https://sssb.punjab.gov.in",
+      "notificationNo": "Advt. 10/2026",
+      "isNew": true,
+      "isTrending": false,
+      "status": "Application Closed \u2014 Exam Pending",
+      "eligibility": {
+        "age": "18\u201337 years as on 01 Jan 2026",
+        "education": "10+2 with Physics, Chemistry, Biology from recognised board + 2-year Diploma in Veterinary Science and Animal Health Technology from recognised university",
+        "language": "Punjabi at Matriculation level (compulsory)",
+        "nationality": "Indian, Punjab domicile"
+      },
+      "selectionProcess": [
+        "Written Exam Part A \u2014 Punjabi Language (qualifying, min 50%)",
+        "Written Exam Part B \u2014 MCQ objective type (merit basis, 0.25 negative marking)",
+        "Document Verification / Counselling"
+      ],
+      "syllabus": {
+        "Part B": "Animal Husbandry, Veterinary Science principles, Animal Health Technology, Livestock Management, Disease identification, General Knowledge related to Animal Husbandry Department"
+      },
+      "importantDates": {
+        "applyStart": "04 May 2026",
+        "lastDate": "25 May 2026",
+        "examDate": "To be announced"
+      },
+      "note": "Application closed 25 May 2026. Exam date not yet announced. Check sssb.punjab.gov.in for exam schedule updates.",
+      "vacancyNote": "150 (OFFICIAL \u2014 Advt. 10/2026)",
+      "fee": 0,
+      "qualification": "10+2 with Physics, Chemistry, Biology from recognised board + 2-year Diploma in Veterinary Science and Animal Health Technology from recognised university",
+      "categories": [
+        "SSC"
+      ],
+      "ageMin": 18,
+      "ageMax": 37,
+      "applyLink": "https://sssb.punjab.gov.in",
+      "officialLink": "https://sssb.punjab.gov.in"
+    },
+    {
+      "id": "ssc-mts-2026",
+      "title": "SSC MTS & Havaldar 2026",
+      "organization": "Staff Selection Commission",
+      "category": "SSC",
+      "state": "All India",
+      "vacancies": 8000,
+      "salary": "\u20b918,000 \u2013 \u20b956,900 (Pay Level 1) + Allowances",
+      "applyStart": "30 Jun 2026 (TENTATIVE \u2014 per SSC Annual Calendar)",
+      "lastDate": "31 Jul 2026 (TENTATIVE \u2014 per SSC Annual Calendar)",
+      "examDate": "Sep\u2013Nov 2026 (TENTATIVE \u2014 per SSC Annual Calendar)",
+      "applyUrl": "https://ssc.gov.in",
+      "isNew": true,
+      "isTrending": true,
+      "status": "Notification NOT yet released \u2014 Expected 30 Jun 2026 (TENTATIVE)",
+      "eligibility": {
+        "age": "18\u201327 years (MTS) | 18\u201327 years (Havaldar)",
+        "education": "10th pass (Matriculation) from recognised board",
+        "nationality": "Indian"
+      },
+      "selectionProcess": [
+        "Session 1 \u2014 Numerical & Mathematical Ability (20Q) + Reasoning & General Intelligence (20Q) \u2014 40Q, 45 mins, NO negative marking",
+        "Session 2 \u2014 General Awareness (25Q) + English Language & Comprehension (25Q) \u2014 50Q, 45 mins, 1 mark negative marking per wrong answer",
+        "Physical Endurance & Medical Standards Test \u2014 for Havaldar post only",
+        "Document Verification"
+      ],
+      "syllabus": {
+        "Session 1": "Numerical & Mathematical Ability: Number systems, Decimals, Fractions, Percentages, Simple Interest | Reasoning & General Intelligence: Analogies, Similarities, Differences, Spatial Visualization",
+        "Session 2": "General Awareness: Current Affairs, History, Geography, Science | English Language: Reading Comprehension, Fill in blanks, Synonyms, Antonyms",
+        "Note": "Session 1 has NO negative marking \u2014 attempt all questions"
+      },
+      "importantDates": {
+        "notificationDate": "30 Jun 2026",
+        "applyStart": "30 Jun 2026",
+        "lastDate": "31 Jul 2026",
+        "examDate": "Sep\u2013Nov 2026"
+      },
+      "note": "Vacancy will be officially announced with notification on 30 Jun 2026. Session 1 has NO negative marking \u2014 attempt all questions. Session 2 has 1 mark negative marking.",
+      "vacancyNote": "Not yet announced (ESTIMATED: 8000+ based on past trends)",
+      "fee": 0,
+      "qualification": "10th pass (Matriculation) from recognised board",
+      "categories": [
+        "SSC"
+      ],
+      "ageMin": 18,
+      "ageMax": 27,
+      "applyLink": "https://ssc.gov.in",
+      "officialLink": "https://ssc.gov.in"
+    },
+    {
+      "id": "ssc-cpo-2026",
+      "title": "SSC CPO Sub Inspector 2026",
+      "organization": "Staff Selection Commission",
+      "category": "Police",
+      "state": "All India",
+      "vacancies": 3000,
+      "salary": "\u20b935,400 \u2013 \u20b91,12,400 (Pay Level 6)",
+      "applyStart": "31 May 2026 (OFFICIAL)",
+      "lastDate": "30 Jun 2026 (OFFICIAL)",
+      "examDate": "Paper 1: Oct\u2013Nov 2026 (TENTATIVE)",
+      "applyUrl": "https://ssc.gov.in",
+      "isNew": true,
+      "isTrending": true,
+      "status": "Active \u2014 Last date 30 Jun 2026",
+      "eligibility": {
+        "age": "20\u201325 years",
+        "education": "Bachelor's degree from recognised university",
+        "driving": "Valid LMV Driving License (Motorcycle + Car) mandatory for Delhi Police SI Male applicants only",
+        "nationality": "Indian"
+      },
+      "selectionProcess": [
+        "Paper 1 \u2014 CBT, 200 questions, 200 marks, 120 mins, 0.25 negative marking",
+        "Physical Endurance Test (PET) + Physical Standard Test (PST) \u2014 qualifying",
+        "Paper 2 \u2014 English Language & Comprehension, 200 questions, 200 marks, 120 mins, 0.25 negative marking",
+        "Detailed Medical Examination (DME)",
+        "Document Verification"
+      ],
+      "syllabus": {
+        "Paper 1": "General Intelligence & Reasoning (50Q, 50 marks), General Knowledge & General Awareness (50Q, 50 marks), Quantitative Aptitude (50Q, 50 marks), English Comprehension (50Q, 50 marks) \u2014 200 questions, 200 marks, 120 mins, 0.25 negative marking",
+        "Paper 2": "English Language & Comprehension \u2014 200 questions, 200 marks, 120 mins, 0.25 negative marking",
+        "PET Male": "100m race, Long Jump, High Jump, Shot Put, 1.6 km run",
+        "PST Male": "Height 170 cm, Chest 80-85 cm",
+        "PST Female": "Height 157 cm"
+      },
+      "posts": "Sub-Inspector (Executive) Delhi Police, Sub-Inspector (GD) BSF, CISF, CRPF, ITBP, SSB",
+      "importantDates": {
+        "notificationDate": "31 May 2026",
+        "applyStart": "31 May 2026",
+        "lastDate": "30 Jun 2026",
+        "paper1Date": "Oct\u2013Nov 2026"
+      },
+      "note": "Candidates who qualify Paper 1 are called for PET/PST. Paper 2 is conducted after physical tests. SI in Delhi Police needs driving license.",
+      "vacancyNote": "Not yet announced (ESTIMATED: 3000+ based on past trends)",
+      "fee": 0,
+      "qualification": "Bachelor's degree from recognised university",
+      "categories": [
+        "Police"
+      ],
+      "ageMin": 20,
+      "ageMax": 25,
+      "applyLink": "https://ssc.gov.in",
+      "officialLink": "https://ssc.gov.in"
+    },
+    {
+      "id": "ibps-clerk-2026",
+      "title": "IBPS Clerk 2026",
+      "organization": "Institute of Banking Personnel Selection",
+      "category": "Banking",
+      "state": "All India",
+      "vacancies": 6000,
+      "salary": "\u20b924,050 \u2013 \u20b964,480 (basic pay + allowances ~\u20b935,000\u201340,000/month)",
+      "applyStart": "To be announced (TENTATIVE: Jul\u2013Aug 2026)",
+      "lastDate": "To be announced",
+      "examDate": "Prelims: 10\u201311 Oct 2026 (OFFICIAL \u2014 IBPS Calendar 2026) | Mains: 27 Dec 2026 (OFFICIAL \u2014 IBPS Calendar 2026)",
+      "applyUrl": "https://www.ibps.in",
+      "notificationNo": "CRP CSA XVI (expected)",
+      "isNew": true,
+      "isTrending": true,
+      "status": "Notification NOT yet released \u2014 Expected Jul\u2013Aug 2026",
+      "eligibility": {
+        "age": "20\u201328 years",
+        "education": "Graduation in any discipline from recognised university",
+        "language": "Proficiency in official language of the state applied for",
+        "nationality": "Indian"
+      },
+      "selectionProcess": [
+        "Preliminary Examination \u2014 Qualifying, marks not counted in final merit",
+        "Mains Examination \u2014 Counts in final merit",
+        "Language Proficiency Test \u2014 qualifying",
+        "Document Verification"
+      ],
+      "syllabus": {
+        "Prelims": "English Language (30Q, 20 mins), Numerical Ability (35Q, 20 mins), Reasoning Ability (35Q, 20 mins) \u2014 100 questions, 60 mins",
+        "Mains": "Reasoning & Computer Aptitude (50Q, 45 mins), English Language (40Q, 35 mins), Quantitative Aptitude (50Q, 45 mins), General & Financial Awareness (50Q, 35 mins) \u2014 190 questions, 160 mins"
+      },
+      "importantDates": {
+        "prelimsDate": "10\u201311 Oct 2026",
+        "mainsDate": "27 Dec 2026"
+      },
+      "note": "Exam dates confirmed via IBPS Calendar 2026. No interview for Clerk post. Notification expected Jun\u2013Aug 2026.",
+      "vacancyNote": "Not yet announced (ESTIMATED: 6000\u20138000 based on past trends)",
+      "fee": 0,
+      "qualification": "Graduation in any discipline from recognised university",
+      "categories": [
+        "Banking"
+      ],
+      "ageMin": 20,
+      "ageMax": 28,
+      "applyLink": "https://ibps.in",
+      "officialLink": "https://ibps.in"
+    },
+    {
+      "id": "ibps-rrb-clerk-2026",
+      "title": "IBPS RRB Office Assistant 2026",
+      "organization": "Institute of Banking Personnel Selection",
+      "category": "Banking",
+      "state": "All India",
+      "vacancies": 6000,
+      "salary": "\u20b915,000 \u2013 \u20b919,000/month (varies by RRB) + allowances",
+      "applyStart": "To be announced (TENTATIVE: Jun\u2013Jul 2026)",
+      "lastDate": "To be announced",
+      "examDate": "Prelims: 6, 12\u201313 Dec 2026 (OFFICIAL \u2014 IBPS Calendar 2026) | Mains: 30 Jan 2027 (OFFICIAL \u2014 IBPS Calendar 2026)",
+      "applyUrl": "https://www.ibps.in",
+      "isNew": true,
+      "isTrending": false,
+      "status": "Notification NOT yet released \u2014 Expected Jun\u2013Jul 2026",
+      "eligibility": {
+        "age": "18\u201328 years",
+        "education": "Graduation in any discipline from recognised university",
+        "language": "Proficiency in local language (Hindi for North India RRBs)",
+        "nationality": "Indian"
+      },
+      "selectionProcess": [
+        "Preliminary Examination \u2014 Objective MCQ",
+        "Mains Examination \u2014 Objective MCQ",
+        "Language Proficiency Test (qualifying)",
+        "Document Verification"
+      ],
+      "syllabus": {
+        "Prelims": "Reasoning (40Q, 45 mins), Numerical Ability (40Q, 45 mins) \u2014 80 questions, 45 mins",
+        "Mains": "Reasoning (40Q, 50 mins), General Awareness (40Q, 20 mins), Numerical Ability (40Q, 30 mins), English/Hindi Language (40Q, 20 mins), Computer Knowledge (40Q, 20 mins) \u2014 200 questions, 140 mins"
+      },
+      "importantDates": {
+        "prelimsDate": "6, 12\u201313 Dec 2026",
+        "mainsDate": "30 Jan 2027"
+      },
+      "note": "Exam dates from official IBPS Calendar 2026. No interview for Office Assistant post.",
+      "vacancyNote": "Not yet announced (ESTIMATED: 6000\u20138500 based on past trends)",
+      "fee": 0,
+      "qualification": "Graduation in any discipline from recognised university",
+      "categories": [
+        "Banking"
+      ],
+      "ageMin": 18,
+      "ageMax": 28,
+      "applyLink": "https://ibps.in",
+      "officialLink": "https://ibps.in"
+    },
+    {
+      "id": "bro-gref-2026",
+      "title": "BRO GREF Recruitment 2026",
+      "organization": "Border Roads Organisation \u2014 Ministry of Defence",
+      "category": "Army",
+      "state": "All India",
+      "vacancies": 899,
+      "salary": "\u20b918,000 \u2013 \u20b956,900 (Pay Level 1\u20135, varies by post) + Army allowances",
+      "applyStart": "21 May 2026 (OFFICIAL)",
+      "lastDate": "04 Jul 2026 (OFFICIAL \u2014 date of receipt at GREF Centre)",
+      "applyMode": "OFFLINE ONLY \u2014 by Registered/Speed Post",
+      "examDate": "To be announced",
+      "applyUrl": "https://bro.gov.in",
+      "notificationNo": "Advertisement No. 01/2026",
+      "isNew": true,
+      "isTrending": false,
+      "status": "Active",
+      "eligibility": {
+        "age": "18\u201325 years (General)",
+        "education": "10th pass / 12th pass / ITI / Diploma \u2014 varies by post",
+        "nationality": "Indian"
+      },
+      "selectionProcess": [
+        "Written Examination (objective)",
+        "Skill / Trade Test (for applicable posts)",
+        "Document Verification",
+        "Medical Examination"
+      ],
+      "syllabus": {
+        "Written Exam": "General Awareness, General Intelligence & Reasoning, Numerical Aptitude, English/Hindi \u2014 varies by post",
+        "Trade Test": "Practical test relevant to the trade (Draughtsman, Electrician, Operator, Storekeeper etc.)"
+      },
+      "posts": "Draughtsman (Civil/Electrical), Hindi Typist, Storekeeper Technical, Operator Communication, Operator Mechanical Equipment, Electrician, Multi Skilled Worker",
+      "importantDates": {
+        "applyStart": "21 May 2026",
+        "lastDate": "04 Jul 2026",
+        "sendTo": "GREF Centre, Dighi Camp, Pune 411015 (by registered post)"
+      },
+      "note": "CRITICAL: Application OFFLINE only. Send by Registered Post to: GREF Centre, Dighi Camp, Pune \u2013 411015. Envelope must be superscribed with post name applied for. Last date 04 Jul 2026 (date of receipt at GREF Centre, not date of posting).",
+      "vacancyNote": "899 (OFFICIAL \u2014 Advertisement No. 01/2026)",
+      "fee": 0,
+      "qualification": "10th pass / 12th pass / ITI / Diploma \u2014 varies by post",
+      "categories": [
+        "Army"
+      ],
+      "ageMin": 18,
+      "ageMax": 25,
+      "applyLink": "https://bro.gov.in",
+      "officialLink": "https://bro.gov.in"
+    },
+    {
+      "id": "upsc-nda-2-2026",
+      "title": "UPSC NDA & NA (II) 2026",
+      "organization": "Union Public Service Commission",
+      "category": "Army",
+      "state": "All India",
+      "vacancies": 394,
+      "salary": "\u20b956,100 \u2013 \u20b91,77,500 (after commissioning as officer)",
+      "applyStart": "20 May 2026 (OFFICIAL \u2014 CLOSED)",
+      "lastDate": "09 Jun 2026 (OFFICIAL \u2014 CLOSED)",
+      "examDate": "13 Sep 2026 (OFFICIAL)",
+      "applyUrl": "https://upsconline.nic.in",
+      "notificationNo": "Advt. No. 10/2026-NDA-II",
+      "isNew": true,
+      "isTrending": true,
+      "status": "Application Closed 09 Jun 2026 \u2014 Exam 13 Sep 2026",
+      "eligibility": {
+        "age": "Born between 01 Jan 2008 and 01 Jan 2011 (both inclusive)",
+        "education": "12th pass or appearing \u2014 Physics & Maths compulsory for Navy, Air Force (Group X), INAC | Any stream for Army",
+        "gender": "Unmarried Male and Female",
+        "nationality": "Indian"
+      },
+      "selectionProcess": [
+        "Written Examination \u2014 Mathematics (300 marks, 2.5 hours) + General Ability Test (600 marks, 2.5 hours)",
+        "SSB Interview \u2014 Intelligence & Personality Test (900 marks)",
+        "Medical Examination",
+        "Final Merit & Allocation to Army/Navy/Air Force"
+      ],
+      "syllabus": {
+        "Paper 1 \u2014 Mathematics": "Algebra, Matrices & Determinants, Trigonometry, Analytical Geometry 2D & 3D, Differential Calculus, Integral Calculus, Differential Equations, Vector Algebra, Statistics & Probability \u2014 120Q, 300 marks, 2.5 hours. Negative: 0.83 marks per wrong.",
+        "Paper 2 \u2014 General Ability Test Part A": "English \u2014 Grammar, Vocabulary, Comprehension \u2014 200 marks",
+        "Paper 2 \u2014 General Ability Test Part B": "General Knowledge \u2014 Physics, Chemistry, General Science, History of India & Freedom Movement, Geography, Current Events \u2014 400 marks. Negative: 1.33 marks per wrong in GAT.",
+        "SSB Interview": "Intelligence & Personality Test \u2014 900 marks",
+        "Total": "Written 900 marks + SSB 900 marks = 1800 marks grand total"
+      },
+      "vacancyBreakdown": {
+        "Army (NDA 158th Course)": 208,
+        "Navy (NDA 158th Course)": 42,
+        "Air Force Flying (NDA 158th Course)": 92,
+        "Air Force Ground Duties Tech (NDA 158th Course)": 18,
+        "Air Force Ground Duties Non-Tech (NDA 158th Course)": 10,
+        "Naval Academy (120th INAC)": 24
+      },
+      "importantDates": {
+        "applyStart": "20 May 2026",
+        "lastDate": "09 Jun 2026",
+        "examDate": "14 Sep 2026"
+      },
+      "note": "Application closed 09 Jun 2026. Exam on 14 Sep 2026. Appearing in Class 12 also eligible for Army wing.",
+      "vacancyNote": "394 (OFFICIAL \u2014 Advt. No. 10/2026-NDA-II)",
+      "fee": 0,
+      "qualification": "12th pass or appearing \u2014 Physics & Maths compulsory for Navy, Air Force (Group X), INAC | Any stream for Army",
+      "categories": [
+        "Army"
+      ],
+      "ageMin": 16,
+      "ageMax": 19,
+      "applyLink": "https://upsc.gov.in",
+      "officialLink": "https://upsc.gov.in"
+    },
+    {
+      "id": "air-force-agniveer-vayu-2026",
+      "title": "Air Force Agniveer Vayu 2026",
+      "organization": "Indian Air Force",
+      "category": "Army",
+      "state": "All India",
+      "vacancies": 2500,
+      "salary": "Year 1: \u20b930,000/month | Year 4: \u20b940,000/month | Seva Nidhi: \u20b910.04 Lakhs",
+      "applyStart": "Current batch closed | Next batch: To be announced (TENTATIVE: Nov\u2013Dec 2026)",
+      "lastDate": "Current batch closed",
+      "examDate": "01/2027 batch exam: 30\u201331 Mar 2026 (COMPLETED) | 02/2027 batch: To be announced (TENTATIVE: 2027)",
+      "applyUrl": "https://agnipathvayu.cdac.in",
+      "isNew": false,
+      "isTrending": true,
+      "status": "01/2027 batch selection ongoing | 02/2027 batch notification expected Nov\u2013Dec 2026 (TENTATIVE)",
+      "eligibility": {
+        "age": "Born between 01 Jan 2006 \u2013 01 Jul 2009",
+        "gender": "Unmarried Male and Female",
+        "education": "Science subjects (Group X): 12th with Physics & Maths with 50% OR 3-year Engineering Diploma | Other subjects (Group Y): 12th with 50% in any stream OR 2-year Vocational Course",
+        "nationality": "Indian"
+      },
+      "selectionProcess": [
+        "Online Written Test (Phase 1) \u2014 Adaptability Test 1 & 2",
+        "Phase 2 Online Test \u2014 English, Reasoning, Maths, General Awareness, Science",
+        "Physical Fitness Test",
+        "Medical Examination",
+        "Document Verification"
+      ],
+      "syllabus": {
+        "Group X Science": "English, Physics, Mathematics",
+        "Group Y Other": "English, Reasoning & General Awareness",
+        "Physical Test": "1.6 km run in 6.5 mins (male) / 8 mins (female), Push-ups, Sit-ups, 9 Beam"
+      },
+      "importantDates": {
+        "batch01_2027_examDate": "30\u201331 Mar 2026 (completed)",
+        "nextBatchExpected": "Late 2026"
+      },
+      "note": "Agniveer Vayu 01/2027 batch written test was held 30\u201331 Mar 2026. Next batch (02/2027) notification expected around Nov\u2013Dec 2026. Check agnipathvayu.cdac.in for updates.",
+      "vacancyNote": "2,500 (ESTIMATED \u2014 official vacancy per batch not confirmed)",
+      "fee": 0,
+      "qualification": "Science subjects (Group X): 12th with Physics & Maths with 50% OR 3-year Engineering Diploma | Other subjects (Group Y): 12th with 50% in any stream OR 2-year Vocational Course",
+      "categories": [
+        "Army"
+      ],
+      "ageMin": 17,
+      "ageMax": 21,
+      "applyLink": "https://agnipathvayu.cdac.in",
+      "officialLink": "https://agnipathvayu.cdac.in"
+    },
+    {
+      "id": "haryana-court-clerk-2026",
+      "title": "Haryana Court Clerk 2026",
+      "department": "High Court of Punjab & Haryana (SSSC)",
+      "category": "State Government",
+      "state": "Haryana",
+      "posts": 1265,
+      "qualification": "Graduation (BA/BSc) + Computer proficiency. Hindi or Sanskrit at Matric level required.",
+      "ageLimit": "18-42 years (as on 01-01-2026)",
+      "salary": "\u20b925,500 - \u20b981,100 (Pay Level-4)",
+      "applicationFee": "\u20b91,200 (General) | \u20b9875 (Women) | \u20b9710 (SC/BC/OBC/ESM/EWS Punjab)",
+      "applyStart": "26 May 2026",
+      "lastDate": "23 Jun 2026",
+      "applyLink": "https://cdn3.digialm.com/EForms/configuredHtml/32046/96555/Index.html",
+      "officialLink": "https://sssc.gov.in",
+      "notificationPdf": "https://sssc.gov.in/storage/notices/haryana clerk 36C.pdf",
+      "examDate": "To be announced",
+      "selectionProcess": "Stage 1: CBT (GK + English, 100 marks) \u2192 Stage 2: CPT (Spreadsheet + Typing \u2014 qualifying only) \u2192 Stage 3: Document Verification",
+      "examPattern": "CBT: 100 marks total | GK: 50 objective (1 mark each, -1/4 negative) | English: 50 marks (20 objective + 30 subjective) | Min 33% per subject, 40% aggregate",
+      "syllabus": "General Knowledge: History, Geography, Polity, Current Affairs, Science | English: Essay (150 words), Letter, Precis, Translation Hindi to English | CPT: Spreadsheet (10 marks), English Typing (30 wpm)",
+      "status": "Active",
+      "isNew": true,
+      "isFeatured": true,
+      "tags": [
+        "State Government",
+        "Haryana",
+        "Clerk",
+        "Graduate",
+        "Court"
+      ],
+      "advtNo": "36C/SSSC/HR/2026",
+      "notes": "Final merit based on CBT only. CPT is qualifying. Corrigendum released on Mode of Selection \u2014 check official notification."
+    },
+    {
+      "id": "sbi-apprentice-2026",
+      "title": "SBI Apprentice 2026",
+      "department": "State Bank of India",
+      "category": "Banking",
+      "state": "All India",
+      "posts": 7150,
+      "qualification": "Any Graduation from recognized university",
+      "ageLimit": "20-28 years (as on 30 April 2026)",
+      "salary": "\u20b915,000/month stipend (1 year apprenticeship)",
+      "applicationFee": "\u20b9300 (General/OBC/EWS) | Nil (SC/ST/PwBD)",
+      "applyStart": "19 May 2026",
+      "lastDate": "15 Jun 2026",
+      "applyLink": "https://ibpsreg.ibps.in/sbiaapr26/",
+      "officialLink": "https://sbi.co.in/careers",
+      "notificationPdf": "https://sbi.bank.in/documents/77530/57941334/19052026_ENGAGEMENT+OF+APPRENTICE+2026+ADVERTISEMENT+CRPD_APPR_2026-27_07.pdf",
+      "examDate": "July 2026 (tentative)",
+      "selectionProcess": "Stage 1: Online Written Exam (Objective) \u2192 Stage 2: Local Language Test (Qualifying) \u2192 Final selection on written exam merit",
+      "examPattern": "Online objective type | Sections: Reasoning & Computer Aptitude, English Language, Quantitative Aptitude, General/Financial Awareness | Bilingual except English section",
+      "syllabus": "Reasoning & Computer Aptitude | English Language | Quantitative Aptitude | General/Financial Awareness",
+      "status": "Active \u2014 Last Date 15 Jun 2026",
+      "isNew": true,
+      "isFeatured": true,
+      "tags": [
+        "Banking",
+        "SBI",
+        "Apprentice",
+        "Graduate",
+        "All India"
+      ],
+      "advtNo": "CRPD/APPR/2026-27/07",
+      "notes": "Last date extended from 8 Jun to 15 Jun 2026 (confirmed on sbi.co.in). NOT a permanent job \u2014 1 year apprenticeship. Must register on NAPS/NATS portal before applying."
+    },
+    {
+      "id": "cisf-asi-paramedical-2026",
+      "title": "CISF ASI Paramedical Staff 2026",
+      "department": "Central Industrial Security Force (CISF)",
+      "category": "Defence",
+      "state": "All India",
+      "posts": 24,
+      "postDetails": "ASI Pharmacist: 18 | ASI X-Ray Technician: 1 | ASI Lab Technician: 5",
+      "qualification": "ASI Pharmacist: 10+2 + Diploma/Degree in Pharmacy + Registered under Pharmacy Act 1948 | ASI X-Ray Tech: 10+2 + 2-year Diploma in Radiography | ASI Lab Tech: 10+2 + 2-year Diploma in MLT",
+      "ageLimit": "ASI Pharmacist: 20-25 years | ASI X-Ray Tech & Lab Tech: 18-28 years (as on 07 Jul 2026)",
+      "salary": "\u20b929,200 - \u20b992,300 (Pay Level-5, 7th CPC)",
+      "applicationFee": "\u20b9100 (UR/OBC/EWS) | Nil (SC/ST/Women/Ex-Servicemen)",
+      "applyStart": "08 Jun 2026",
+      "lastDate": "07 Jul 2026",
+      "applyLink": "https://cisfrectt.cisf.gov.in",
+      "officialLink": "https://cisf.gov.in",
+      "examDate": "To be announced",
+      "selectionProcess": "Stage 1: Written Exam (OMR/CBT, 100 marks, 2hrs) \u2192 Stage 2: PST (Physical Standard Test) \u2192 Stage 3: Documentation \u2192 Stage 4: BVAT (Basic Vocational Aptitude Test) \u2192 Stage 5: Medical Examination (DME + RME)",
+      "examPattern": "100 marks | 2 hours | Objective MCQ | Bilingual (Hindi+English) | NO negative marking | Trade-specific knowledge",
+      "syllabus": "ASI Pharmacist: Pharmacology, Drug standards, Pharmacy Act, Dispensing, Drug interactions | ASI X-Ray Tech: Radiography principles, X-Ray equipment, Radiation safety | ASI Lab Tech: Haematology, Microbiology, Biochemistry, Blood banking",
+      "status": "Active \u2014 Apply Now Open",
+      "isNew": true,
+      "isFeatured": false,
+      "tags": [
+        "Defence",
+        "CISF",
+        "Paramedical",
+        "Health",
+        "All India"
+      ],
+      "notes": "Posting liability anywhere in India or abroad. 10% vacancies reserved for Ex-Servicemen. Probation period 2 years."
+    },
+    {
+      "id": "bsnl-jto-2026",
+      "title": "BSNL JTO 2026",
+      "department": "Bharat Sanchar Nigam Limited (BSNL)",
+      "category": "PSU",
+      "state": "All India",
+      "posts": 100,
+      "qualification": "B.E/B.Tech in Telecom/Electronics/Radio/Computer/Electrical/IT/Instrumentation OR M.Sc in Electronics/Computer Science",
+      "ageLimit": "20-30 years (as on 03 Jul 2026)",
+      "salary": "\u20b916,400 - \u20b940,500 (E1 Scale) | In-hand approx \u20b954,000-\u20b960,000/month",
+      "applicationFee": "\u20b92,000 (UR/OBC/EWS) | \u20b91,000 (SC/ST/PwBD)",
+      "applyStart": "04 Jun 2026",
+      "lastDate": "03 Jul 2026",
+      "applyLink": "https://externalexam.bsnl.co.in",
+      "officialLink": "https://bsnl.co.in",
+      "examDate": "August 2026 (tentative)",
+      "selectionProcess": "Stage 1: CBT (120 MCQ, 480 marks, 3hrs, negative marking) \u2192 Stage 2: Document Verification \u2192 Stage 3: Medical Examination",
+      "examPattern": "120 MCQ \u00d7 4 marks = 480 total | 3 hours | Negative marking: 1 mark per wrong | 3 sections: Engineering I + Engineering II + General Ability | Min qualifying: 40% per section, 50% overall (UR/OBC-CL)",
+      "syllabus": "Engineering Section I: Material & Components, Electronic Devices, ICs, Network Theory, Electromagnetic Theory, Measurements, Power Electronics | Engineering Section II: Analog & Digital Circuits, Control Systems, Communication Systems, Microwave, Computer Engineering, Microprocessors | General Ability: English, Reasoning, General Awareness, Quantitative Aptitude",
+      "status": "Active",
+      "isNew": true,
+      "isFeatured": false,
+      "tags": [
+        "PSU",
+        "BSNL",
+        "Engineering",
+        "BTech",
+        "Telecom",
+        "All India"
+      ],
+      "advtNo": "BSNLCO-14/12(11)/1/2026-RECTT-CO",
+      "notes": "\u26a0\ufe0f Must sign \u20b96 lakh service bond \u2014 mandatory 5 years service. JTO is Circle Cadre post. Training: 10 weeks Phase I + 4 weeks Field + 6 weeks Phase II."
+    },
+    {
+      "id": "afcat-02-2026",
+      "title": "Air Force AFCAT 02/2026",
+      "department": "Indian Air Force",
+      "category": "Defence",
+      "state": "All India",
+      "posts": 379,
+      "vacancies": 379,
+      "qualification": "Flying Branch: Graduate with Physics & Maths at 12th OR BE/B.Tech any discipline | Ground Duty Technical: BE/B.Tech in relevant engineering | Ground Duty Non-Technical: Any Graduate",
+      "ageLimit": "Flying Branch: 20-24 years (born 02 Jan 2003 to 01 Jan 2007) | Ground Duty: 20-26 years (as on 01 Jul 2027)",
+      "salary": "\u20b956,100 - \u20b91,10,700/month + MSP \u20b915,500 + DA + HRA + allowances (approx \u20b980,000-1,00,000 in-hand)",
+      "applicationFee": "\u20b9550 + 18% GST (General/OBC/SC/ST all pay same) | NCC Special Entry: Nil | GATE Entry: Nil",
+      "applyStart": "20 May 2026",
+      "lastDate": "19 Jun 2026",
+      "applyLink": "https://afcat.cdac.in",
+      "officialLink": "https://afcat.cdac.in",
+      "examDate": "08 August 2026",
+      "selectionProcess": "Stage 1: AFCAT Written Exam (online CBT, 100 MCQ, 2 hrs) \u2192 Stage 2: AFSB Interview (5 days at Air Force Selection Board) \u2192 Stage 3: Medical Examination (at IAF medical centres) \u2192 Stage 4: Final All India Merit List | NCC Special Entry: Skip Stage 1, direct AFSB",
+      "examPattern": "100 MCQ | 300 marks total | 3 marks per correct answer | -1 mark per wrong answer | 2 hours duration | 4 Sections: General Awareness, Verbal Ability in English, Numerical Ability, Reasoning & Military Aptitude | Ground Duty Technical candidates also give EKT (Engineering Knowledge Test)",
+      "syllabus": "General Awareness: History, Geography, Civics, Science & Technology, Current Affairs, Defence, Sports | English: Comprehension, Error Detection, Sentence Completion, Synonyms/Antonyms, Vocabulary | Numerical Ability: Decimal Fractions, Simple Interest, Time & Work, Profit/Loss, Ratio, Average, Percentage, LCM/HCF | Reasoning & Military Aptitude: Verbal & Non-verbal Reasoning, Spatial Ability, Rotated Blocks, Hidden Figures, Distance & Direction | EKT (Technical only): Electronics/Electrical/Mechanical/Computer Science as per discipline",
+      "status": "Active",
+      "isNew": true,
+      "isFeatured": true,
+      "tags": [
+        "Defence",
+        "Air Force",
+        "AFCAT",
+        "Graduate",
+        "Engineer",
+        "Officer",
+        "All India"
+      ],
+      "advtNo": "AFCAT 02/2026",
+      "notes": "Both Permanent Commission (PC) and Short Service Commission (SSC) available for men and women. Course commences July 2027 at Air Force Academy, Dundigal (Hyderabad). NCC 'C' Certificate holders can apply under NCC Special Entry \u2014 no written exam required. GATE Score holders can apply under GATE Entry for Ground Duty Technical branch."
+    }
+  ],
+  "lastUpdated": "2026-06-08",
+  "totalJobs": 34
+}
