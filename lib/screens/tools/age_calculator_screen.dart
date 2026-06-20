@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -108,7 +108,6 @@ class _AgeCalculatorScreenState extends State<AgeCalculatorScreen> {
         }
       }
     } catch (e) {
-      print('Error loading DOB: $e');
     }
     setState(() => _isLoadingDOB = false);
   }
@@ -125,7 +124,6 @@ class _AgeCalculatorScreenState extends State<AgeCalculatorScreen> {
         );
       }
     } catch (e) {
-      print('Error parsing DOB: $e');
     }
     return null;
   }

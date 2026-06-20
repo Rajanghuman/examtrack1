@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+﻿import 'package:cloud_firestore/cloud_firestore.dart';
 
 class JobService {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
@@ -16,7 +16,6 @@ class JobService {
         return data;
       }).toList();
     } catch (e) {
-      print('Error getting jobs: $e');
       return [];
     }
   }
@@ -36,7 +35,6 @@ class JobService {
         return data;
       }).toList();
     } catch (e) {
-      print('Error getting jobs by category: $e');
       return [];
     }
   }
@@ -72,7 +70,6 @@ class JobService {
         return data;
       }).toList();
     } catch (e) {
-      print('Error getting new jobs: $e');
       // Fallback — get any jobs
       try {
         QuerySnapshot allSnapshot = await _db
@@ -116,7 +113,6 @@ class JobService {
             org.contains(searchLower);
       }).toList();
     } catch (e) {
-      print('Error searching jobs: $e');
       return [];
     }
   }
@@ -127,7 +123,6 @@ class JobService {
       await _db.collection('jobs').add(jobData);
       return true;
     } catch (e) {
-      print('Error adding job: $e');
       return false;
     }
   }

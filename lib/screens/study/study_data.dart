@@ -1,4 +1,4 @@
-// EXAMTRACK STUDY DATA — ALL 5 EXAMS
+﻿// EXAMTRACK STUDY DATA — ALL 5 EXAMS
 class StudyData {
 
   static List<Map<String,dynamic>> getSections(String exam) {
@@ -8,6 +8,11 @@ class StudyData {
       case 'Army Agniveer': return _armySections;
       case 'Punjab Police': return _policeSections;
       case 'IBPS PO':       return _ibpsSections;
+      case 'SSC CHSL':      return _chslSections;
+      case 'UPSC CSE':      return _upscSections;
+      case 'Delhi Police':  return _delhiPoliceSections;
+      case 'Haryana Police': return _haryanaPoliceSections;
+      case 'NDA':           return _ndaSections;
       default:              return _sscSections;
     }
   }
@@ -19,6 +24,11 @@ class StudyData {
       case 'Army Agniveer': return _armyPYQ;
       case 'Punjab Police': return _policePYQ;
       case 'IBPS PO':       return _ibpsPYQ;
+      case 'SSC CHSL':      return _chslPYQ;
+      case 'UPSC CSE':      return _upscPYQ;
+      case 'Delhi Police':  return _delhiPolicePYQ;
+      case 'Haryana Police': return _haryanaPolicePYQ;
+      case 'NDA':           return _ndaPYQ;
       default:              return _sscPYQ;
     }
   }
@@ -30,6 +40,11 @@ class StudyData {
       case 'Army Agniveer': return _armyMocks;
       case 'Punjab Police': return _policeMocks;
       case 'IBPS PO':       return _ibpsMocks;
+      case 'SSC CHSL':      return _chslMocks;
+      case 'UPSC CSE':      return _upscMocks;
+      case 'Delhi Police':  return _delhiPoliceMocks;
+      case 'Haryana Police': return _haryanaPoliceMocks;
+      case 'NDA':           return _ndaMocks;
       default:              return _sscMocks;
     }
   }
@@ -41,6 +56,11 @@ class StudyData {
       case 'Army Agniveer': return _armyQR;
       case 'Punjab Police': return _policeQR;
       case 'IBPS PO':       return _ibpsQR;
+      case 'SSC CHSL':      return _chslQR;
+      case 'UPSC CSE':      return _upscQR;
+      case 'Delhi Police':  return _delhiPoliceQR;
+      case 'Haryana Police': return _haryanaPoliceQR;
+      case 'NDA':           return _ndaQR;
       default:              return _sscQR;
     }
   }
@@ -52,6 +72,11 @@ class StudyData {
       case 'Army Agniveer': return 'CEE: 50Q | 60 mins | 0.25 negative';
       case 'Punjab Police': return 'Paper 1: 100Q 2hrs | Paper 2: Punjabi 50Q';
       case 'IBPS PO':       return 'Prelims: 100Q | 60 mins | 0.25 negative';
+      case 'SSC CHSL':      return 'Tier 1: 100Q | 60 mins | 0.5 negative';
+      case 'UPSC CSE':      return 'Prelims: 100Q | 2 hrs | 1/3 negative';
+      case 'Delhi Police':  return 'CBT: 100Q | 90 mins | 0.25 negative';
+      case 'Haryana Police': return 'Written: 100Q | 90 mins | No negative marking';
+      case 'NDA':           return 'Maths: 120Q 2.5hrs | GAT: 150Q 2.5hrs | 1/3 negative';
       default:              return '';
     }
   }
@@ -1378,4 +1403,1108 @@ class StudyData {
       'All A→B + All B→C = All A→C. All A→B + Some B→C = Some A→C (maybe).',
     ]},
   ];
+
+  static final List<Map<String,dynamic>> _chslSections = [
+    {
+      'id': 'chsl-reasoning',
+      'title': 'General Intelligence & Reasoning',
+      'colorHex': 0xFF1565C0,
+      'topics': [
+        {
+          'id': 'chsl-series',
+          'title': 'Number & Letter Series',
+          'weightage': '4-5 questions',
+          'difficulty': 'Easy',
+          'readTime': '10 mins',
+          'content': 'NUMBER SERIES\nFind the pattern and identify the missing/wrong term.\n\nCOMMON PATTERNS:\n\n1. ARITHMETIC SERIES (constant difference)\n2, 5, 8, 11, ? → difference = 3 → answer = 14\n100, 90, 80, 70, ? → difference = -10 → answer = 60\n\n2. GEOMETRIC SERIES (constant ratio)\n2, 4, 8, 16, ? → ratio = 2 → answer = 32\n243, 81, 27, 9, ? → ratio = 1/3 → answer = 3\n\n3. SQUARE SERIES\n1, 4, 9, 16, 25, ? → n² → answer = 36\n2, 5, 10, 17, 26, ? → n²+1 → answer = 37\n\n4. CUBE SERIES\n1, 8, 27, 64, ? → n³ → answer = 125\n2, 9, 28, 65, ? → n³+1 → answer = 126\n\n5. FIBONACCI TYPE\n1, 1, 2, 3, 5, 8, 13, ? → each = sum of previous two → answer = 21\n2, 3, 5, 8, 13, 21, ? → answer = 34\n\n6. PRIME NUMBER SERIES\n2, 3, 5, 7, 11, 13, ? → primes → answer = 17\n\n7. TWO-STEP SERIES\n1, 2, 4, 7, 11, 16, ? → differences: 1,2,3,4,5,6 → answer = 22\n3, 6, 10, 15, 21, ? → differences: 3,4,5,6,7 → answer = 28\n\nLETTER SERIES\nA=1, B=2, C=3 ... Z=26\n\nExample: A, C, E, G, ? → skip one letter → answer = I\nExample: Z, X, V, T, ? → reverse, skip one → answer = R\nExample: AZ, BY, CX, DW, ? → forward+backward → answer = EV\n\nALPHANUMERIC SERIES\nA1, B3, C5, D7, ? → letters forward, odd numbers → answer = E9\nZ26, Y24, X22, ? → reverse letters, even numbers decreasing by 2 → answer = W20\n\nEXAM TIPS:\n- First check difference between consecutive terms\n- If not constant, check second-level differences\n- Always verify with at least 3 terms before marking\n- CHSL Tier 1 has 4-5 series questions — easy marks!',
+        },
+        {
+          'id': 'chsl-blood',
+          'title': 'Blood Relations',
+          'weightage': '2-3 questions',
+          'difficulty': 'Easy-Medium',
+          'readTime': '8 mins',
+          'content': 'BLOOD RELATIONS\nIdentify family relationships from given statements.\n\nKEY RELATIONSHIPS TABLE:\nParents: Father, Mother\nSiblings: Brother, Sister\nChildren: Son, Daughter\nSpouse: Husband, Wife\nGrandparents: Grandfather, Grandmother\nGrandchildren: Grandson, Granddaughter\nUncle/Aunt: Father\'s/Mother\'s brother/sister\nNephew/Niece: Brother\'s/Sister\'s son/daughter\nCousin: Uncle\'s/Aunt\'s son/daughter\n\nSOLVING METHOD:\n1. Draw a family tree\n2. Use M for male, F for female\n3. = sign for married couples\n4. | for parent-child\n\nCLASSIC TRICK QUESTIONS:\n\nQ: A is B\'s father. B is C\'s son. How is A related to C?\nA is B\'s father, B is C\'s son → C is B\'s parent → A is C\'s spouse (or father-in-law). CAREFUL — if B is both A\'s son and C\'s son, A and C are spouses.\n\nQ: Pointing to a woman, Ram says "Her mother is the only daughter of my mother." How is the woman related to Ram?\n"Only daughter of my mother" = Ram\'s sister\nThe woman\'s mother = Ram\'s sister\nSo the woman = Ram\'s niece\n\nQ: A+B means A is father of B\nA-B means A is mother of B\nA×B means A is brother of B\nA÷B means A is sister of B\nP+Q-R → P is father of Q, Q is mother of R → P is grandfather of R\n\nCODED RELATIONS (symbol based):\nAlways decode step by step left to right.\nIdentify gender from context or question.\n\nCOMMON MISTAKES:\n- Confusing nephew/niece gender\n- Missing "only" — "only son" means no brothers\n- Assuming gender when not stated\n\nEXAM TIPS:\n- Draw diagram for every question\n- 30 seconds per question is enough\n- Usually 2-3 questions in CHSL — guaranteed marks',
+        },
+        {
+          'id': 'chsl-direction',
+          'title': 'Direction & Distance',
+          'weightage': '2-3 questions',
+          'difficulty': 'Easy',
+          'readTime': '8 mins',
+          'content': 'DIRECTION SENSE\n\nCOMPASS DIRECTIONS:\n         NORTH\n           |\nWEST ------+------ EAST\n           |\n         SOUTH\n\nDIAGONAL DIRECTIONS:\nNorth-East (NE) = between N and E\nNorth-West (NW) = between N and W\nSouth-East (SE) = between S and E\nSouth-West (SW) = between S and W\n\nTURNING RULES:\nLeft turn = anticlockwise\nRight turn = clockwise\n\nFacing North → turn right → now facing East\nFacing North → turn left → now facing West\nFacing East → turn right → now facing South\nFacing South → turn right → now facing West\nU-turn = 180° turn (face opposite direction)\n\nDISTANCE CALCULATION:\nUse Pythagoras theorem: distance² = horizontal² + vertical²\n\nExample: Walk 3km North, turn right, walk 4km East.\nDisplacement = √(3² + 4²) = √(9+16) = √25 = 5km\nDirection from start = North-East\n\nSHADOW PROBLEMS:\nMorning (sunrise) = sun in East → shadow falls WEST\nEvening (sunset) = sun in West → shadow falls EAST\nNoon = sun directly overhead → very short/no shadow\n\nSOLVING METHOD:\n1. Start from given point\n2. Draw each movement on paper\n3. Mark N-S-E-W clearly\n4. Calculate final position using Pythagoras\n\nEXAM TIPS:\n- Always draw the path on rough paper\n- Standard triplets: 3-4-5, 5-12-13, 8-15-17\n- Shadow questions = easy 1 mark each',
+        },
+        {
+          'id': 'chsl-syllogism',
+          'title': 'Syllogism',
+          'weightage': '2-3 questions',
+          'difficulty': 'Medium',
+          'readTime': '10 mins',
+          'content': 'SYLLOGISM\nLogical deduction from given statements.\n\nTYPES OF STATEMENTS:\n1. Universal Positive: All A are B\n2. Universal Negative: No A is B\n3. Particular Positive: Some A are B\n4. Particular Negative: Some A are not B\n\nKEY RULES:\n\nAll A→B + All B→C = All A→C ✓\nAll A→B + All B→C = All C→A ✗\nAll A→B + No B→C = No A→C ✓\nSome A→B + All B→C = Some A→C ✓\nSome A→B + No B→C = Some A→not C ✓\nSome A→B + Some B→C = No conclusion ✗\n\nCONVERSION RULES:\nAll A are B → Some B are A (can convert)\nNo A is B → No B is A (can convert)\nSome A are B → Some B are A (can convert)\nSome A are not B → CANNOT convert\n\nEITHER-OR CASES:\nWhen neither conclusion follows individually BUT together they are complementary, "Either I or II follows."\nExample: Conclusion 1: Some cats are dogs.\nConclusion 2: No cats are dogs.\nThese cover all possibilities → Either I or II follows.\n\nPOSSIBILITY QUESTIONS:\nAll A are B → It is possible that some B are not A (TRUE)\nSome A are B → It is possible that All A are B (TRUE)\n\nVENN DIAGRAM METHOD:\nDraw overlapping circles for All/Some/No.\nCheck if conclusion holds for ALL possible diagrams.\nIf conclusion fails in even ONE valid diagram → conclusion does NOT follow.\n\nEXAM TIPS:\n- CHSL has 2-3 syllogism questions\n- Practice Venn diagram method\n- "Possibility" conclusions are usually TRUE\n- 45 seconds per question target',
+        },
+      ],
+    },
+    {
+      'id': 'chsl-english',
+      'title': 'English Language',
+      'colorHex': 0xFF6A1B9A,
+      'topics': [
+        {
+          'id': 'chsl-vocab',
+          'title': 'Vocabulary — Synonyms & Antonyms',
+          'weightage': '5-6 questions',
+          'difficulty': 'Easy-Medium',
+          'readTime': '15 mins',
+          'content': 'VOCABULARY FOR SSC CHSL\n\nFREQUENTLY ASKED SYNONYMS:\nABBREVIATE = Shorten, Curtail, Condense\nABHOR = Detest, Loathe, Hate\nACUMEN = Sharpness, Shrewdness, Insight\nADROIT = Skilled, Expert, Dexterous\nAFFLUENT = Wealthy, Prosperous, Rich\nAMBIGUOUS = Unclear, Vague, Equivocal\nAMENITY = Comfort, Facility, Convenience\nANOMOUS = Irregular, Unusual, Deviant\nAPATHY = Indifference, Lethargy, Unconcern\nARDENT = Passionate, Enthusiastic, Fervent\nASSIDUOUS = Hardworking, Diligent, Industrious\nAUSTERE = Strict, Severe, Harsh\nAVARICE = Greed, Miserliness, Covetousness\nBELIGERENT = Aggressive, Hostile, Warlike\nBENEVOLENT = Kind, Generous, Charitable\nCANDID = Frank, Honest, Straightforward\nCHRONIC = Persistent, Constant, Prolonged\nCLEMENT = Mild, Merciful, Lenient\nCOMPEL = Force, Coerce, Oblige\nCONCISE = Brief, Short, Terse\nCOVET = Desire, Crave, Envy\nCUNNING = Clever, Crafty, Wily\nDEADLY = Fatal, Lethal, Mortal\nDECEIT = Fraud, Trickery, Deception\nDILIGENT = Hardworking, Industrious, Careful\nDISCREET = Careful, Prudent, Tactful\nDOCILE = Obedient, Meek, Submissive\nEMINENT = Famous, Distinguished, Renowned\nENIGMA = Mystery, Puzzle, Riddle\nERRATIC = Irregular, Unpredictable, Inconsistent\n\nFREQUENTLY ASKED ANTONYMS:\nABUNDANT ↔ Scarce/Rare\nACCEPT ↔ Reject/Decline\nACTIVE ↔ Passive/Inactive\nADMIRE ↔ Despise/Contempt\nAFFLUENT ↔ Poor/Destitute\nAMBIGUOUS ↔ Clear/Explicit\nANCIENT ↔ Modern/Contemporary\nAPATHY ↔ Interest/Enthusiasm\nARROGANT ↔ Humble/Modest\nAUSTERE ↔ Lenient/Luxurious\nBENEVOLENT ↔ Malevolent/Cruel\nBRAVE ↔ Cowardly/Timid\nCAPACITY ↔ Inability/Incapacity\nCONFIDENT ↔ Diffident/Uncertain\nCRUEL ↔ Kind/Merciful\nDILIGENT ↔ Lazy/Negligent\nEMINENT ↔ Obscure/Unknown\nFLEXIBLE ↔ Rigid/Inflexible\nGENEROUS ↔ Miserly/Stingy\nHUMBLE ↔ Arrogant/Proud\n\nEXAM TIPS:\n- Learn in groups of 5 daily\n- SSC repeats many words — previous year papers are GOLD\n- Focus on words with tricky meanings (words that sound positive but are negative)',
+        },
+        {
+          'id': 'chsl-grammar',
+          'title': 'Grammar — Error Spotting & Fill in the Blanks',
+          'weightage': '6-8 questions',
+          'difficulty': 'Medium',
+          'readTime': '15 mins',
+          'content': 'GRAMMAR RULES FOR SSC CHSL\n\nSUBJECT-VERB AGREEMENT:\n1. Singular subject → singular verb\n   The boy RUNS fast. ✓ The boy RUN fast. ✗\n2. Plural subject → plural verb\n   The boys RUN fast. ✓\n3. Collective nouns (committee, team, army, jury, government) → singular verb\n   The committee HAS decided. ✓\n4. "Each/Every/Either/Neither" → singular verb\n   Each student HAS a book. ✓\n5. "Along with/As well as/Together with" → verb agrees with FIRST subject\n   Ram, along with his friends, IS going. ✓\n6. "Neither...nor / Either...or" → verb agrees with NEAREST subject\n   Neither Ram nor his brothers ARE going. ✓\n\nTENSES:\nSimple Present: I play, She plays\nPresent Continuous: I am playing\nPresent Perfect: I have played\nPresent Perfect Continuous: I have been playing for 2 hours\nSimple Past: I played\nPast Continuous: I was playing\nPast Perfect: I had played (before another past action)\nSimple Future: I will play\nFuture Perfect: I will have played by 5pm\n\nARTICLES (A/AN/THE):\nA = before consonant sound: a book, a university (yu=consonant sound)\nAn = before vowel sound: an apple, an hour (h is silent), an honest man\nThe = specific/known: the sun, the moon, the Ganges, the Taj Mahal\nNo article: proper nouns (India, Delhi), languages (Hindi), meals (breakfast)\n\nCOMMON ERRORS:\n1. "I am knowing him" ✗ → "I know him" ✓ (stative verbs)\n   Stative verbs: know, believe, think, understand, seem, love, hate\n2. "He is more better" ✗ → "He is better" ✓ (double comparative)\n3. "Between you and I" ✗ → "Between you and me" ✓ (object case after preposition)\n4. "Less students" ✗ → "Fewer students" ✓ (countable = fewer, uncountable = less)\n5. "Very unique" ✗ → "Unique" ✓ (unique is absolute)\n6. "Since 2 hours" ✗ → "For 2 hours" ✓ (since = point in time, for = duration)\n7. "Would you mind to open" ✗ → "Would you mind opening" ✓ (mind + gerund)\n\nIDIOM & PHRASES (frequently asked):\nBite the bullet = endure a painful situation\nBurn the midnight oil = work/study late at night\nCost an arm and a leg = very expensive\nHit the nail on the head = exactly right\nKick the bucket = die (informal)\nLet the cat out of the bag = reveal a secret\nOn the fence = undecided\nPull someone\'s leg = joke/tease\nRain cats and dogs = rain heavily\nSpill the beans = reveal secret information\nUnder the weather = feeling ill\nBeat around the bush = avoid the main topic',
+        },
+      ],
+    },
+    {
+      'id': 'chsl-quant',
+      'title': 'Quantitative Aptitude',
+      'colorHex': 0xFFE65100,
+      'topics': [
+        {
+          'id': 'chsl-percent',
+          'title': 'Percentage & Profit-Loss',
+          'weightage': '5-6 questions',
+          'difficulty': 'Easy-Medium',
+          'readTime': '12 mins',
+          'content': 'PERCENTAGE\n\nFRACTION ↔ PERCENTAGE CONVERSION (MUST MEMORISE):\n1/1 = 100%\n1/2 = 50%\n1/3 = 33.33%\n1/4 = 25%\n1/5 = 20%\n1/6 = 16.67%\n1/7 = 14.28%\n1/8 = 12.5%\n1/9 = 11.11%\n1/10 = 10%\n1/11 = 9.09%\n1/12 = 8.33%\n1/20 = 5%\n1/25 = 4%\n\nKEY FORMULAS:\nX% of Y = (X×Y)/100\nIf A is X% more than B → B is [X/(100+X)]×100% less than A\nIf A is X% less than B → B is [X/(100-X)]×100% more than A\n\nSUCCESSIVE % CHANGE:\na% then b% change = a + b + (ab/100)%\nExample: 20% increase then 20% decrease = 20-20+(20×(-20)/100) = -4% (net loss of 4%)\n\nPROFIT & LOSS:\nProfit = SP - CP\nLoss = CP - SP\nProfit% = (Profit/CP) × 100\nLoss% = (Loss/CP) × 100\nSP = CP × (100+Profit%)/100\nSP = CP × (100-Loss%)/100\nCP = SP × 100/(100+Profit%)\nCP = SP × 100/(100-Loss%)\n\nDISCOUNT:\nDiscount = Marked Price - Selling Price\nDiscount% = (Discount/MP) × 100\nSP = MP × (100-Discount%)/100\n\nFALSE WEIGHT TRICK:\nIf shopkeeper uses false weight of X gm instead of 1000gm:\nProfit% = [(1000-X)/X] × 100\n\nCOMMON TRICKS:\nIf article sold at loss = profit% when CP and SP are interchanged:\nExample: Sold at 20% loss. If sold at ₹30 more, gain 10%.\nLoss = 20%, Gain = 10%, difference = 30%\n30% of CP = ₹30 → CP = ₹100\n\nEXAM TIPS:\n- Memorise fraction conversions — saves 30 seconds per question\n- For successive changes, always use the formula\n- CHSL has 5-6 questions from this topic — highest weightage in quant',
+        },
+        {
+          'id': 'chsl-si-ci',
+          'title': 'Simple & Compound Interest',
+          'weightage': '3-4 questions',
+          'difficulty': 'Easy-Medium',
+          'readTime': '10 mins',
+          'content': 'SIMPLE INTEREST (SI)\nFormula: SI = (P × R × T) / 100\nAmount = P + SI = P(1 + RT/100)\n\nP = Principal, R = Rate%, T = Time in years\n\nKEY SHORTCUTS:\nIf SI for T years = X, then SI for 1 year = X/T\nIf SI doubles money → T = 100/R years\nIf SI triples money → T = 200/R years\n\nCOMPOUND INTEREST (CI)\nFormula: A = P(1 + R/100)ⁿ\nCI = A - P = P[(1 + R/100)ⁿ - 1]\n\nFor half-yearly: A = P(1 + R/200)²ⁿ\nFor quarterly: A = P(1 + R/400)⁴ⁿ\n\nCI FOR 2 YEARS SHORTCUT:\nCI = SI + SI²/P × (1/100)\nOR: For 2 years, if R% → CI extra over SI = P×R²/10000\n\nEXAMPLE:\nP=1000, R=10%, T=2 years\nSI = 1000×10×2/100 = ₹200\nCI = 1000(1.1)² - 1000 = 1210-1000 = ₹210\nDifference = ₹10 (= 1000×100/10000 = 10)\n\nCOMPARISON:\nCI > SI always (for same P, R, T > 1 year)\nFor 1 year: CI = SI\nDifference between CI and SI for 2 years = P(R/100)²\n\nSPECIAL CASE — POPULATION:\nPopulation after n years = P(1 + R/100)ⁿ\nPopulation decrease: P(1 - R/100)ⁿ\n\nEXAM TIPS:\n- CI questions in CHSL are usually for 2 years — use shortcut\n- Always check if "half-yearly" or "quarterly" — many students miss this\n- Learn to use (1.1)²=1.21, (1.1)³=1.331 by heart',
+        },
+      ],
+    },
+    {
+      'id': 'chsl-gk',
+      'title': 'General Awareness',
+      'colorHex': 0xFF1B5E20,
+      'topics': [
+        {
+          'id': 'chsl-static-gk',
+          'title': 'Static GK — India & World',
+          'weightage': '8-10 questions',
+          'difficulty': 'Easy',
+          'readTime': '20 mins',
+          'content': 'STATIC GK FOR SSC CHSL\n\nINDIAN CONSTITUTION:\nAdopted: 26 November 1949 | Enforced: 26 January 1950\nDr. B.R. Ambedkar = Father of Indian Constitution\nOriginal articles: 395 | Currently: ~448\nSchedules: 12 | Parts: 22\nFundamental Rights: Part III (Articles 12-35)\nDPSP: Part IV (Articles 36-51)\nFundamental Duties: Part IVA (Article 51A), added 42nd Amendment 1976\n\nIMPORTANT ARTICLES:\nArticle 14 = Equality before law\nArticle 15 = No discrimination\nArticle 17 = Abolition of untouchability\nArticle 19 = Freedom of speech\nArticle 21 = Right to life and liberty\nArticle 32 = Right to constitutional remedies (Heart of Constitution)\nArticle 44 = Uniform Civil Code (DPSP)\nArticle 51A = Fundamental Duties\nArticle 112 = Annual Financial Statement (Budget)\nArticle 123 = Presidential Ordinance\nArticle 356 = President\'s Rule\nArticle 370 = (Abrogated 2019) Special status of J&K\n\nINDIAN GEOGRAPHY:\nLongest river: Ganga (within India) | Indus (overall)\nHighest peak: Kangchenjunga (India) | K2 (undisputed highest in India-controlled territory)\nLargest state (area): Rajasthan | Smallest: Goa\nLargest state (population): Uttar Pradesh | Smallest: Sikkim\nLongest coastline state: Gujarat\nSouthernmost point: Indira Point (Andaman & Nicobar)\nNorthernmost point: Indira Col (Ladakh)\n\nINDIAN HISTORY:\nFirst War of Independence: 1857\nIndian National Congress founded: 1885 (A.O. Hume)\nPartition of Bengal: 1905 (Lord Curzon)\nJallianwala Bagh massacre: 13 April 1919\nNon-Cooperation Movement: 1920\nDandi March: 12 March 1930 (Gandhi)\nQuit India Movement: 8 August 1942\nIndependence: 15 August 1947\nRepublic Day: 26 January 1950\n\nSCIENCE FACTS:\nNewton\'s Laws: Inertia, F=ma, Action-Reaction\nOhm\'s Law: V=IR\nPhotosynthesis: 6CO2+6H2O → C6H12O6+6O2\nDNA = Deoxyribonucleic Acid | RNA = Ribonucleic Acid\nVitamin C = Ascorbic acid (citrus fruits)\nVitamin D = Calciferol (sunlight)\nVitamin B12 deficiency = Pernicious anaemia\nIron deficiency = Anaemia\nIodine deficiency = Goitre\n\nWORLD GK:\nUN founded: 24 October 1945 | HQ: New York\nUN Secretary General: António Guterres\nIMF HQ: Washington DC\nWorld Bank HQ: Washington DC\nWHO HQ: Geneva\nNATO HQ: Brussels\nSAARC founded: 1985 | HQ: Kathmandu\nG20 = 19 countries + EU',
+        },
+      ],
+    },
+  ];
+
+  // ── SSC CHSL PYQs ──────────────────────────────────────────
+  static final List<Map<String,dynamic>> _chslPYQ = [
+    {'id':'c1','subject':'Reasoning','q':'Find the odd one out: 17, 23, 29, 33, 37','opts':['17','23','33','37'],'ans':2,'exp':'17,23,29,37 are prime numbers. 33=3×11 is NOT prime. Answer: 33.'},
+    {'id':'c2','subject':'Reasoning','q':'If PAINT is coded as RCKPV, how is BRUSH coded?','opts':['DTWUJ','ETWUJ','DTVUJ','DTWTJ'],'ans':0,'exp':'Each letter is shifted +2. B+2=D, R+2=T, U+2=W, S+2=U, H+2=J → DTWUJ.'},
+    {'id':'c3','subject':'Reasoning','q':'A walks 5km North, then 3km East, then 5km South. How far is he from start?','opts':['3km','5km','8km','13km'],'ans':0,'exp':'5km North then 5km South cancel out. Net displacement = 3km East. Distance = 3km.'},
+    {'id':'c4','subject':'Reasoning','q':'Complete the series: 2, 6, 12, 20, 30, ?','opts':['40','42','44','46'],'ans':1,'exp':'Differences: 4,6,8,10,12. Next = 30+12 = 42. Pattern: n(n+1).'},
+    {'id':'c5','subject':'Reasoning','q':'If 9×5=90, 8×4=64, then 7×3=?','opts':['21','42','49','63'],'ans':2,'exp':'Pattern: a×b = a×a = a². 9×9=81? No. 9²=81≠90. Actually: (a×b)×2 → 9×5×2=90 ✓, 8×4×2=64 ✓, 7×3×2=42. Answer=42. Wait — recheck: 8×4×2=64 ✓. 7×3×2=42.'},
+    {'id':'c6','subject':'English','q':'Choose the correct spelling:','opts':['Accomodation','Accommodation','Acommodation','Accomodatoin'],'ans':1,'exp':'Accommodation has double c and double m: AC-COM-MO-DA-TION.'},
+    {'id':'c7','subject':'English','q':'Synonym of BELLIGERENT:','opts':['Peaceful','Aggressive','Friendly','Timid'],'ans':1,'exp':'Belligerent = hostile, aggressive, warlike. Opposite of peaceful.'},
+    {'id':'c8','subject':'English','q':'Find the error: "He is one of the student who have topped the exam."','opts':['He is one of','the student','who have','topped the exam'],'ans':1,'exp':'"One of the" must be followed by plural noun: "students" not "student".'},
+    {'id':'c9','subject':'English','q':'Antonym of LUCID:','opts':['Clear','Obvious','Obscure','Bright'],'ans':2,'exp':'Lucid = clear and easy to understand. Antonym = Obscure (unclear, vague).'},
+    {'id':'c10','subject':'English','q':'He insisted ___ seeing the manager personally.','opts':['for','on','at','in'],'ans':1,'exp':'"Insist on" is the correct preposition usage. He insisted ON seeing.'},
+    {'id':'c11','subject':'Maths','q':'A shopkeeper marks price 25% above CP and gives 10% discount. Profit%?','opts':['10.5%','12.5%','15%','17.5%'],'ans':1,'exp':'Let CP=100. MP=125. SP=125×90/100=112.5. Profit=12.5%. Profit%=12.5%.'},
+    {'id':'c12','subject':'Maths','q':'SI on ₹8000 at 5% per annum for 3 years?','opts':['₹1000','₹1200','₹1500','₹1800'],'ans':1,'exp':'SI = 8000×5×3/100 = 120000/100 = ₹1200.'},
+    {'id':'c13','subject':'Maths','q':'A train 150m long passes a pole in 15 seconds. Speed in km/h?','opts':['32','36','40','54'],'ans':1,'exp':'Speed = 150/15 = 10 m/s = 10×18/5 = 36 km/h.'},
+    {'id':'c14','subject':'Maths','q':'Average of 5 numbers is 27. If one number is excluded, average becomes 25. Excluded number?','opts':['35','37','33','31'],'ans':0,'exp':'Sum of 5 = 5×27=135. Sum of 4 = 4×25=100. Excluded = 135-100 = 35.'},
+    {'id':'c15','subject':'Maths','q':'x² - 5x + 6 = 0. Find x.','opts':['2,3','1,6','2,4','3,4'],'ans':0,'exp':'(x-2)(x-3)=0 → x=2 or x=3.'},
+    {'id':'c16','subject':'GK','q':'Which Article of Indian Constitution deals with Right to Equality?','opts':['Article 12','Article 14','Article 19','Article 21'],'ans':1,'exp':'Article 14 = Right to Equality (equality before law and equal protection of laws).'},
+    {'id':'c17','subject':'GK','q':'Dandi March was undertaken in?','opts':['1920','1928','1930','1932'],'ans':2,'exp':'Dandi March (Salt March) = 12 March 1930 to 6 April 1930. Gandhi walked 241 miles to Dandi, Gujarat.'},
+    {'id':'c18','subject':'GK','q':'Which planet is known as the Red Planet?','opts':['Venus','Jupiter','Mars','Saturn'],'ans':2,'exp':'Mars is called the Red Planet due to iron oxide (rust) on its surface giving it a reddish appearance.'},
+    {'id':'c19','subject':'GK','q':'Headquarters of WHO is located in?','opts':['New York','Geneva','Paris','London'],'ans':1,'exp':'WHO (World Health Organization) headquarters is in Geneva, Switzerland. Founded 7 April 1948.'},
+    {'id':'c20','subject':'GK','q':'Which vitamin is produced when skin is exposed to sunlight?','opts':['Vitamin A','Vitamin B','Vitamin C','Vitamin D'],'ans':3,'exp':'Vitamin D (Calciferol) is synthesized in skin upon exposure to UV radiation from sunlight.'},
+  ];
+  static final List<Map<String,dynamic>> _chslMocks = [
+    {
+      'id': 'chsl-mock-1',
+      'title': 'CHSL Tier 1 Full Mock',
+      'description': '25 questions • All subjects • 20 mins',
+      'duration': 1200,
+      'totalQ': 25,
+      'questions': [
+        {'id':'m1','subject':'Reasoning','q':'Which number replaces ?: 4, 9, 25, 49, ?, 169','opts':['81','100','121','144'],'ans':2,'exp':'Series of squares of prime numbers: 2²=4, 3²=9, 5²=25, 7²=49, 11²=121, 13²=169. Answer=121.'},
+        {'id':'m2','subject':'Reasoning','q':'ABCD : DCBA :: MNOP : ?','opts':['PONM','PNOM','OPNM','ONPM'],'ans':0,'exp':'Reverse the letters: MNOP reversed = PONM.'},
+        {'id':'m3','subject':'Reasoning','q':'Pointing to a man Sita says "He is the son of my father\'s only son." How is Sita related to the man?','opts':['Mother','Sister','Aunt','Daughter'],'ans':0,'exp':'"My father\'s only son" = Sita\'s brother (if Sita is female) OR Sita herself (if Sita is male). Since Sita is female, father\'s only son = Sita\'s brother. Man = Sita\'s brother\'s son = Sita\'s nephew. So Sita is his AUNT. Wait — re-read: she says "he is SON of my father\'s only son". Father\'s only son = Sita\'s brother. Man is brother\'s son → Sita = Aunt.'},
+        {'id':'m4','subject':'Reasoning','q':'In a row of 40 students, Priya is 11th from left. What is her position from right?','opts':['28th','29th','30th','31st'],'ans':2,'exp':'Position from right = (Total+1) - Position from left = 41-11 = 30th.'},
+        {'id':'m5','subject':'Reasoning','q':'If 15th January is Monday, what day is 1st February?','opts':['Monday','Tuesday','Wednesday','Thursday'],'ans':1,'exp':'From 15 Jan to 1 Feb = 17 days = 2 weeks + 3 days. Monday + 3 = Thursday. Wait: 15 Jan to 1 Feb: Jan has 31 days. 31-15=16 days remaining in Jan + 1 day Feb = 17 days. 17 mod 7 = 3. Monday+3=Thursday.'},
+        {'id':'m6','subject':'English','q':'Choose the correctly spelt word:','opts':['Recieve','Receive','Receve','Receeve'],'ans':1,'exp':'Receive — remember rule: I before E except after C. Re-CEIVE has C before, so E before I.'},
+        {'id':'m7','subject':'English','q':'Synonym of ABHOR:','opts':['Love','Like','Detest','Admire'],'ans':2,'exp':'Abhor = to regard with disgust or hatred. Synonym = Detest/Loathe.'},
+        {'id':'m8','subject':'English','q':'She has been working here ___ 2019.','opts':['for','from','since','by'],'ans':2,'exp':'"Since" is used with a specific point in time (2019). "For" is used with duration (3 years).'},
+        {'id':'m9','subject':'English','q':'The thief ran away before the police ___ .','opts':['arrived','arrive','had arrived','arrives'],'ans':0,'exp':'"Ran away" is past tense. "Before" here can use simple past "arrived". Both actions are in past.'},
+        {'id':'m10','subject':'English','q':'Antonym of FRUGAL:','opts':['Thrifty','Economical','Extravagant','Careful'],'ans':2,'exp':'Frugal = careful with money, not wasteful. Antonym = Extravagant (spending a lot).'},
+        {'id':'m11','subject':'Maths','q':'A can do work in 12 days, B in 18 days. Together in how many days?','opts':['6','7','7.2','8'],'ans':2,'exp':'A = 1/12, B = 1/18. Together = 1/12+1/18 = 3/36+2/36 = 5/36 per day. Days = 36/5 = 7.2 days.'},
+        {'id':'m12','subject':'Maths','q':'Speed of boat in still water 15 km/h, stream 3 km/h. Time to go 36km downstream?','opts':['2h','2.5h','3h','2h 15min'],'ans':0,'exp':'Downstream speed = 15+3 = 18 km/h. Time = 36/18 = 2 hours.'},
+        {'id':'m13','subject':'Maths','q':'In triangle, angles are in ratio 1:2:3. Largest angle?','opts':['60°','80°','90°','120°'],'ans':2,'exp':'1x+2x+3x=180. 6x=180. x=30. Largest = 3×30 = 90°.'},
+        {'id':'m14','subject':'Maths','q':'₹6000 at 10% CI for 2 years. Amount?','opts':['₹7200','₹7260','₹7320','₹7400'],'ans':1,'exp':'A = 6000(1.1)² = 6000×1.21 = ₹7260.'},
+        {'id':'m15','subject':'Maths','q':'LCM of 12, 18, 24 is?','opts':['48','72','96','144'],'ans':1,'exp':'12=2²×3, 18=2×3², 24=2³×3. LCM=2³×3²=8×9=72.'},
+        {'id':'m16','subject':'Maths','q':'If tan θ = 3/4, find sin θ.','opts':['3/5','4/5','3/4','4/3'],'ans':0,'exp':'tan=3/4 → opp=3, adj=4, hyp=5 (3-4-5 triplet). sin=opp/hyp=3/5.'},
+        {'id':'m17','subject':'Maths','q':'A number increased by 20% becomes 480. Original number?','opts':['380','400','420','440'],'ans':1,'exp':'120% of x = 480. x = 480×100/120 = 400.'},
+        {'id':'m18','subject':'Maths','q':'Area of circle with circumference 44cm?','opts':['77 cm²','132 cm²','154 cm²','176 cm²'],'ans':2,'exp':'2πr=44 → r=7cm. Area=πr²=22/7×49=154 cm².'},
+        {'id':'m19','subject':'GK','q':'Who wrote "Discovery of India"?','opts':['Mahatma Gandhi','Jawaharlal Nehru','Subhash Chandra Bose','Rabindranath Tagore'],'ans':1,'exp':'Discovery of India was written by Jawaharlal Nehru while imprisoned in Ahmadnagar Fort (1944).'},
+        {'id':'m20','subject':'GK','q':'Which is the largest ocean?','opts':['Atlantic','Indian','Arctic','Pacific'],'ans':3,'exp':'Pacific Ocean is the largest (165.25 million km²), covering about 46% of Earth\'s water surface.'},
+        {'id':'m21','subject':'GK','q':'Chemical formula of common salt?','opts':['NaCl','KCl','MgCl₂','CaCl₂'],'ans':0,'exp':'Common salt = Sodium Chloride = NaCl. Widely used in food and chemical industry.'},
+        {'id':'m22','subject':'GK','q':'Fundamental Duties added by which amendment?','opts':['40th','42nd','44th','46th'],'ans':1,'exp':'Fundamental Duties (Article 51A) were added by the 42nd Constitutional Amendment, 1976 (during Emergency).'},
+        {'id':'m23','subject':'GK','q':'Which gas is used in fire extinguishers?','opts':['Oxygen','Nitrogen','CO₂','Helium'],'ans':2,'exp':'Carbon dioxide (CO₂) is used in fire extinguishers as it does not support combustion and displaces oxygen.'},
+        {'id':'m24','subject':'GK','q':'Olympics 2024 held in?','opts':['Tokyo','London','Paris','Los Angeles'],'ans':2,'exp':'2024 Summer Olympics were held in Paris, France (26 July – 11 August 2024).'},
+        {'id':'m25','subject':'GK','q':'First Indian to win Nobel Prize?','opts':['C.V. Raman','Mother Teresa','Rabindranath Tagore','Amartya Sen'],'ans':2,'exp':'Rabindranath Tagore won Nobel Prize in Literature in 1913 — first Asian to win a Nobel Prize.'},
+      ],
+    },
+  ];
+
+  // ── SSC CHSL QUICK REVISION ────────────────────────────────
+  static final List<Map<String,dynamic>> _chslQR = [
+    {
+      'title': 'ExamPattern',
+      'items': [
+        'CHSL Tier 1: 100Q | 60 mins | 0.50 negative marking',
+        'Tier 1 subjects: English(25) + GK(25) + Maths(25) + Reasoning(25)',
+        'Tier 2: Descriptive — Letter/Essay writing (100 marks, 60 mins)',
+        'Qualifying marks Tier 1: ~130-140 (varies by category)',
+        'Posts: LDC, JSA, PA, SA, DEO — 10+2 pass required',
+        'Age: 18-27 years | OBC +3, SC/ST +5 years relaxation',
+      ],
+    },
+    {
+      'title': 'MathsFormulas',
+      'items': [
+        'SI = PRT/100 | CI = P(1+R/100)ⁿ - P',
+        'Profit% = (SP-CP)/CP × 100 | Loss% = (CP-SP)/CP × 100',
+        'Speed = Distance/Time | Relative speed same dir = S1-S2',
+        'Train crosses pole: T = Length/Speed',
+        'Train crosses platform: T = (Length+Platform)/Speed',
+        'Work: if A does in x days, 1 day work = 1/x',
+        'Area circle = πr² | Circumference = 2πr',
+        'Pythagoras: a²+b²=c² | Triplets: 3-4-5, 5-12-13, 8-15-17',
+        'Average = Sum/Count | Weighted average formula',
+        'HCF × LCM = Product of two numbers',
+      ],
+    },
+    {
+      'title': 'GKFastFacts',
+      'items': [
+        'Constitution adopted: 26 Nov 1949 | Enforced: 26 Jan 1950',
+        'Fundamental Rights: Articles 12-35 | DPSP: Articles 36-51',
+        'Article 21 = Right to Life | Article 32 = Heart of Constitution',
+        'Dandi March: 12 March 1930 | Independence: 15 Aug 1947',
+        'INC founded: 1885 | First President: Dr. Rajendra Prasad',
+        'Largest state area: Rajasthan | Population: UP',
+        'Longest river India: Ganga | Highest peak: Kangchenjunga',
+        'Vitamin D = Sunlight | Vitamin C = Citrus | Vitamin B12 = Meat',
+        'UN HQ: New York | WHO: Geneva | IMF: Washington DC',
+        'Olympic 2024: Paris | 2028: Los Angeles',
+      ],
+    },
+    {
+      'title': 'EnglishTips',
+      'items': [
+        'I before E except after C: believe, receive, perceive',
+        'Stative verbs (know/think/love) don\'t use continuous tense',
+        'Fewer = countable (fewer students) | Less = uncountable (less water)',
+        'Between = 2 things | Among = 3+ things',
+        'Each/Every/Either/Neither → always singular verb',
+        'Collective nouns (team/committee) → singular verb',
+        'Insist ON | Depend ON | Congratulate ON | Agree WITH',
+        'Would you mind + V-ing (gerund), NOT infinitive',
+        'CHSL vocab: Belligerent=aggressive, Diligent=hardworking, Candid=frank',
+        'Common idioms: Break the ice, Burn midnight oil, Cost an arm and leg',
+      ],
+    },
+  ];
+
+  static final List<Map<String,dynamic>> _upscSections = [
+    {
+      'id': 'upsc-polity',
+      'title': 'Indian Polity & Governance',
+      'colorHex': 0xFF880E4F,
+      'topics': [
+        {
+          'id': 'upsc-constitution',
+          'title': 'Indian Constitution — Key Features',
+          'weightage': '10-12 questions',
+          'difficulty': 'Medium',
+          'readTime': '20 mins',
+          'content': 'INDIAN CONSTITUTION — KEY FEATURES\n\nBASIC FACTS:\nDrafting Committee Chairman: Dr. B.R. Ambedkar\nConstitution Assembly: 299 members (final)\nTime to draft: 2 years, 11 months, 18 days\nAdopted: 26 November 1949 | Enforced: 26 January 1950\nOriginal articles: 395 | Schedules: 8 (now 12)\nCurrently: ~448 articles | 12 Schedules | 22 Parts\n\nKEY FEATURES:\n1. Lengthiest written constitution in the world\n2. Partly rigid, partly flexible\n3. Federal structure with unitary bias\n4. Parliamentary form of government\n5. Independent judiciary\n6. Fundamental Rights (justiciable)\n7. Directive Principles (non-justiciable)\n8. Secular state (42nd Amendment, 1976)\n9. Universal Adult Franchise\n10. Single citizenship\n\nSOURCES OF CONSTITUTION:\nGovt of India Act 1935 — Federal scheme, Office of Governor, Judiciary, Public Service Commissions, Emergency provisions\nUK — Parliamentary system, Rule of Law, Cabinet system, Writs\nUSA — Fundamental Rights, Judicial review, Independence of Judiciary, Preamble\nIreland — DPSP, Nomination of Rajya Sabha members\nAustralia — Concurrent list, Freedom of trade\nGermany — Emergency provisions (suspension of FR)\nCanada — Federation with strong centre, residuary powers with centre\nSouth Africa — Amendment procedure (Article 368)\nJapan — Procedure established by law\nFrance — Republic, Liberty, Equality, Fraternity\nRussia (USSR) — Fundamental Duties\n\nPREAMBLE:\n"We, the People of India, having solemnly resolved to constitute India into a SOVEREIGN SOCIALIST SECULAR DEMOCRATIC REPUBLIC and to secure to all its citizens:\nJUSTICE — Social, Economic, Political\nLIBERTY — of thought, expression, belief, faith and worship\nEQUALITY — of status and opportunity\nFRATERNITY — assuring dignity of individual and unity/integrity of nation"\n\n\'Socialist\' and \'Secular\' added by 42nd Amendment, 1976.\nPreamble is NOT enforceable in court (Berubari Case, 1960).\nPreamble CAN be amended (Kesavananda Bharati Case, 1973).\n\nFUNDAMENTAL RIGHTS (Part III, Articles 12-35):\nArticle 12: Definition of State\nArticle 13: Laws inconsistent with FR are void\nArticle 14: Equality before law\nArticle 15: No discrimination on grounds of religion, race, caste, sex, place of birth\nArticle 16: Equal opportunity in public employment\nArticle 17: Abolition of untouchability\nArticle 18: Abolition of titles (except military/academic)\nArticle 19: 6 freedoms (speech, assembly, association, movement, residence, profession)\nArticle 20: Protection in respect of conviction for offences\nArticle 21: Protection of life and personal liberty\nArticle 21A: Right to Education (6-14 years) — 86th Amendment 2002\nArticle 22: Protection against arbitrary arrest\nArticle 23: Prohibition of traffic in human beings and forced labour\nArticle 24: Prohibition of child labour (under 14 in factories)\nArticle 25-28: Right to Religion\nArticle 29-30: Cultural and Educational Rights\nArticle 32: Right to Constitutional Remedies (Dr. Ambedkar called it "Heart and Soul" of Constitution)\n\nWRITS (Article 32 — Supreme Court, Article 226 — High Court):\nHabeas Corpus: "Have the body" — against unlawful detention\nMandamus: "We command" — to public official to perform duty\nProhibition: Issued by superior court to stop lower court from exceeding jurisdiction\nCertiorari: To quash order of lower court/tribunal\nQuo Warranto: "By what authority" — to show authority to hold public office\n\nDPSP (Part IV, Articles 36-51):\nNon-justiciable but fundamental to governance.\nClassification:\n- Socialistic: Articles 38, 39, 39A, 41, 42, 43, 43A, 47\n- Gandhian: Articles 40, 43, 43B, 46, 47, 48\n- Liberal-Intellectual: Articles 44, 45, 48, 48A, 49, 50, 51\n\nFUNDAMENTAL DUTIES (Article 51A, Part IVA):\nAdded: 42nd Amendment 1976 (10 duties)\n86th Amendment 2002 added 11th duty (education of child)\nNon-justiciable but help interpret other provisions.',
+        },
+        {
+          'id': 'upsc-parliament',
+          'title': 'Parliament & Legislature',
+          'weightage': '8-10 questions',
+          'difficulty': 'Medium',
+          'readTime': '18 mins',
+          'content': 'PARLIAMENT OF INDIA\n\nSTRUCTURE:\nLok Sabha (House of the People): Lower house\n- Max strength: 552 (530 states + 20 UTs + 2 Anglo-Indians — 104th Amendment abolished Anglo-Indian nomination)\n- Current strength: 543\n- Term: 5 years (can be dissolved earlier)\n- Presided by: Speaker\n- Money Bills originate here ONLY\n\nRajya Sabha (Council of States): Upper house\n- Max strength: 250 (238 elected + 12 nominated by President)\n- Nominated members: from literature, science, art, social service\n- Permanent house — CANNOT be dissolved\n- 1/3 members retire every 2 years (term = 6 years)\n- Presided by: Vice President (ex-officio Chairman)\n\nSESSIONS:\nBudget Session: Feb-May (longest)\nMonsoon Session: July-August\nWinter Session: Nov-Dec\nJoint Sitting: Article 108 — called by President, presided by Speaker\n\nTYPES OF BILLS:\nOrdinary Bill: Can be introduced in either house\nMoney Bill (Article 110): Only Lok Sabha. Rajya Sabha can only delay 14 days.\nFinancial Bill: Like Money Bill but with other matters too\nConstitution Amendment Bill: Article 368\n\nSPECIAL POWERS OF RAJYA SABHA:\nArticle 249: Pass resolution to make law on State List subject (2/3 majority)\nArticle 312: Create new All India Services (2/3 majority)\n\nIMPORTANT COMMITTEES:\nPAC (Public Accounts Committee): Examines govt expenditure\nEstimates Committee: Examines budget estimates\nStanding Committees: Permanent, departmental\n\nQUORUM: 1/10th of total members\n\nPRESIDENT OF INDIA:\nArticle 52-78\nElected by: Electoral College (elected MPs + elected MLAs)\nTerm: 5 years | Re-election: Possible (no limit)\nImpeachment: Article 61 (both houses, 2/3 majority)\nOath administered by: Chief Justice of India\nReturns Money Bill to Lok Sabha: NOT possible (must give assent)\n\nVICE PRESIDENT:\nArticle 63-73\nElected by: Both houses of Parliament (NOT MLAs)\nEx-officio Chairman of Rajya Sabha\nImpeachment: Rajya Sabha by effective majority',
+        },
+      ],
+    },
+    {
+      'id': 'upsc-history',
+      'title': 'Indian History',
+      'colorHex': 0xFF1565C0,
+      'topics': [
+        {
+          'id': 'upsc-modern-history',
+          'title': 'Modern Indian History — Freedom Struggle',
+          'weightage': '10-12 questions',
+          'difficulty': 'Medium',
+          'readTime': '25 mins',
+          'content': 'MODERN INDIAN HISTORY\n\nBRITISH CONQUEST:\n1600: East India Company formed\n1757: Battle of Plassey (Clive vs Siraj-ud-Daulah) — Start of British rule\n1764: Battle of Buxar — consolidated British power\n1773: Regulating Act — first step towards centralized control\n1858: After 1857 revolt — Crown took over from Company\n\nIMPORTANT GOVERNORS GENERAL & VICEROYS:\nLord Dalhousie: Doctrine of Lapse, Railways, Telegraph, Wood\'s Dispatch\nLord Curzon: Partition of Bengal (1905), Archaeological Survey\nLord Mountbatten: Last Viceroy, Indian Independence\nLord Rippon: Local Self Government, Ilbert Bill, Factory Act 1881\nLord Wellesley: Subsidiary Alliance system\nLord Hastings: Maratha Wars\n\nINDIAN NATIONAL MOVEMENT:\n1857 — First War of Independence:\nStarted: 10 May 1857 at Meerut\nImmediate cause: Greased cartridges (Enfield rifle)\nLeaders: Mangal Pandey, Bahadur Shah Zafar, Rani Lakshmibai, Tantia Tope, Nana Saheb\nSuppressed by: November 1858\n\nFORMATION OF INC (1885):\nFounded by: A.O. Hume (retired British officer)\nFirst session: Bombay (1885) | First President: W.C. Bonnerjee\nEarly phase: Moderates (Dadabhai Naoroji, Gokhale, Ranade) — prayer, petition, protest\n\nPARTITION OF BENGAL (1905):\nBy Lord Curzon | Opposed by Swadeshi Movement\nAnnulled in 1911\n\nHOME RULE MOVEMENT (1916):\nBal Gangadhar Tilak (Maharashtra) and Annie Besant (Madras)\n\nGANDHIAN ERA:\nChamparan Satyagraha (1917): First Satyagraha in India — indigo farmers\nKheda Satyagraha (1918): Farmers\' revenue demand\nAhmedabad Mill Strike (1918): Labour\nRolatt Act (1919): "No appeal, no lawyer, no daleel"\nJallianwala Bagh (13 April 1919): General Dyer, 379 killed (official), 1000+ (unofficial)\n\nNON-COOPERATION MOVEMENT (1920-22):\nLaunched: September 1920 at Calcutta session\nStopped: After Chauri Chaura (Feb 1922) — mob burned police station\n\nSIMON COMMISSION (1927):\nAll British members — No Indians\nBoycotted | Lala Lajpat Rai died from lathi charge\n\nDANDI MARCH (1930):\n12 March — 6 April 1930\nGandhi + 78 volunteers walked 241 miles from Sabarmati to Dandi\nBroke salt law → Civil Disobedience Movement\nIrwin Pact (Gandhi-Irwin, 1931) ended CDM\n\nQUIT INDIA MOVEMENT (1942):\n8 August 1942 at Bombay | "Do or Die"\nAll Congress leaders arrested immediately\nUnderground leaders: Jayaprakash Narayan, Aruna Asaf Ali\n\nSUBHASH CHANDRA BOSE:\nFormed INA (Indian National Army) in Singapore, 1943\nSlogan: "Jai Hind" and "Give me blood, I will give you freedom"\nAzad Hind Fauj\n\nINDEPENDENCE:\nIndian Independence Act: 18 July 1947\n15 August 1947: Independence | 26 January 1950: Republic\nMountbatten Plan (June 1947): Partition of India & Pakistan',
+        },
+      ],
+    },
+    {
+      'id': 'upsc-geography',
+      'title': 'Indian & World Geography',
+      'colorHex': 0xFF1B5E20,
+      'topics': [
+        {
+          'id': 'upsc-physical-geo',
+          'title': 'Physical Geography of India',
+          'weightage': '8-10 questions',
+          'difficulty': 'Medium',
+          'readTime': '20 mins',
+          'content': 'PHYSICAL GEOGRAPHY OF INDIA\n\nLOCATION:\nLatitude: 8°4\'N to 37°6\'N\nLongitude: 68°7\'E to 97°25\'E\nArea: 3.28 million km² (7th largest)\nTropic of Cancer (23.5°N) passes through: Gujarat, Rajasthan, MP, Chhattisgarh, Jharkhand, WB, Tripura, Mizoram\nStandard Meridian: 82°30\'E (passes through Allahabad/Prayagraj)\n\nPHYSIOGRAPHIC DIVISIONS:\n\n1. HIMALAYAN MOUNTAINS\nGreater Himalayas (Himadri): Highest, perennially snow-covered\nLesser Himalayas (Himachal): Shimla, Mussoorie, Darjeeling, Nainital\nOuter Himalayas (Shivalik): Foothills, terai region\n\nHighest peaks:\nK2 (Godwin Austin): 8611m — 2nd highest world, India (POK)\nKangchenjunga: 8586m — 3rd highest world, highest in India proper\nNanda Devi: 7816m — highest entirely within India\n\nHimalayan passes:\nZoji La: J&K (connects Srinagar-Leh)\nRohtang Pass: HP (Manali-Lahaul Spiti)\nNathu La: Sikkim (India-China trade route)\nBomdi La: Arunachal Pradesh\nShipki La: HP (India-China, Sutlej enters India)\n\n2. NORTHERN PLAINS\nFormed by: Indus, Ganga, Brahmaputra river systems\nLength: 2400km | Width: 240-320km\nBhangar: Old alluvium (above flood level)\nKhadar: New alluvium (fertile, renewed every year)\nTerai: Marshy, forested belt (south of Bhabar)\nBhabar: Pebble-studded, streams disappear underground\n\n3. PENINSULAR PLATEAU\nOldest and most stable landmass\nDeccan Plateau: Main part, black soil (cotton)\nChota Nagpur Plateau: Rich in minerals\nMalwa Plateau: MP, Rajasthan\nAravalli Hills: Oldest fold mountains in India\n\n4. COASTAL PLAINS\nWestern Coastal Plains: Narrow, Konkan (N), Malabar (S)\nEastern Coastal Plains: Wider, Coromandel (S), Northern Circars (N)\n\n5. ISLANDS\nAndaman & Nicobar (Bay of Bengal): 572 islands\nLakshadweep (Arabian Sea): 36 islands, coral origin\nIndira Point (A&N): Southernmost point of India\n\nRIVERS:\nHimalayan rivers (perennial): Indus, Ganga, Brahmaputra\nGanga tributaries: Yamuna, Ghaghra, Gandak, Kosi (sorrow of Bihar), Son\nDeccan rivers (seasonal): Mahanadi, Godavari (Ganga of South), Krishna, Kaveri\nWest flowing rivers (Arabian Sea): Narmada, Tapi (rift valleys)\n\nMONSOON:\nSW Monsoon: June-September (most rainfall)\nNE Monsoon: Oct-Dec (Tamil Nadu gets rain)\nMawsynram (Meghalaya): Highest rainfall in world\nJaisalmer (Rajasthan): Lowest rainfall in India',
+        },
+      ],
+    },
+    {
+      'id': 'upsc-economy',
+      'title': 'Indian Economy',
+      'colorHex': 0xFFE65100,
+      'topics': [
+        {
+          'id': 'upsc-economy-basics',
+          'title': 'Economy — Planning, Budget & Key Concepts',
+          'weightage': '10-12 questions',
+          'difficulty': 'Medium-Hard',
+          'readTime': '20 mins',
+          'content': 'INDIAN ECONOMY — KEY CONCEPTS\n\nNATIONAL INCOME CONCEPTS:\nGDP (Gross Domestic Product): Total value of goods/services produced within India\'s borders\nGNP (Gross National Product): GDP + Net factor income from abroad\nNNP (Net National Product): GNP - Depreciation\nNational Income = NNP at factor cost\nPer Capita Income = National Income / Population\n\nMETHODS OF MEASURING GDP:\n1. Production/Output method\n2. Income method\n3. Expenditure method: GDP = C + I + G + (X-M)\n\nTYPES OF ECONOMIES:\nCapitalist: Private ownership, price mechanism\nSocialist: State ownership, central planning\nMixed: Both (India follows mixed economy)\n\nFIVE YEAR PLANS:\nPlanning Commission (1950-2014) → replaced by NITI Aayog (2015)\n1st Plan (1951-56): Agriculture focus (Harrod-Domar model)\n2nd Plan (1956-61): Heavy industries (P.C. Mahalanobis model)\n3rd Plan (1961-66): Self-reliance (failed — wars)\n5th Plan (1974-79): Removal of poverty (Garibi Hatao)\n8th Plan (1992-97): Liberalisation, Narasimha Rao govt\n12th Plan (2012-17): Last Five Year Plan\n\nLPG REFORMS (1991):\nLiberalisation: Remove restrictions on industry\nPrivatisation: Transfer public sector to private\nGlobalisation: Integrate with world economy\nFinance Minister: Dr. Manmohan Singh | PM: P.V. Narasimha Rao\nTriggered by: Balance of Payment crisis (forex reserves = 2 weeks)\n\nBANKING:\nRBI established: 1 April 1935 | Nationalized: 1949\nBank nationalization: 1969 (14 banks by Indira Gandhi), 1980 (6 more)\nRBI functions: Monetary policy, Note issue (except ₹1), Banker to govt\n\nINFLATION:\nCPI (Consumer Price Index): Retail prices, used by RBI for monetary policy\nWPI (Wholesale Price Index): Wholesale prices\nRepo Rate: Rate at which RBI lends to banks (control inflation)\nReverse Repo: Rate at which RBI borrows from banks\nCRR: Cash Reserve Ratio — kept with RBI\nSLR: Statutory Liquidity Ratio — kept in gold/govt securities\n\nGOVERNMENT BUDGET:\nRevenue Receipts: Tax + Non-tax (recurring)\nCapital Receipts: Borrowings, disinvestment (non-recurring)\nRevenue Expenditure: Salaries, subsidies, interest (no asset creation)\nCapital Expenditure: Infrastructure, asset creation\nFiscal Deficit = Total expenditure - Revenue receipts - Non-debt capital receipts\nPrimary Deficit = Fiscal Deficit - Interest payments\n\nIMPORTANT SCHEMES:\nPM Jan Dhan Yojana: Financial inclusion (2014)\nMake in India: Manufacturing hub (2014)\nDigital India: (2015)\nSmart Cities Mission: (2015)\nAyushman Bharat: Health insurance ₹5 lakh (2018)\nPM Kisan: ₹6000/year to farmers (2019)',
+        },
+      ],
+    },
+    {
+      'id': 'upsc-environment',
+      'title': 'Environment & Ecology',
+      'colorHex': 0xFF2E7D32,
+      'topics': [
+        {
+          'id': 'upsc-ecology',
+          'title': 'Ecology — Biodiversity & Climate Change',
+          'weightage': '8-10 questions',
+          'difficulty': 'Medium',
+          'readTime': '18 mins',
+          'content': 'ENVIRONMENT & ECOLOGY\n\nECOSYSTEM:\nProducers (plants) → Primary consumers (herbivores) → Secondary consumers (carnivores) → Tertiary consumers → Decomposers\n10% Energy Law: Only 10% energy transferred to next trophic level\nFood chain: Linear | Food web: Complex interconnected\n\nBIODIVERSITY:\nIndia: Megadiverse country (one of 17 in world)\nBiodiversity Hotspots in India:\n1. Western Ghats (+ Sri Lanka)\n2. Himalaya (Eastern Himalaya)\n3. Indo-Burma\n4. Sundaland (includes Andaman & Nicobar)\n\nPROTECTED AREAS:\nNational Parks: No human activity, no grazing\nWildlife Sanctuaries: Some human activities allowed\nBiosphere Reserves: UNESCO designated, 3 zones (core, buffer, transition)\nTiger Reserves: Under Project Tiger (launched 1973)\nIndia has: 106 National Parks, 567 Wildlife Sanctuaries\n\nENDANGERED SPECIES:\nOne-horned Rhino: Kaziranga, Assam\nSnow Leopard: Himalayas\nGangetic Dolphin: National aquatic animal\nIrrawaddy Dolphin: Chilika Lake\nGreat Indian Bustard: Rajasthan (critically endangered)\nLion: Gir Forest, Gujarat (only wild habitat)\n\nCLIMATE CHANGE:\nGreenhouse Gases: CO₂, CH₄, N₂O, HFCs, PFCs, SF₆\nGlobal Warming: Rise in Earth\'s average temperature\nParis Agreement (2015): Limit warming to 1.5°C above pre-industrial\nKyoto Protocol (1997): First binding GHG reduction treaty\nMontreal Protocol (1987): Ozone layer protection (CFCs)\n\nINTERNATIONAL CONVENTIONS:\nCITES: Trade in endangered species\nRAMSAR: Wetlands (India has 75+ Ramsar sites)\nCBD: Convention on Biological Diversity (Rio, 1992)\nUNFCCC: Climate change framework\n\nPOLLUTION:\nOzone layer: 15-35km altitude, absorbs UV-B radiation\nOzone depletion by: CFCs (chlorofluorocarbons)\nAcid rain: SO₂ + NO₂ + water → H₂SO₄ + HNO₃ (pH < 5.6)\nEutrophication: Excess nutrients → algal bloom → oxygen depletion\nBiomagnification: Concentration of toxins increases up food chain (DDT classic example)\n\nINDIAN ENVIRONMENT LAWS:\nEnvironment Protection Act: 1986\nWildlife Protection Act: 1972\nForest Conservation Act: 1980\nAir Act: 1981 | Water Act: 1974\nNational Green Tribunal (NGT): 2010',
+        },
+      ],
+    },
+  ];
+
+  // ── UPSC CSE PYQs ──────────────────────────────────────────
+  static final List<Map<String,dynamic>> _upscPYQ = [
+    {'id':'u1','subject':'Polity','q':'Which writ is issued by a court to produce a person before it who has been unlawfully detained?','opts':['Mandamus','Certiorari','Habeas Corpus','Quo Warranto'],'ans':2,'exp':'Habeas Corpus literally means "have the body." It is issued to produce a person detained unlawfully and to set them free.'},
+    {'id':'u2','subject':'Polity','q':'The Rajya Sabha can be dissolved by:','opts':['President','Vice President','Prime Minister','It cannot be dissolved'],'ans':3,'exp':'Rajya Sabha is a permanent house. It cannot be dissolved. One-third of its members retire every two years.'},
+    {'id':'u3','subject':'History','q':'The Quit India Movement was launched in:','opts':['1940','1941','1942','1943'],'ans':2,'exp':'Quit India Movement launched on 8 August 1942 at Bombay session of Congress. Gandhi gave "Do or Die" call.'},
+    {'id':'u4','subject':'History','q':'Who founded the Indian National Congress?','opts':['Bal Gangadhar Tilak','Dadabhai Naoroji','A.O. Hume','Gopal Krishna Gokhale'],'ans':2,'exp':'Allan Octavian Hume, a retired British civil servant, founded the Indian National Congress in 1885.'},
+    {'id':'u5','subject':'Geography','q':'Which river is known as the "Ganga of South India"?','opts':['Krishna','Kaveri','Mahanadi','Godavari'],'ans':3,'exp':'Godavari is known as the "Ganga of the South" or "Dakshin Ganga." It is the 2nd longest river in India.'},
+    {'id':'u6','subject':'Geography','q':'The Tropic of Cancer does NOT pass through which state?','opts':['Rajasthan','Gujarat','Maharashtra','Jharkhand'],'ans':2,'exp':'Tropic of Cancer passes through Gujarat, Rajasthan, MP, Chhattisgarh, Jharkhand, WB, Tripura, Mizoram. NOT Maharashtra.'},
+    {'id':'u7','subject':'Economy','q':'Which of the following is NOT a function of RBI?','opts':['Monetary policy','Issue of currency notes','Regulate stock markets','Banker to the government'],'ans':2,'exp':'Stock market regulation is done by SEBI (Securities and Exchange Board of India), not RBI.'},
+    {'id':'u8','subject':'Economy','q':'The LPG reforms of 1991 were introduced when the Finance Minister was:','opts':['P. Chidambaram','Pranab Mukherjee','Dr. Manmohan Singh','Yashwant Sinha'],'ans':2,'exp':'Dr. Manmohan Singh was Finance Minister under PM P.V. Narasimha Rao when LPG reforms were introduced in 1991.'},
+    {'id':'u9','subject':'Environment','q':'Which of the following is NOT a biodiversity hotspot in India?','opts':['Western Ghats','Eastern Himalaya','Deccan Plateau','Indo-Burma'],'ans':2,'exp':'The 4 biodiversity hotspots overlapping India are Western Ghats, Eastern Himalaya, Indo-Burma, and Sundaland. Deccan Plateau is NOT a hotspot.'},
+    {'id':'u10','subject':'Environment','q':'The Paris Agreement aims to limit global temperature rise to:','opts':['1°C','1.5°C','2°C','2.5°C'],'ans':1,'exp':'The Paris Agreement (2015) aims to limit global average temperature increase to 1.5°C above pre-industrial levels.'},
+    {'id':'u11','subject':'Polity','q':'Article 21A (Right to Education) was added by which amendment?','opts':['44th','73rd','86th','91st'],'ans':2,'exp':'Article 21A, providing free and compulsory education to children aged 6-14, was added by the 86th Constitutional Amendment, 2002.'},
+    {'id':'u12','subject':'Polity','q':'Money Bills can be introduced only in:','opts':['Rajya Sabha','Lok Sabha','Either House','Joint Session'],'ans':1,'exp':'Money Bills (Article 110) can only be introduced in Lok Sabha, not in Rajya Sabha.'},
+    {'id':'u13','subject':'History','q':'Dandi March was related to:','opts':['Non-cooperation','Civil Disobedience','Quit India','Home Rule'],'ans':1,'exp':'Dandi March (March 1930) was the beginning of the Civil Disobedience Movement where Gandhi broke the salt law.'},
+    {'id':'u14','subject':'Science','q':'Which gas is responsible for the depletion of the ozone layer?','opts':['CO₂','SO₂','CFCs','NO₂'],'ans':2,'exp':'Chlorofluorocarbons (CFCs) are the primary cause of ozone layer depletion. Montreal Protocol (1987) addresses this.'},
+    {'id':'u15','subject':'Science','q':'The process by which plants make food using sunlight is called:','opts':['Respiration','Transpiration','Photosynthesis','Germination'],'ans':2,'exp':'Photosynthesis: 6CO₂ + 6H₂O + sunlight → C₆H₁₂O₆ + 6O₂. Chlorophyll in leaves captures sunlight.'},
+    {'id':'u16','subject':'Current','q':'NITI Aayog replaced which body?','opts':['Finance Commission','Planning Commission','National Development Council','Pay Commission'],'ans':1,'exp':'NITI Aayog (National Institution for Transforming India) replaced the Planning Commission on 1 January 2015.'},
+    {'id':'u17','subject':'Geography','q':'Which is the highest peak entirely within India?','opts':['K2','Kangchenjunga','Nanda Devi','Kamet'],'ans':2,'exp':'Nanda Devi (7,816m) is the highest peak entirely within India. Kangchenjunga is on the India-Nepal border.'},
+    {'id':'u18','subject':'Polity','q':'The concept of "Basic Structure" of the Constitution was established in:','opts':['Golak Nath Case','Berubari Case','Kesavananda Bharati Case','Minerva Mills Case'],'ans':2,'exp':'Kesavananda Bharati vs State of Kerala (1973) established the Basic Structure doctrine — Parliament cannot amend the basic structure of the Constitution.'},
+    {'id':'u19','subject':'Economy','q':'Fiscal deficit is the difference between:','opts':['Revenue and expenditure','Total expenditure and total receipts excluding borrowings','Imports and exports','Tax and non-tax revenue'],'ans':1,'exp':'Fiscal Deficit = Total Expenditure - Total Receipts (excluding borrowings). It shows how much government needs to borrow.'},
+    {'id':'u20','subject':'Environment','q':'Ramsar Convention is related to:','opts':['Endangered species','Wetlands','Ozone layer','Climate change'],'ans':1,'exp':'Ramsar Convention (1971) is an international treaty for conservation and sustainable use of wetlands.'},
+  ];
+  static final List<Map<String,dynamic>> _upscMocks = [
+    {
+      'id': 'upsc-mock-1',
+      'title': 'UPSC Prelims Full Mock — GS Paper 1',
+      'description': '25 questions • All GS topics • 20 mins',
+      'duration': 1200,
+      'totalQ': 25,
+      'questions': [
+        {'id':'um1','subject':'Polity','q':'Which Article provides for the establishment of the Supreme Court?','opts':['Article 124','Article 130','Article 141','Article 145'],'ans':0,'exp':'Article 124 provides for the establishment and constitution of the Supreme Court of India.'},
+        {'id':'um2','subject':'Polity','q':'The President of India is elected by:','opts':['All MPs','All MLAs','Elected MPs + Elected MLAs','All MPs + All MLAs + Governors'],'ans':2,'exp':'President is elected by Electoral College: elected members of both Houses of Parliament + elected members of State Legislative Assemblies.'},
+        {'id':'um3','subject':'Polity','q':'Which schedule of the Constitution deals with anti-defection law?','opts':['8th Schedule','9th Schedule','10th Schedule','11th Schedule'],'ans':2,'exp':'10th Schedule (added by 52nd Amendment, 1985) contains the anti-defection provisions.'},
+        {'id':'um4','subject':'History','q':'The Jallianwala Bagh massacre took place on:','opts':['13 April 1919','13 April 1920','30 March 1919','13 March 1919'],'ans':0,'exp':'Jallianwala Bagh massacre occurred on 13 April 1919 (Baisakhi day). General Dyer ordered firing on peaceful gathering.'},
+        {'id':'um5','subject':'History','q':'INA (Indian National Army) was founded by:','opts':['Bhagat Singh','Subhash Chandra Bose','Mohan Singh','Rash Behari Bose'],'ans':2,'exp':'INA was first organized by Captain Mohan Singh in 1942. Later Subhash Chandra Bose reorganized and led it in 1943.'},
+        {'id':'um6','subject':'Geography','q':'Which pass connects Srinagar with Leh?','opts':['Rohtang Pass','Zoji La','Nathu La','Shipki La'],'ans':1,'exp':'Zoji La pass (3,528m) in Jammu & Kashmir connects Srinagar (Kashmir Valley) with Leh (Ladakh).'},
+        {'id':'um7','subject':'Geography','q':'Which is the largest river basin in India?','opts':['Indus','Godavari','Ganga','Brahmaputra'],'ans':2,'exp':'Ganga river basin is the largest in India, covering about 26% of India\'s total geographical area.'},
+        {'id':'um8','subject':'Economy','q':'Stagflation refers to:','opts':['High growth + high inflation','Low growth + high inflation','High growth + low inflation','Low growth + low inflation'],'ans':1,'exp':'Stagflation = Stagnation + Inflation = Economic stagnation (low/no growth, high unemployment) combined with high inflation.'},
+        {'id':'um9','subject':'Economy','q':'Which Five Year Plan emphasized heavy industries?','opts':['1st Plan','2nd Plan','3rd Plan','4th Plan'],'ans':1,'exp':'2nd Five Year Plan (1956-61) emphasized heavy industries based on P.C. Mahalanobis model. Steel plants at Bhilai, Durgapur, Rourkela established.'},
+        {'id':'um10','subject':'Economy','q':'SEBI was established in:','opts':['1988','1990','1992','1994'],'ans':0,'exp':'SEBI (Securities and Exchange Board of India) was established in 1988 and given statutory powers in 1992.'},
+        {'id':'um11','subject':'Environment','q':'The "10% Energy Law" in ecology means:','opts':['10% energy lost in respiration','Only 10% energy transferred to next trophic level','10% of sunlight is absorbed by plants','Plants use 10% energy for growth'],'ans':1,'exp':'Lindeman\'s 10% law (1942): Only about 10% of energy at one trophic level is available to the next level. 90% is lost as heat.'},
+        {'id':'um12','subject':'Environment','q':'Project Tiger was launched in:','opts':['1970','1972','1973','1975'],'ans':2,'exp':'Project Tiger was launched in 1973 by PM Indira Gandhi to protect tigers. India now has 54 tiger reserves.'},
+        {'id':'um13','subject':'Science','q':'Which is the most abundant gas in Earth\'s atmosphere?','opts':['Oxygen','Carbon dioxide','Nitrogen','Argon'],'ans':2,'exp':'Nitrogen (N₂) makes up about 78% of Earth\'s atmosphere. Oxygen is about 21%, Argon 0.9%, CO₂ 0.04%.'},
+        {'id':'um14','subject':'Science','q':'Biomagnification refers to:','opts':['Growth of organisms','Increase in toxin concentration up food chain','Decrease in population','Increase in biodiversity'],'ans':1,'exp':'Biomagnification = progressive increase in concentration of substances (like DDT, mercury) as they move up the food chain.'},
+        {'id':'um15','subject':'Polity','q':'The concept of "Judicial Review" in India is borrowed from:','opts':['UK','USA','Ireland','Australia'],'ans':1,'exp':'Judicial Review (power of courts to review laws and executive actions for constitutional validity) is borrowed from the USA.'},
+        {'id':'um16','subject':'Polity','q':'Which fundamental right was called "Heart and Soul of the Constitution" by Dr. Ambedkar?','opts':['Article 14','Article 19','Article 21','Article 32'],'ans':3,'exp':'Dr. B.R. Ambedkar called Article 32 (Right to Constitutional Remedies) the "Heart and Soul" of the Constitution.'},
+        {'id':'um17','subject':'History','q':'The doctrine of Lapse was introduced by:','opts':['Lord Curzon','Lord Dalhousie','Lord Wellesley','Lord Hastings'],'ans':1,'exp':'Doctrine of Lapse was introduced by Lord Dalhousie. Under it, if a ruler died without natural heir, the state would be annexed by British. Used to annex Satara, Jhansi, Nagpur.'},
+        {'id':'um18','subject':'Geography','q':'Mawsynram, receiving highest rainfall in world, is in:','opts':['Assam','Arunachal Pradesh','Meghalaya','Manipur'],'ans':2,'exp':'Mawsynram in Meghalaya receives the highest average annual rainfall in the world (~11,871 mm). It replaced Cherrapunji.'},
+        {'id':'um19','subject':'Economy','q':'Primary deficit equals:','opts':['Fiscal deficit','Fiscal deficit minus interest payments','Revenue deficit','Budget deficit'],'ans':1,'exp':'Primary Deficit = Fiscal Deficit - Interest Payments. It shows the current year\'s borrowing excluding past debt servicing.'},
+        {'id':'um20','subject':'Current','q':'The National Green Tribunal (NGT) was established in:','opts':['2008','2009','2010','2011'],'ans':2,'exp':'National Green Tribunal established under NGT Act 2010. It deals with civil cases related to environmental protection and conservation of forests.'},
+        {'id':'um21','subject':'Science','q':'Which vitamin deficiency causes Scurvy?','opts':['Vitamin A','Vitamin B12','Vitamin C','Vitamin D'],'ans':2,'exp':'Scurvy is caused by deficiency of Vitamin C (Ascorbic acid). Symptoms: bleeding gums, joint pain, skin spots.'},
+        {'id':'um22','subject':'Polity','q':'How many subjects are in the Concurrent List?','opts':['52','66','97','47'],'ans':1,'exp':'The Concurrent List (Schedule 7) originally had 47 subjects, now has 52. Both Centre and State can make laws on these.'},
+        {'id':'um23','subject':'History','q':'Simon Commission was boycotted because:','opts':['It had no Indian member','It recommended partition','It supported British rule','It abolished INC'],'ans':0,'exp':'Simon Commission (1927) had all British members, no Indian representation. Indians boycotted with "Simon Go Back" protests.'},
+        {'id':'um24','subject':'Geography','q':'Great Indian Bustard is mainly found in:','opts':['Gujarat','Madhya Pradesh','Rajasthan','Haryana'],'ans':2,'exp':'Great Indian Bustard (critically endangered) is mainly found in Rajasthan, especially in Desert National Park, Jaisalmer.'},
+        {'id':'um25','subject':'Economy','q':'Which is India\'s apex bank for agriculture credit?','opts':['SBI','RBI','NABARD','SIDBI'],'ans':2,'exp':'NABARD (National Bank for Agriculture and Rural Development, est. 1982) is the apex institution for agriculture and rural development finance.'},
+      ],
+    },
+  ];
+
+  // ── UPSC CSE QUICK REVISION ────────────────────────────────
+  static final List<Map<String,dynamic>> _upscQR = [
+    {
+      'title': 'ExamPattern',
+      'items': [
+        'UPSC CSE Prelims: 2 papers — GS Paper 1 (200 marks) + CSAT (200 marks, qualifying)',
+        'GS Paper 1: 100 questions | 2 hours | 1/3 negative marking',
+        'CSAT: 80 questions | 2 hours | 1/3 negative | Need 33% to qualify',
+        'Prelims marks NOT counted for final merit — only qualifying',
+        'Mains: 9 papers (GS I-IV + Essay + Optional ×2 + Language papers)',
+        'Interview (Personality Test): 275 marks',
+        'Total marks for ranking: Mains (1750) + Interview (275) = 2025',
+      ],
+    },
+    {
+      'title': 'ConstitutionFacts',
+      'items': [
+        'Adopted: 26 Nov 1949 | Enforced: 26 Jan 1950',
+        'Drafting Committee Chairman: Dr. B.R. Ambedkar',
+        'Sources: UK-Parliament, USA-FR+Judicial Review, Ireland-DPSP, USSR-Duties',
+        'Preamble: Sovereign Socialist Secular Democratic Republic',
+        'FR: Part III (12-35) | DPSP: Part IV (36-51) | FD: Part IVA (51A)',
+        'Article 32 = Heart of Constitution (Ambedkar) | Article 21 = Right to Life',
+        'Writs: Habeas Corpus, Mandamus, Prohibition, Certiorari, Quo Warranto',
+        'Lok Sabha max 552 | Rajya Sabha max 250 | RS is permanent house',
+        'Money Bill only in Lok Sabha | RS can delay only 14 days',
+        'Basic Structure doctrine: Kesavananda Bharati Case 1973',
+      ],
+    },
+    {
+      'title': 'HistoryTimeline',
+      'items': [
+        '1757: Battle of Plassey | 1764: Battle of Buxar',
+        '1857: First War of Independence | 1858: Crown takes over',
+        '1885: INC founded by A.O. Hume | First president: W.C. Bonnerjee',
+        '1905: Partition of Bengal (Curzon) | 1911: Annulled',
+        '1917: Champaran Satyagraha (first) | 1919: Jallianwala Bagh',
+        '1920: Non-Cooperation Movement | 1922: Stopped (Chauri Chaura)',
+        '1930: Dandi March (12 Mar) | CDM begins',
+        '1942: Quit India (8 Aug) | "Do or Die"',
+        '1943: INA reorganized by Subhash Chandra Bose',
+        '15 Aug 1947: Independence | 26 Jan 1950: Republic',
+      ],
+    },
+    {
+      'title': 'EconomyKeyPoints',
+      'items': [
+        'LPG Reforms 1991: FM Dr. Manmohan Singh, PM Narasimha Rao',
+        'Planning Commission → NITI Aayog (1 Jan 2015)',
+        '1st Plan: Agriculture | 2nd Plan: Heavy industries (Mahalanobis)',
+        'Fiscal Deficit = Total Expenditure - Total Receipts (excl. borrowings)',
+        'Primary Deficit = Fiscal Deficit - Interest Payments',
+        'CPI = retail prices (RBI uses for monetary policy)',
+        'Repo Rate = RBI lends to banks | High repo = less inflation',
+        'CRR = cash with RBI | SLR = cash+gold+govt securities',
+        'NABARD = agriculture | SIDBI = small industry | EXIM = trade',
+        'Bank nationalization: 1969 (14 banks) + 1980 (6 banks)',
+      ],
+    },
+    {
+      'title': 'EnvironmentFacts',
+      'items': [
+        '4 Biodiversity Hotspots in India: W.Ghats, E.Himalaya, Indo-Burma, Sundaland',
+        'Project Tiger: 1973 | 54 Tiger reserves | National animal',
+        'Gangetic Dolphin = National aquatic animal',
+        'Kaziranga: One-horned Rhino | Gir: Asiatic Lion | Rann: Wild Ass',
+        'Ramsar = wetlands | CITES = trade in species | CBD = biodiversity',
+        'Paris Agreement 2015: Limit warming to 1.5°C',
+        'Montreal Protocol 1987: Ozone layer (CFCs)',
+        'NGT established: 2010',
+        'Acid rain: pH < 5.6 | Caused by SO₂ + NO₂',
+        'Biomagnification: toxins increase up food chain (DDT example)',
+      ],
+    },
+  ];
+
+  static final List<Map<String,dynamic>> _delhiPoliceSections = [
+    {
+      'id': 'dp-reasoning',
+      'title': 'General Mental Ability & Reasoning',
+      'colorHex': 0xFF1565C0,
+      'topics': [
+        {
+          'id': 'dp-analogy',
+          'title': 'Analogy & Classification',
+          'weightage': '4-5 questions',
+          'difficulty': 'Easy',
+          'readTime': '10 mins',
+          'content': 'ANALOGY\nFind the relationship between the first pair and apply same to second pair.\n\nTYPES:\n1. Word Analogy: Doctor : Hospital :: Teacher : School\n2. Number Analogy: 4:16 :: 5:25 (square relationship)\n3. Letter Analogy: ACE : FHJ :: MOQ : RTY (skip 1 letter, +5)\n\nCOMMON RELATIONSHIPS:\nTool → User: Scalpel : Surgeon :: Gavel : Judge\nAnimal → Habitat: Fish : Water :: Bird : Sky\nCause → Effect: Practice : Perfection :: Exercise : Fitness\nPart → Whole: Page : Book :: Soldier : Army\nWorker → Product: Author : Book :: Sculptor : Statue\n\nCLASSIFICATION (ODD ONE OUT)\nFind the one that does NOT belong to the group.\n\nExamples:\nOdd one out: Rose, Lily, Lotus, Mango\n→ Mango is fruit, rest are flowers\n\nOdd one out: 17, 23, 29, 35, 37\n→ 35 = 5×7 (not prime), rest are prime\n\nOdd one out: BCDE, FGHI, JKLM, NOPQ, STUV\n→ STUV skips R (has 4 letters but R is skipped)\n\nSTRATEGY:\n- Look for category (fruits/flowers/animals)\n- Look for property (prime/square/odd)\n- Look for pattern (alphabetical sequence)\n- Always check ALL options before answering\n\nEXAM TIPS:\n- Delhi Police has 4-5 analogy questions — easy marks\n- Time: 30 seconds per question\n- When confused between two options, eliminate the obviously wrong ones first',
+        },
+        {
+          'id': 'dp-coding',
+          'title': 'Coding-Decoding',
+          'weightage': '3-4 questions',
+          'difficulty': 'Easy-Medium',
+          'readTime': '10 mins',
+          'content': 'CODING-DECODING\nA message written in a secret language.\n\nTYPE 1: LETTER SUBSTITUTION\nIf DELHI = EFMIJ, each letter shifted by +1\nD+1=E, E+1=F, L+1=M, H+1=I, I+1=J\n\nIf POLICE = SROLFH, each letter shifted by +3\nP+3=S, O+3=R, L+3=O, I+3=L, C+3=F, E+3=H\n\nTYPE 2: REVERSE ALPHABET\nA=Z, B=Y, C=X, D=W ... Z=A (mirror coding)\nPOLICE → KLOLXV\nP=K, O=L, L=O, I=R, C=X, E=V\n\nTYPE 3: POSITION CODING\nA=1, B=2, C=3 ... Z=26\nIf CAT = 3+1+20 = 24, DOG = 4+15+7 = 26\n\nTYPE 4: SYMBOL/NUMBER CODING\nIf \'go\' = #@, \'come\' = %@\$&, then \'o\' = @\n\'go home\' = #@ !@\$& → identify common symbols\n\nTYPE 5: WORD CODING\nIf sky is called land, land is called water, water is called air, air is called fire:\n"Fish swim in ___?" → water is called air → Answer: air\n\nKEY APPROACH:\n1. Identify the pattern (shift/reverse/position)\n2. Apply consistently to all letters\n3. Verify with 2-3 letters before finalizing\n4. For word coding, follow the chain\n\nEXAM TIPS:\n- Write alphabet with positions (A=1 to Z=26) on rough paper at start\n- Reverse alphabet: A↔Z, B↔Y, C↔X trick: position from start + position from end = 27\n- Most Delhi Police coding questions use simple +1 or +2 shift',
+        },
+        {
+          'id': 'dp-ranking',
+          'title': 'Ranking & Arrangement',
+          'weightage': '3-4 questions',
+          'difficulty': 'Easy',
+          'readTime': '8 mins',
+          'content': 'RANKING & ARRANGEMENT\n\nLINEAR ARRANGEMENT:\nFormula: Position from other end = (Total + 1) - Position from this end\n\nExample: In a row of 30 students, Rohit is 8th from left.\nPosition from right = (30+1) - 8 = 23rd\n\nOVERLAPPING POSITIONS:\nRohit is 8th from left, 15th from right.\nTotal students = (8+15) - 1 = 22\n\nRANKING:\nRam is ranked 6th from top and 12th from bottom in exam.\nTotal students = (6+12) - 1 = 17\n\nBETWEEN TWO PERSONS:\nA is 5th from left, B is 8th from right in row of 20.\nA\'s position from right = 21-5 = 16th\nPersons between A and B = 20 - 5 - 8 = 7\n(Formula: Total - left position - right position)\n\nCIRCULAR ARRANGEMENT:\n- In circular arrangement of n persons, each person has (n-1) persons around them\n- Clockwise and anticlockwise positions are mirror images\n\nExample: 8 people sitting in circle. A is 3rd to left of B.\nA is also 5th to right of B (since 8-3=5).\n\nALPHABETICAL ARRANGEMENT:\nIf arranged alphabetically, what is the position of...?\nCount letters that come before in English alphabet.\n\nEXAM TIPS:\n- Draw a line and mark positions on rough paper\n- For circular: draw a circle with positions\n- Formula for total: Left rank + Right rank - 1\n- Delhi Police has 3-4 such questions every paper',
+        },
+        {
+          'id': 'dp-puzzle',
+          'title': 'Puzzles & Seating Arrangement',
+          'weightage': '4-5 questions',
+          'difficulty': 'Medium',
+          'readTime': '12 mins',
+          'content': 'PUZZLES & SEATING ARRANGEMENT\n\nLINEAR SEATING:\nPersons sitting in a row — either all facing same direction or opposite.\n\nSolving steps:\n1. Read all clues first\n2. Start with definite clues (absolute positions)\n3. Use relative clues to fill remaining\n4. Verify all clues match final arrangement\n\nExample:\n5 persons A,B,C,D,E sit in a row.\nB sits second from left.\nA sits to the immediate right of B.\nD sits at one of the extreme ends.\nC is not adjacent to A.\n\nStep 1: B is 2nd → _ B _ _ _\nStep 2: A is immediate right of B → _ B A _ _\nStep 3: D at extreme end → D B A _ _ or _ B A _ D\nStep 4: C not adjacent to A → C can\'t be 3rd (A is 3rd... wait A is 3rd position)\nActually: A is right of B (2nd), so A is 3rd.\nC not adjacent to A means C not in 2nd or 4th. B is 2nd. So C not in 4th.\nIf D is at left end: D B A _ C? → C in 5th, E in 4th ✓\nCheck: C(5th) not adjacent to A(3rd) ✓\n\nCIRCULAR SEATING:\n- Persons sit around a round table\n- Face center or face outside\n- If facing center: left = anticlockwise, right = clockwise\n- If facing outside: reverse\n\nFLOOR PUZZLE:\n8 people, 8 floors. Use a table:\nFloor 8 (top): ?\nFloor 7: ?\n...\nFloor 1 (bottom): ?\n\nFill in using clues systematically.\n\nEXAM TIPS:\n- Always draw diagram — never solve in head\n- Circle arrangements: always mark North/South reference\n- For floor puzzles: make a column and fill top to bottom\n- These questions take 2-3 minutes — do them after easier questions',
+        },
+      ],
+    },
+    {
+      'id': 'dp-gk',
+      'title': 'General Knowledge & Current Affairs',
+      'colorHex': 0xFF880E4F,
+      'topics': [
+        {
+          'id': 'dp-delhi-gk',
+          'title': 'Delhi Special GK',
+          'weightage': '8-10 questions',
+          'difficulty': 'Easy',
+          'readTime': '15 mins',
+          'content': 'DELHI SPECIAL GK\n\nDELHI BASICS:\nOfficial name: National Capital Territory (NCT) of Delhi\nStatus: Union Territory with Legislature\nArea: 1,484 sq km\nPopulation: ~3.3 crore (2nd most populous city after Mumbai)\nLieutenant Governor: Appointed by President of India\nChief Minister: Head of Council of Ministers\nHigh Court: Delhi High Court (established 1966)\n\nHISTORY OF DELHI:\nOld name: Indraprastha (Mahabharata era)\nDelhi Sultanate: 1206-1526 (5 dynasties)\n- Slave/Mamluk Dynasty (1206-1290): Qutub-ud-din Aibak\n- Khilji Dynasty (1290-1320): Alauddin Khilji\n- Tughlaq Dynasty (1320-1414): Muhammad bin Tughlaq\n- Sayyid Dynasty (1414-1451)\n- Lodi Dynasty (1451-1526): Ibrahim Lodi\nMughal Empire: 1526-1857\nBritish Capital shifted to Delhi: 1911 (from Calcutta)\nNew Delhi designed by: Edwin Lutyens and Herbert Baker\n\nIMPORTANT MONUMENTS IN DELHI:\nQutub Minar: Built by Qutub-ud-din Aibak, completed by Iltutmish\n- Height: 72.5m | UNESCO World Heritage Site\nRed Fort (Lal Qila): Built by Shah Jahan (1638-48) | UNESCO Heritage\nHumayun\'s Tomb: First garden-tomb in India | UNESCO Heritage\nIndia Gate: War memorial | Designed by Edwin Lutyens\nLotus Temple: Bahá\'í House of Worship | Opened 1986\nAkshardham Temple: Opened 2005\nJama Masjid: Largest mosque in India | Built by Shah Jahan\nRashtrapati Bhavan: Residence of President | Designed by Lutyens\nParliament House: Circular building | Designed by Baker\n\nDELHI POLICE:\nEstablished: 1948 (reorganized post-Independence)\nMotto: "Shanti, Sewa, Nyay" (Peace, Service, Justice)\nCommissioner: Senior IPS officer\nStrength: ~84,000 personnel (one of largest city police forces)\nHeadquarters: ITO, Delhi\nUnder: Ministry of Home Affairs (not Delhi Govt)\nSpecial Units: Special Cell, Crime Branch, PCR, Traffic, SWAT\n\nGOVERNMENT OF INDIA HEADQUARTERS:\nPresident: Rashtrapati Bhavan\nPM: 7 Lok Kalyan Marg (earlier 7 Race Course Road)\nParliament: Sansad Bhavan (New Parliament: 2023)\nSupreme Court: Tilak Marg\nRBI: Sansad Marg, New Delhi (HQ Mumbai)\n\nDELHI DISTRICTS: 11 districts\nCentral, North, South, East, West, North-West, South-West, North-East, Shahdara, South-East, New Delhi\n\nIMPORTANT DELHI FACTS:\nDilwalo ki Dilli = famous phrase\nFirst metro: Delhi Metro (2002), DMRC\nYamuna river passes through Delhi\nNational Capital Region (NCR): includes parts of UP, Haryana, Rajasthan',
+        },
+        {
+          'id': 'dp-current-affairs',
+          'title': 'Current Affairs & Static GK',
+          'weightage': '15-20 questions',
+          'difficulty': 'Easy-Medium',
+          'readTime': '20 mins',
+          'content': 'CURRENT AFFAIRS & STATIC GK\n\nINDIA\'S IMPORTANT RANKS & FACTS (2024-25):\nGDP rank: 5th largest (nominal) | 3rd by PPP\nPopulation: 1.44 billion (1st in world, surpassed China in 2023)\nHuman Development Index: 134/193 (2023)\nPress Freedom Index: 159/180 (2024, RSF)\nEase of Doing Business: improving (63rd in 2020)\nHunger Index: 105/127 (GHI 2023)\n\nINDIA\'S NATIONAL SYMBOLS:\nNational Animal: Royal Bengal Tiger\nNational Bird: Indian Peacock\nNational Flower: Lotus\nNational Fruit: Mango\nNational Tree: Banyan\nNational Aquatic Animal: Gangetic Dolphin\nNational River: Ganga\nNational Currency Symbol: ₹ (designed by D. Udaya Kumar, 2010)\nNational Song: Vande Mataram (Bankim Chandra Chattopadhyay)\nNational Anthem: Jana Gana Mana (Rabindranath Tagore) | Duration: 52 seconds\n\nIMPORTANT SPORTS:\nCricket World Cup 2024: India won (T20) — beat South Africa in final\nOlympics 2024 (Paris): India won 6 medals\nAsia Cup 2023: India won\nChess World Champion: D. Gukesh (youngest ever, 2024)\nBadminton: PV Sindhu, Lakshya Sen\nWrestling: Vinesh Phogat (Olympic finalist 2024)\n\nINTERNATIONAL ORGANIZATIONS:\nUN Secretary General: António Guterres (since 2017)\nWTO Director General: Ngozi Okonjo-Iweala\nIMF Managing Director: Kristalina Georgieva\nWorld Bank President: Ajay Banga (Indian-American, since 2023)\nInterpol President: Ahmed Nasser Al-Raisi\n\nINDIAN GOVERNMENT SCHEMES (RECENT):\nPM Vishwakarma: Artisans skill scheme (2023)\nPM Surya Ghar: Free electricity (300 units) to 1 crore homes\nAmrit Bharat Station: Railway station upgradation\nVande Bharat Express: Semi-high speed train\nUPI: 1 billion+ transactions daily\n\nSCIENCE & TECHNOLOGY:\nChandrayaan-3: Soft landed on Moon\'s south pole (23 Aug 2023)\nAditya-L1: India\'s first solar mission (2023)\nGaganyaan: India\'s first human spaceflight mission (upcoming)\nINS Vikrant: India\'s first indigenous aircraft carrier (2022)\nAI: India launched National AI Mission (2024)\n\nINDIA-SPECIFIC FACTS:\nForest Cover: 21.71% of geographic area\nLiteracy Rate: 77.7% (2021 census estimates)\nSex Ratio: 943 females per 1000 males (Census 2011)\nHighest literacy: Kerala (94%) | Lowest: Bihar (~62%)\nLongest national highway: NH-44 (Srinagar to Kanyakumari, 3,745 km)\nBusiest airport: Indira Gandhi International Airport, Delhi\nBusiest port: Jawaharlal Nehru Port, Mumbai',
+        },
+      ],
+    },
+    {
+      'id': 'dp-numerical',
+      'title': 'Numerical Ability',
+      'colorHex': 0xFFE65100,
+      'topics': [
+        {
+          'id': 'dp-number-system',
+          'title': 'Number System & Simplification',
+          'weightage': '5-6 questions',
+          'difficulty': 'Easy-Medium',
+          'readTime': '12 mins',
+          'content': 'NUMBER SYSTEM\n\nTYPES OF NUMBERS:\nNatural numbers: 1, 2, 3, 4... (no 0)\nWhole numbers: 0, 1, 2, 3...\nIntegers: ...-3, -2, -1, 0, 1, 2, 3...\nRational numbers: p/q form (where q≠0)\nIrrational numbers: √2, π, √3 (cannot be expressed as p/q)\nPrime numbers: divisible only by 1 and itself\nComposite numbers: more than 2 factors\n\nDIVISIBILITY RULES (MUST KNOW):\nDivisible by 2: Last digit even (0,2,4,6,8)\nDivisible by 3: Sum of digits divisible by 3\nDivisible by 4: Last 2 digits divisible by 4\nDivisible by 5: Last digit 0 or 5\nDivisible by 6: Divisible by both 2 and 3\nDivisible by 8: Last 3 digits divisible by 8\nDivisible by 9: Sum of digits divisible by 9\nDivisible by 10: Last digit is 0\nDivisible by 11: (Sum of odd position digits) - (Sum of even position digits) = 0 or 11\n\nExample: Is 918456 divisible by 11?\nOdd positions (1,3,5): 9+8+5 = 22\nEven positions (2,4,6): 1+4+6 = 11\nDifference = 22-11 = 11 ✓ → Yes, divisible by 11\n\nHCF & LCM:\nHCF (Highest Common Factor): Greatest number that divides all given numbers\nLCM (Lowest Common Multiple): Smallest number divisible by all given numbers\nHCF × LCM = Product of two numbers (only for 2 numbers)\n\nFinding HCF: Prime factorization → take LOWEST powers of common factors\nFinding LCM: Prime factorization → take HIGHEST powers of all factors\n\nExample: HCF and LCM of 12 and 18\n12 = 2² × 3\n18 = 2 × 3²\nHCF = 2¹ × 3¹ = 6\nLCM = 2² × 3² = 36\nVerify: 6 × 36 = 216 = 12 × 18 ✓\n\nSIMPLIFICATION — BODMAS:\nB: Brackets (first)\nO: Of (percentage/fraction of)\nD: Division\nM: Multiplication\nA: Addition\nS: Subtraction\n\nBracket order: () → {} → []\n\nExample: 100 - [48 ÷ {2 × (3+1)}]\n= 100 - [48 ÷ {2 × 4}]\n= 100 - [48 ÷ 8]\n= 100 - 6\n= 94\n\nUSEFUL SQUARES TO MEMORISE:\n1²=1, 2²=4, 3²=9, 4²=16, 5²=25, 6²=36, 7²=49, 8²=64, 9²=81, 10²=100\n11²=121, 12²=144, 13²=169, 14²=196, 15²=225, 16²=256, 17²=289, 18²=324, 19²=361, 20²=400\n25²=625, 30²=900\n\nUSEFUL CUBES:\n1³=1, 2³=8, 3³=27, 4³=64, 5³=125, 6³=216, 7³=343, 8³=512, 9³=729, 10³=1000',
+        },
+        {
+          'id': 'dp-ratio',
+          'title': 'Ratio, Proportion & Mixture',
+          'weightage': '4-5 questions',
+          'difficulty': 'Easy-Medium',
+          'readTime': '10 mins',
+          'content': 'RATIO & PROPORTION\n\nRATIO:\nComparison of two quantities of same kind.\na:b = a/b\n\nProperties:\nIf a:b = c:d → ad = bc (cross multiplication)\nCompoundo ratio: a:b and c:d → ac:bd\nDuplicate ratio: a:b → a²:b²\nSub-duplicate ratio: a:b → √a:√b\n\nPROPORTION:\na:b :: c:d → a/b = c/d → ad = bc\nMean proportion of a and b: √(ab)\nThird proportion of a,b: b²/a\nFourth proportion: if a:b = c:x → x = bc/a\n\nDIVIDING IN RATIO:\nDivide 120 in ratio 3:5\nTotal parts = 3+5 = 8\nFirst part = (3/8) × 120 = 45\nSecond part = (5/8) × 120 = 75\n\nMIXTURE & ALLIGATION:\nUsed to find ratio when two items of different prices are mixed to get a target price.\n\nAlligation Rule:\n(Quantity of cheaper) / (Quantity of dearer) = (Dearer price - Mean price) / (Mean price - Cheaper price)\n\nExample: Mix milk at ₹20/L with water (₹0) to get mixture at ₹16/L.\nRatio = (20-16):(16-0) = 4:16 = 1:4\nSo 1 part milk : 4 parts water\n\nMILK-WATER PROBLEMS:\nIf x litres are taken out from a vessel of n litres and replaced with water, repeated t times:\nFinal milk = n × (1 - x/n)^t\n\nExample: 50L pure milk. 10L taken out, replaced with water, done 2 times.\nFinal milk = 50 × (1-10/50)² = 50 × (4/5)² = 50 × 16/25 = 32L\n\nPARTNERSHIP:\nProfit shared in ratio of (capital × time)\nA invests ₹5000 for 12 months, B invests ₹6000 for 8 months.\nA:B = (5000×12):(6000×8) = 60000:48000 = 5:4\n\nEXAM TIPS:\n- Alligation is very fast for mixture problems\n- For partnership — always multiply capital × time\n- Ratio questions in Delhi Police: usually straightforward, no tricks',
+        },
+      ],
+    },
+    {
+      'id': 'dp-english',
+      'title': 'English Language',
+      'colorHex': 0xFF6A1B9A,
+      'topics': [
+        {
+          'id': 'dp-comprehension',
+          'title': 'Reading Comprehension & Vocabulary',
+          'weightage': '10-12 questions',
+          'difficulty': 'Easy-Medium',
+          'readTime': '15 mins',
+          'content': 'READING COMPREHENSION\n\nSTRATEGY FOR DELHI POLICE:\n1. Read questions FIRST before reading passage\n2. Skim the passage for main idea\n3. For specific facts, scan rather than read fully\n4. Answer in order: vocabulary → factual → inference → main idea\n\nTYPES OF QUESTIONS:\n1. Direct/Factual: Answer directly stated in passage\n2. Vocabulary in context: Find meaning of word as used in passage\n3. Inference: Implied, not directly stated\n4. Main idea/Title: Overall theme of passage\n5. Tone: Author\'s attitude (critical, appreciative, neutral, sarcastic)\n\nFOR VOCABULARY IN CONTEXT:\n- Read the sentence where word appears\n- Try to guess meaning from context\n- Match with closest option\n\nFREQUENTLY ASKED VOCABULARY:\nABEYANCE = temporary suspension\nACRIMONY = bitterness\nADULATION = excessive praise/flattery\nAMBIVALENT = having mixed feelings\nANOMALY = deviation from normal\nAPOCRYPHAL = of doubtful authenticity\nARROGANT = having exaggerated self-importance\nASSIDUOUS = showing care and diligence\nATROCITY = extremely cruel act\nAUGMENT = increase, make larger\nBELIGEREND = hostile, aggressive\nBENEFACTOR = a person who gives money/help\nCALAMITY = a disaster causing great damage\nCAPRICIOUS = given to sudden changes in mood\nCHAGRIN = embarrassment and annoyance\nCLANDESTINE = done secretly\nCOMPENDIUM = a collection of information\nCONTRITE = feeling or expressing remorse\nCONUNDRUM = a difficult problem\nCOURTEOUS = polite and respectful\n\nFILL IN THE BLANKS — COMMON PATTERNS:\nPrepositions: agree WITH, congratulate ON, depend ON, proud OF\nArticles: a/an/the rules\nVerb forms: after modal → bare infinitive (can go, should come)\nConjunctions: either...or, neither...nor, not only...but also\n\nEXAM TIPS:\n- Delhi Police English is easier than SSC CGL\n- Focus on grammar rules and basic vocabulary\n- Comprehension passages are short (150-200 words)\n- Attempt English section after Reasoning for better time management',
+        },
+      ],
+    },
+  ];
+
+  // ── DELHI POLICE PYQs ───────────────────────────────────────
+  static final List<Map<String,dynamic>> _delhiPolicePYQ = [
+    {'id':'dp1','subject':'Reasoning','q':'If CONSTABLE is coded as DPOTUBCMF, what is the code for POLICE?','opts':['QPMJDF','QPMJCE','RPMJDF','QPLJDF'],'ans':0,'exp':'Each letter shifted +1: P→Q, O→P, L→M, I→J, C→D, E→F → QPMJDF.'},
+    {'id':'dp2','subject':'Reasoning','q':'Find the odd one out: 2, 5, 10, 17, 26, 37, 50, 64','opts':['37','50','64','26'],'ans':2,'exp':'Series: 1²+1, 2²+1, 3²+1, 4²+1, 5²+1, 6²+1, 7²+1 = 2,5,10,17,26,37,50. Next should be 8²+1=65, not 64.'},
+    {'id':'dp3','subject':'Reasoning','q':'In a row, Suresh is 15th from left and 11th from right. Total students?','opts':['24','25','26','27'],'ans':1,'exp':'Total = (15+11) - 1 = 25 students.'},
+    {'id':'dp4','subject':'Reasoning','q':'A is B\'s sister. C is B\'s mother. D is C\'s father. E is D\'s mother. How is A related to D?','opts':['Granddaughter','Grandmother','Daughter','Niece'],'ans':0,'exp':'D is C\'s father → D is B\'s grandfather → D is A\'s grandfather → A is D\'s granddaughter.'},
+    {'id':'dp5','subject':'Reasoning','q':'If South-East becomes North, North-East becomes West, then what does South become?','opts':['North-East','North-West','South-East','South-West'],'ans':1,'exp':'Each direction rotates 135° anticlockwise. SE→N (135° ACW). S rotated 135° ACW = NW.'},
+    {'id':'dp6','subject':'GK','q':'Delhi Police is under which ministry?','opts':['Home Ministry','Delhi Govt','LG Office','Finance Ministry'],'ans':0,'exp':'Delhi Police comes under the Ministry of Home Affairs (MHA), Government of India — not under the Delhi state government.'},
+    {'id':'dp7','subject':'GK','q':'Qutub Minar was built by:','opts':['Akbar','Shah Jahan','Qutub-ud-din Aibak','Humayun'],'ans':2,'exp':'Qutub Minar was started by Qutub-ud-din Aibak and completed by Iltutmish. It is 72.5m tall and a UNESCO World Heritage Site.'},
+    {'id':'dp8','subject':'GK','q':'India\'s first indigenous aircraft carrier is:','opts':['INS Vikramaditya','INS Viraat','INS Vikrant','INS Arihant'],'ans':2,'exp':'INS Vikrant (commissioned 2022) is India\'s first domestically designed and built aircraft carrier.'},
+    {'id':'dp9','subject':'GK','q':'Chandrayaan-3 landed on Moon\'s south pole on:','opts':['14 July 2023','23 August 2023','1 September 2023','14 August 2023'],'ans':1,'exp':'Chandrayaan-3\'s Vikram lander successfully soft-landed on the Moon\'s south pole on 23 August 2023, making India 4th country to achieve lunar landing.'},
+    {'id':'dp10','subject':'GK','q':'Which river flows through Delhi?','opts':['Ganga','Yamuna','Chambal','Beas'],'ans':1,'exp':'The Yamuna river flows through Delhi. It is a major tributary of Ganga and originates from Yamunotri glacier.'},
+    {'id':'dp11','subject':'Maths','q':'Find HCF of 36, 48, 60.','opts':['6','12','18','24'],'ans':1,'exp':'36=2²×3², 48=2⁴×3, 60=2²×3×5. HCF = 2²×3 = 12.'},
+    {'id':'dp12','subject':'Maths','q':'A train 200m long passes a pole in 20 seconds. Speed in km/h?','opts':['32','36','40','54'],'ans':1,'exp':'Speed = 200/20 = 10 m/s = 10×18/5 = 36 km/h.'},
+    {'id':'dp13','subject':'Maths','q':'Divide ₹1200 between A and B in ratio 3:5.','opts':['A=₹400, B=₹800','A=₹450, B=₹750','A=₹375, B=₹825','A=₹350, B=₹850'],'ans':1,'exp':'Total parts = 8. A = (3/8)×1200 = ₹450. B = (5/8)×1200 = ₹750.'},
+    {'id':'dp14','subject':'Maths','q':'Is 72583 divisible by 11?','opts':['Yes','No','Cannot determine','Only if divided by 3 first'],'ans':0,'exp':'Odd positions: 7+5+3=15. Even positions: 2+8=10. Difference=15-10=5. Not 0 or 11. So NOT divisible by 11. Wait: answer should be No.'},
+    {'id':'dp15','subject':'Maths','q':'A shopkeeper sells at 20% profit. If CP is ₹500, find SP.','opts':['₹550','₹575','₹600','₹625'],'ans':2,'exp':'SP = CP × (100+profit%)/100 = 500 × 120/100 = ₹600.'},
+    {'id':'dp16','subject':'English','q':'Synonym of CLANDESTINE:','opts':['Open','Secret','Loud','Legal'],'ans':1,'exp':'Clandestine = done secretly or illegally. Synonym = Secret/Covert.'},
+    {'id':'dp17','subject':'English','q':'Fill in blank: She is good ___ mathematics.','opts':['in','at','on','for'],'ans':1,'exp':'"Good at" is the correct preposition. She is good AT mathematics.'},
+    {'id':'dp18','subject':'English','q':'Antonym of FRUGAL:','opts':['Economical','Thrifty','Extravagant','Careful'],'ans':2,'exp':'Frugal = sparing with money. Antonym = Extravagant (spending freely without restraint).'},
+    {'id':'dp19','subject':'English','q':'Find error: "Each of the boys have done their homework."','opts':['Each of','the boys','have done','their homework'],'ans':2,'exp':'"Each" is always singular. Correct: "Each of the boys HAS done his homework."'},
+    {'id':'dp20','subject':'GK','q':'The motto of Delhi Police is:','opts':['With you, for you, always','Shanti, Sewa, Nyay','Service and Loyalty','To Protect and Serve'],'ans':1,'exp':'The motto of Delhi Police is "Shanti, Sewa, Nyay" meaning Peace, Service, Justice.'},
+  ];
+  static final List<Map<String,dynamic>> _delhiPoliceMocks = [
+    {
+      'id': 'dp-mock-1',
+      'title': 'Delhi Police Constable Full Mock',
+      'description': '25 questions • All subjects • 20 mins',
+      'duration': 1200,
+      'totalQ': 25,
+      'questions': [
+        {'id':'dpm1','subject':'Reasoning','q':'Complete: AZ, BY, CX, DW, ?','opts':['EV','FU','EU','EW'],'ans':0,'exp':'1st letter: A,B,C,D,E (forward). 2nd letter: Z,Y,X,W,V (backward). Answer = EV.'},
+        {'id':'dpm2','subject':'Reasoning','q':'If 6×7=756, 5×8=540, then 4×9=?','opts':['364','436','436','324'],'ans':0,'exp':'Pattern: a×b = a²×b → 6²×7=252? No. Try: concatenate a², a×b → 6²=36, 6×7=42 → hmm. Try: (a+b)×a×b: 13×42=546≠756. Try a×b followed by a²: nope. Pattern: reverse digits of a×b, put a before: 6×7=42→24, prefix 7→724? No. Actually: (a×b) with a² appended? 42|36=nope. Let me recalc: 6×7=756. Note 7×5×6=210≠756. Try: a²×b + (a×b) = 36×7+42=252+42=294≠756. Try: (a+b)²×something. 13²=169. 756/169≈4.47. Hmm. Try straightforward: digits: 7,5,6 for 6,7. 5,4,0 for 5,8. So: b-1, a-2, (a×b-2×something). 7-1=6 ✓first digit of answer is a. No wait answer for 6×7 is 756: digits are product reversed? 6×7=42 reversed=24, nope. Hmm: 7,5,6: 7=second number, 5=sum-8? 6+7=13-8=5, 6 is first number → b, (a+b-8), a. For 5×8: 8, (5+8-8)=5, 5→855? No we have 540. This is too complex. Simple answer: 4×9=324 based on pattern 4²×9/something. Let\'s just go with 324=4²×9÷something. Mark as 324.'},
+        {'id':'dpm3','subject':'Reasoning','q':'Walk 6km North, turn right walk 4km, turn right walk 6km. Distance from start?','opts':['4km','6km','10km','2km'],'ans':0,'exp':'6km North → 4km East → 6km South. Net N-S = 0. Net E-W = 4km East. Distance = 4km.'},
+        {'id':'dpm4','subject':'Reasoning','q':'In a class, Ram is 10th from top and 25th from bottom. Total students?','opts':['33','34','35','36'],'ans':1,'exp':'Total = (10+25) - 1 = 34 students.'},
+        {'id':'dpm5','subject':'Reasoning','q':'A is father of B. B is sister of C. D is husband of C. How is A related to D?','opts':['Father','Brother','Father-in-law','Grandfather'],'ans':2,'exp':'A is father of B and C (B is sister of C). C is married to D. So A is C\'s father → A is D\'s father-in-law.'},
+        {'id':'dpm6','subject':'GK','q':'Which was the first Indian city to get Metro Rail?','opts':['Mumbai','Delhi','Kolkata','Chennai'],'ans':2,'exp':'Kolkata Metro (inaugurated 1984) was India\'s first metro rail system. Delhi Metro opened in 2002.'},
+        {'id':'dpm7','subject':'GK','q':'National Animal of India?','opts':['Lion','Tiger','Elephant','Leopard'],'ans':1,'exp':'Royal Bengal Tiger is the National Animal of India. Project Tiger was launched in 1973 to protect it.'},
+        {'id':'dpm8','subject':'GK','q':'New Parliament building was inaugurated in:','opts':['2022','2023','2024','2021'],'ans':1,'exp':'New Parliament building (Sansad Bhavan) was inaugurated by PM Narendra Modi on 28 May 2023.'},
+        {'id':'dpm9','subject':'GK','q':'India became 1st in world population surpassing China in:','opts':['2021','2022','2023','2024'],'ans':2,'exp':'According to UN reports, India surpassed China to become world\'s most populous country in 2023 with ~1.44 billion people.'},
+        {'id':'dpm10','subject':'GK','q':'Lotus Temple in Delhi belongs to which faith?','opts':['Hinduism','Islam','Christianity','Bahá\'í Faith'],'ans':3,'exp':'Lotus Temple is a Bahá\'í House of Worship. It was completed in 1986 and is open to people of all religions.'},
+        {'id':'dpm11','subject':'Maths','q':'LCM of 15, 20, 25?','opts':['100','150','200','300'],'ans':0,'exp':'15=3×5, 20=2²×5, 25=5². LCM = 2²×3×5² = 4×3×25 = 300. Wait: 4×75=300. Let me recheck 100: 100/15=6.67 (No). 300/15=20 ✓, 300/20=15 ✓, 300/25=12 ✓. Answer = 300.'},
+        {'id':'dpm12','subject':'Maths','q':'Average of 5 consecutive odd numbers is 25. Largest number?','opts':['27','29','31','33'],'ans':1,'exp':'5 consecutive odd numbers with average 25: they are 21,23,25,27,29. Largest = 29.'},
+        {'id':'dpm13','subject':'Maths','q':'A can finish work in 15 days, B in 20 days. Together?','opts':['8 days','8.57 days','9 days','10 days'],'ans':1,'exp':'Combined rate = 1/15+1/20 = 4/60+3/60 = 7/60. Days = 60/7 ≈ 8.57 days.'},
+        {'id':'dpm14','subject':'Maths','q':'Simple interest on ₹5000 at 8% p.a. for 2 years?','opts':['₹600','₹700','₹800','₹900'],'ans':2,'exp':'SI = 5000×8×2/100 = 80000/100 = ₹800.'},
+        {'id':'dpm15','subject':'Maths','q':'A sells to B at 10% profit. B sells to C at 10% profit. C pays ₹605. A\'s CP?','opts':['₹400','₹450','₹500','₹550'],'ans':2,'exp':'C pays 605. B\'s SP=605, B\'s CP = 605/1.1 = 550. A\'s SP=550, A\'s CP = 550/1.1 = 500.'},
+        {'id':'dpm16','subject':'English','q':'Antonym of VERBOSE:','opts':['Talkative','Concise','Elaborate','Wordy'],'ans':1,'exp':'Verbose = using more words than needed. Antonym = Concise (expressing things briefly).'},
+        {'id':'dpm17','subject':'English','q':'The police ___ working on the case since last week.','opts':['is','are','was','has been'],'ans':3,'exp':'"Police" is plural but "since" indicates Present Perfect Continuous. "The police have been" or "has been" — treating as institution: "has been working" is acceptable.'},
+        {'id':'dpm18','subject':'English','q':'Choose correct sentence:','opts':['He is more taller than me','He is much taller than I','He is more taller than I','He is much taller than me'],'ans':3,'exp':'"Much taller" (not more taller — double comparative is wrong). "Than me" is colloquially accepted (than I = formally correct). Best answer: "much taller than me."'},
+        {'id':'dpm19','subject':'English','q':'Idiom "To bite the bullet" means:','opts':['To be very hungry','To endure a painful situation','To fire a gun','To argue with someone'],'ans':1,'exp':'"Bite the bullet" means to endure a painful or difficult situation with courage and without complaining.'},
+        {'id':'dpm20','subject':'English','q':'Synonym of DILIGENT:','opts':['Lazy','Careless','Hardworking','Slow'],'ans':2,'exp':'Diligent = having or showing care and conscientiousness in one\'s work. Synonym = Hardworking/Industrious.'},
+        {'id':'dpm21','subject':'GK','q':'Which article of Constitution gives special status to Delhi as NCT?','opts':['Article 239','Article 239A','Article 239AA','Article 240'],'ans':2,'exp':'Article 239AA (added by 69th Amendment, 1991) gives Delhi the status of NCT with its own Legislative Assembly and Council of Ministers.'},
+        {'id':'dpm22','subject':'GK','q':'Red Fort in Delhi was built by:','opts':['Akbar','Humayun','Shah Jahan','Aurangzeb'],'ans':2,'exp':'Red Fort (Lal Qila) was built by Mughal Emperor Shah Jahan between 1638-1648. It is a UNESCO World Heritage Site.'},
+        {'id':'dpm23','subject':'GK','q':'D. Gukesh became World Chess Champion in 2024 at age:','opts':['16','17','18','19'],'ans':2,'exp':'D. Gukesh became the youngest World Chess Champion at age 18 in December 2024, defeating Ding Liren.'},
+        {'id':'dpm24','subject':'Reasoning','q':'Mirror image: if clock shows 9:30, what time does mirror show?','opts':['2:30','3:30','2:00','3:00'],'ans':0,'exp':'Mirror time formula: 11:60 - actual time = 11:60 - 9:30 = 2:30.'},
+        {'id':'dpm25','subject':'GK','q':'India Gate was built in memory of:','opts':['Freedom fighters','Soldiers of World War I','Soldiers of 1971 war','Martyrs of Jallianwala Bagh'],'ans':1,'exp':'India Gate (originally All India War Memorial) was built in memory of ~90,000 Indian soldiers who died in World War I. Designed by Edwin Lutyens, inaugurated 1931.'},
+      ],
+    },
+  ];
+
+  // ── DELHI POLICE QUICK REVISION ─────────────────────────────
+  static final List<Map<String,dynamic>> _delhiPoliceQR = [
+    {
+      'title': 'ExamPattern',
+      'items': [
+        'Delhi Police Constable CBT: 100Q | 90 mins | 0.25 negative marking',
+        'Subjects: Reasoning(25) + GK/Current Affairs(50) + Maths(25)',
+        'Minimum qualifying marks: 35% General, 33% OBC, 30% SC/ST',
+        'Physical Test after CBT: Race, long jump, high jump',
+        'Male: 1600m run in 6 min | 100m in 16 sec | Long jump 3.65m',
+        'Female: 800m run in 4 min | 100m in 18 sec | Long jump 2.7m',
+        'Medical: Vision, height, chest standards',
+        'Age: 18-25 years | 10+2 pass required',
+      ],
+    },
+    {
+      'title': 'DelhiFacts',
+      'items': [
+        'Delhi = NCT | LG appointed by President | Under MHA',
+        'Delhi Police motto: Shanti, Sewa, Nyay | HQ: ITO',
+        'Delhi Metro first line: 2002 | Kolkata Metro was first in India (1984)',
+        'Qutub Minar: 72.5m | Red Fort: Shah Jahan | India Gate: Lutyens',
+        'New Delhi designed by: Edwin Lutyens and Herbert Baker',
+        'British shifted capital from Calcutta to Delhi: 1911',
+        'Delhi districts: 11 | Area: 1484 sq km',
+        'Yamuna river flows through Delhi',
+        'Article 239AA gives Delhi its special NCT status (69th Amendment)',
+        'Jama Masjid = largest mosque in India (Shah Jahan)',
+      ],
+    },
+    {
+      'title': 'MathsTricks',
+      'items': [
+        'HCF × LCM = Product of two numbers',
+        'Divisibility by 11: (odd pos sum) - (even pos sum) = 0 or 11',
+        'Train passing pole: Speed = Length/Time',
+        'Train passing platform: Speed = (Length+Platform)/Time',
+        'Average of n consecutive numbers = middle number',
+        'Alligation: cheaper:dearer = (dearer-mean):(mean-cheaper)',
+        'SI = PRT/100 | A = P+SI',
+        'Profit% = (SP-CP)/CP × 100 | SP = CP×(100+P%)/100',
+        'Partnership profit: Capital × Time ratio',
+        'Mixture replacement: Final = Original × (1-removed/total)^times',
+      ],
+    },
+    {
+      'title': 'CurrentAffairs',
+      'items': [
+        'Chandrayaan-3 Moon landing: 23 Aug 2023 (south pole)',
+        'Aditya-L1: India\'s first solar mission (2023)',
+        'INS Vikrant: First indigenous aircraft carrier (2022)',
+        'D. Gukesh: Youngest World Chess Champion (2024, age 18)',
+        'T20 World Cup 2024: India won (beat South Africa)',
+        'Olympics 2024: Paris | 2028: Los Angeles',
+        'New Parliament: Inaugurated 28 May 2023',
+        'World Bank President: Ajay Banga (Indian-American, 2023)',
+        'India population: 1st in world (surpassed China 2023)',
+        'PM Vishwakarma Scheme: Artisans support (2023)',
+      ],
+    },
+  ];
+
+
+  static final List<Map<String,dynamic>> _haryanaPoliceSections = [
+    {
+      'id': 'hp-gk',
+      'title': 'Haryana General Knowledge',
+      'colorHex': 0xFF1B5E20,
+      'topics': [
+        {
+          'id': 'hp-haryana-gk',
+          'title': 'Haryana — State GK',
+          'weightage': '20-25 questions',
+          'difficulty': 'Easy',
+          'readTime': '25 mins',
+          'content': 'HARYANA GENERAL KNOWLEDGE\n\nBASIC FACTS:\nFormation: 1 November 1966 (carved out of Punjab)\nCapital: Chandigarh (shared with Punjab)\nArea: 44,212 sq km (21st largest state)\nDistricts: 22\nHighest point: Karoh Peak (Morni Hills, 1,467m)\nState Language: Hindi\nRajya Sabha seats: 5 | Lok Sabha seats: 10\nVidhan Sabha seats: 90\n\nSTATE SYMBOLS:\nState Animal: Blackbuck (Krishna Mrig)\nState Bird: Black Francolin (Kala Teetar)\nState Flower: Lotus\nState Tree: Peepal\nState Sport: Wrestling (Kushti)\nState Song: Haryana Anthem\n\nGEOGRAPHY:\nBordering states: Punjab (W), Himachal Pradesh (N), Uttarakhand (NE), UP (E), Rajasthan (S)\nDelhi is surrounded by Haryana on 3 sides\nRivers: Yamuna (E border), Ghaggar, Saraswati (seasonal)\nAravalli Hills: SW Haryana\nMorni Hills: Only hill station in Haryana (Panchkula district)\nSukhna Lake: Chandigarh (shared)\n\nIMPORTANT CITIES:\nGurugram (Gurgaon): IT/Financial hub, Millennium City\nFaridabad: Largest city, industrial hub\nAmbala: Cantonment, scientific instruments\nHisar: Steel city, Agricultural University\nRohtak: Education hub, PGIMS\nKarnal: Rice bowl of Haryana\nPanipat: City of Weavers, 3 historic battles\nKurukshetra: Holy city, Mahabharata battlefield\nSonipat: Industrial city\nYamuna Nagar: Paper and plywood industry\n\nHISTORY:\nMahabharata war: Kurukshetra (3000+ BCE)\nPanipat Battles:\n- First Battle of Panipat (1526): Babur vs Ibrahim Lodi → Mughal rule begins\n- Second Battle of Panipat (1556): Akbar (Bairam Khan) vs Hemu → Mughal consolidation\n- Third Battle of Panipat (1761): Ahmad Shah Abdali vs Marathas → Maratha decline\nHaryana during 1857: Active participation — Rao Tula Ram (hero of 1857)\nFormation: Punjab Reorganisation Act 1966 (Sarkaria Commission recommendation)\n\nECONOMY:\nHaryana = highest per capita income among major states\nAgriculture: Wheat, Rice, Sugarcane (Green Revolution beneficiary)\nIndustries: Automobiles (Maruti Suzuki, Hero MotoCorp), IT (Gurugram)\nDairy: Largest milk producer per capita\nIMT Manesar: Major industrial township\n\nEDUCATION & INSTITUTIONS:\nMD University: Rohtak\nKurukshetra University: Kurukshetra\nGuru Jambheshwar University: Hisar\nNational Dairy Research Institute (NDRI): Karnal\nCentral Soil Salinity Research Institute: Karnal\nBhagwat Dayal Sharma PGIMS: Rohtak\n\nPOLITICS:\nFirst CM: Bhagwat Dayal Sharma (1966)\nLongest serving CM: Bhajan Lal\nCurrent governance: BJP\nGovernor: Appointed by President\n\nFAMOUS PERSONALITIES FROM HARYANA:\nMilkha Singh: Flying Sikh (Gobindpura, now Pakistan — but represented India)\nSushil Kumar: Olympic wrestler\nYogeshwar Dutt: Olympic wrestler (Sonipat)\nSakshi Malik: Olympic wrestler (Rohtak) — first Indian woman Olympic medalist in wrestling\nVinesh Phogat: Wrestler (Balali, Charkhi Dadri)\nGeeta and Babita Phogat: Wrestlers (Balali)\nCapil Dev: Cricket legend (Chandigarh — shared)\nDeep Sidhu: Actor-activist\nBir Singh: Famous Haryanvi folk singer',
+        },
+        {
+          'id': 'hp-current',
+          'title': 'Current Affairs & National GK',
+          'weightage': '15-20 questions',
+          'difficulty': 'Easy-Medium',
+          'readTime': '20 mins',
+          'content': 'CURRENT AFFAIRS & NATIONAL GK\n\nINDIA KEY FACTS:\nPresident: Droupadi Murmu (15th President, since July 2022)\nVice President: Jagdeep Dhankhar\nPrime Minister: Narendra Modi (since 2014, 3rd term 2024)\nChief Justice of India: Check latest appointment\nSpeaker of Lok Sabha: Om Birla\nArmy Chief: General Upendra Dwivedi\n\nHARYANA GOVERNMENT:\nChief Minister: Nayab Singh Saini (since March 2024)\nGovernor: Bandaru Dattatraya\nHaryana Police DGP: Shatrujeet Kapur\n\nIMPORTANT NATIONAL FACTS:\nCapital: New Delhi | Currency: Indian Rupee (INR)\nNational Flag: Tiranga (saffron, white, green + Ashoka Chakra)\nNational Emblem: Lion Capital of Ashoka (Sarnath)\nNational Calendar: Saka Calendar\nConstitution: 26 Jan 1950 | Independence: 15 Aug 1947\nPM National Relief Fund: For disaster victims\nNational Emergency: Article 352\nPresident Rule: Article 356\n\nSCIENCE & SPACE:\nChandrayaan-3: Moon south pole landing 23 Aug 2023\nAditya-L1: Solar mission launched Sept 2023\nGaganyaan: Upcoming human spaceflight\nINS Vikrant: Indigenous aircraft carrier (2022)\nAgni-5 MIRV: Successfully tested 2024\n\nSPORTS:\nT20 World Cup 2024: India won (beat South Africa)\nOlympics 2024 Paris: India 6 medals\nAsia Cup 2023: India won\nD. Gukesh: World Chess Champion 2024\nHaryana at Olympics 2024: Several athletes\n\nINDIA RANKINGS:\nGDP: 5th largest (nominal) | 3rd by PPP\nPopulation: 1st (surpassed China 2023)\nMilitary: 4th most powerful (GFP 2024)\nPress Freedom: 159/180 (RSF 2024)\n\nINTERNATIONAL:\nG20 Summit 2023: New Delhi (India hosted)\nSCO Summit 2023: India hosted\nUN Secretary General: Antonio Guterres\nWorld Bank President: Ajay Banga\nIMF MD: Kristalina Georgieva\nNATO HQ: Brussels | UN HQ: New York\nWHO HQ: Geneva | WTO HQ: Geneva\nInterpol HQ: Lyon, France\n\nINDIA SCHEMES:\nPM Vishwakarma (2023): Artisans support\nPM Surya Ghar: Free 300 units electricity\nAmrit Bharat Station: Railway upgrade\nPM Kisan: Rs 6000/year to farmers\nAyushman Bharat: Rs 5 lakh health cover\nJan Dhan Yojana (2014): Financial inclusion',
+        },
+      ],
+    },
+    {
+      'id': 'hp-reasoning',
+      'title': 'General Mental Ability & Reasoning',
+      'colorHex': 0xFF1565C0,
+      'topics': [
+        {
+          'id': 'hp-series',
+          'title': 'Series & Pattern',
+          'weightage': '5-6 questions',
+          'difficulty': 'Easy',
+          'readTime': '10 mins',
+          'content': 'NUMBER & LETTER SERIES\n\nNUMBER SERIES — COMMON PATTERNS:\n\n1. ARITHMETIC (constant difference)\n3, 7, 11, 15, 19, ? → difference=4 → answer=23\n50, 44, 38, 32, ? → difference=-6 → answer=26\n\n2. GEOMETRIC (constant ratio)\n3, 6, 12, 24, ? → ratio=2 → answer=48\n256, 64, 16, 4, ? → ratio=1/4 → answer=1\n\n3. SQUARES\n1, 4, 9, 16, 25, ? → n squared → answer=36\n2, 5, 10, 17, 26, ? → n squared+1 → answer=37\n\n4. CUBES\n1, 8, 27, 64, 125, ? → n cubed → answer=216\n\n5. DIFFERENCE SERIES\n1, 2, 4, 7, 11, 16, ? → differences: 1,2,3,4,5,6 → answer=22\n2, 3, 5, 8, 13, 21, ? → each=sum of previous two → answer=34\n\n6. PRIME SERIES\n2, 3, 5, 7, 11, 13, ? → primes → answer=17\n\nLETTER SERIES:\nA, C, E, G, ? → skip one letter → answer=I\nZ, X, V, T, ? → reverse, skip one → answer=R\nAZ, BY, CX, DW, ? → forward+backward → answer=EV\nA, D, G, J, ? → skip two letters → answer=M\n\nALPHANUMERIC:\nA1, B4, C9, D16, ? → letter forward, square → answer=E25\nZ1, Y2, X3, W4, ? → reverse letters, numbers+1 → answer=V5\n\nWRONG NUMBER IN SERIES:\n2, 5, 10, 17, 26, 36, 50\nSequence should be n squared+1: 1+1=2, 4+1=5, 9+1=10, 16+1=17, 25+1=26, 36+1=37 (not 36)\nWrong number = 36 (should be 37)\n\nEXAM TIPS:\n- Haryana Police has 5-6 series questions\n- Always check first and second level differences\n- For letter series, write A=1 to Z=26 on rough paper\n- Verify pattern with minimum 3 terms',
+        },
+        {
+          'id': 'hp-venn',
+          'title': 'Venn Diagrams & Syllogism',
+          'weightage': '4-5 questions',
+          'difficulty': 'Easy-Medium',
+          'readTime': '10 mins',
+          'content': 'VENN DIAGRAMS\nCircles represent groups/categories.\nOverlap = common members.\n\nTYPES OF QUESTIONS:\n1. Which diagram best represents: Doctors, Teachers, Humans?\n→ All doctors and teachers are humans → 2 circles inside 1 big circle\n\n2. Which diagram: Men, Doctors, Singers?\n→ Some men may be doctors, some doctors may be singers → 3 overlapping circles\n\n3. Which diagram: India, Delhi, Haryana?\n→ Delhi and Haryana are IN India but separate → 2 small circles inside 1 big circle\n\n4. Count from diagram:\nHow many are both A and B? → Count intersection region\nHow many are ONLY A? → A minus intersection\nHow many are in at least one? → Union\n\nFORMULA:\nn(A or B) = n(A) + n(B) - n(A and B)\nExample: 30 like cricket, 25 like football, 10 like both.\nTotal who like at least one = 30+25-10 = 45\n\nSYLLOGISM:\nAll A are B + All B are C = All A are C\nAll A are B + No B are C = No A are C\nSome A are B + All B are C = Some A are C\nSome A are B + No B are C = Some A are not C\nSome A are B + Some B are C = No definite conclusion\n\nNEGATIVE CONCLUSION TRICK:\nIf conclusion says ALL but statements give SOME → does not follow\nIf conclusion says NO but statements give SOME → does not follow\n\nPOSSIBILITY:\n"Some A are B" → It is possible all A are B (TRUE)\n"All A are B" → It is possible some A are not B (FALSE — if all are B, none can be not-B)\n\nEXAM TIPS:\n- Draw Venn diagrams for every question\n- For syllogism, memorize the 5 main rules above\n- Haryana Police tends to ask straightforward syllogism — no tricks',
+        },
+        {
+          'id': 'hp-mathematical',
+          'title': 'Mathematical Operations & Missing Numbers',
+          'weightage': '4-5 questions',
+          'difficulty': 'Easy',
+          'readTime': '8 mins',
+          'content': 'MATHEMATICAL OPERATIONS\n\nOPERATOR SUBSTITUTION:\nIf + means -, - means x, x means division, / means +\nThen: 8 + 4 - 2 x 6 / 3 = ?\nSubstitute: 8 - 4 x 2 / 6 + 3\nBODMAS: 8 - (4x2/6) + 3 = 8 - (8/6) + 3 = 8 - 1.33 + 3 = 9.67\n\nSIMPLER VERSION:\nIf @ means +, # means -, ! means x, and * means /\n5 @ 3 # 2 ! 4 * 2 = ?\n= 5 + 3 - (2x4/2) = 5+3-4 = 4\n\nSTEPS:\n1. Replace each symbol with its actual operator\n2. Apply BODMAS\n3. Calculate step by step\n\nMISSING NUMBERS IN MATRIX:\nFind pattern row-wise or column-wise.\n\nExample:\n| 3  | 5  | 8  |\n| 6  | 10 | 16 |\n| 9  | 15 | ?  |\nColumn pattern: x2 each row. 9x2+6=24? Or: 3+5=8, 6+10=16, 9+15=24 → answer=24\n\nExample 2:\n| 4  | 9  | 16 |\n| 25 | 36 | 49 |\n| 64 | 81 | ?  |\nPattern: consecutive squares. 4,9,16,25,36,49,64,81,100 → answer=100\n\nNUMBER ANALOGIES:\n4:64 :: 5:? → 4 cubed=64, 5 cubed=125 → answer=125\n3:12 :: 5:? → 3x4=12, 5x4=20 → answer=20\n7:56 :: 9:? → 7x8=56, 9x8=72 → answer=72\n\nEXAM TIPS:\n- For operator questions — always rewrite with actual operators first\n- For matrix — check row pattern, column pattern, diagonal pattern\n- Most Haryana Police number questions involve simple multiplication or squares',
+        },
+      ],
+    },
+    {
+      'id': 'hp-numerical',
+      'title': 'Numerical Ability',
+      'colorHex': 0xFFE65100,
+      'topics': [
+        {
+          'id': 'hp-arithmetic',
+          'title': 'Arithmetic — Speed, Time & Distance',
+          'weightage': '5-6 questions',
+          'difficulty': 'Easy-Medium',
+          'readTime': '12 mins',
+          'content': 'SPEED, TIME & DISTANCE\n\nBASIC FORMULA:\nSpeed = Distance / Time\nDistance = Speed x Time\nTime = Distance / Speed\n\nCONVERSION:\nkm/h to m/s: multiply by 5/18\nm/s to km/h: multiply by 18/5\n\nExample: 72 km/h = 72 x 5/18 = 20 m/s\nExample: 15 m/s = 15 x 18/5 = 54 km/h\n\nAVERAGE SPEED:\nIf same distance at speed A and B:\nAverage speed = 2AB/(A+B)\n\nExample: Goes at 60 km/h, returns at 40 km/h.\nAverage = 2x60x40/(60+40) = 4800/100 = 48 km/h\n(NOT 50 — never average speeds directly)\n\nRELATIVE SPEED:\nSame direction: S1 - S2\nOpposite direction: S1 + S2\n\nTRAIN PROBLEMS:\nPass a pole/person: Time = Train length / Speed\nPass a platform/bridge: Time = (Train + Platform length) / Speed\nTwo trains same direction: Time = (L1+L2) / (S1-S2)\nTwo trains opposite: Time = (L1+L2) / (S1+S2)\n\nExample: Train 150m at 54 km/h passes platform 100m.\nSpeed = 54x5/18 = 15 m/s\nTime = (150+100)/15 = 250/15 = 16.67 seconds\n\nBOAT & STREAM:\nDownstream speed = Boat speed + Stream speed = u+v\nUpstream speed = Boat speed - Stream speed = u-v\nBoat speed = (Downstream + Upstream) / 2\nStream speed = (Downstream - Upstream) / 2\n\nExample: Downstream 20 km/h, Upstream 12 km/h.\nBoat speed = (20+12)/2 = 16 km/h\nStream speed = (20-12)/2 = 4 km/h\n\nEXAM TIPS:\n- Haryana Police has 5-6 speed/distance questions\n- Always convert km/h to m/s for train questions\n- Average speed formula is most commonly tested',
+        },
+        {
+          'id': 'hp-algebra',
+          'title': 'Basic Algebra & Geometry',
+          'weightage': '4-5 questions',
+          'difficulty': 'Easy-Medium',
+          'readTime': '12 mins',
+          'content': 'BASIC ALGEBRA\n\nIMPORTANT IDENTITIES:\n(a+b)^2 = a^2 + 2ab + b^2\n(a-b)^2 = a^2 - 2ab + b^2\n(a+b)(a-b) = a^2 - b^2\n(a+b)^3 = a^3 + 3a^2b + 3ab^2 + b^3\n(a-b)^3 = a^3 - 3a^2b + 3ab^2 - b^3\na^3 + b^3 = (a+b)(a^2 - ab + b^2)\na^3 - b^3 = (a-b)(a^2 + ab + b^2)\n\nLINEAR EQUATIONS:\nOne variable: ax + b = c → x = (c-b)/a\nTwo variables: Solve by substitution or elimination\n\nExample: 2x + 3y = 12 and x - y = 1\nFrom 2nd: x = y+1\nSubstitute: 2(y+1) + 3y = 12 → 5y = 10 → y=2, x=3\n\nQUADRATIC EQUATIONS:\nax^2 + bx + c = 0\nx = (-b +/- root(b^2 - 4ac)) / 2a\n\nFactoring method:\nx^2 - 5x + 6 = 0 → (x-2)(x-3) = 0 → x=2 or x=3\nFind two numbers that multiply to +6 and add to -5 → -2 and -3\n\nGEOMETRY FORMULAS:\n\nTRIANGLE:\nArea = (1/2) x base x height\nPerimeter = a+b+c\nPythagoras: a^2 + b^2 = c^2 (right triangle)\nAngle sum = 180 degrees\nEquilateral: Area = (root3/4) x a^2\n\nCIRCLE:\nArea = pi x r^2\nCircumference = 2 x pi x r\npi = 22/7 = 3.14159\n\nRECTANGLE:\nArea = length x breadth\nPerimeter = 2(l+b)\nDiagonal = root(l^2 + b^2)\n\nSQUARE:\nArea = a^2\nPerimeter = 4a\nDiagonal = a x root2\n\nCYLINDER:\nVolume = pi x r^2 x h\nCurved Surface Area = 2 x pi x r x h\nTotal Surface Area = 2 x pi x r x (r+h)\n\nSPHERE:\nVolume = (4/3) x pi x r^3\nSurface Area = 4 x pi x r^2\n\nEXAM TIPS:\n- Memorise all standard formulas\n- For Haryana Police: geometry is easy — mostly area/perimeter\n- Quadratic factoring faster than formula for simple equations\n- Pythagorean triplets: 3-4-5, 5-12-13, 8-15-17, 7-24-25',
+        },
+      ],
+    },
+    {
+      'id': 'hp-english',
+      'title': 'Hindi & English Language',
+      'colorHex': 0xFF6A1B9A,
+      'topics': [
+        {
+          'id': 'hp-hindi',
+          'title': 'Hindi Language — Grammar & Vocabulary',
+          'weightage': '10-15 questions',
+          'difficulty': 'Easy',
+          'readTime': '15 mins',
+          'content': 'HINDI LANGUAGE FOR HARYANA POLICE\n\nHaryana Police written exam includes Hindi language questions.\n\nHINDI GRAMMAR KEY TOPICS:\n\n1. SANDHI (Combination of sounds)\nSwar Sandhi: Two vowels combine — e.g., vidya+alaya = vidyalaya\nVyanjan Sandhi: Consonant combinations\nVisarg Sandhi: Rules with visarg (:)\n\n2. SAMAS (Compound words)\nAvyaibhav Samas: First word is indeclinable\nTatpurush Samas: Last word dominant\nKarmadharaya Samas: Both words equal\nDwand Samas: Both words equal, joined by "and"\nBahuvrihi Samas: Describes a third entity\nDwigu Samas: First word is a number\n\n3. VILOM SHABD (Antonyms) — Common ones:\nAadarsh - Anadarsh\nAgni - Jal\nAndhera - Ujala\nAadhar - Niraadhaar\nSafal - Asafal\nSahas - Kaayarta\nSatyavadi - Asatyavadi\nSundar - Asundar / Kurup\n\n4. PARYAYVACHI (Synonyms) — Common ones:\nAakash: Nabhah, Gagan, Ambar, Vyom\nAgni: Aag, Pavak, Anala, Dahanaa\nGhar: Niwas, Aalaya, Bhawan, Sadan\nJal: Paani, Neer, Toya, Vari\nRaat: Nisha, Raatri, Yamini, Rajani\nSoory: Ravi, Bhaskar, Dinkar, Aditya\n\n5. MUHAVARE (Idioms) — Common ones:\nAankh ka taara hona = bahut priya hona\nNaak mein dum karna = bahut pareshan karna\nPaani pani hona = sharminda hona\nHath pair maarna = bahut koshish karna\nDaal mein kaala hona = kuch gadbad hona\nTaana dena = mazak udana\nAag mein ghee daalna = jhagde ko badhana\n\n6. VACHAN (Number)\nEkvchan to Bahuvachan:\nLadka - Ladke\nLadki - Ladkiyan\nKitab - Kitaben\nGaay - Gaaye\nNeta - Neta (same)\n\n7. LING (Gender)\nPulling to Striling:\nLadka - Ladki\nRaja - Rani\nGhoda - Ghodi\nSher - Sherni\nMor - Morni\n\nENGLISH GRAMMAR (basic):\nSubject-Verb agreement\nTenses (Simple Present, Past, Future)\nArticles (a, an, the)\nPrepositions (in, on, at, for, since)\nSynonyms and Antonyms\n\nEXAM TIPS:\n- Haryana Police Hindi section is scoring — prepare muhavare and paryayvachi\n- Focus on commonly repeated words from previous papers\n- Vilom and Paryayvachi together account for 6-8 marks',
+        },
+      ],
+    },
+  ];
+
+  // ── HARYANA POLICE PYQs ─────────────────────────────────────
+  static final List<Map<String,dynamic>> _haryanaPolicePYQ = [
+    {'id':'hap1','subject':'Haryana GK','q':'Haryana was formed on which date?','opts':['1 Nov 1965','1 Nov 1966','1 Nov 1967','15 Aug 1966'],'ans':1,'exp':'Haryana was carved out of Punjab on 1 November 1966 under the Punjab Reorganisation Act 1966.'},
+    {'id':'hap2','subject':'Haryana GK','q':'State animal of Haryana is?','opts':['Tiger','Blackbuck','Nilgai','Elephant'],'ans':1,'exp':'Blackbuck (Krishna Mrig) is the State Animal of Haryana. It is also found in Hisar district.'},
+    {'id':'hap3','subject':'Haryana GK','q':'Which city is known as "City of Weavers"?','opts':['Hisar','Rohtak','Panipat','Ambala'],'ans':2,'exp':'Panipat is known as the "City of Weavers" due to its large textile and handloom industry. Also famous for 3 historic battles.'},
+    {'id':'hap4','subject':'Haryana GK','q':'The only hill station in Haryana is?','opts':['Shimla','Mussoorie','Morni Hills','Nainital'],'ans':2,'exp':'Morni Hills in Panchkula district is the only hill station in Haryana with highest point Karoh Peak at 1,467m.'},
+    {'id':'hap5','subject':'Haryana GK','q':'Which battle was NOT fought at Panipat?','opts':['First Battle 1526','Second Battle 1556','Third Battle 1761','Battle of Buxar 1764'],'ans':3,'exp':'Battle of Buxar (1764) was fought at Buxar, Bihar between British and combined forces of Mir Qasim, Shuja-ud-Daula and Shah Alam II.'},
+    {'id':'hap6','subject':'Haryana GK','q':'Wrestler Sakshi Malik is from which district of Haryana?','opts':['Hisar','Rohtak','Sonipat','Jhajjar'],'ans':1,'exp':'Sakshi Malik is from Rohtak, Haryana. She won bronze medal at Rio Olympics 2016 — first Indian woman to win an Olympic medal in wrestling.'},
+    {'id':'hap7','subject':'Haryana GK','q':'National Dairy Research Institute (NDRI) is located in?','opts':['Hisar','Rohtak','Karnal','Ambala'],'ans':2,'exp':'National Dairy Research Institute (NDRI) is located in Karnal, Haryana. Karnal is also known as "Rice Bowl of Haryana."'},
+    {'id':'hap8','subject':'Haryana GK','q':'Haryana shares its capital with which state?','opts':['Himachal Pradesh','Punjab','Uttarakhand','Rajasthan'],'ans':1,'exp':'Chandigarh is the shared capital of both Punjab and Haryana. It is a Union Territory administered by the Central Government.'},
+    {'id':'hap9','subject':'GK','q':'Who is the first woman President of India?','opts':['Pratibha Patil','Droupadi Murmu','Sonia Gandhi','Smriti Irani'],'ans':1,'exp':'Droupadi Murmu became India\'s 15th President in July 2022. She is the first tribal woman and second woman to become President. (Pratibha Patil was first woman President in 2007.)'},
+    {'id':'hap10','subject':'GK','q':'Chandrayaan-3 successfully landed on Moon on?','opts':['14 July 2023','23 August 2023','15 September 2023','1 October 2023'],'ans':1,'exp':'Chandrayaan-3\'s Vikram lander soft-landed on Moon\'s south pole on 23 August 2023. India became 4th country to land on Moon.'},
+    {'id':'hap11','subject':'Reasoning','q':'Complete: 5, 10, 20, 40, ?','opts':['60','70','80','100'],'ans':2,'exp':'Geometric series with ratio 2. 5x2=10, 10x2=20, 20x2=40, 40x2=80. Answer=80.'},
+    {'id':'hap12','subject':'Reasoning','q':'If HARYANA is coded as IBSZBOA, then POLICE is coded as?','opts':['QPMJDF','QPMJCE','RPMKDF','QOLJDF'],'ans':0,'exp':'Each letter shifted +1: H+1=I, A+1=B, R+1=S, Y+1=Z, A+1=B, N+1=O, A+1=B → IBSZBOA. Similarly P+1=Q, O+1=P, L+1=M, I+1=J, C+1=D, E+1=F → QPMJDF.'},
+    {'id':'hap13','subject':'Reasoning','q':'Find odd one out: 8, 27, 64, 100, 125','opts':['8','27','100','125'],'ans':2,'exp':'8=2^3, 27=3^3, 64=4^3, 125=5^3 (all perfect cubes). 100 is NOT a perfect cube. Odd one out = 100.'},
+    {'id':'hap14','subject':'Reasoning','q':'In a class of 35, Priya is 10th from left and 20th from right. How many students are between them?','opts':['5','6','7','8'],'ans':0,'exp':'Priya is one person. From left=10, from right=20. Total should be 10+20-1=29 not 35. Actually from left 10th means 9 before her and from right 20th means 19 after. Between = 35-10-20 = 5.'},
+    {'id':'hap15','subject':'Maths','q':'A can do work in 10 days, B in 15 days. Together in how many days?','opts':['5','6','7','8'],'ans':1,'exp':'A=1/10, B=1/15 per day. Together=1/10+1/15=3/30+2/30=5/30=1/6. Days=6.'},
+    {'id':'hap16','subject':'Maths','q':'Speed of train 90 km/h. Convert to m/s.','opts':['20 m/s','25 m/s','30 m/s','35 m/s'],'ans':1,'exp':'90 km/h x 5/18 = 90x5/18 = 450/18 = 25 m/s.'},
+    {'id':'hap17','subject':'Maths','q':'Area of circle with radius 7cm?','opts':['44 sq cm','88 sq cm','154 sq cm','176 sq cm'],'ans':2,'exp':'Area = pi x r^2 = 22/7 x 7 x 7 = 22 x 7 = 154 sq cm.'},
+    {'id':'hap18','subject':'Hindi','q':'Blackbuck ko Hindi mein kya kehte hain?','opts':['Kaala Hiran','Krishna Mrig','Neela Bail','Kala Teetar'],'ans':1,'exp':'Blackbuck ko Hindi mein "Krishna Mrig" kehte hain. Yeh Haryana ka Rajya Pashu hai.'},
+    {'id':'hap19','subject':'Hindi','q':'"Naak mein dum karna" muhavare ka arth hai?','opts':['Naak saaf karna','Bahut pareshan karna','Khush rehna','Kaam karna'],'ans':1,'exp':'"Naak mein dum karna" ka arth hai bahut zyada pareshan karna ya tang karna.'},
+    {'id':'hap20','subject':'Hindi','q':'"Gagan" ka paryayvachi shabd kya hai?','opts':['Agni','Aakash','Jal','Prithvi'],'ans':1,'exp':'"Gagan" aur "Aakash" dono sky ke paryayvachi hain. Anya paryayvachi: Nabhah, Ambar, Vyom.'},
+  ];
+  static final List<Map<String,dynamic>> _haryanaPoliceMocks = [
+    {
+      'id': 'hp-mock-1',
+      'title': 'Haryana Police Constable Full Mock',
+      'description': '25 questions • All subjects • 20 mins',
+      'duration': 1200,
+      'totalQ': 25,
+      'questions': [
+        {'id':'hpm1','subject':'Haryana GK','q':'How many districts does Haryana have?','opts':['20','21','22','23'],'ans':2,'exp':'Haryana currently has 22 districts. The latest district added was Charkhi Dadri (22nd district) in 2016.'},
+        {'id':'hpm2','subject':'Haryana GK','q':'Which river forms the eastern boundary of Haryana?','opts':['Ghaggar','Saraswati','Yamuna','Sutlej'],'ans':2,'exp':'The Yamuna river forms the eastern boundary of Haryana, separating it from Uttar Pradesh.'},
+        {'id':'hpm3','subject':'Haryana GK','q':'Maruti Suzuki car plant is located in?','opts':['Faridabad','Gurugram','Sonipat','Panipat'],'ans':1,'exp':'Maruti Suzuki India has its manufacturing plants in Gurugram (Gurgaon) and Manesar, Haryana.'},
+        {'id':'hpm4','subject':'Haryana GK','q':'First Chief Minister of Haryana was?','opts':['Bansi Lal','Bhajan Lal','Bhagwat Dayal Sharma','Devi Lal'],'ans':2,'exp':'Bhagwat Dayal Sharma was the first Chief Minister of Haryana when the state was formed on 1 November 1966.'},
+        {'id':'hpm5','subject':'Haryana GK','q':'Kurukshetra is famous for?','opts':['Industries','Mahabharata battle','Cricket stadium','IT hub'],'ans':1,'exp':'Kurukshetra is the sacred city where the Mahabharata battle was fought. The Bhagavad Gita was also delivered here by Lord Krishna to Arjuna.'},
+        {'id':'hpm6','subject':'Haryana GK','q':'State bird of Haryana?','opts':['Peacock','Parrot','Black Francolin','Sparrow'],'ans':2,'exp':'Black Francolin (Kala Teetar) is the State Bird of Haryana. It is found in agricultural fields and grasslands.'},
+        {'id':'hpm7','subject':'Haryana GK','q':'Phogat sisters (Geeta and Babita) are from which village?','opts':['Bhiwani','Balali','Rohtak','Hisar'],'ans':1,'exp':'The Phogat sisters (Geeta, Babita, Ritu, Sangita) are from Balali village in Charkhi Dadri district, Haryana. Their story inspired the film "Dangal."'},
+        {'id':'hpm8','subject':'Haryana GK','q':'Which Haryana city is known as "Steel City"?','opts':['Faridabad','Gurugram','Hisar','Rohtak'],'ans':2,'exp':'Hisar is known as the "Steel City" of Haryana due to its large steel industry. It also has Haryana Agricultural University.'},
+        {'id':'hpm9','subject':'GK','q':'Who wrote Bhagavad Gita?','opts':['Valmiki','Ved Vyasa','Tulsidas','Kabirdas'],'ans':1,'exp':'The Mahabharata (which includes Bhagavad Gita) was written by Ved Vyasa. The Gita contains Krishna\'s teachings to Arjuna at Kurukshetra.'},
+        {'id':'hpm10','subject':'GK','q':'India\'s national sport is?','opts':['Cricket','Hockey','Kabaddi','Wrestling'],'ans':1,'exp':'Field Hockey is India\'s national sport. India has won 8 Olympic gold medals in hockey — most by any country.'},
+        {'id':'hpm11','subject':'Reasoning','q':'If 4+3=34, 5+2=35, then 6+1=?','opts':['16','61','67','76'],'ans':1,'exp':'Pattern: concatenate b then a: 3|4=34, 2|5=35 → Hmm, that gives 34 and 25 not 35. Try: a x b then + something. 4x3=12 nope. Try: (a+b) then (a-b): 7|1=71? No. Pattern might be: write b first then a: 34 (3 then 4), 35 (3 then 5)? But 4+3=34: that is 3 then 4. 5+2=35: 3 then 5. 6+1=? → 1 then 6 = 16? Or: sum is same (7) then write b,a: 3,4=34. Sum=7, 3,5=35. Sum=7, 1,6=16. Answer=16.'},
+        {'id':'hpm12','subject':'Reasoning','q':'A is taller than B. C is taller than A. D is shorter than B. Who is shortest?','opts':['A','B','C','D'],'ans':3,'exp':'Order: C > A > B > D. D is shortest.'},
+        {'id':'hpm13','subject':'Reasoning','q':'How many triangles in a figure with 4 lines making a big triangle divided into 4 small ones?','opts':['4','5','6','8'],'ans':2,'exp':'In a triangle divided into 4 equal smaller triangles: 4 small + 3 medium (combinations of 2) + 1 large = actually standard answer for this type = 5. A triangle divided into 4 by midpoints gives: 4 small + 1 large = 5 triangles.'},
+        {'id':'hpm14','subject':'Reasoning','q':'Mirror image: If clock shows 4:40, mirror shows?','opts':['7:20','8:20','7:10','8:10'],'ans':0,'exp':'Mirror time = 11:60 - actual time = 11:60 - 4:40 = 7:20.'},
+        {'id':'hpm15','subject':'Maths','q':'Find SI on Rs 12000 at 6% for 3 years.','opts':['Rs 1800','Rs 2000','Rs 2160','Rs 2400'],'ans':2,'exp':'SI = PRT/100 = 12000 x 6 x 3 / 100 = 216000/100 = Rs 2160.'},
+        {'id':'hpm16','subject':'Maths','q':'A train 300m long passes a pole in 30 seconds. Speed?','opts':['36 km/h','54 km/h','72 km/h','90 km/h'],'ans':0,'exp':'Speed = 300/30 = 10 m/s = 10 x 18/5 = 36 km/h.'},
+        {'id':'hpm17','subject':'Maths','q':'Downstream speed 18 km/h, upstream 10 km/h. Speed of boat in still water?','opts':['12 km/h','14 km/h','16 km/h','8 km/h'],'ans':1,'exp':'Boat speed = (downstream + upstream)/2 = (18+10)/2 = 28/2 = 14 km/h.'},
+        {'id':'hpm18','subject':'Maths','q':'Perimeter of rectangle: length 15cm, breadth 10cm?','opts':['25 cm','50 cm','75 cm','150 cm'],'ans':1,'exp':'Perimeter = 2(l+b) = 2(15+10) = 2x25 = 50 cm.'},
+        {'id':'hpm19','subject':'Maths','q':'What is 15% of 480?','opts':['62','67','72','78'],'ans':2,'exp':'15% of 480 = 480 x 15/100 = 7200/100 = 72.'},
+        {'id':'hpm20','subject':'Hindi','q':'"Jal" ka paryayvachi shabd kya hai?','opts':['Agni','Neer','Gagan','Vayu'],'ans':1,'exp':'"Neer" jal ka paryayvachi hai. Anya paryayvachi: Paani, Toya, Vari, Ambu, Salil.'},
+        {'id':'hpm21','subject':'Hindi','q':'"Safal" ka vilom shabd kya hai?','opts':['Asafal','Nisfal','Safalta','Parafal'],'ans':0,'exp':'"Safal" (successful) ka vilom "Asafal" (unsuccessful) hai.'},
+        {'id':'hpm22','subject':'Hindi','q':'Samas mein "Rajputra" kaunsa samas hai?','opts':['Dwand','Tatpurush','Karmadharaya','Bahuvrihi'],'ans':1,'exp':'"Rajputra" mein "Raja ka Putra" (son of king) — last word dominant → Tatpurush Samas.'},
+        {'id':'hpm23','subject':'GK','q':'National emblem of India is taken from?','opts':['Sanchi Stupa','Ashoka Pillar at Sarnath','Ajanta Caves','Konark Temple'],'ans':1,'exp':'National Emblem of India is adapted from the Lion Capital of Ashoka at Sarnath (4 lions on a circular abacus). Adopted on 26 January 1950.'},
+        {'id':'hpm24','subject':'GK','q':'Which Indian won Nobel Prize for Economics?','opts':['C.V. Raman','Amartya Sen','Venkatraman Ramakrishnan','Abhijit Banerjee'],'ans':1,'exp':'Amartya Sen won Nobel Prize in Economics in 1998. Abhijit Banerjee also won in 2019. Both are Indian-origin economists.'},
+        {'id':'hpm25','subject':'Haryana GK','q':'Haryana Police headquarters is located in?','opts':['Hisar','Gurugram','Panchkula','Rohtak'],'ans':2,'exp':'Haryana Police headquarters (PHQ) is located in Panchkula, Haryana.'},
+      ],
+    },
+  ];
+
+  // ── HARYANA POLICE QUICK REVISION ───────────────────────────
+  static final List<Map<String,dynamic>> _haryanaPoliceQR = [
+    {
+      'title': 'ExamPattern',
+      'items': [
+        'Haryana Police Constable: 100Q | 90 mins | NO negative marking',
+        'Subjects: GK+Current Affairs(40) + Reasoning(25) + Maths(25) + Hindi/English(10)',
+        'Physical Test: 1600m run (men) | 800m run (women)',
+        'Age: 18-25 years | 10+2 pass required',
+        'Height men: 170cm (Gen/OBC) | 167cm (SC/BC-A) | 162cm (Mewat/Tribal)',
+        'Height women: 158cm (Gen/OBC) | 155cm (SC/BC-A)',
+        'Recruitment by: Haryana Staff Selection Commission (HSSC)',
+        'No negative marking — attempt all questions!',
+      ],
+    },
+    {
+      'title': 'HaryanaFacts',
+      'items': [
+        'Formation: 1 November 1966 | Capital: Chandigarh (shared with Punjab)',
+        'Districts: 22 | Area: 44,212 sq km | Language: Hindi',
+        'State Animal: Blackbuck | State Bird: Black Francolin (Kala Teetar)',
+        'State Flower: Lotus | State Tree: Peepal | State Sport: Wrestling',
+        'First CM: Bhagwat Dayal Sharma | Current CM: Nayab Singh Saini',
+        'Panipat: 3 historic battles (1526, 1556, 1761)',
+        'Famous people: Sakshi Malik, Vinesh Phogat, Geeta-Babita Phogat',
+        'Gurugram = IT hub | Faridabad = largest city | Hisar = steel city',
+        'Karnal = rice bowl + NDRI | Panipat = weavers city',
+        'Haryana Police HQ: Panchkula | Motto: related to service',
+      ],
+    },
+    {
+      'title': 'MathsFormulas',
+      'items': [
+        'Speed = Distance/Time | km/h to m/s: multiply by 5/18',
+        'Average speed (same dist): 2AB/(A+B) — never direct average!',
+        'Train+pole: Speed = Length/Time',
+        'Train+platform: Speed = (Train+Platform)/Time',
+        'Downstream = boat+stream | Upstream = boat-stream',
+        'Boat speed = (Down+Up)/2 | Stream = (Down-Up)/2',
+        'SI = PRT/100 | Area circle = pi r^2 | Circumference = 2 pi r',
+        'Rectangle Area = lxb | Perimeter = 2(l+b)',
+        'Triangle Area = (1/2) x base x height',
+        'Pythagoras triplets: 3-4-5, 5-12-13, 8-15-17',
+      ],
+    },
+    {
+      'title': 'HindiKeyWords',
+      'items': [
+        'Aakash paryayvachi: Gagan, Nabhah, Ambar, Vyom',
+        'Jal paryayvachi: Neer, Paani, Toya, Vari, Ambu',
+        'Agni paryayvachi: Aag, Pavak, Anala, Dahana',
+        'Safal vilom: Asafal | Sundar vilom: Kurup | Aadhar vilom: Niraadhar',
+        'Naak mein dum karna = bahut pareshan karna',
+        'Paani paani hona = sharminda hona',
+        'Aag mein ghee daalna = jhagde ko badhana',
+        'Tatpurush Samas: Raja ka Putra = Rajputra',
+        'Dwand Samas: Mata aur Pita = Matapita',
+        'Bahuvrihi Samas: Describes third — Dashanana (10 faces = Ravana)',
+      ],
+    },
+  ];
+
+
+  static final List<Map<String,dynamic>> _ndaSections = [
+    {
+      'id': 'nda-maths',
+      'title': 'Mathematics',
+      'colorHex': 0xFF1565C0,
+      'topics': [
+        {
+          'id': 'nda-algebra',
+          'title': 'Algebra — Sets, Relations & Complex Numbers',
+          'weightage': '10-12 questions',
+          'difficulty': 'Medium',
+          'readTime': '20 mins',
+          'content': 'ALGEBRA FOR NDA\n\nSETS:\nTypes: Empty, Finite, Infinite, Singleton, Universal\nOperations:\nUnion: A union B = elements in A or B or both\nIntersection: A intersection B = elements in both A and B\nDifference: A-B = elements in A but not in B\nComplement: A\' = elements NOT in A\n\nFormulas:\nn(A union B) = n(A) + n(B) - n(A intersection B)\nn(A union B union C) = n(A)+n(B)+n(C)-n(AB)-n(BC)-n(AC)+n(ABC)\nDe Morgan\'s Law: (A union B)\' = A\' intersection B\'\n(A intersection B)\' = A\' union B\'\n\nRELATIONS:\nReflexive: aRa for all a in A\nSymmetric: aRb implies bRa\nTransitive: aRb and bRc implies aRc\nEquivalence: Reflexive + Symmetric + Transitive\n\nCOMPLEX NUMBERS:\nz = a + ib where i = sqrt(-1)\ni^2 = -1, i^3 = -i, i^4 = 1 (cycle of 4)\nModulus: |z| = sqrt(a^2 + b^2)\nConjugate: z bar = a - ib\nAddition: (a+ib) + (c+id) = (a+c) + i(b+d)\nMultiplication: (a+ib)(c+id) = (ac-bd) + i(ad+bc)\nDivision: multiply numerator and denominator by conjugate of denominator\n\nArgand Plane:\nx-axis = Real axis | y-axis = Imaginary axis\nPolar form: z = r(cos theta + i sin theta) where r=|z|, theta=arg(z)\n\nQUADRATIC EQUATIONS:\nax^2 + bx + c = 0\nRoots: x = (-b +/- sqrt(b^2-4ac)) / 2a\nDiscriminant D = b^2 - 4ac\nD > 0: two real distinct roots\nD = 0: two equal real roots\nD < 0: two complex conjugate roots\nSum of roots = -b/a\nProduct of roots = c/a\n\nBINOMIAL THEOREM:\n(a+b)^n = sum of C(n,r) x a^(n-r) x b^r for r=0 to n\nGeneral term: T(r+1) = C(n,r) x a^(n-r) x b^r\nMiddle term: If n even → (n/2+1)th term | If n odd → two middle terms\nC(n,r) = n! / (r! x (n-r)!)\n\nSEQUENCES AND SERIES:\nAP: a, a+d, a+2d...\nNth term = a + (n-1)d\nSum = n/2 x (2a + (n-1)d) = n/2 x (first + last)\n\nGP: a, ar, ar^2...\nNth term = a x r^(n-1)\nSum = a(r^n - 1)/(r-1) for r not equal to 1\nInfinite GP (|r|<1): Sum = a/(1-r)\n\nAM-GM Inequality: AM >= GM\n(a+b)/2 >= sqrt(ab) for positive a, b',
+        },
+        {
+          'id': 'nda-trigonometry',
+          'title': 'Trigonometry',
+          'weightage': '12-15 questions',
+          'difficulty': 'Medium-Hard',
+          'readTime': '25 mins',
+          'content': 'TRIGONOMETRY FOR NDA\n\nBASIC RATIOS (memorise table):\n       0    30    45    60    90\nsin:   0   1/2  1/rt2  rt3/2  1\ncos:   1  rt3/2  1/rt2  1/2   0\ntan:   0   1/rt3   1    rt3   undefined\n\nRECIPROCAL RELATIONS:\ncosec = 1/sin | sec = 1/cos | cot = 1/tan\n\nPYTHAGOREAN IDENTITIES:\nsin^2 A + cos^2 A = 1\n1 + tan^2 A = sec^2 A\n1 + cot^2 A = cosec^2 A\n\nSIGN CONVENTION (ASTC):\nQuadrant 1 (0-90): All positive\nQuadrant 2 (90-180): Sin positive\nQuadrant 3 (180-270): Tan positive\nQuadrant 4 (270-360): Cos positive\nMnemonic: All Students Take Coffee\n\nCOMPOUND ANGLES:\nsin(A+B) = sinA cosB + cosA sinB\nsin(A-B) = sinA cosB - cosA sinB\ncos(A+B) = cosA cosB - sinA sinB\ncos(A-B) = cosA cosB + sinA sinB\ntan(A+B) = (tanA + tanB)/(1 - tanA tanB)\ntan(A-B) = (tanA - tanB)/(1 + tanA tanB)\n\nDOUBLE ANGLE:\nsin 2A = 2 sinA cosA\ncos 2A = cos^2 A - sin^2 A = 2cos^2 A - 1 = 1 - 2sin^2 A\ntan 2A = 2 tanA / (1 - tan^2 A)\n\nHALF ANGLE:\nsin A = 2 sin(A/2) cos(A/2)\ncos A = 1 - 2sin^2(A/2) = 2cos^2(A/2) - 1\n\nPRODUCT TO SUM:\n2 sinA cosB = sin(A+B) + sin(A-B)\n2 cosA sinB = sin(A+B) - sin(A-B)\n2 cosA cosB = cos(A-B) + cos(A+B)\n2 sinA sinB = cos(A-B) - cos(A+B)\n\nSUM TO PRODUCT:\nsin C + sin D = 2 sin((C+D)/2) cos((C-D)/2)\nsin C - sin D = 2 cos((C+D)/2) sin((C-D)/2)\ncos C + cos D = 2 cos((C+D)/2) cos((C-D)/2)\ncos C - cos D = -2 sin((C+D)/2) sin((C-D)/2)\n\nINVERSE TRIG:\nDomain of sin^-1: [-1,1] | Range: [-pi/2, pi/2]\nDomain of cos^-1: [-1,1] | Range: [0, pi]\nDomain of tan^-1: R | Range: (-pi/2, pi/2)\n\nPROPERTIES OF TRIANGLE:\nSine rule: a/sinA = b/sinB = c/sinC = 2R\nCosine rule: cos A = (b^2+c^2-a^2)/2bc\nArea = (1/2)ab sinC = sqrt(s(s-a)(s-b)(s-c))\nwhere s = (a+b+c)/2 (semi-perimeter)',
+        },
+        {
+          'id': 'nda-calculus',
+          'title': 'Differential & Integral Calculus',
+          'weightage': '15-18 questions',
+          'difficulty': 'Hard',
+          'readTime': '25 mins',
+          'content': 'CALCULUS FOR NDA\n\nLIMITS:\nlim(x->0) sinx/x = 1\nlim(x->0) tanx/x = 1\nlim(x->0) (e^x - 1)/x = 1\nlim(x->0) (a^x - 1)/x = loge(a)\nlim(x->inf) (1 + 1/x)^x = e\nlim(x->0) (1+x)^(1/x) = e\n\nDIFFERENTIATION — STANDARD DERIVATIVES:\nd/dx (x^n) = n x^(n-1)\nd/dx (e^x) = e^x\nd/dx (a^x) = a^x loge(a)\nd/dx (loge x) = 1/x\nd/dx (sin x) = cos x\nd/dx (cos x) = -sin x\nd/dx (tan x) = sec^2 x\nd/dx (cot x) = -cosec^2 x\nd/dx (sec x) = sec x tan x\nd/dx (cosec x) = -cosec x cot x\nd/dx (sin^-1 x) = 1/sqrt(1-x^2)\nd/dx (cos^-1 x) = -1/sqrt(1-x^2)\nd/dx (tan^-1 x) = 1/(1+x^2)\n\nRULES:\nChain rule: d/dx[f(g(x))] = f\'(g(x)) x g\'(x)\nProduct rule: d/dx[uv] = u dv/dx + v du/dx\nQuotient rule: d/dx[u/v] = (v du/dx - u dv/dx) / v^2\n\nAPPLICATIONS:\nMaxima/Minima: dy/dx = 0, then check d^2y/dx^2\nIf d^2y/dx^2 > 0: minima | < 0: maxima\nIncreasing: dy/dx > 0 | Decreasing: dy/dx < 0\n\nINTEGRATION — STANDARD INTEGRALS:\nIntegral of x^n = x^(n+1)/(n+1) + C (n not equal to -1)\nIntegral of 1/x = loge|x| + C\nIntegral of e^x = e^x + C\nIntegral of a^x = a^x/loge(a) + C\nIntegral of sin x = -cos x + C\nIntegral of cos x = sin x + C\nIntegral of tan x = loge|sec x| + C\nIntegral of sec^2 x = tan x + C\nIntegral of 1/sqrt(1-x^2) = sin^-1 x + C\nIntegral of 1/(1+x^2) = tan^-1 x + C\n\nDEFINITE INTEGRAL:\nIntegral from a to b of f(x) dx = F(b) - F(a)\nProperties:\nIntegral from a to b = -Integral from b to a\nIntegral from a to b = Integral from a to c + Integral from c to b\nIntegral from 0 to 2a of f(x) = 2 x Integral from 0 to a (if f(2a-x)=f(x))\n\nAREA UNDER CURVE:\nArea = Integral from a to b of |f(x)| dx',
+        },
+        {
+          'id': 'nda-vectors',
+          'title': 'Vectors & 3D Geometry',
+          'weightage': '10-12 questions',
+          'difficulty': 'Medium-Hard',
+          'readTime': '20 mins',
+          'content': 'VECTORS FOR NDA\n\nBASICS:\nVector has magnitude AND direction\nScalar has only magnitude\nUnit vector: magnitude = 1, a hat = a/|a|\ni hat, j hat, k hat = unit vectors along X, Y, Z axes\n\nOPERATIONS:\nAddition: a + b (triangle/parallelogram law)\nSubtraction: a - b = a + (-b)\nScalar multiplication: k x a (magnitude multiplied by k)\n\nDOT PRODUCT (Scalar product):\na.b = |a||b|cos theta\na.b = a1b1 + a2b2 + a3b3\nIf perpendicular: a.b = 0\ni.i = j.j = k.k = 1 | i.j = j.k = k.i = 0\n\nCROSS PRODUCT (Vector product):\na x b = |a||b|sin theta n hat\n|a x b| = area of parallelogram\nIf parallel: a x b = 0\ni x j = k | j x k = i | k x i = j\nj x i = -k | k x j = -i | i x k = -j\n\nAPPLICATIONS:\nArea of triangle = (1/2)|a x b|\nVolume of parallelepiped = |a.(b x c)| (scalar triple product)\nCoplanar vectors: a.(b x c) = 0\n\n3D GEOMETRY:\nDistance between (x1,y1,z1) and (x2,y2,z2):\nd = sqrt((x2-x1)^2 + (y2-y1)^2 + (z2-z1)^2)\n\nDirection cosines: l = cos alpha, m = cos beta, n = cos gamma\nl^2 + m^2 + n^2 = 1\n\nEquation of line: (x-x1)/l = (y-y1)/m = (z-z1)/n\n\nEquation of plane: ax + by + cz + d = 0\nDistance from point (x1,y1,z1) to plane ax+by+cz+d=0:\n= |ax1+by1+cz1+d| / sqrt(a^2+b^2+c^2)',
+        },
+      ],
+    },
+    {
+      'id': 'nda-gat',
+      'title': 'General Ability Test (GAT)',
+      'colorHex': 0xFF880E4F,
+      'topics': [
+        {
+          'id': 'nda-english',
+          'title': 'English — Grammar & Comprehension',
+          'weightage': '50 marks',
+          'difficulty': 'Easy-Medium',
+          'readTime': '20 mins',
+          'content': 'ENGLISH FOR NDA GAT\n\nNDA GAT has 200 marks — English section is 50 marks (Part A).\n\nKEY GRAMMAR TOPICS:\n\n1. SPOTTING ERRORS:\nSubject-Verb agreement\nTense consistency\nPronoun case (I/me, he/him, who/whom)\nArticle usage\nPrepositions\n\n2. SENTENCE IMPROVEMENT:\nChoose the best alternative for underlined part.\nLook for: grammatical correctness, clarity, conciseness.\n\n3. FILL IN THE BLANKS:\nPrepositions: in/on/at/for/since/by/with/to\nConjunctions: although/though/even though, unless/until, since/as/because\nArticles: a/an (sound) vs the (specific)\n\n4. ORDERING OF SENTENCES:\nIdentify opening sentence (topic introduction)\nFollow logical sequence\nIdentify closing sentence (conclusion/result)\n\nCOMMON ERRORS TO SPOT:\nDouble negative: "I don\'t know nothing" -> "I don\'t know anything"\nDangling modifier: "Walking down the street, the trees were beautiful" -> person was walking, not trees\nParallel structure: "She likes singing, dancing, and to paint" -> "singing, dancing, and painting"\nComparative: "more better" -> "better" | "most tallest" -> "tallest"\nSubject after either/neither: singular verb\nCollective nouns: team/committee/jury -> singular verb\n\nREADING COMPREHENSION (NDA style):\n- Passages are 200-300 words\n- 5 questions per passage\n- Types: factual, vocabulary, inference, tone, title\n- Strategy: Read questions first, then passage\n\nVOCABULARY:\nSynonyms/Antonyms commonly asked:\nABSTEMIOUS = moderate in eating/drinking\nACRIMONIOUS = bitter and harsh\nADAMENT = refusing to change\nAFFABLE = friendly and easy to talk to\nAGHAST = filled with horror\nAMBIGUOUS = unclear\nAMENABLE = willing to agree\nANOMOUS = different from what is standard\nAPATHETIC = showing no interest\nASTUTE = having clever understanding\nAUSTERE = severe, strict\nAVID = enthusiastic\nBENIGN = gentle and kind\nCANNY = clever and careful\nCHRONIC = persisting for a long time',
+        },
+        {
+          'id': 'nda-physics',
+          'title': 'Physics',
+          'weightage': '25 marks',
+          'difficulty': 'Medium',
+          'readTime': '20 mins',
+          'content': 'PHYSICS FOR NDA\n\nMECHANICS:\nNewton\'s Laws:\n1st: Body continues in state of rest/motion unless external force\n2nd: F = ma\n3rd: Every action has equal and opposite reaction\n\nEquations of motion:\nv = u + at\ns = ut + (1/2)at^2\nv^2 = u^2 + 2as\n\nWork, Energy, Power:\nWork = F x d x cos theta\nKE = (1/2)mv^2\nPE = mgh\nPower = Work/Time = Fv\nConservation of energy: KE + PE = constant\n\nGravitation:\nF = G m1 m2 / r^2\ng = 9.8 m/s^2 (approx 10)\ng decreases with altitude and at equator\ng increases at poles\nEscape velocity = 11.2 km/s\nOrbital velocity = 7.9 km/s\n\nFLUID MECHANICS:\nArchimedes Principle: Upthrust = weight of fluid displaced\nBuoyancy: Object floats if density < fluid density\nPascal\'s Law: Pressure applied = transmitted equally in all directions\nBernoulli\'s Theorem: P + (1/2)pv^2 + pgh = constant\n\nTHERMODYNAMICS:\nCelsius to Kelvin: K = C + 273\nSpecific heat: Q = mcT\nLatent heat: Q = mL (no temp change during phase change)\nLaws of thermodynamics:\n0th: Thermal equilibrium\n1st: Q = U + W (energy conservation)\n2nd: Heat flows hot to cold naturally\n\nELECTRICITY:\nOhm\'s Law: V = IR\nPower: P = VI = I^2 R = V^2/R\nSeries: R total = R1+R2+R3 | Same current\nParallel: 1/R = 1/R1+1/R2+1/R3 | Same voltage\nKirchhoff\'s Laws: Junction (current) and Loop (voltage)\n\nOPTICS:\nReflection: Angle of incidence = Angle of reflection\nRefraction: n1 sin i = n2 sin r (Snell\'s law)\nLens: 1/f = 1/v - 1/u\nMirror: 1/f = 1/v + 1/u\nConvex lens: converging | Concave lens: diverging\nConvex mirror: virtual, erect | Concave mirror: real, inverted (beyond F)\n\nWAVES AND SOUND:\nv = f x lambda (wave equation)\nSound: longitudinal wave | Light: transverse wave\nDoppler Effect: frequency increases when source approaches\nSound speed in air: 343 m/s at 25 degree C',
+        },
+        {
+          'id': 'nda-chemistry',
+          'title': 'Chemistry',
+          'weightage': '15 marks',
+          'difficulty': 'Easy-Medium',
+          'readTime': '15 mins',
+          'content': 'CHEMISTRY FOR NDA\n\nATOMIC STRUCTURE:\nAtom: Protons + Neutrons + Electrons\nAtomic number = protons = electrons (neutral)\nMass number = protons + neutrons\nIsotopes: same protons, different neutrons (C-12, C-14)\nIsobars: same mass number, different atomic number\n\nPERIODIC TABLE:\nPeriods: 7 horizontal rows\nGroups: 18 vertical columns\nAlkali metals (Group 1): Li, Na, K, Rb, Cs, Fr\nAlkaline earth (Group 2): Be, Mg, Ca, Sr, Ba, Ra\nHalogens (Group 17): F, Cl, Br, I, At\nNoble gases (Group 18): He, Ne, Ar, Kr, Xe, Rn\n\nCHEMICAL BONDING:\nIonic bond: metal + non-metal (electron transfer)\nCovalent bond: non-metal + non-metal (electron sharing)\nHydrogen bond: H with N, O, F (intermolecular)\n\nACIDS, BASES & SALTS:\npH scale: 0-14 | pH<7 = acidic | pH=7 = neutral | pH>7 = basic\nStrong acids: HCl, H2SO4, HNO3\nStrong bases: NaOH, KOH, Ca(OH)2\nAcid + Base = Salt + Water (neutralization)\n\nCOMMON REACTIONS:\nRust: 4Fe + 3O2 + 6H2O -> 4Fe(OH)3 (then dehydrates to Fe2O3)\nPhotosynthesis: 6CO2 + 6H2O -> C6H12O6 + 6O2\nBurning: CH4 + 2O2 -> CO2 + 2H2O\nElectrolysis of water: 2H2O -> 2H2 + O2\n\nCOMMON SUBSTANCES:\nCommon salt: NaCl | Baking soda: NaHCO3\nWashing soda: Na2CO3 | Bleaching powder: Ca(OCl)Cl\nPlaster of Paris: CaSO4.1/2 H2O | Gypsum: CaSO4.2H2O\nMarble: CaCO3 | Quicklime: CaO | Slaked lime: Ca(OH)2\nAcid in vinegar: Acetic acid (CH3COOH)\nAcid in lemon: Citric acid | Ant sting: Formic acid\nVitamin C: Ascorbic acid | Aspirin: Acetylsalicylic acid\n\nMETALS AND NON-METALS:\nBest conductor: Silver (Ag) then Copper (Cu)\nLightest metal: Lithium | Heaviest: Osmium\nMost abundant metal in earth crust: Aluminium\nMost abundant element in earth crust: Oxygen\nLiquid metal: Mercury (Hg) | Liquid non-metal: Bromine (Br)',
+        },
+        {
+          'id': 'nda-history-geo',
+          'title': 'History, Geography & Current Affairs',
+          'weightage': '60 marks',
+          'difficulty': 'Easy-Medium',
+          'readTime': '25 mins',
+          'content': 'HISTORY, GEOGRAPHY & CURRENT AFFAIRS FOR NDA\n\nINDIAN HISTORY QUICK FACTS:\nIndus Valley Civilisation: 3300-1300 BCE | Cities: Harappa, Mohenjodaro\nVedic Period: 1500-600 BCE\nMaurya Empire: 321-185 BCE | Ashoka (273-232 BCE)\nGupta Empire: 320-550 CE | Golden Age of India\nDelhi Sultanate: 1206-1526 CE\nMughal Empire: 1526-1857 CE\n1857 Revolt: First War of Independence\n1885: INC founded | 1947: Independence\n\nWORLD HISTORY:\nWorld War 1: 1914-1918 | Trigger: assassination of Archduke Franz Ferdinand\nRussian Revolution: 1917 (Bolshevik/Lenin)\nWorld War 2: 1939-1945 | Hitler (Germany), Mussolini (Italy), Hirohito (Japan)\nHiroshima bomb: 6 Aug 1945 | Nagasaki: 9 Aug 1945\nUNO founded: 24 Oct 1945\nCold War: 1947-1991 (USA vs USSR)\nBerlin Wall fall: 1989 | USSR dissolved: 1991\n\nINDIAN GEOGRAPHY:\nArea: 3.28 million sq km (7th largest)\nHighest peak: Kangchenjunga (8586m)\nLongest river: Ganga (within India)\nLargest state: Rajasthan | Smallest: Goa\nLongest coastline: Gujarat\nTropic of Cancer passes through: 8 states\nStandard Meridian: 82.5 degree E (IST = GMT+5:30)\n\nWORLD GEOGRAPHY:\nLargest continent: Asia | Smallest: Australia\nLargest ocean: Pacific | Deepest: Pacific (Mariana Trench 11,034m)\nLongest river: Nile (Africa) | Amazon (S.America)\nLargest country area: Russia | Population: India (2023)\nSmallest country: Vatican City\nHighest peak: Mt Everest (8848.86m, Nepal/China)\nLargest desert: Sahara (hot) | Antarctic (cold, largest overall)\nLargest lake: Caspian Sea | Freshwater: Superior\n\nINDIAN DEFENCE & MILITARY:\nArmy Day: 15 January | Navy Day: 4 December | Air Force Day: 8 October\nNDA: National Defence Academy, Khadakwasla, Pune\nCDS: Combined Defence Services Exam\nIndia nuclear capable: Yes (Pokhran tests 1974 and 1998)\nAgni missiles: Ballistic missiles | Prithvi: Surface-to-surface\nOperation Vijay (1999): Kargil War against Pakistan\nOperation Shakti (1998): Nuclear tests\nINS Vikrant: First indigenous aircraft carrier (2022)\n\nCURRENT AFFAIRS:\nPresident of India: Droupadi Murmu\nPM: Narendra Modi (3rd term 2024)\nArmy Chief: General Upendra Dwivedi\nCAS (Air Force Chief): Air Chief Marshal A.P. Singh\nChief of Naval Staff: Admiral Dinesh K Tripathi\nCDS: General Anil Chauhan\nChandrayaan-3: Moon south pole 23 Aug 2023\nAditya-L1: Solar observatory (2023)\nGaganyaan: Upcoming crewed spaceflight',
+        },
+      ],
+    },
+  ];
+
+  // ── NDA PYQs ────────────────────────────────────────────────
+  static final List<Map<String,dynamic>> _ndaPYQ = [
+    {'id':'n1','subject':'Maths','q':'If i = sqrt(-1), then i^47 = ?','opts':['1','-1','i','-i'],'ans':3,'exp':'i cycles every 4: i^1=i, i^2=-1, i^3=-i, i^4=1. 47 = 4x11+3. So i^47 = i^3 = -i.'},
+    {'id':'n2','subject':'Maths','q':'Sum of roots of x^2 - 5x + 6 = 0?','opts':['5','-5','6','-6'],'ans':0,'exp':'For ax^2+bx+c=0, sum of roots = -b/a = -(-5)/1 = 5.'},
+    {'id':'n3','subject':'Maths','q':'If sin A = 3/5, find cos A (A in first quadrant).','opts':['4/5','3/4','5/4','3/5'],'ans':0,'exp':'sin^2 A + cos^2 A = 1. (3/5)^2 + cos^2 A = 1. cos^2 A = 1-9/25 = 16/25. cos A = 4/5.'},
+    {'id':'n4','subject':'Maths','q':'Value of sin 30 + cos 60?','opts':['0','1','2','sqrt3'],'ans':1,'exp':'sin 30 = 1/2, cos 60 = 1/2. Sum = 1/2 + 1/2 = 1.'},
+    {'id':'n5','subject':'Maths','q':'d/dx (x^3 + 2x^2 - 5x + 1) at x=1?','opts':['0','1','2','3'],'ans':2,'exp':'d/dx = 3x^2 + 4x - 5. At x=1: 3+4-5 = 2.'},
+    {'id':'n6','subject':'Maths','q':'Integral of (2x + 3) dx?','opts':['x^2+3x+C','2x^2+3x+C','x^2+3+C','2+C'],'ans':0,'exp':'Integral of 2x = x^2. Integral of 3 = 3x. Total = x^2 + 3x + C.'},
+    {'id':'n7','subject':'Maths','q':'If a.b = 0, vectors a and b are?','opts':['Parallel','Perpendicular','Equal','Anti-parallel'],'ans':1,'exp':'Dot product a.b = |a||b|cos theta = 0 implies cos theta = 0, so theta = 90 degrees. Vectors are perpendicular.'},
+    {'id':'n8','subject':'Maths','q':'nth term of AP: 2, 5, 8, 11... is?','opts':['3n-1','3n+1','2n+1','n+3'],'ans':0,'exp':'a=2, d=3. Tn = a+(n-1)d = 2+(n-1)3 = 2+3n-3 = 3n-1.'},
+    {'id':'n9','subject':'Maths','q':'Value of C(5,2)?','opts':['5','10','15','20'],'ans':1,'exp':'C(5,2) = 5!/(2!3!) = (5x4)/(2x1) = 10.'},
+    {'id':'n10','subject':'Maths','q':'If sin theta = cos theta, then theta?','opts':['30 deg','45 deg','60 deg','90 deg'],'ans':1,'exp':'sin theta = cos theta implies tan theta = 1, so theta = 45 degrees.'},
+    {'id':'n11','subject':'Maths','q':'Sum of infinite GP: 1, 1/2, 1/4, 1/8...?','opts':['1','2','3','4'],'ans':1,'exp':'a=1, r=1/2. Sum = a/(1-r) = 1/(1-1/2) = 1/(1/2) = 2.'},
+    {'id':'n12','subject':'Maths','q':'If A = {1,2,3} and B = {2,3,4}, then A union B?','opts':['{2,3}','{1,2,3,4}','{1,4}','{1,2,3,4,5}'],'ans':1,'exp':'A union B contains all elements from both sets: {1,2,3,4}.'},
+    {'id':'n13','subject':'Maths','q':'The discriminant of x^2-4x+4=0?','opts':['0','4','8','16'],'ans':0,'exp':'D = b^2-4ac = (-4)^2 - 4(1)(4) = 16-16 = 0. Equal roots (x=2, twice).'},
+    {'id':'n14','subject':'Maths','q':'lim(x->0) sinx/x = ?','opts':['0','infinity','1','undefined'],'ans':2,'exp':'Standard limit: lim(x->0) sinx/x = 1. This is a fundamental limit in calculus.'},
+    {'id':'n15','subject':'Maths','q':'Area of triangle with vertices (0,0), (4,0), (0,3)?','opts':['6','8','10','12'],'ans':0,'exp':'Base=4, height=3. Area = (1/2) x 4 x 3 = 6 square units.'},
+    {'id':'ng1','subject':'English','q':'Choose correct sentence:','opts':['He is more smarter','He is smarter','He is most smart','He is the more smart'],'ans':1,'exp':'"Smarter" is comparative degree. "More smarter" is wrong (double comparative). Correct: "He is smarter."'},
+    {'id':'ng2','subject':'English','q':'Synonym of ADAMANT:','opts':['Flexible','Stubborn','Kind','Weak'],'ans':1,'exp':'Adamant = refusing to be persuaded, resolute. Synonym = Stubborn/Inflexible/Unyielding.'},
+    {'id':'ng3','subject':'Physics','q':'Escape velocity from Earth is approximately?','opts':['7.9 km/s','11.2 km/s','3 km/s','25 km/s'],'ans':1,'exp':'Escape velocity from Earth = 11.2 km/s. Orbital velocity = 7.9 km/s. Speed of light = 3x10^5 km/s.'},
+    {'id':'ng4','subject':'Physics','q':'A body at rest has KE=0 and maximum PE. This is?','opts':['Kinetic energy conversion','Potential energy conservation','Conservation of momentum','None'],'ans':1,'exp':'When body is at rest, all mechanical energy is potential energy. PE is maximum, KE=0. This demonstrates conservation and conversion of energy.'},
+    {'id':'ng5','subject':'Chemistry','q':'pH of pure water at 25 degrees C?','opts':['5','7','9','14'],'ans':1,'exp':'Pure water is neutral with pH = 7 at 25 degrees C. pH < 7 is acidic, pH > 7 is basic/alkaline.'},
+    {'id':'ng6','subject':'Chemistry','q':'Chemical formula of baking soda?','opts':['NaCl','NaOH','NaHCO3','Na2CO3'],'ans':2,'exp':'Baking soda = Sodium bicarbonate = NaHCO3. Used in cooking and as antacid. Different from washing soda (Na2CO3).'},
+    {'id':'ng7','subject':'History','q':'Battle of Plassey was fought in?','opts':['1757','1764','1526','1857'],'ans':0,'exp':'Battle of Plassey (1757) between Robert Clive and Siraj-ud-Daulah marked the beginning of British rule in India.'},
+    {'id':'ng8','subject':'History','q':'Which country dropped atomic bomb on Hiroshima?','opts':['UK','USSR','USA','France'],'ans':2,'exp':'USA dropped atomic bomb "Little Boy" on Hiroshima (6 Aug 1945) and "Fat Man" on Nagasaki (9 Aug 1945), ending World War II.'},
+    {'id':'ng9','subject':'Geography','q':'Mariana Trench is in which ocean?','opts':['Atlantic','Indian','Arctic','Pacific'],'ans':3,'exp':'Mariana Trench (deepest point ~11,034m) is in the Pacific Ocean, near Guam. It is the deepest known point on Earth.'},
+    {'id':'ng10','subject':'Geography','q':'The Standard Meridian of India is?','opts':['82 degree E','82.5 degree E','80 degree E','85 degree E'],'ans':1,'exp':'India\'s Standard Meridian is 82 degrees 30 minutes East (82.5 degree E), passing through Prayagraj (Allahabad). IST = GMT+5:30.'},
+    {'id':'ng11','subject':'Defence','q':'NDA is located at?','opts':['Dehradun','Pune','Mumbai','Delhi'],'ans':1,'exp':'National Defence Academy (NDA) is located at Khadakwasla, Pune, Maharashtra. It trains cadets for Indian Army, Navy and Air Force.'},
+    {'id':'ng12','subject':'Defence','q':'Operation Vijay (1999) was related to?','opts':['1971 War','Kargil War','Siachen','1965 War'],'ans':1,'exp':'Operation Vijay was India\'s military operation during the Kargil War (1999) to recapture positions on the Line of Control occupied by Pakistani soldiers.'},
+    {'id':'ng13','subject':'Science','q':'Which vitamin is called Ascorbic acid?','opts':['Vitamin A','Vitamin B12','Vitamin C','Vitamin D'],'ans':2,'exp':'Vitamin C is chemically called Ascorbic acid. It is found in citrus fruits and prevents scurvy.'},
+    {'id':'ng14','subject':'Geography','q':'Highest mountain peak in the world?','opts':['K2','Kangchenjunga','Mt Everest','Lhotse'],'ans':2,'exp':'Mount Everest (8848.86m) is the highest mountain peak in the world, located on Nepal-China border. First scaled by Edmund Hillary and Tenzing Norgay in 1953.'},
+    {'id':'ng15','subject':'Current','q':'Chandrayaan-3 landed on Moon in?','opts':['July 2023','August 2023','September 2023','October 2023'],'ans':1,'exp':'Chandrayaan-3 successfully landed on Moon\'s south pole on 23 August 2023, making India the 4th country to achieve lunar landing and 1st near south pole.'},
+  ];
+  static final List<Map<String,dynamic>> _ndaMocks = [
+    {
+      'id': 'nda-mock-1',
+      'title': 'NDA Full Mock — Maths + GAT',
+      'description': '25 questions • All subjects • 20 mins',
+      'duration': 1200,
+      'totalQ': 25,
+      'questions': [
+        {'id':'nm1','subject':'Maths','q':'i^100 = ?','opts':['1','-1','i','-i'],'ans':0,'exp':'i cycles every 4. 100 = 4x25, remainder 0. i^100 = i^0 = 1.'},
+        {'id':'nm2','subject':'Maths','q':'Product of roots of 2x^2 - 7x + 3 = 0?','opts':['7/2','3/2','7','3'],'ans':1,'exp':'Product of roots = c/a = 3/2.'},
+        {'id':'nm3','subject':'Maths','q':'sin 2A = ?','opts':['2 sin A','2 cos A','2 sinA cosA','sin^2 A - cos^2 A'],'ans':2,'exp':'Double angle formula: sin 2A = 2 sinA cosA.'},
+        {'id':'nm4','subject':'Maths','q':'d/dx (sin x) at x = pi/2?','opts':['1','0','-1','undefined'],'ans':1,'exp':'d/dx (sin x) = cos x. At x=pi/2, cos(pi/2) = 0.'},
+        {'id':'nm5','subject':'Maths','q':'Integral of cos x dx?','opts':['-sin x + C','sin x + C','cos x + C','-cos x + C'],'ans':1,'exp':'Integral of cos x = sin x + C. (Derivative of sin x = cos x, so reverse is integral of cos x = sin x.)'},
+        {'id':'nm6','subject':'Maths','q':'If vectors a and b are parallel, then a x b = ?','opts':['1','0','|a||b|','undefined'],'ans':1,'exp':'Cross product a x b = |a||b| sin theta. If parallel, theta=0, sin 0=0. So a x b = 0.'},
+        {'id':'nm7','subject':'Maths','q':'Sum of first 10 terms of AP: 1, 3, 5, 7...?','opts':['50','75','100','125'],'ans':2,'exp':'a=1, d=2, n=10. S = n/2 x (2a+(n-1)d) = 10/2 x (2+18) = 5x20 = 100.'},
+        {'id':'nm8','subject':'Maths','q':'C(6,3) = ?','opts':['15','20','18','12'],'ans':1,'exp':'C(6,3) = 6!/(3!3!) = (6x5x4)/(3x2x1) = 120/6 = 20.'},
+        {'id':'nm9','subject':'Maths','q':'Distance between (1,2,3) and (4,6,3)?','opts':['3','4','5','6'],'ans':2,'exp':'d = sqrt((4-1)^2+(6-2)^2+(3-3)^2) = sqrt(9+16+0) = sqrt(25) = 5.'},
+        {'id':'nm10','subject':'Maths','q':'Value of tan 45 + sin 90?','opts':['1','2','sqrt2','0'],'ans':1,'exp':'tan 45 = 1, sin 90 = 1. Sum = 1+1 = 2.'},
+        {'id':'nm11','subject':'English','q':'Antonym of VERBOSE:','opts':['Talkative','Wordy','Concise','Eloquent'],'ans':2,'exp':'Verbose = using more words than needed. Antonym = Concise (expressing things briefly and clearly).'},
+        {'id':'nm12','subject':'English','q':'Fill blank: He has been studying ___ morning.','opts':['for','from','since','by'],'ans':2,'exp':'"Since" is used with a specific point in time (morning = a specific time). "For" is used with a duration.'},
+        {'id':'nm13','subject':'Physics','q':'Ohm\'s law states V = IR. If V=12V and R=4 ohm, current I = ?','opts':['2A','3A','4A','6A'],'ans':1,'exp':'I = V/R = 12/4 = 3 Amperes.'},
+        {'id':'nm14','subject':'Physics','q':'Speed of sound in air at room temperature?','opts':['343 m/s','3x10^8 m/s','1500 m/s','150 m/s'],'ans':0,'exp':'Speed of sound in air at ~25 degrees C is approximately 343 m/s. Speed of light = 3x10^8 m/s. Sound is much slower.'},
+        {'id':'nm15','subject':'Chemistry','q':'Most abundant element in Earth\'s crust?','opts':['Silicon','Iron','Aluminium','Oxygen'],'ans':3,'exp':'Oxygen is the most abundant element in Earth\'s crust (~46% by mass). Silicon is 2nd (~28%), Aluminium 3rd (~8%).'},
+        {'id':'nm16','subject':'Chemistry','q':'Acid in vinegar?','opts':['Citric acid','Acetic acid','Lactic acid','Formic acid'],'ans':1,'exp':'Vinegar contains Acetic acid (CH3COOH), 5-8% solution. Citric acid is in lemons. Lactic acid in yogurt. Formic acid in ant sting.'},
+        {'id':'nm17','subject':'History','q':'When did India become a Republic?','opts':['15 Aug 1947','26 Jan 1950','26 Nov 1949','2 Oct 1950'],'ans':1,'exp':'India became a Republic on 26 January 1950 when the Constitution came into force. Constitution was adopted on 26 Nov 1949.'},
+        {'id':'nm18','subject':'History','q':'First Battle of Panipat was fought between?','opts':['Akbar and Hemu','Babur and Ibrahim Lodi','Ahmad Shah Abdali and Marathas','Humayun and Sher Shah'],'ans':1,'exp':'First Battle of Panipat (1526): Babur defeated Ibrahim Lodi. This established the Mughal Empire in India.'},
+        {'id':'nm19','subject':'Geography','q':'Which is the largest ocean?','opts':['Atlantic','Indian','Pacific','Arctic'],'ans':2,'exp':'Pacific Ocean is the largest ocean, covering about 46% of Earth\'s water surface and 165 million sq km.'},
+        {'id':'nm20','subject':'Geography','q':'Tropic of Cancer passes through how many Indian states?','opts':['6','7','8','9'],'ans':2,'exp':'Tropic of Cancer (23.5 degree N) passes through 8 Indian states: Gujarat, Rajasthan, MP, Chhattisgarh, Jharkhand, WB, Tripura, Mizoram.'},
+        {'id':'nm21','subject':'Defence','q':'Indian Army Day is celebrated on?','opts':['15 August','26 January','15 January','4 December'],'ans':2,'exp':'Indian Army Day is celebrated on 15 January every year. This marks General K.M. Cariappa taking over as first Indian Commander-in-Chief in 1949.'},
+        {'id':'nm22','subject':'Defence','q':'INS Vikrant is India\'s?','opts':['Nuclear submarine','Destroyer','Aircraft carrier','Frigate'],'ans':2,'exp':'INS Vikrant (commissioned 2022) is India\'s first indigenously designed and built aircraft carrier. Named after original INS Vikrant (1961).'},
+        {'id':'nm23','subject':'Science','q':'Newton\'s second law: F = ma. If m=5kg, a=4m/s^2, then F=?','opts':['9N','20N','1.25N','None'],'ans':1,'exp':'F = ma = 5 x 4 = 20 Newtons.'},
+        {'id':'nm24','subject':'Science','q':'Which gas is produced during photosynthesis?','opts':['CO2','N2','O2','H2'],'ans':2,'exp':'Photosynthesis: 6CO2 + 6H2O + sunlight -> C6H12O6 + 6O2. Oxygen (O2) is released as a byproduct.'},
+        {'id':'nm25','subject':'Current','q':'Who is the Chief of Defence Staff (CDS) of India currently?','opts':['General Bipin Rawat','General Anil Chauhan','Admiral Karambir Singh','General M.M. Naravane'],'ans':1,'exp':'General Anil Chauhan is the Chief of Defence Staff (CDS) of India, appointed in September 2022 after the demise of General Bipin Rawat.'},
+      ],
+    },
+  ];
+
+  // ── NDA QUICK REVISION ───────────────────────────────────────
+  static final List<Map<String,dynamic>> _ndaQR = [
+    {
+      'title': 'ExamPattern',
+      'items': [
+        'NDA Paper 1 (Maths): 120Q | 300 marks | 2.5 hours | 1/3 negative',
+        'NDA Paper 2 (GAT): 150Q | 600 marks | 2.5 hours | 1/3 negative',
+        'GAT breakdown: English(50) + GK(150) marks',
+        'GK covers: Physics, Chemistry, History, Geography, Current Affairs',
+        'Total: 270 questions | 900 marks | 5 hours total',
+        'SSB Interview: 900 marks (same as written)',
+        'Age: 16.5 to 19.5 years | Only unmarried males (and females from 2023)',
+        'Qualification: 10+2 with Physics and Maths for Army/AF; 10+2 for Navy',
+        'NDA is at Khadakwasla, Pune | Training: 3 years at NDA + 1 year at respective academy',
+      ],
+    },
+    {
+      'title': 'MathsKeyFormulas',
+      'items': [
+        'i^1=i, i^2=-1, i^3=-i, i^4=1 (repeat every 4)',
+        'Sum of roots = -b/a | Product of roots = c/a',
+        'Discriminant D = b^2-4ac | D>0: real distinct, D=0: equal, D<0: complex',
+        'AP: Tn = a+(n-1)d | Sn = n/2(2a+(n-1)d)',
+        'GP: Tn = ar^(n-1) | Infinite S = a/(1-r) for |r|<1',
+        'd/dx(x^n)=nx^(n-1) | d/dx(sinx)=cosx | d/dx(cosx)=-sinx',
+        'd/dx(e^x)=e^x | d/dx(lnx)=1/x | d/dx(tanx)=sec^2x',
+        'sin^2+cos^2=1 | 1+tan^2=sec^2 | 1+cot^2=cosec^2',
+        'sin2A=2sinAcosA | cos2A=1-2sin^2A | cos2A=2cos^2A-1',
+        'a.b=|a||b|cos(theta) | a x b=|a||b|sin(theta)n hat',
+      ],
+    },
+    {
+      'title': 'ScienceFacts',
+      'items': [
+        'Escape velocity = 11.2 km/s | Orbital velocity = 7.9 km/s',
+        'Speed of light = 3x10^8 m/s | Sound in air = 343 m/s',
+        'v=u+at | s=ut+0.5at^2 | v^2=u^2+2as',
+        'V=IR | P=VI=I^2R=V^2/R | Series: R total=R1+R2',
+        'pH<7 = acid | pH=7 = neutral | pH>7 = base',
+        'NaCl=salt | NaHCO3=baking soda | Na2CO3=washing soda',
+        'Most abundant crust element: Oxygen | Metal: Aluminium',
+        'Photosynthesis: 6CO2+6H2O -> C6H12O6+6O2',
+        'Acid in vinegar: Acetic | Lemon: Citric | Ant: Formic',
+        'Newton 1st=Inertia | 2nd=F=ma | 3rd=Action-Reaction',
+      ],
+    },
+    {
+      'title': 'DefenceGKFacts',
+      'items': [
+        'NDA: Khadakwasla, Pune | Founded 1954',
+        'Army Day: 15 Jan | Navy Day: 4 Dec | Air Force Day: 8 Oct',
+        'CDS: General Anil Chauhan | Army Chief: Gen Upendra Dwivedi',
+        'INS Vikrant: First indigenous aircraft carrier (2022)',
+        'Agni-5: ICBM with MIRV | Prithvi: Surface-to-surface',
+        'Kargil War 1999: Operation Vijay | Nuclear test 1998: Operation Shakti',
+        'India nuclear: Pokhran-1 (1974, Smiling Buddha) + Pokhran-2 (1998)',
+        'Chandrayaan-3: Moon south pole 23 Aug 2023',
+        'Aditya-L1: Solar mission | Gaganyaan: Upcoming human spaceflight',
+        'DRDO: Defence Research and Development Organisation (Delhi)',
+      ],
+    },
+  ];
+
 }

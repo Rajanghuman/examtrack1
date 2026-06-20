@@ -1,4 +1,4 @@
-import 'package:http/http.dart' as http;
+﻿import 'package:http/http.dart' as http;
 import 'package:xml/xml.dart';
 
 class RssArticle {
@@ -49,7 +49,6 @@ class RssService {
         );
         allArticles.addAll(articles);
       } catch (e) {
-        print('Error fetching ${feed['source']}: $e');
       }
     }
     allArticles.sort((a, b) => b.pubDate.compareTo(a.pubDate));
@@ -114,7 +113,6 @@ class RssService {
         );
       }).toList();
     } catch (e) {
-      print('Error parsing feed $url: $e');
       return [];
     }
   }

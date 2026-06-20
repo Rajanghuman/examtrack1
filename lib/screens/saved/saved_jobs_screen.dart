@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -79,7 +79,6 @@ class _SavedJobsScreenState extends State<SavedJobsScreen>
             savedJobs.add(jobData);
           }
         } catch (e) {
-          print('Error fetching job $id: $e');
         }
       }
 
@@ -98,7 +97,6 @@ class _SavedJobsScreenState extends State<SavedJobsScreen>
             appliedJobs.add(jobData);
           }
         } catch (e) {
-          print('Error fetching applied job $id: $e');
         }
       }
 
@@ -108,7 +106,6 @@ class _SavedJobsScreenState extends State<SavedJobsScreen>
         _isLoading   = false;
       });
     } catch (e) {
-      print('Error loading saved jobs: $e');
       setState(() => _isLoading = false);
     }
   }
@@ -132,7 +129,6 @@ class _SavedJobsScreenState extends State<SavedJobsScreen>
 
       _showToast('Removed from saved', success: false);
     } catch (e) {
-      print('Error removing job: $e');
     }
   }
 
@@ -471,23 +467,7 @@ class _SavedJobsScreenState extends State<SavedJobsScreen>
     final int vacancies   = (job['vacancies'] ?? 0) as int;
     final String salary   = job['salary'] as String? ?? '';
     final String lastDate = job['lastDate'] as String? ?? '';
-    final int daysLeft    = _calculateDaysLeft(lastDate);
     final String jobId    = job['id'] as String? ?? '';
-
-    Color badgeColor = const Color(0xFF10B981);
-    String badgeText = '$daysLeft days left';
-    if (daysLeft == 999) {
-      badgeColor = const Color(0xFF1565C0);
-      badgeText = 'Date TBA';
-    } else if (daysLeft <= 0) {
-      badgeColor = const Color(0xFF6B7280);
-      badgeText = 'Closed';
-    } else if (daysLeft <= 7) {
-      badgeColor = const Color(0xFFEF4444);
-    } else if (daysLeft <= 20) {
-      badgeColor = const Color(0xFFF59E0B);
-    }
-
     return Dismissible(
       key: Key(jobId),
       direction: DismissDirection.endToStart,
@@ -554,20 +534,6 @@ class _SavedJobsScreenState extends State<SavedJobsScreen>
                                 color: Colors.grey.shade500)),
                       ],
                     ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 5),
-                    decoration: BoxDecoration(
-                      color: badgeColor.withOpacity(0.1),
-                      borderRadius:
-                      BorderRadius.circular(20),
-                    ),
-                    child: Text(badgeText,
-                        style: GoogleFonts.poppins(
-                            fontSize: 11,
-                            color: badgeColor,
-                            fontWeight: FontWeight.w600)),
                   ),
                 ],
               ),

@@ -1,4 +1,4 @@
-import 'package:http/http.dart' as http;
+﻿import 'package:http/http.dart' as http;
 import 'package:xml/xml.dart';
 
 class RssArticle {
@@ -60,7 +60,6 @@ class RssService {
         );
         allArticles.addAll(articles);
       } catch (e) {
-        print('Error fetching ${feed['source']}: $e');
       }
     }
 
@@ -129,7 +128,6 @@ class RssService {
       ).timeout(const Duration(seconds: 12));
 
       if (response.statusCode != 200) {
-        print('Feed $source returned ${response.statusCode}');
         return [];
       }
 
@@ -194,7 +192,6 @@ class RssService {
       }).where((a) => a.title != 'No Title' || a.link.isNotEmpty)
           .toList();
     } catch (e) {
-      print('Error parsing feed $url: $e');
       return [];
     }
   }

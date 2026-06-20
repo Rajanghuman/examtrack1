@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -87,7 +87,6 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
         }
       }
     } catch (e) {
-      print('Error loading data: $e');
     }
     setState(() => _isLoading = false);
   }
@@ -144,7 +143,6 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
         }, SetOptions(merge: true));
       }
     } catch (e) {
-      print('Error saving profile: $e');
     }
     setState(() => _isSaving = false);
     Navigator.pushReplacementNamed(context, '/home');
@@ -472,7 +470,6 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
               controller: _dobController,
               keyboardType: TextInputType.number,
               inputFormatters: [
-                FilteringTextInputFormatter.digitsOnly,
                 DOBInputFormatter(),
                 LengthLimitingTextInputFormatter(10),
               ],

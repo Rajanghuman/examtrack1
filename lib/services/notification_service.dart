@@ -1,11 +1,10 @@
-import 'package:firebase_messaging/firebase_messaging.dart';
+﻿import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter/material.dart';
 
 // ── Background message handler ─────────────────────────
 @pragma('vm:entry-point')
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  print('Background message: ${message.messageId}');
 }
 
 class NotificationService {
@@ -23,7 +22,6 @@ class NotificationService {
       provisional: false,
     );
 
-    print('Notification permission: ${settings.authorizationStatus}');
 
     // Initialize local notifications
     const AndroidInitializationSettings androidSettings =
@@ -51,7 +49,6 @@ class NotificationService {
 
     // Handle foreground messages
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      print('Foreground message: ${message.notification?.title}');
       if (message.notification != null) {
         showLocalNotification(
           title: message.notification!.title ?? 'ExamTrack',
@@ -62,7 +59,6 @@ class NotificationService {
 
     // Get FCM token
     String? token = await _messaging.getToken();
-    print('FCM Token: $token');
   }
 
   // ── Show local notification ────────────────────────────
@@ -97,13 +93,11 @@ class NotificationService {
   // ── Subscribe to topic ─────────────────────────────────
   static Future<void> subscribeToTopic(String topic) async {
     await _messaging.subscribeToTopic(topic);
-    print('Subscribed to topic: $topic');
   }
 
   // ── Unsubscribe from topic ─────────────────────────────
   static Future<void> unsubscribeFromTopic(String topic) async {
     await _messaging.unsubscribeFromTopic(topic);
-    print('Unsubscribed from topic: $topic');
   }
 
   // ── Subscribe to all default topics ───────────────────

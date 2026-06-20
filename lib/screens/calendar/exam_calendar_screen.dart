@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -103,7 +103,6 @@ class _ExamCalendarScreenState extends State<ExamCalendarScreen> {
         }
       } catch (e) {
         // events collection might not exist yet
-        print('No events collection: $e');
       }
 
       setState(() {
@@ -111,7 +110,6 @@ class _ExamCalendarScreenState extends State<ExamCalendarScreen> {
         _isLoading = false;
       });
     } catch (e) {
-      print('Error loading events: $e');
       setState(() => _isLoading = false);
     }
   }
@@ -127,7 +125,6 @@ class _ExamCalendarScreenState extends State<ExamCalendarScreen> {
         );
       }
     } catch (e) {
-      print('Error parsing date: $e');
     }
     return null;
   }

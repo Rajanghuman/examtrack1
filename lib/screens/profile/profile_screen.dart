@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -96,7 +96,6 @@ class _ProfileScreenState extends State<ProfileScreen>
           });
         }
       } catch (e) {
-        print('Error loading user data: $e');
         setState(() => _isLoading = false);
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -150,7 +149,6 @@ class _ProfileScreenState extends State<ProfileScreen>
         });
       }
     } catch (e) {
-      print('Error loading stats: $e');
       // Silent fail for stats — not critical
     }
   }

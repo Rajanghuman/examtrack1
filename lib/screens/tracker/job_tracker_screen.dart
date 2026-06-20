@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -58,7 +58,6 @@ class _JobTrackerScreenState extends State<JobTrackerScreen> {
         _isLoading = false;
       });
     } catch (e) {
-      print('Error loading tracked jobs: $e');
       setState(() => _isLoading = false);
     }
   }
@@ -69,7 +68,6 @@ class _JobTrackerScreenState extends State<JobTrackerScreen> {
       final jobs = await _jobService.getAllJobs();
       setState(() => _allJobs = jobs);
     } catch (e) {
-      print('Error loading jobs: $e');
     }
   }
 
@@ -118,7 +116,6 @@ class _JobTrackerScreenState extends State<JobTrackerScreen> {
 
       _loadTrackedJobs();
     } catch (e) {
-      print('Error adding tracked job: $e');
     }
   }
 
@@ -138,7 +135,6 @@ class _JobTrackerScreenState extends State<JobTrackerScreen> {
 
       _loadTrackedJobs();
     } catch (e) {
-      print('Error updating status: $e');
     }
   }
 
@@ -177,7 +173,6 @@ class _JobTrackerScreenState extends State<JobTrackerScreen> {
 
       _loadTrackedJobs();
     } catch (e) {
-      print('Error deleting tracked job: $e');
     }
   }
 
