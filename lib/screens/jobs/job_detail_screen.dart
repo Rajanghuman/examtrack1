@@ -1240,7 +1240,15 @@ class _JobDetailScreenState extends State<JobDetailScreen>
           final dynamic rawValue = entry.value;
           List<String> topics = [];
           if (rawValue is String) {
-            topics = [rawValue];
+            // Split on commas to render each topic as its own bullet,
+            // instead of one giant unbroken paragraph. This is a pure
+            // display fix — no content is lost, it's just rendered
+            // as a clean bulleted list instead of one dense sentence.
+            topics = rawValue
+                .split(',')
+                .map((t) => t.trim())
+                .where((t) => t.isNotEmpty)
+                .toList();
           } else if (rawValue is List) {
             topics = rawValue.map((t) => t.toString()).toList();
           }

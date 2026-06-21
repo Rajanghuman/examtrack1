@@ -138,7 +138,7 @@
       "notificationNo": "CEN 01/2026",
       "isNew": true,
       "isTrending": true,
-      "status": "🟡 Correction Window Open — 17–26 Jun 2026 (Application closed 14 Jun 2026)",
+      "status": "🔴 LAST DATE TOMORROW — 14 Jun 2026 (11:59 PM) — Apply Now!",
       "eligibility": {
         "age": "18–30 years as on 01 Jul 2026",
         "education": "10th pass from recognised board + ITI certificate in relevant trade (Electrician, Fitter, Mechanic, Welder etc.) OR Diploma/Engineering in relevant stream",
@@ -167,7 +167,7 @@
         "lastDate": "14 Jun 2026",
         "examDate": "To be announced"
       },
-      "note": "KEY 2026 CHANGE: Final merit now 50% CBT-2 Part A + 50% CBAT (earlier 70%+30%). CBT 1 still has General Awareness (10Q) — NOT removed. CBAT marks now equally important as CBT 2 Part A. [Updated 19 Jun 2026: Application window closed 14 Jun. Fee payment deadline was 16 Jun. Correction/edit window now open 17–26 Jun 2026.]",
+      "note": "KEY 2026 CHANGE: Final merit now 50% CBT-2 Part A + 50% CBAT (earlier 70%+30%). CBT 1 still has General Awareness (10Q) — NOT removed. CBAT marks now equally important as CBT 2 Part A.",
       "vacancyNote": "11,127 (OFFICIAL — CEN 01/2026)",
       "fee": 0,
       "qualification": "10th pass from recognised board + ITI certificate in relevant trade (Electrician, Fitter, Mechanic, Welder etc.) OR Diploma/Engineering in relevant stream",
@@ -245,11 +245,11 @@
       "salary": "₹19,900 – ₹63,200 (Pay Level 4)",
       "applyStart": "10 Mar 2026",
       "lastDate": "30 Mar 2026",
-      "examDate": "CBT starts 1 Jul 2026 (OFFICIAL — multiple shifts, date confirmed)",
+      "examDate": "Jun–Jul 2026 (TENTATIVE — not officially announced)",
       "applyUrl": "https://punjabpolice.gov.in",
       "isNew": false,
       "isTrending": true,
-      "status": "Application Closed — Exam Confirmed: CBT from 1 Jul 2026",
+      "status": "Application Closed — Exam Pending (Jun–Jul 2026 tentative)",
       "eligibility": {
         "age": "18–28 years",
         "education": "10+2 from recognised board",
@@ -279,9 +279,9 @@
       "importantDates": {
         "applyStart": "10 Mar 2026",
         "lastDate": "30 Mar 2026",
-        "examDate": "CBT starts 1 Jul 2026 (confirmed)"
+        "examDate": "Jun–Jul 2026 (tentative)"
       },
-      "note": "Application was open 10–30 Mar 2026. Exam expected Jun–Jul 2026. Admit card will be released on official Punjab Police website before exam. [Updated 19 Jun 2026: Exam date officially confirmed as 1 Jul 2026 onward, multiple shifts — previously listed as tentative.]",
+      "note": "Application was open 10–30 Mar 2026. Exam expected Jun–Jul 2026. Admit card will be released on official Punjab Police website before exam.",
       "vacancyNote": "3,298 (OFFICIAL — official notification)",
       "fee": 0,
       "qualification": "10+2 from recognised board",
@@ -470,15 +470,15 @@
       "organization": "Punjab Subordinate Services Selection Board",
       "category": "SSC",
       "state": "Punjab",
-      "vacancies": 1824,
+      "vacancies": 1150,
       "salary": "₹19,900 – ₹63,200 (Pay Level 4)",
-      "applyStart": "14 Feb 2026 (Advt No. 02/2026)",
-      "lastDate": "16 Mar 2026 (extended, closed)",
-      "examDate": "Postponed from 19 Apr 2026 — new date not yet announced",
+      "applyStart": "To be announced (notification not yet released)",
+      "lastDate": "To be announced",
+      "examDate": "To be announced",
       "applyUrl": "https://sssb.punjab.gov.in",
       "isNew": false,
       "isTrending": false,
-      "status": "Application Closed — Exam Postponed, Awaiting New Date",
+      "status": "Notification NOT yet released — Expected 2026",
       "eligibility": {
         "age": "18–37 years",
         "education": "Graduation from recognised university",
@@ -500,12 +500,9 @@
         "Exam Pattern Summary": "Written: 100Q | 100 marks | 2 hours | GK 30Q + English 20Q + Punjabi 20Q + Maths 20Q + Computer 10Q | Typing Test: 30 WPM English + 20 WPM Punjabi (qualifying) | Document Verification"
       },
       "importantDates": {
-        "notificationDate": "13/14 Feb 2026",
-        "applyStart": "14 Feb 2026",
-        "lastDate": "16 Mar 2026 (extended)",
-        "examDate": "Postponed from 19 Apr 2026 — new date not yet announced"
+        "examDate": "To be announced"
       },
-      "vacancyNote": "1,824 (Advt No. 02/2026, Clerk Group C — corrected 19 Jun 2026, was previously listed as estimated 1,150 with notification marked as not yet released)",
+      "vacancyNote": "1,150 (ESTIMATED — based on earlier announcement, official notification not yet released)",
       "fee": 0,
       "qualification": "Graduation from recognised university",
       "categories": [
@@ -514,8 +511,7 @@
       "ageMin": 18,
       "ageMax": 37,
       "applyLink": "https://sssb.punjab.gov.in",
-      "officialLink": "https://sssb.punjab.gov.in",
-      "note": "CORRECTED 19 Jun 2026: Notification (Advt No. 02/2026) was actually released 13/14 Feb 2026 — previous entry incorrectly stated \"not yet released\". Applications closed 16 Mar 2026. Exam was scheduled 19 Apr 2026 but has been postponed; no new date announced as of 19 Jun 2026. NOTE: This is based on cross-verified secondary sources (multiple aggregator sites), NOT a direct fetch of sssb.punjab.gov.in, which blocks automated access. Recommend manual verification on sssb.punjab.gov.in before publishing this update to users."
+      "officialLink": "https://sssb.punjab.gov.in"
     },
     {
       "id": "punjab-teaching-2026",
@@ -1610,7 +1606,11 @@
       "examDate": "To be announced",
       "selectionProcess": "Stage 1: CBT (GK + English, 100 marks) → Stage 2: CPT (Spreadsheet + Typing — qualifying only) → Stage 3: Document Verification",
       "examPattern": "CBT: 100 marks total | GK: 50 objective (1 mark each, -1/4 negative) | English: 50 marks (20 objective + 30 subjective) | Min 33% per subject, 40% aggregate",
-      "syllabus": "General Knowledge: History, Geography, Polity, Current Affairs, Science | English: Essay (150 words), Letter, Precis, Translation Hindi to English | CPT: Spreadsheet (10 marks), English Typing (30 wpm)",
+      "syllabus": {
+        "General Knowledge": "History, Geography, Polity, Current Affairs, Science",
+        "English": "Essay (150 words), Letter, Precis, Translation Hindi to English",
+        "CPT": "Spreadsheet (10 marks), English Typing (30 wpm)"
+      },
       "status": "Active — Last Date: 23 Jun 2026 (12 days left)",
       "isNew": true,
       "isFeatured": true,
@@ -1683,7 +1683,11 @@
       "examDate": "To be announced",
       "selectionProcess": "Stage 1: Written Exam (OMR/CBT, 100 marks, 2hrs) → Stage 2: PST (Physical Standard Test) → Stage 3: Documentation → Stage 4: BVAT (Basic Vocational Aptitude Test) → Stage 5: Medical Examination (DME + RME)",
       "examPattern": "100 marks | 2 hours | Objective MCQ | Bilingual (Hindi+English) | NO negative marking | Trade-specific knowledge",
-      "syllabus": "ASI Pharmacist: Pharmacology, Drug standards, Pharmacy Act, Dispensing, Drug interactions | ASI X-Ray Tech: Radiography principles, X-Ray equipment, Radiation safety | ASI Lab Tech: Haematology, Microbiology, Biochemistry, Blood banking",
+      "syllabus": {
+        "ASI Pharmacist": "Pharmacology, Drug standards, Pharmacy Act, Dispensing, Drug interactions",
+        "ASI X-Ray Tech": "Radiography principles, X-Ray equipment, Radiation safety",
+        "ASI Lab Tech": "Haematology, Microbiology, Biochemistry, Blood banking"
+      },
       "status": "Active — Apply Now Open",
       "isNew": true,
       "isFeatured": false,
@@ -1714,7 +1718,11 @@
       "examDate": "August 2026 (tentative)",
       "selectionProcess": "Stage 1: CBT (120 MCQ, 480 marks, 3hrs, negative marking) → Stage 2: Document Verification → Stage 3: Medical Examination",
       "examPattern": "120 MCQ × 4 marks = 480 total | 3 hours | Negative marking: 1 mark per wrong | 3 sections: Engineering I + Engineering II + General Ability | Min qualifying: 40% per section, 50% overall (UR/OBC-CL)",
-      "syllabus": "Engineering Section I: Material & Components, Electronic Devices, ICs, Network Theory, Electromagnetic Theory, Measurements, Power Electronics | Engineering Section II: Analog & Digital Circuits, Control Systems, Communication Systems, Microwave, Computer Engineering, Microprocessors | General Ability: English, Reasoning, General Awareness, Quantitative Aptitude",
+      "syllabus": {
+        "Engineering Section I": "Material & Components, Electronic Devices, ICs, Network Theory, Electromagnetic Theory, Measurements, Power Electronics",
+        "Engineering Section II": "Analog & Digital Circuits, Control Systems, Communication Systems, Microwave, Computer Engineering, Microprocessors",
+        "General Ability": "English, Reasoning, General Awareness, Quantitative Aptitude"
+      },
       "status": "Active",
       "isNew": true,
       "isFeatured": false,
@@ -1742,14 +1750,20 @@
       "salary": "₹56,100 - ₹1,10,700/month + MSP ₹15,500 + DA + HRA + allowances (approx ₹80,000-1,00,000 in-hand)",
       "applicationFee": "₹550 + 18% GST (General/OBC/SC/ST all pay same) | NCC Special Entry: Nil | GATE Entry: Nil",
       "applyStart": "20 May 2026",
-      "lastDate": "21 Jun 2026 (11:30 PM) — EXTENDED from 19 Jun",
+      "lastDate": "19 Jun 2026",
       "applyLink": "https://afcat.cdac.in",
       "officialLink": "https://afcat.cdac.in",
       "examDate": "08 August 2026",
       "selectionProcess": "Stage 1: AFCAT Written Exam (online CBT, 100 MCQ, 2 hrs) → Stage 2: AFSB Interview (5 days at Air Force Selection Board) → Stage 3: Medical Examination (at IAF medical centres) → Stage 4: Final All India Merit List | NCC Special Entry: Skip Stage 1, direct AFSB",
       "examPattern": "100 MCQ | 300 marks total | 3 marks per correct answer | -1 mark per wrong answer | 2 hours duration | 4 Sections: General Awareness, Verbal Ability in English, Numerical Ability, Reasoning & Military Aptitude | Ground Duty Technical candidates also give EKT (Engineering Knowledge Test)",
-      "syllabus": "General Awareness: History, Geography, Civics, Science & Technology, Current Affairs, Defence, Sports | English: Comprehension, Error Detection, Sentence Completion, Synonyms/Antonyms, Vocabulary | Numerical Ability: Decimal Fractions, Simple Interest, Time & Work, Profit/Loss, Ratio, Average, Percentage, LCM/HCF | Reasoning & Military Aptitude: Verbal & Non-verbal Reasoning, Spatial Ability, Rotated Blocks, Hidden Figures, Distance & Direction | EKT (Technical only): Electronics/Electrical/Mechanical/Computer Science as per discipline",
-      "status": "⚠️ Apply Now — Extended Last Date: 21 Jun 2026 (11:30 PM)",
+      "syllabus": {
+        "General Awareness": "History, Geography, Civics, Science & Technology, Current Affairs, Defence, Sports",
+        "English": "Comprehension, Error Detection, Sentence Completion, Synonyms/Antonyms, Vocabulary",
+        "Numerical Ability": "Decimal Fractions, Simple Interest, Time & Work, Profit/Loss, Ratio, Average, Percentage, LCM/HCF",
+        "Reasoning & Military Aptitude": "Verbal & Non-verbal Reasoning, Spatial Ability, Rotated Blocks, Hidden Figures, Distance & Direction",
+        "EKT (Technical only)": "Electronics/Electrical/Mechanical/Computer Science as per discipline"
+      },
+      "status": "⚠️ Apply Now — Last Date: 19 Jun 2026 (8 days left)",
       "isNew": true,
       "isFeatured": true,
       "tags": [
@@ -1762,8 +1776,7 @@
         "All India"
       ],
       "advtNo": "AFCAT 02/2026",
-      "notes": "Both Permanent Commission (PC) and Short Service Commission (SSC) available for men and women. Course commences July 2027 at Air Force Academy, Dundigal (Hyderabad). NCC 'C' Certificate holders can apply under NCC Special Entry — no written exam required. GATE Score holders can apply under GATE Entry for Ground Duty Technical branch. | Last date extended from 19 Jun to 21 Jun 2026 (confirmed via multiple sources, 19 Jun 2026).",
-      "note": "Both Permanent Commission (PC) and Short Service Commission (SSC) available for men and women. Course commences July 2027 at Air Force Academy, Dundigal (Hyderabad). NCC 'C' Certificate holders can apply under NCC Special Entry — no written exam required. GATE Score holders can apply under GATE Entry for Ground Duty Technical branch."
+      "notes": "Both Permanent Commission (PC) and Short Service Commission (SSC) available for men and women. Course commences July 2027 at Air Force Academy, Dundigal (Hyderabad). NCC 'C' Certificate holders can apply under NCC Special Entry — no written exam required. GATE Score holders can apply under GATE Entry for Ground Duty Technical branch."
     },
     {
       "id": "upsc-cds-2-2026",
@@ -1924,12 +1937,13 @@
         "Medical Examination": "For certain posts as applicable"
       },
       "syllabus": {
-        "General Awareness": "J&K History, Geography, Culture, Current Affairs, Indian History, Polity, Economy",
-        "General English": "Comprehension, Grammar, Vocabulary",
-        "General Science": "Physics, Chemistry, Biology (10th level)",
-        "Mathematics": "Number System, Arithmetic, Basic Algebra",
-        "Reasoning": "Series, Analogies, Coding-Decoding",
-        "Trade/Technical (post-specific)": "Based on ITI/Diploma trade or graduation subject"
+        "General Awareness — with special reference to J&K UT": "Current Events of National and International importance, Political and Physical divisions of World and India, Indian Culture Heritage and Freedom Struggle, Transport and Communication, Demography — Census features and functions, Important Rivers and Lakes in India, Weather Climate Crops and Means of Transport of India, Environment Ecology and Biodiversity, J&K History Economy and Geography (weather climate crops rivers lakes flora fauna), J&K Heritage Culture and Tourist Destinations, J&K Reorganisation Act 2019 and recent administrative changes",
+        "General English": "Comprehension passages, Grammar rules and sentence structure, Vocabulary — synonyms and antonyms, Error detection and correction",
+        "General Science": "Physics Chemistry and Biology at 10th standard level, Basic scientific principles and everyday applications",
+        "Mathematics": "Number System, Basic Arithmetic operations, Elementary Algebra, Percentage Ratio and Average",
+        "Reasoning": "Number and Letter Series, Analogies and Classification, Coding-Decoding",
+        "Trade / Technical (post-specific)": "Based on the specific ITI trade, Diploma discipline, or graduation subject relevant to the post applied for — refer to the official notification for the exact post-wise technical syllabus",
+        "Exam Pattern Note": "JKSSB exam patterns vary somewhat by specific post category (e.g. Finance Accounts Assistant uses 120 questions/120 marks/2 hours/0.25 negative marking, while other technical posts may differ). Always confirm the exact pattern from the specific post's official notification on jkssb.nic.in before finalizing your preparation plan."
       },
       "faq": [
         {
@@ -1981,10 +1995,9 @@
         "Document Verification": "Original certificates, SSO ID"
       },
       "syllabus": {
-        "Computer Science": "Programming basics, MS Office, Internet, Database, Networking, Hardware & Software",
-        "Teaching Methodology": "Pedagogy, Child development, Teaching methods",
-        "General Knowledge": "Rajasthan GK, Current Affairs, Indian History, Polity",
-        "Rajasthan GK": "Rajasthan History, Geography, Culture, Art, Festivals"
+        "Paper I — Rajasthan GK & General Ability (100 marks)": "Rajasthan History Culture Geography Art and Heritage, Current Affairs — Rajasthan and National, Indian Polity and Constitution, Indian Economy, General Science and Technology, Environmental Studies, Reasoning and Mental Ability — Number Series Coding-Decoding Blood Relations Direction Sense Analogy and Classification Data Interpretation Logical Reasoning Puzzles Decision Making, Basic Numeracy at Class X level",
+        "Paper II — Computer Science & Teaching Methodology (100 marks)": "Computer Fundamentals — generations input/output devices memory hardware and software, Operating Systems — types process and memory management file systems, Programming Concepts — algorithms flowcharts C/C++ OOPs data types loops functions, Database Management Systems (DBMS), Computer Networks and basic network security, Data Structures fundamentals, Web Development basics, Pedagogy and Teaching Methodology — child development and teaching methods relevant to classroom instruction",
+        "Exam Pattern": "Two separate papers, each 100 marks (200 marks total), 2 hours duration per paper, MCQ-based with 5 options per question (A-E, where E is for unattempted), 1/3 mark negative marking per wrong answer, minimum 40% qualifying marks required (5% relaxation for SC/ST candidates)"
       },
       "faq": [
         {
@@ -2035,10 +2048,11 @@
         "Document Verification": "PET scorecard, 12th marksheet, caste certificate"
       },
       "syllabus": {
-        "General Hindi": "Grammar, Comprehension, Vocabulary, Composition",
-        "General Knowledge": "UP Current Affairs, National Affairs, History, Geography, Polity",
-        "Reasoning": "Series, Analogies, Coding, Blood Relations, Directions",
-        "Mathematics": "Arithmetic, Number System, Percentage, Ratio, Average"
+        "Part I — General Knowledge (UP focus, 15 marks)": "History of India and Indian National Movement, Indian Polity and Constitutional development, Indian Economy and recent policies, General Science and Technology, Geography of India, Environment Ecology and Disaster Management, Uttar Pradesh specific History Geography and Culture",
+        "Part II — General Hindi (Grammar & Comprehension)": "Sandhi and Sandhi-vichchhed, Samas, Tatsama and Tadbhav words, Paryayvachi (synonyms), Vilom (antonyms), Muhavare evam Lokoktiyan, Vakya Shuddhi (sentence correction), Anuched (comprehension passage)",
+        "Part III — Computer and Information Technology (15 marks)": "History introduction and applications of computers, Internet and World Wide Web (WWW), Email and digital communication, MS Office basics (Word Excel PowerPoint), Cyber security fundamentals, Emerging technologies like AI and IoT",
+        "Part IV — Numerical and Mental Ability": "Number System, Percentage, Ratio and Proportion, Average, Simple Interest, Profit and Loss, Time and Work, Data Interpretation (tables graphs charts), Reasoning — Series Analogies Coding-Decoding Blood Relations Directions",
+        "Exam Pattern": "100 questions, 100 marks, 2 hours duration, 0.25 negative marking per wrong answer, bilingual (Hindi and English), OMR-based offline test"
       },
       "faq": [
         {
@@ -2089,10 +2103,11 @@
         "Document Verification": "Certificates and PET scorecard"
       },
       "syllabus": {
-        "General Hindi": "Grammar, Comprehension, Vocabulary",
-        "General Knowledge": "UP Current Affairs, National Affairs, Environment & Ecology, Forest & Wildlife",
-        "General Science": "Biology, Environment, Ecology, Conservation",
-        "Mathematics & Reasoning": "Basic Arithmetic, Series, Analogies"
+        "Part I — Subject Related Knowledge: Forest & Wildlife (50 marks)": "Forest types and classification in India, Wildlife conservation and protected areas, Indian Forest Act and Wildlife Protection Act, Flora and Fauna of India, Ecosystem and ecological balance — food chains webs ozone layer depletion waste management, Climate change and its impact on forests, Soil conservation, National Parks and Wildlife Sanctuaries in Uttar Pradesh",
+        "Part II — Elementary Mathematics & Biology (15 marks)": "Number System LCM and HCF, Percentage Profit and Loss, Simple and Compound Interest, Average Time and Work, Area and Perimeter, Control and Coordination — animal nervous system human brain coordination in plants hormones, Reproduction — methods in organisms sexual reproduction in humans and flowers",
+        "Part III — Computer & Information Technology (15 marks)": "History introduction and application of computers, Internet and World Wide Web, Basic hardware and software concepts, MS Office fundamentals",
+        "Part IV — General Information about Uttar Pradesh (20 marks)": "UP History Culture and Heritage, Geography Natural Resources and Economy of UP, Administrative structure of the state, Recent developments and achievements of UP government",
+        "Exam Pattern": "100 questions, 100 marks, 2 hours (120 minutes), OMR-based offline test, bilingual (Hindi and English), 0.25 negative marking per wrong answer"
       },
       "faq": [
         {
@@ -2142,10 +2157,13 @@
         "Document Verification": "Graduation certificate, PET scorecard"
       },
       "syllabus": {
-        "General Hindi": "Grammar, Comprehension, Vocabulary",
-        "General Knowledge": "UP Current Affairs, National Affairs, History, Polity",
-        "Reasoning": "Series, Analogies, Coding-Decoding, Puzzles",
-        "Mathematics": "Arithmetic, Number System, Mensuration"
+        "General Knowledge — Uttar Pradesh focus (20 marks, highest weightage)": "UP History Geography and Culture, Current Affairs national and state-level, Indian Polity and Constitution, Indian Economy basics, General Science everyday applications",
+        "Computer & Information Technology (15 marks)": "Computer fundamentals and generations, Internet and World Wide Web basics, MS Office (Word Excel PowerPoint), Basic cybersecurity awareness",
+        "Reasoning & Mental Ability": "Number and letter Series, Analogies and Classification, Coding-Decoding, Blood Relations, Directions and Distance, Puzzles and Seating Arrangement",
+        "Numerical Aptitude": "Number System, Percentage Ratio and Proportion, Average, Profit and Loss, Simple Interest, Mensuration basics",
+        "Human Anatomy & First Aid Basics (lower weightage, often overlooked)": "Basic human body systems at 10th standard Biology level, First aid awareness relevant to field duty",
+        "Note on General Hindi": "Some preparation sources state this exam has NO separate General Hindi/grammar section (unlike older UP Police or Lekhpal patterns), while others list it as included. This specific detail could not be independently confirmed from the official notification at the time of writing — candidates should verify directly from the official UPSSSC Advt No. 10-Exam/2026 notification before skipping or prioritizing Hindi preparation.",
+        "Exam Pattern": "100 questions, 100 marks, 2 hours, 0.25 negative marking per wrong answer. Physical Measurement Test and Physical Efficiency Test (running) follow the written exam as qualifying-only stages — they do not add to merit marks."
       },
       "faq": [
         {
@@ -2190,9 +2208,12 @@
         "Document Verification": "Original certificates"
       },
       "syllabus": {
-        "General Knowledge": "HP History, Geography, Current Affairs, Indian Polity",
-        "English": "Grammar, Comprehension, Vocabulary",
-        "Reasoning": "Series, Analogies, Basic reasoning"
+        "General Knowledge": "Geography Culture and Sports, General Science, History — Indian and World, Who is Who and current personalities, Tourism, Current events national and international, Indian and Himachal Pradesh specific polity, Books and Authors, Important Dates and Days, Countries and Capitals, World organizations (UN WHO IMF etc), Himachal Pradesh History Geography and Heritage",
+        "Reasoning Ability": "Series and Analogies, Blood Relations, Coding-Decoding, Decision Making, Puzzles and logical reasoning",
+        "Computer Awareness": "Basic computer concepts and operating systems, MS Office (Word Excel PowerPoint), Internet usage and digital tools, Typing fundamentals",
+        "English & Hindi Language": "Grammar and comprehension in both languages, Essay writing, Letter writing, Translation between Hindi and English, Vocabulary and sentence correction",
+        "Typing Test (Qualifying stage, after written exam)": "English typing speed: minimum 30 words per minute, Hindi typing speed: minimum 25 words per minute, Maximum 10% errors permitted",
+        "Exam Pattern": "Selection involves a Screening Test (MCQ, no negative marking) followed by a Written Test and a Typing Test. Candidates must qualify each stage to proceed. Refer to the official syllabus PDF at hphighcourt.nic.in for the exact screening test structure."
       },
       "faq": [
         {
@@ -2205,65 +2226,8 @@
       "isActive": true,
       "isTrending": false,
       "isUrgent": false
-    },
-    {
-      "id": "hssc-cet-group-d-2026",
-      "title": "HSSC CET Group D 2026",
-      "organization": "Haryana Staff Selection Commission",
-      "category": "State",
-      "state": "Haryana",
-      "vacancies": 0,
-      "salary": "As per Haryana Govt Pay Level for Group D posts (post-wise pay not yet published)",
-      "applyStart": "19 Jun 2026",
-      "lastDate": "03 Jul 2026 (11:59 PM)",
-      "feeLastDate": "06 Jul 2026 (11:59 PM)",
-      "correctionWindow": "07 Jul 2026 – 09 Jul 2026 (11:59 PM)",
-      "examDate": "Will be communicated separately (not yet announced)",
-      "applyUrl": "https://onetimeregn.haryana.gov.in/hssc",
-      "notificationUrl": "https://hssc.gov.in/advertisement",
-      "isNew": true,
-      "isTrending": true,
-      "status": "🆕 Applications Open — Last Date: 3 Jul 2026",
-      "eligibility": {
-        "age": "18–42 years (as on 03 Jul 2026 closing date)",
-        "education": "Matriculation (Class 10) from a recognised board, with Hindi or Sanskrit as one of the subjects at Matric level (exempt: Sweeper, Chowkidar, Sweeper-cum-Chowkidar posts)",
-        "nationality": "Indian, Haryana domicile preferred for reserved categories"
-      },
-      "selectionProcess": [
-        "Common Eligibility Test (CET) — 100% weightage to CET score for Group D",
-        "Willingness/consent stage based on CET merit list when posts are advertised",
-        "Document Verification"
-      ],
-      "syllabus": {
-        "CET Group D — Exam Pattern": "100 MCQs | 100 marks total | 1 hour 45 minutes duration | Bilingual (English & Hindi) | OMR-based offline exam | No negative marking for wrong answers, but -1 mark for each unattempted question (5th bubble must be filled if skipping)",
-        "Part I — 75% weightage": "General Awareness, Reasoning, Quantitative Ability, English, Hindi, and concerned/relevant subject(s) as applicable",
-        "Part II — 25% weightage": "Haryana-specific: History, Current Affairs, Literature, Geography, Environment, Culture"
-      },
-      "importantDates": {
-        "notificationDate": "18 Jun 2026",
-        "applyStart": "19 Jun 2026",
-        "lastDate": "03 Jul 2026",
-        "feeLastDate": "06 Jul 2026",
-        "correctionWindow": "07–09 Jul 2026",
-        "examDate": "Not yet announced"
-      },
-      "note": "VERIFIED DIRECTLY from official hssc.gov.in PDF (Advt No. 05/2026, dated 18 Jun 2026) on 19 Jun 2026. Vacancy count is NOT specified in this notification — official PDF states 'Detail of Group D posts will be published separately.' Minimum qualifying marks: General 50%, Reserved categories 40%. Candidates who already registered for CET Advt 1/2022, CET 1/2023, or CET 1/2025 reuse the same Registration Number. CET score (if already qualified on 12 Jan 2024) remains valid until 11 Jan 2027.",
-      "applicationFee": "Fee structure is category/domicile/gender dependent per CET Policy (Standard Rate ₹1,000 with percentage-based discounts) — applicants who already paid for CET Group C Advt 1/2025 need not pay again. Exact category-wise breakup not simplified here; refer to official notification Chapter 7.",
-      "vacancyNote": "Not specified in notification — to be published separately",
-      "fee": 0,
-      "qualification": "Matriculation (10th pass) with Hindi/Sanskrit as a subject",
-      "categories": [
-        "State",
-        "Group D"
-      ],
-      "ageMin": 18,
-      "ageMax": 42,
-      "applyLink": "https://onetimeregn.haryana.gov.in/hssc",
-      "officialLink": "https://hssc.gov.in",
-      "advtNo": "Advt No. 05/2026",
-      "minQualifyingMarks": "General: 50% | Reserved (vertical & horizontal): 40%"
     }
   ],
-  "lastUpdated": "2026-06-19",
-  "totalJobs": 43
+  "lastUpdated": "2026-06-21",
+  "totalJobs": 34
 }
