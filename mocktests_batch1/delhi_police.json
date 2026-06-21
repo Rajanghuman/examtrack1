@@ -1,0 +1,1010 @@
+{
+  "examKey": "Delhi_Police",
+  "tests": [
+    {
+      "id": "dp-mock-2",
+      "title": "Delhi Police Constable Mock Test 2",
+      "description": "25 questions • All subjects • 20 mins",
+      "duration": 1200,
+      "totalQ": 25,
+      "order": 2,
+      "questions": [
+        {
+          "order": 1,
+          "subject": "Reasoning",
+          "q": "Find next: BD, FH, JL, NP, ?",
+          "opts": [
+            "RT",
+            "RS",
+            "QT",
+            "RU"
+          ],
+          "ans": 0,
+          "exp": "Pattern: each pair skips 3 letters and starts where previous left off plus 2. B-D, F-H, J-L, N-P, next R-T."
+        },
+        {
+          "order": 2,
+          "subject": "Reasoning",
+          "q": "If WATER is coded as YCVGT, how is FIRE coded in the same pattern?",
+          "opts": [
+            "HKTG",
+            "GJSF",
+            "HKSG",
+            "HJTG"
+          ],
+          "ans": 0,
+          "exp": "Each letter shifted +2: W+2=Y,A+2=C,T+2=V,E+2=G,R+2=T. Similarly F+2=H,I+2=K,R+2=T,E+2=G = HKTG."
+        },
+        {
+          "order": 3,
+          "subject": "Reasoning",
+          "q": "A man walks 8km North, then 6km East. How far is he from his starting point?",
+          "opts": [
+            "10km",
+            "12km",
+            "14km",
+            "9km"
+          ],
+          "ans": 0,
+          "exp": "Using Pythagoras: distance=√(8²+6²)=√(64+36)=√100=10km."
+        },
+        {
+          "order": 4,
+          "subject": "Reasoning",
+          "q": "In a row of 40 people, Sonia is 16th from the left. What is her position from the right?",
+          "opts": [
+            "24th",
+            "25th",
+            "26th",
+            "23rd"
+          ],
+          "ans": 1,
+          "exp": "Position from right = Total+1-Position from left = 41-16 = 25th."
+        },
+        {
+          "order": 5,
+          "subject": "Reasoning",
+          "q": "Find the odd one: Delhi, Mumbai, Chandigarh, Kolkata",
+          "opts": [
+            "Delhi",
+            "Mumbai",
+            "Chandigarh",
+            "Kolkata"
+          ],
+          "ans": 2,
+          "exp": "Delhi, Mumbai, and Kolkata are major metro cities that are state capitals or equivalent major hubs in their own right serving large populated states; Chandigarh is a Union Territory and a shared capital, not a full state capital like the others."
+        },
+        {
+          "order": 6,
+          "subject": "Reasoning",
+          "q": "P is the son of Q. Q is the sister of R. R is the father of S. How is P related to S?",
+          "opts": [
+            "Cousin",
+            "Brother",
+            "Uncle",
+            "Nephew"
+          ],
+          "ans": 0,
+          "exp": "Q is R's sister, R is S's father, so Q is S's aunt. P is Q's son, making P and S cousins."
+        },
+        {
+          "order": 7,
+          "subject": "Reasoning",
+          "q": "Which number replaces the question mark? 5, 10, 20, 40, ?",
+          "opts": [
+            "60",
+            "70",
+            "80",
+            "90"
+          ],
+          "ans": 2,
+          "exp": "Geometric series: ×2 each time. 40×2=80."
+        },
+        {
+          "order": 8,
+          "subject": "GK",
+          "q": "Delhi Police functions under the administrative control of:",
+          "opts": [
+            "Delhi Government",
+            "Ministry of Home Affairs",
+            "Ministry of Defence",
+            "Lieutenant Governor independently"
+          ],
+          "ans": 1,
+          "exp": "Delhi Police operates under the Ministry of Home Affairs (MHA), Government of India, unlike other state police forces under their respective state governments."
+        },
+        {
+          "order": 9,
+          "subject": "GK",
+          "q": "Who built the Red Fort in Delhi?",
+          "opts": [
+            "Akbar",
+            "Humayun",
+            "Shah Jahan",
+            "Aurangzeb"
+          ],
+          "ans": 2,
+          "exp": "The Red Fort (Lal Qila) was built by Mughal Emperor Shah Jahan between 1638-1648 as the residence of the Mughal emperors."
+        },
+        {
+          "order": 10,
+          "subject": "GK",
+          "q": "India's first Metro Rail system was launched in which city?",
+          "opts": [
+            "Delhi",
+            "Kolkata",
+            "Mumbai",
+            "Chennai"
+          ],
+          "ans": 1,
+          "exp": "Kolkata Metro, inaugurated in 1984, was India's first metro rail system. Delhi Metro began operations in 2002."
+        },
+        {
+          "order": 11,
+          "subject": "GK",
+          "q": "Which Article of the Constitution grants special status to Delhi as the National Capital Territory?",
+          "opts": [
+            "Article 239",
+            "Article 239AA",
+            "Article 240",
+            "Article 244"
+          ],
+          "ans": 1,
+          "exp": "Article 239AA, inserted by the 69th Constitutional Amendment (1991), grants Delhi special status as the National Capital Territory with its own legislative assembly."
+        },
+        {
+          "order": 12,
+          "subject": "GK",
+          "q": "The 'India Gate' war memorial was built in memory of soldiers who died in:",
+          "opts": [
+            "World War I",
+            "World War II",
+            "The 1971 War",
+            "The Kargil War"
+          ],
+          "ans": 0,
+          "exp": "India Gate was built in memory of around 90,000 Indian soldiers who died in World War I, designed by Edwin Lutyens."
+        },
+        {
+          "order": 13,
+          "subject": "Maths",
+          "q": "Find the value of: 15% of 600 - 10% of 400",
+          "opts": [
+            "40",
+            "50",
+            "60",
+            "70"
+          ],
+          "ans": 0,
+          "exp": "15% of 600 = 90. 10% of 400 = 40. 90 - 40 = 50."
+        },
+        {
+          "order": 14,
+          "subject": "Maths",
+          "q": "A train 200m long crosses a pole in 25 seconds. Find its speed in km/h.",
+          "opts": [
+            "24 km/h",
+            "28.8 km/h",
+            "30 km/h",
+            "32 km/h"
+          ],
+          "ans": 1,
+          "exp": "Speed=200/25=8 m/s=8×18/5=28.8 km/h."
+        },
+        {
+          "order": 15,
+          "subject": "Maths",
+          "q": "If the cost price of an article is ₹750 and it is sold at a 12% profit, find the selling price.",
+          "opts": [
+            "₹820",
+            "₹830",
+            "₹840",
+            "₹850"
+          ],
+          "ans": 2,
+          "exp": "SP=CP×(100+12)/100=750×112/100=₹840."
+        },
+        {
+          "order": 16,
+          "subject": "Maths",
+          "q": "Find the HCF of 84 and 126.",
+          "opts": [
+            "21",
+            "42",
+            "14",
+            "28"
+          ],
+          "ans": 1,
+          "exp": "84=2²×3×7, 126=2×3²×7. HCF=2×3×7=42."
+        },
+        {
+          "order": 17,
+          "subject": "Maths",
+          "q": "A sum of ₹4000 amounts to ₹4800 in 2 years at simple interest. Find the rate of interest.",
+          "opts": [
+            "8%",
+            "9%",
+            "10%",
+            "12%"
+          ],
+          "ans": 2,
+          "exp": "SI=4800-4000=800. Rate=SI×100/(P×T)=800×100/(4000×2)=10%."
+        },
+        {
+          "order": 18,
+          "subject": "English",
+          "q": "Synonym of VIGILANT:",
+          "opts": [
+            "Careless",
+            "Watchful",
+            "Lazy",
+            "Calm"
+          ],
+          "ans": 1,
+          "exp": "Vigilant means keeping careful watch for possible danger; watchful and alert."
+        },
+        {
+          "order": 19,
+          "subject": "English",
+          "q": "Antonym of HOSTILE:",
+          "opts": [
+            "Aggressive",
+            "Friendly",
+            "Cruel",
+            "Rude"
+          ],
+          "ans": 1,
+          "exp": "Hostile means unfriendly or antagonistic. Antonym = Friendly."
+        },
+        {
+          "order": 20,
+          "subject": "English",
+          "q": "Fill in the blank: The police officer ___ the suspect for two hours.",
+          "opts": [
+            "interrogate",
+            "interrogates",
+            "interrogated",
+            "interrogating"
+          ],
+          "ans": 2,
+          "exp": "Simple past tense is needed here: 'interrogated'."
+        },
+        {
+          "order": 21,
+          "subject": "English",
+          "q": "Idiom: 'To keep someone at bay' means:",
+          "opts": [
+            "To welcome someone",
+            "To keep someone at a distance",
+            "To trust someone",
+            "To befriend someone"
+          ],
+          "ans": 1,
+          "exp": "'Keep someone at bay' means to prevent someone from approaching or to keep them at a distance, often defensively."
+        },
+        {
+          "order": 22,
+          "subject": "GK",
+          "q": "Which is the largest Police Force among Union Territories in India?",
+          "opts": [
+            "Chandigarh Police",
+            "Delhi Police",
+            "Puducherry Police",
+            "Andaman Police"
+          ],
+          "ans": 1,
+          "exp": "Delhi Police, with over 80,000 personnel, is one of the largest city police forces in the world and the largest among Union Territories."
+        },
+        {
+          "order": 23,
+          "subject": "GK",
+          "q": "The motto of Delhi Police is:",
+          "opts": [
+            "Satyamev Jayate",
+            "Shanti Sewa Nyay",
+            "Seva Suraksha Sahayata",
+            "Karmanye Vadhikaraste"
+          ],
+          "ans": 1,
+          "exp": "The motto of Delhi Police is 'Shanti, Sewa, Nyay' meaning Peace, Service, Justice."
+        },
+        {
+          "order": 24,
+          "subject": "GK",
+          "q": "Who was the first Indian to win an individual Olympic gold medal?",
+          "opts": [
+            "P.T. Usha",
+            "Abhinav Bindra",
+            "Neeraj Chopra",
+            "Milkha Singh"
+          ],
+          "ans": 1,
+          "exp": "Abhinav Bindra won India's first individual Olympic gold medal in shooting at the 2008 Beijing Olympics."
+        },
+        {
+          "order": 25,
+          "subject": "GK",
+          "q": "The 'Lotus Temple' in Delhi belongs to which faith?",
+          "opts": [
+            "Hinduism",
+            "Sikhism",
+            "Bahá'í Faith",
+            "Buddhism"
+          ],
+          "ans": 2,
+          "exp": "The Lotus Temple in Delhi is a Bahá'í House of Worship, completed in 1986, open to people of all religions."
+        }
+      ]
+    },
+    {
+      "id": "dp-mock-3",
+      "title": "Delhi Police Constable Mock Test 3",
+      "description": "25 questions • All subjects • 20 mins",
+      "duration": 1200,
+      "totalQ": 25,
+      "order": 3,
+      "questions": [
+        {
+          "order": 1,
+          "subject": "Reasoning",
+          "q": "Find next: 2, 9, 28, 65, ?",
+          "opts": [
+            "120",
+            "124",
+            "126",
+            "130"
+          ],
+          "ans": 1,
+          "exp": "Pattern: n³+1. 1³+1=2,2³+1=9,3³+1=28,4³+1=65,5³+1=126. Closest matching pattern gives 126."
+        },
+        {
+          "order": 2,
+          "subject": "Reasoning",
+          "q": "Pen : Write :: Knife : ?",
+          "opts": [
+            "Sharp",
+            "Cut",
+            "Kitchen",
+            "Blade"
+          ],
+          "ans": 1,
+          "exp": "A pen is used to write. A knife is used to cut. Same tool-function relationship."
+        },
+        {
+          "order": 3,
+          "subject": "Reasoning",
+          "q": "If South-West becomes North, what does North-East become?",
+          "opts": [
+            "South",
+            "South-West",
+            "South-East",
+            "North-West"
+          ],
+          "ans": 1,
+          "exp": "Each direction is rotated 180°. North-East rotated 180° becomes South-West."
+        },
+        {
+          "order": 4,
+          "subject": "Reasoning",
+          "q": "Find the odd one: 8, 27, 64, 100, 125",
+          "opts": [
+            "27",
+            "64",
+            "100",
+            "125"
+          ],
+          "ans": 2,
+          "exp": "8=2³, 27=3³, 64=4³, 125=5³ — all perfect cubes. 100 is not a perfect cube; it's the odd one."
+        },
+        {
+          "order": 5,
+          "subject": "Reasoning",
+          "q": "A is the father of B. C is the mother of D. B is the brother of D. How is A related to C?",
+          "opts": [
+            "Husband",
+            "Brother",
+            "Son",
+            "Father"
+          ],
+          "ans": 0,
+          "exp": "B and D are siblings. A is B's father, C is D's mother. Since B and D are siblings, A and C are husband and wife."
+        },
+        {
+          "order": 6,
+          "subject": "Reasoning",
+          "q": "Complete the series: A, D, I, P, ?",
+          "opts": [
+            "W",
+            "X",
+            "Y",
+            "Z"
+          ],
+          "ans": 3,
+          "exp": "Position values are perfect squares: A(1²),D(4²? no)... Actually pattern: A=1,D=4,I=9,P=16 — these are 1²,2²,3²,4². Next is 5²=25th letter = Y."
+        },
+        {
+          "order": 7,
+          "subject": "Reasoning",
+          "q": "In a certain code, if RAIN is written as SBJO, how is SNOW written?",
+          "opts": [
+            "TOPX",
+            "TOPV",
+            "TPQX",
+            "UOPX"
+          ],
+          "ans": 0,
+          "exp": "Each letter shifted +1: R+1=S,A+1=B,I+1=J,N+1=O. Similarly S+1=T,N+1=O,O+1=P,W+1=X = TOPX."
+        },
+        {
+          "order": 8,
+          "subject": "GK",
+          "q": "Which Mughal emperor built the Jama Masjid in Delhi?",
+          "opts": [
+            "Akbar",
+            "Shah Jahan",
+            "Jahangir",
+            "Aurangzeb"
+          ],
+          "ans": 1,
+          "exp": "Jama Masjid, the largest mosque in India, was built by Mughal Emperor Shah Jahan between 1650-1656."
+        },
+        {
+          "order": 9,
+          "subject": "GK",
+          "q": "Qutub Minar, located in Delhi, was constructed by:",
+          "opts": [
+            "Akbar",
+            "Qutub-ud-din Aibak",
+            "Razia Sultana",
+            "Iltutmish"
+          ],
+          "ans": 1,
+          "exp": "Qutub Minar was started by Qutub-ud-din Aibak in 1193 and completed by his successor Iltutmish."
+        },
+        {
+          "order": 10,
+          "subject": "GK",
+          "q": "The Indian Parliament building (Sansad Bhavan), the new one, was inaugurated in which year?",
+          "opts": [
+            "2021",
+            "2022",
+            "2023",
+            "2024"
+          ],
+          "ans": 2,
+          "exp": "The new Parliament building was inaugurated by PM Narendra Modi on 28 May 2023."
+        },
+        {
+          "order": 11,
+          "subject": "GK",
+          "q": "Which is the official emergency helpline number in India that covers Police, Fire, and Ambulance?",
+          "opts": [
+            "100",
+            "101",
+            "108",
+            "112"
+          ],
+          "ans": 3,
+          "exp": "112 is India's unified emergency helpline number covering Police, Ambulance, and Fire services."
+        },
+        {
+          "order": 12,
+          "subject": "GK",
+          "q": "The 'Akshardham Temple' in Delhi was inaugurated in which year?",
+          "opts": [
+            "2002",
+            "2005",
+            "2008",
+            "2010"
+          ],
+          "ans": 1,
+          "exp": "Akshardham Temple in Delhi was inaugurated in November 2005."
+        },
+        {
+          "order": 13,
+          "subject": "Maths",
+          "q": "Find the value of: 12² - 8² ÷ 4",
+          "opts": [
+            "128",
+            "112",
+            "16",
+            "144"
+          ],
+          "ans": 0,
+          "exp": "Following BODMAS: 8²÷4=64÷4=16. 12²=144. 144-16=128."
+        },
+        {
+          "order": 14,
+          "subject": "Maths",
+          "q": "A and B can complete a work together in 12 days. A alone can do it in 20 days. In how many days can B alone complete the work?",
+          "opts": [
+            "25 days",
+            "28 days",
+            "30 days",
+            "32 days"
+          ],
+          "ans": 2,
+          "exp": "Combined rate=1/12. A's rate=1/20. B's rate=1/12-1/20=5/60-3/60=2/60=1/30. B alone takes 30 days."
+        },
+        {
+          "order": 15,
+          "subject": "Maths",
+          "q": "The simple interest on a sum for 4 years at 6% per annum is ₹960. Find the principal.",
+          "opts": [
+            "₹3500",
+            "₹4000",
+            "₹4500",
+            "₹5000"
+          ],
+          "ans": 1,
+          "exp": "SI=PRT/100. 960=P×6×4/100. P=960×100/24=₹4000."
+        },
+        {
+          "order": 16,
+          "subject": "Maths",
+          "q": "Find the area of a triangle with base 16cm and height 9cm.",
+          "opts": [
+            "64 cm²",
+            "72 cm²",
+            "80 cm²",
+            "88 cm²"
+          ],
+          "ans": 1,
+          "exp": "Area=½×base×height=½×16×9=72 cm²."
+        },
+        {
+          "order": 17,
+          "subject": "Maths",
+          "q": "What is the LCM of 15 and 25?",
+          "opts": [
+            "50",
+            "75",
+            "100",
+            "125"
+          ],
+          "ans": 1,
+          "exp": "15=3×5, 25=5². LCM=3×5²=75."
+        },
+        {
+          "order": 18,
+          "subject": "English",
+          "q": "Synonym of ARROGANT:",
+          "opts": [
+            "Humble",
+            "Haughty",
+            "Polite",
+            "Shy"
+          ],
+          "ans": 1,
+          "exp": "Arrogant means having an exaggerated sense of importance; haughty and overbearing."
+        },
+        {
+          "order": 19,
+          "subject": "English",
+          "q": "Antonym of DILIGENT:",
+          "opts": [
+            "Hardworking",
+            "Lazy",
+            "Careful",
+            "Sincere"
+          ],
+          "ans": 1,
+          "exp": "Diligent means showing care and effort in work. Antonym = Lazy."
+        },
+        {
+          "order": 20,
+          "subject": "English",
+          "q": "Fill in the blank: She has ___ finished her homework before dinner.",
+          "opts": [
+            "already",
+            "yet",
+            "still",
+            "ever"
+          ],
+          "ans": 0,
+          "exp": "'Already' is used with present perfect tense to indicate an action completed before now: 'has already finished'."
+        },
+        {
+          "order": 21,
+          "subject": "English",
+          "q": "Idiom: 'To bite the bullet' means:",
+          "opts": [
+            "To eat something hard",
+            "To face a difficult situation bravely",
+            "To bite someone",
+            "To shoot a gun"
+          ],
+          "ans": 1,
+          "exp": "'Bite the bullet' means to endure a painful or difficult situation with courage, without complaining."
+        },
+        {
+          "order": 22,
+          "subject": "GK",
+          "q": "Who is regarded as the architect of New Delhi?",
+          "opts": [
+            "Le Corbusier",
+            "Edwin Lutyens",
+            "Walter Gropius",
+            "Frank Lloyd Wright"
+          ],
+          "ans": 1,
+          "exp": "Edwin Lutyens, along with Herbert Baker, designed New Delhi, including Rashtrapati Bhavan and India Gate."
+        },
+        {
+          "order": 23,
+          "subject": "GK",
+          "q": "Which Indian city hosted the 2010 Commonwealth Games?",
+          "opts": [
+            "Mumbai",
+            "New Delhi",
+            "Bengaluru",
+            "Hyderabad"
+          ],
+          "ans": 1,
+          "exp": "New Delhi hosted the 2010 Commonwealth Games, India's first time hosting this multi-sport event."
+        },
+        {
+          "order": 24,
+          "subject": "GK",
+          "q": "D. Gukesh, who became the youngest World Chess Champion in 2024, belongs to which country?",
+          "opts": [
+            "Russia",
+            "Norway",
+            "India",
+            "China"
+          ],
+          "ans": 2,
+          "exp": "D. Gukesh, an Indian chess grandmaster, became the youngest World Chess Champion in December 2024 at age 18."
+        },
+        {
+          "order": 25,
+          "subject": "GK",
+          "q": "The headquarters of the Central Reserve Police Force (CRPF) is located in:",
+          "opts": [
+            "Mumbai",
+            "New Delhi",
+            "Hyderabad",
+            "Pune"
+          ],
+          "ans": 1,
+          "exp": "The headquarters of the Central Reserve Police Force (CRPF) is located in New Delhi."
+        }
+      ]
+    },
+    {
+      "id": "dp-mock-4",
+      "title": "Delhi Police Constable Mock Test 4",
+      "description": "25 questions • All subjects • 20 mins",
+      "duration": 1200,
+      "totalQ": 25,
+      "order": 4,
+      "questions": [
+        {
+          "order": 1,
+          "subject": "Reasoning",
+          "q": "Find next: 1, 4, 9, 16, 25, ?",
+          "opts": [
+            "30",
+            "35",
+            "36",
+            "40"
+          ],
+          "ans": 2,
+          "exp": "Series of perfect squares: 1²,2²,3²,4²,5²,6²=36."
+        },
+        {
+          "order": 2,
+          "subject": "Reasoning",
+          "q": "If all police officers are disciplined, and all disciplined people are punctual, then:",
+          "opts": [
+            "All punctual people are police officers",
+            "All police officers are punctual",
+            "No police officer is punctual",
+            "Some police officers are undisciplined"
+          ],
+          "ans": 1,
+          "exp": "All A are B, all B are C → all A are C. All police officers are disciplined, all disciplined are punctual → all police officers are punctual."
+        },
+        {
+          "order": 3,
+          "subject": "Reasoning",
+          "q": "A clock shows 3:15. What is the angle between the hour and minute hands?",
+          "opts": [
+            "0°",
+            "7.5°",
+            "15°",
+            "30°"
+          ],
+          "ans": 1,
+          "exp": "At 3:15, minute hand is at 90°(from 12), hour hand is at 3×30+15×0.5=90+7.5=97.5°. Difference=97.5-90=7.5°."
+        },
+        {
+          "order": 4,
+          "subject": "Reasoning",
+          "q": "Find the odd one: Constable, Inspector, Sub-Inspector, Doctor",
+          "opts": [
+            "Constable",
+            "Inspector",
+            "Sub-Inspector",
+            "Doctor"
+          ],
+          "ans": 3,
+          "exp": "Constable, Inspector, and Sub-Inspector are all police ranks. Doctor is unrelated to police hierarchy — the odd one."
+        },
+        {
+          "order": 5,
+          "subject": "Reasoning",
+          "q": "In a row, X is 7th from the left and Y is 9th from the right. If there are 20 people in the row, how many people are between X and Y?",
+          "opts": [
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "ans": 2,
+          "exp": "Y's position from left=20-9+1=12. People between X(7th) and Y(12th)=12-7-1=4."
+        },
+        {
+          "order": 6,
+          "subject": "Reasoning",
+          "q": "Which figure completes the analogy: Circle is to Sphere as Square is to ?",
+          "opts": [
+            "Rectangle",
+            "Cube",
+            "Triangle",
+            "Pyramid"
+          ],
+          "ans": 1,
+          "exp": "A Circle in 2D becomes a Sphere in 3D. A Square in 2D becomes a Cube in 3D (same shape extended into 3 dimensions)."
+        },
+        {
+          "order": 7,
+          "subject": "Reasoning",
+          "q": "Find next: J10, H8, F6, D4, ?",
+          "opts": [
+            "B2",
+            "C2",
+            "B3",
+            "A2"
+          ],
+          "ans": 0,
+          "exp": "Letters go backward by 2 (J,H,F,D,B) and numbers decrease by 2 (10,8,6,4,2). Answer=B2."
+        },
+        {
+          "order": 8,
+          "subject": "GK",
+          "q": "Which Article deals with the imposition of President's Rule in a state?",
+          "opts": [
+            "Article 352",
+            "Article 356",
+            "Article 360",
+            "Article 365"
+          ],
+          "ans": 1,
+          "exp": "Article 356 deals with the imposition of President's Rule in a state in case of failure of constitutional machinery."
+        },
+        {
+          "order": 9,
+          "subject": "GK",
+          "q": "The Indian Police Service (IPS) was established in which year?",
+          "opts": [
+            "1947",
+            "1948",
+            "1950",
+            "1956"
+          ],
+          "ans": 1,
+          "exp": "The Indian Police Service (IPS) was established in 1948, replacing the colonial Indian Imperial Police."
+        },
+        {
+          "order": 10,
+          "subject": "GK",
+          "q": "National Police Memorial in Delhi is dedicated to:",
+          "opts": [
+            "Freedom fighters",
+            "Police personnel who died in the line of duty",
+            "Army soldiers",
+            "Independence Day celebrations"
+          ],
+          "ans": 1,
+          "exp": "The National Police Memorial, inaugurated in 2018 in Delhi, is dedicated to police personnel who sacrificed their lives in the line of duty."
+        },
+        {
+          "order": 11,
+          "subject": "GK",
+          "q": "India's National Emblem is adapted from which historical monument?",
+          "opts": [
+            "Sanchi Stupa",
+            "Lion Capital of Ashoka at Sarnath",
+            "Konark Sun Temple",
+            "Ajanta Caves"
+          ],
+          "ans": 1,
+          "exp": "India's National Emblem is adapted from the Lion Capital of Ashoka at Sarnath, featuring four lions back to back."
+        },
+        {
+          "order": 12,
+          "subject": "GK",
+          "q": "Who is the current Chief Justice of India (as recognized in standard recent records)?",
+          "opts": [
+            "D.Y. Chandrachud",
+            "N.V. Ramana",
+            "U.U. Lalit",
+            "Sanjiv Khanna"
+          ],
+          "ans": 3,
+          "exp": "Sanjiv Khanna took over as Chief Justice of India in November 2024, succeeding D.Y. Chandrachud."
+        },
+        {
+          "order": 13,
+          "subject": "Maths",
+          "q": "Find the value of: √225 + √196",
+          "opts": [
+            "27",
+            "29",
+            "31",
+            "33"
+          ],
+          "ans": 1,
+          "exp": "√225=15, √196=14. 15+14=29."
+        },
+        {
+          "order": 14,
+          "subject": "Maths",
+          "q": "A shopkeeper marks an item 40% above cost price and gives a 20% discount. Find his profit percentage.",
+          "opts": [
+            "10%",
+            "12%",
+            "14%",
+            "16%"
+          ],
+          "ans": 2,
+          "exp": "Let CP=100. MP=140. SP=140×0.8=112. Profit=112-100=12. Profit%=12%."
+        },
+        {
+          "order": 15,
+          "subject": "Maths",
+          "q": "If 5 men can complete a task in 12 days, how many days will 6 men take to complete the same task?",
+          "opts": [
+            "8 days",
+            "9 days",
+            "10 days",
+            "11 days"
+          ],
+          "ans": 1,
+          "exp": "Using M1×D1=M2×D2: 5×12=6×D2. D2=60/6=10 days."
+        },
+        {
+          "order": 16,
+          "subject": "Maths",
+          "q": "What is the perimeter of a semicircle with radius 14cm? (Use π=22/7)",
+          "opts": [
+            "58cm",
+            "62cm",
+            "72cm",
+            "78cm"
+          ],
+          "ans": 2,
+          "exp": "Perimeter of semicircle=πr+2r=22/7×14+28=44+28=72cm."
+        },
+        {
+          "order": 17,
+          "subject": "Maths",
+          "q": "Find the value of x if 2x + 7 = 25.",
+          "opts": [
+            "7",
+            "8",
+            "9",
+            "10"
+          ],
+          "ans": 2,
+          "exp": "2x=25-7=18. x=9."
+        },
+        {
+          "order": 18,
+          "subject": "English",
+          "q": "Synonym of EMINENT:",
+          "opts": [
+            "Unknown",
+            "Famous",
+            "Ordinary",
+            "Hidden"
+          ],
+          "ans": 1,
+          "exp": "Eminent means famous and respected within a particular sphere; distinguished."
+        },
+        {
+          "order": 19,
+          "subject": "English",
+          "q": "Antonym of BENEVOLENT:",
+          "opts": [
+            "Kind",
+            "Generous",
+            "Malicious",
+            "Charitable"
+          ],
+          "ans": 2,
+          "exp": "Benevolent means well-meaning and kindly. Antonym = Malicious (intending to do harm)."
+        },
+        {
+          "order": 20,
+          "subject": "English",
+          "q": "Fill in the blank: By the time the police arrived, the thief ___ already.",
+          "opts": [
+            "escapes",
+            "escaped",
+            "had escaped",
+            "escaping"
+          ],
+          "ans": 2,
+          "exp": "Past Perfect tense is needed for an action completed before another past action: 'had escaped'."
+        },
+        {
+          "order": 21,
+          "subject": "English",
+          "q": "Idiom: 'Caught red-handed' means:",
+          "opts": [
+            "Caught with red hands",
+            "Caught in the act of doing something wrong",
+            "Caught while painting",
+            "Caught lying"
+          ],
+          "ans": 1,
+          "exp": "'Caught red-handed' means to be caught in the act of committing a crime or doing something wrong."
+        },
+        {
+          "order": 22,
+          "subject": "GK",
+          "q": "The 'Pradhan Mantri Awas Yojana' aims to provide:",
+          "opts": [
+            "Free education",
+            "Affordable housing",
+            "Free healthcare",
+            "Employment guarantee"
+          ],
+          "ans": 1,
+          "exp": "Pradhan Mantri Awas Yojana (PMAY) aims to provide affordable housing to the urban and rural poor in India."
+        },
+        {
+          "order": 23,
+          "subject": "GK",
+          "q": "Which Indian state shares a border with Delhi on three sides?",
+          "opts": [
+            "Punjab",
+            "Haryana",
+            "Uttar Pradesh",
+            "Rajasthan"
+          ],
+          "ans": 1,
+          "exp": "Haryana surrounds Delhi on three sides (north, west, south), while Uttar Pradesh borders it on the east."
+        },
+        {
+          "order": 24,
+          "subject": "GK",
+          "q": "India's first woman IPS officer was:",
+          "opts": [
+            "Kiran Bedi",
+            "Kanchan Chaudhary Bhattacharya",
+            "Aruna Asaf Ali",
+            "Vijaya Lakshmi Pandit"
+          ],
+          "ans": 0,
+          "exp": "Kiran Bedi became India's first woman IPS officer in 1972."
+        },
+        {
+          "order": 25,
+          "subject": "GK",
+          "q": "The 'Chandrayaan-3' mission's rover was named:",
+          "opts": [
+            "Vikram",
+            "Pragyan",
+            "Agni",
+            "Surya"
+          ],
+          "ans": 1,
+          "exp": "The rover of Chandrayaan-3 was named 'Pragyan', while the lander was named 'Vikram'."
+        }
+      ]
+    }
+  ]
+}

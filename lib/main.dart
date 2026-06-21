@@ -22,6 +22,7 @@ import 'screens/tools/eligibility_checker_screen.dart';
 import 'screens/admit_card/admit_card_screen.dart';
 import 'screens/results/results_screen.dart';
 import 'screens/study/study_material_screen.dart';
+import 'screens/study/memory_box_screen.dart';
 
 
 void main() async {
@@ -71,6 +72,7 @@ class ExamTrackApp extends StatelessWidget {
         '/results':         (context) => const ResultsScreen(),
         '/current-affairs': (context) => const CurrentAffairsScreen(),
         '/study-material':  (context) => const StudyMaterialScreen(),
+        '/memory-box':      (context) => const MemoryBoxScreen(),
       },
     );
   }

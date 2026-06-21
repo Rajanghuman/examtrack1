@@ -1,0 +1,1010 @@
+{
+  "examKey": "NDA",
+  "tests": [
+    {
+      "id": "nda-mock-2",
+      "title": "NDA Mock Test 2 — Maths + GAT",
+      "description": "25 questions • All subjects • 20 mins",
+      "duration": 1200,
+      "totalQ": 25,
+      "order": 2,
+      "questions": [
+        {
+          "order": 1,
+          "subject": "Maths",
+          "q": "If i = √-1, find the value of i^15.",
+          "opts": [
+            "1",
+            "-1",
+            "i",
+            "-i"
+          ],
+          "ans": 3,
+          "exp": "i cycles every 4: i,−1,−i,1. 15=4×3+3. i^15=i³=−i."
+        },
+        {
+          "order": 2,
+          "subject": "Maths",
+          "q": "Find the sum of roots of the equation 3x² - 9x + 6 = 0.",
+          "opts": [
+            "2",
+            "3",
+            "-3",
+            "-2"
+          ],
+          "ans": 1,
+          "exp": "Sum of roots = -b/a = -(-9)/3 = 3."
+        },
+        {
+          "order": 3,
+          "subject": "Maths",
+          "q": "If cos θ = 4/5, find sin θ (θ in first quadrant).",
+          "opts": [
+            "3/5",
+            "4/5",
+            "5/4",
+            "1/5"
+          ],
+          "ans": 0,
+          "exp": "cos=4/5 → adjacent=4, hypotenuse=5, opposite=3 (3-4-5 triplet). sin=3/5."
+        },
+        {
+          "order": 4,
+          "subject": "Maths",
+          "q": "Evaluate: lim(x→0) (sin 3x)/x",
+          "opts": [
+            "0",
+            "1",
+            "3",
+            "1/3"
+          ],
+          "ans": 2,
+          "exp": "lim(x→0) sin(kx)/x = k. Here k=3, so the limit is 3."
+        },
+        {
+          "order": 5,
+          "subject": "Maths",
+          "q": "Differentiate y = x³ - 4x² + 2x with respect to x at x=1.",
+          "opts": [
+            "-3",
+            "-2",
+            "0",
+            "1"
+          ],
+          "ans": 0,
+          "exp": "dy/dx=3x²-8x+2. At x=1: 3-8+2=-3."
+        },
+        {
+          "order": 6,
+          "subject": "Maths",
+          "q": "Find the value of: ∫(4x+3)dx",
+          "opts": [
+            "2x²+3x+C",
+            "4x²+3x+C",
+            "2x²+C",
+            "4x+C"
+          ],
+          "ans": 0,
+          "exp": "∫4x dx=2x². ∫3 dx=3x. Total=2x²+3x+C."
+        },
+        {
+          "order": 7,
+          "subject": "Maths",
+          "q": "If A = {1,2,3,4} and B = {3,4,5,6}, find A∩B.",
+          "opts": [
+            "{1,2}",
+            "{3,4}",
+            "{5,6}",
+            "{1,2,3,4,5,6}"
+          ],
+          "ans": 1,
+          "exp": "A∩B contains elements common to both sets: {3,4}."
+        },
+        {
+          "order": 8,
+          "subject": "Maths",
+          "q": "The sum of the first 15 terms of an AP with first term 3 and common difference 4 is:",
+          "opts": [
+            "435",
+            "465",
+            "495",
+            "525"
+          ],
+          "ans": 1,
+          "exp": "Sn=n/2[2a+(n-1)d]=15/2[2×3+14×4]=15/2[6+56]=15/2×62=465."
+        },
+        {
+          "order": 9,
+          "subject": "Maths",
+          "q": "If a vector a = 2i + 3j - k and b = i - 2j + 2k, find a.b (dot product).",
+          "opts": [
+            "-4",
+            "-6",
+            "2",
+            "4"
+          ],
+          "ans": 1,
+          "exp": "a.b = (2×1)+(3×-2)+(-1×2) = 2-6-2 = -6."
+        },
+        {
+          "order": 10,
+          "subject": "Maths",
+          "q": "Find the value of: C(7,3)",
+          "opts": [
+            "30",
+            "35",
+            "40",
+            "45"
+          ],
+          "ans": 1,
+          "exp": "C(7,3)=7!/(3!4!)=(7×6×5)/(3×2×1)=210/6=35."
+        },
+        {
+          "order": 11,
+          "subject": "English",
+          "q": "Choose the correct sentence:",
+          "opts": [
+            "He don't know the answer",
+            "He doesn't knows the answer",
+            "He doesn't know the answer",
+            "He not know the answer"
+          ],
+          "ans": 2,
+          "exp": "Third person singular subject 'He' requires 'doesn't' + base verb form: 'He doesn't know the answer'."
+        },
+        {
+          "order": 12,
+          "subject": "English",
+          "q": "Synonym of TENACIOUS:",
+          "opts": [
+            "Weak",
+            "Persistent",
+            "Lazy",
+            "Flexible"
+          ],
+          "ans": 1,
+          "exp": "Tenacious means tending to keep a firm hold; persistent and determined."
+        },
+        {
+          "order": 13,
+          "subject": "English",
+          "q": "Fill in the blank: He has been working here ___ 2018.",
+          "opts": [
+            "for",
+            "since",
+            "from",
+            "by"
+          ],
+          "ans": 1,
+          "exp": "'Since' is used with a specific starting point in time. 'For' would be used with a duration like 'for 6 years'."
+        },
+        {
+          "order": 14,
+          "subject": "Physics",
+          "q": "The SI unit of electric resistance is:",
+          "opts": [
+            "Ampere",
+            "Volt",
+            "Ohm",
+            "Watt"
+          ],
+          "ans": 2,
+          "exp": "The SI unit of electric resistance is Ohm (Ω), as defined by Ohm's Law: V=IR."
+        },
+        {
+          "order": 15,
+          "subject": "Physics",
+          "q": "A body of mass 5kg accelerates at 4 m/s². Find the force applied.",
+          "opts": [
+            "10N",
+            "15N",
+            "20N",
+            "25N"
+          ],
+          "ans": 2,
+          "exp": "F=ma=5×4=20 Newtons."
+        },
+        {
+          "order": 16,
+          "subject": "Physics",
+          "q": "The escape velocity from Earth's surface is approximately:",
+          "opts": [
+            "7.9 km/s",
+            "9.8 km/s",
+            "11.2 km/s",
+            "15 km/s"
+          ],
+          "ans": 2,
+          "exp": "Escape velocity from Earth's surface is approximately 11.2 km/s, the minimum speed needed to break free from Earth's gravity."
+        },
+        {
+          "order": 17,
+          "subject": "Chemistry",
+          "q": "Which of these is a noble gas?",
+          "opts": [
+            "Nitrogen",
+            "Oxygen",
+            "Argon",
+            "Hydrogen"
+          ],
+          "ans": 2,
+          "exp": "Argon is a noble gas (Group 18), characterized by complete outer electron shells and low reactivity."
+        },
+        {
+          "order": 18,
+          "subject": "Chemistry",
+          "q": "The pH value of a neutral solution at 25°C is:",
+          "opts": [
+            "0",
+            "7",
+            "14",
+            "1"
+          ],
+          "ans": 1,
+          "exp": "A neutral solution has a pH value of 7 at 25°C, as in pure water."
+        },
+        {
+          "order": 19,
+          "subject": "History",
+          "q": "The First Battle of Panipat (1526) was fought between Babur and:",
+          "opts": [
+            "Akbar",
+            "Ibrahim Lodi",
+            "Hemu",
+            "Sher Shah Suri"
+          ],
+          "ans": 1,
+          "exp": "The First Battle of Panipat (1526) was fought between Babur and Ibrahim Lodi, the last Delhi Sultanate ruler, establishing Mughal rule in India."
+        },
+        {
+          "order": 20,
+          "subject": "History",
+          "q": "Who was the founder of the Indian National Army (INA)?",
+          "opts": [
+            "Subhash Chandra Bose",
+            "Rash Behari Bose",
+            "Mohan Singh",
+            "Both Rash Behari Bose and Mohan Singh initially"
+          ],
+          "ans": 3,
+          "exp": "INA was initially organized by Captain Mohan Singh in 1942 and Rash Behari Bose, before Subhash Chandra Bose reorganized and led it in 1943."
+        },
+        {
+          "order": 21,
+          "subject": "Geography",
+          "q": "Which is the largest continent by area?",
+          "opts": [
+            "Africa",
+            "Asia",
+            "North America",
+            "Europe"
+          ],
+          "ans": 1,
+          "exp": "Asia is the largest continent by both area and population."
+        },
+        {
+          "order": 22,
+          "subject": "Geography",
+          "q": "The Tropic of Cancer passes through which of these Indian states?",
+          "opts": [
+            "Punjab",
+            "Gujarat",
+            "Haryana",
+            "Himachal Pradesh"
+          ],
+          "ans": 1,
+          "exp": "The Tropic of Cancer passes through Gujarat among others, but not through Punjab, Haryana, or Himachal Pradesh."
+        },
+        {
+          "order": 23,
+          "subject": "Current",
+          "q": "Chandrayaan-3's lander module successfully landed on the Moon in which year?",
+          "opts": [
+            "2021",
+            "2022",
+            "2023",
+            "2024"
+          ],
+          "ans": 2,
+          "exp": "Chandrayaan-3 successfully landed near the Moon's south pole on 23 August 2023."
+        },
+        {
+          "order": 24,
+          "subject": "Defence",
+          "q": "The National Defence Academy (NDA) is located in which city?",
+          "opts": [
+            "Dehradun",
+            "Pune (Khadakwasla)",
+            "Wellington",
+            "Secunderabad"
+          ],
+          "ans": 1,
+          "exp": "The National Defence Academy is located at Khadakwasla, near Pune, Maharashtra."
+        },
+        {
+          "order": 25,
+          "subject": "Defence",
+          "q": "India's Chief of Defence Staff (CDS) post was created in which year?",
+          "opts": [
+            "2015",
+            "2017",
+            "2019",
+            "2021"
+          ],
+          "ans": 2,
+          "exp": "The post of Chief of Defence Staff (CDS) was created in 2019, with General Bipin Rawat being the first to hold the position."
+        }
+      ]
+    },
+    {
+      "id": "nda-mock-3",
+      "title": "NDA Mock Test 3 — Maths + GAT",
+      "description": "25 questions • All subjects • 20 mins",
+      "duration": 1200,
+      "totalQ": 25,
+      "order": 3,
+      "questions": [
+        {
+          "order": 1,
+          "subject": "Maths",
+          "q": "Find the value of: sin 30° + cos 60° + tan 45°",
+          "opts": [
+            "1",
+            "1.5",
+            "2",
+            "2.5"
+          ],
+          "ans": 2,
+          "exp": "sin30°=1/2, cos60°=1/2, tan45°=1. Sum=1/2+1/2+1=2."
+        },
+        {
+          "order": 2,
+          "subject": "Maths",
+          "q": "If the discriminant of a quadratic equation is zero, the roots are:",
+          "opts": [
+            "Real and distinct",
+            "Real and equal",
+            "Complex",
+            "Irrational"
+          ],
+          "ans": 1,
+          "exp": "When discriminant (b²-4ac)=0, the quadratic equation has real and equal roots."
+        },
+        {
+          "order": 3,
+          "subject": "Maths",
+          "q": "Find the derivative of y = e^(2x) with respect to x.",
+          "opts": [
+            "e^(2x)",
+            "2e^(2x)",
+            "e^x",
+            "2xe^x"
+          ],
+          "ans": 1,
+          "exp": "Using chain rule: dy/dx = 2e^(2x)."
+        },
+        {
+          "order": 4,
+          "subject": "Maths",
+          "q": "The sum of an infinite GP with first term 8 and common ratio 1/2 is:",
+          "opts": [
+            "12",
+            "14",
+            "16",
+            "18"
+          ],
+          "ans": 2,
+          "exp": "Sum of infinite GP = a/(1-r) = 8/(1-0.5) = 8/0.5 = 16."
+        },
+        {
+          "order": 5,
+          "subject": "Maths",
+          "q": "If a x b (cross product) = 0 for two non-zero vectors, the vectors are:",
+          "opts": [
+            "Perpendicular",
+            "Parallel",
+            "Equal in magnitude only",
+            "Orthogonal"
+          ],
+          "ans": 1,
+          "exp": "When the cross product of two non-zero vectors is zero, the vectors are parallel (sin θ = 0, so θ = 0° or 180°)."
+        },
+        {
+          "order": 6,
+          "subject": "Maths",
+          "q": "Find the value of: P(6,3)",
+          "opts": [
+            "100",
+            "110",
+            "120",
+            "130"
+          ],
+          "ans": 2,
+          "exp": "P(6,3)=6!/(6-3)!=6×5×4=120."
+        },
+        {
+          "order": 7,
+          "subject": "Maths",
+          "q": "The distance between points (3,4) and (7,1) is:",
+          "opts": [
+            "4",
+            "5",
+            "6",
+            "7"
+          ],
+          "ans": 1,
+          "exp": "Distance=√[(7-3)²+(1-4)²]=√[16+9]=√25=5."
+        },
+        {
+          "order": 8,
+          "subject": "Maths",
+          "q": "If log₁₀(x) = 2, find the value of x.",
+          "opts": [
+            "20",
+            "100",
+            "200",
+            "1000"
+          ],
+          "ans": 1,
+          "exp": "log₁₀(x)=2 means 10²=x, so x=100."
+        },
+        {
+          "order": 9,
+          "subject": "Maths",
+          "q": "Find the area of triangle with vertices (0,0), (5,0), and (0,4).",
+          "opts": [
+            "10",
+            "15",
+            "20",
+            "25"
+          ],
+          "ans": 0,
+          "exp": "With base along x-axis (5) and height along y-axis (4): Area=½×5×4=10."
+        },
+        {
+          "order": 10,
+          "subject": "Maths",
+          "q": "If x + 1/x = 3, find x³ + 1/x³.",
+          "opts": [
+            "12",
+            "15",
+            "18",
+            "21"
+          ],
+          "ans": 1,
+          "exp": "x³+1/x³ = (x+1/x)³ - 3(x+1/x) = 3³ - 3×3 = 27-9 = 18."
+        },
+        {
+          "order": 11,
+          "subject": "English",
+          "q": "Choose the correct sentence:",
+          "opts": [
+            "She is one of the best student in the class",
+            "She is one of the best students in the class",
+            "She are one of the best students",
+            "She is one best student in class"
+          ],
+          "ans": 1,
+          "exp": "'One of the' is followed by a plural noun: 'one of the best students'."
+        },
+        {
+          "order": 12,
+          "subject": "English",
+          "q": "Antonym of CANDID:",
+          "opts": [
+            "Honest",
+            "Frank",
+            "Deceptive",
+            "Sincere"
+          ],
+          "ans": 2,
+          "exp": "Candid means truthful and straightforward. Antonym = Deceptive (misleading or dishonest)."
+        },
+        {
+          "order": 13,
+          "subject": "English",
+          "q": "Fill in the blank: Neither the captain nor the players ___ satisfied with the result.",
+          "opts": [
+            "was",
+            "were",
+            "is",
+            "has been"
+          ],
+          "ans": 1,
+          "exp": "With 'neither...nor', the verb agrees with the nearer subject. 'Players' (plural) is nearer, so 'were' is correct."
+        },
+        {
+          "order": 14,
+          "subject": "Physics",
+          "q": "Which law states that every action has an equal and opposite reaction?",
+          "opts": [
+            "Newton's First Law",
+            "Newton's Second Law",
+            "Newton's Third Law",
+            "Law of Conservation of Energy"
+          ],
+          "ans": 2,
+          "exp": "Newton's Third Law states that for every action, there is an equal and opposite reaction."
+        },
+        {
+          "order": 15,
+          "subject": "Physics",
+          "q": "The speed of sound in air at room temperature is approximately:",
+          "opts": [
+            "150 m/s",
+            "250 m/s",
+            "343 m/s",
+            "500 m/s"
+          ],
+          "ans": 2,
+          "exp": "The speed of sound in air at approximately 20-25°C is about 343 m/s."
+        },
+        {
+          "order": 16,
+          "subject": "Physics",
+          "q": "Which type of mirror is used in vehicle headlights to produce a parallel beam of light?",
+          "opts": [
+            "Plane mirror",
+            "Concave mirror",
+            "Convex mirror",
+            "Cylindrical mirror"
+          ],
+          "ans": 1,
+          "exp": "Concave mirrors are used in vehicle headlights because they can produce a parallel beam of light when the source is placed at the focus."
+        },
+        {
+          "order": 17,
+          "subject": "Chemistry",
+          "q": "Which gas is commonly known as 'laughing gas'?",
+          "opts": [
+            "Carbon dioxide",
+            "Nitrous oxide",
+            "Methane",
+            "Sulphur dioxide"
+          ],
+          "ans": 1,
+          "exp": "Nitrous oxide (N2O) is commonly known as 'laughing gas' and is used as a mild anesthetic."
+        },
+        {
+          "order": 18,
+          "subject": "Chemistry",
+          "q": "Rusting of iron is an example of which type of reaction?",
+          "opts": [
+            "Reduction",
+            "Oxidation",
+            "Neutralization",
+            "Displacement"
+          ],
+          "ans": 1,
+          "exp": "Rusting of iron is an oxidation reaction, where iron reacts with oxygen and moisture to form iron oxide."
+        },
+        {
+          "order": 19,
+          "subject": "History",
+          "q": "The 'Doctrine of Lapse' policy was associated with which Governor-General?",
+          "opts": [
+            "Lord Curzon",
+            "Lord Dalhousie",
+            "Lord Canning",
+            "Lord Wellesley"
+          ],
+          "ans": 1,
+          "exp": "Lord Dalhousie introduced the Doctrine of Lapse, leading to the annexation of several princely states without a male heir."
+        },
+        {
+          "order": 20,
+          "subject": "History",
+          "q": "Operation Vijay (1999) is associated with which conflict?",
+          "opts": [
+            "1965 War",
+            "1971 War",
+            "Kargil War",
+            "Siachen Conflict"
+          ],
+          "ans": 2,
+          "exp": "Operation Vijay was India's military operation during the Kargil War (1999) to recapture positions held by Pakistani infiltrators."
+        },
+        {
+          "order": 21,
+          "subject": "Geography",
+          "q": "The longest river in the world is:",
+          "opts": [
+            "Amazon",
+            "Nile",
+            "Yangtze",
+            "Mississippi"
+          ],
+          "ans": 1,
+          "exp": "The Nile River in Africa is traditionally considered the longest river in the world, at approximately 6,650 km."
+        },
+        {
+          "order": 22,
+          "subject": "Geography",
+          "q": "Which Indian state has the highest forest cover (by percentage of geographical area)?",
+          "opts": [
+            "Madhya Pradesh",
+            "Arunachal Pradesh",
+            "Mizoram",
+            "Chhattisgarh"
+          ],
+          "ans": 2,
+          "exp": "Mizoram has the highest forest cover by percentage of its geographical area among Indian states."
+        },
+        {
+          "order": 23,
+          "subject": "Current",
+          "q": "INS Vikrant, India's indigenous aircraft carrier, was commissioned in which year?",
+          "opts": [
+            "2020",
+            "2021",
+            "2022",
+            "2023"
+          ],
+          "ans": 2,
+          "exp": "INS Vikrant, India's first indigenously built aircraft carrier, was commissioned in September 2022."
+        },
+        {
+          "order": 24,
+          "subject": "Defence",
+          "q": "AFCAT stands for:",
+          "opts": [
+            "Air Force Common Admission Test",
+            "Army Force Combined Aptitude Test",
+            "Air Force Cadet Aptitude Test",
+            "Armed Forces Common Aptitude Test"
+          ],
+          "ans": 0,
+          "exp": "AFCAT stands for Air Force Common Admission Test, used for recruiting officers into the Indian Air Force."
+        },
+        {
+          "order": 25,
+          "subject": "Defence",
+          "q": "Which Indian missile system is known as a Multiple Independently targetable Re-entry Vehicle (MIRV) capable missile?",
+          "opts": [
+            "Prithvi",
+            "Agni-5",
+            "Brahmos",
+            "Akash"
+          ],
+          "ans": 1,
+          "exp": "Agni-5 is India's long-range ballistic missile equipped with MIRV technology, successfully tested with this capability."
+        }
+      ]
+    },
+    {
+      "id": "nda-mock-4",
+      "title": "NDA Mock Test 4 — Maths + GAT",
+      "description": "25 questions • All subjects • 20 mins",
+      "duration": 1200,
+      "totalQ": 25,
+      "order": 4,
+      "questions": [
+        {
+          "order": 1,
+          "subject": "Maths",
+          "q": "If sin A = cos A, find the value of A (0°<A<90°).",
+          "opts": [
+            "30°",
+            "45°",
+            "60°",
+            "90°"
+          ],
+          "ans": 1,
+          "exp": "sin A = cos A implies tan A = 1, so A = 45°."
+        },
+        {
+          "order": 2,
+          "subject": "Maths",
+          "q": "Find the equation of a line passing through (2,3) with slope 4.",
+          "opts": [
+            "y=4x-5",
+            "y=4x+5",
+            "y=4x-3",
+            "y=4x+3"
+          ],
+          "ans": 0,
+          "exp": "Using y-y1=m(x-x1): y-3=4(x-2). y=4x-8+3=4x-5."
+        },
+        {
+          "order": 3,
+          "subject": "Maths",
+          "q": "Find the value of: ∫₀^1 x² dx",
+          "opts": [
+            "1/2",
+            "1/3",
+            "1/4",
+            "2/3"
+          ],
+          "ans": 1,
+          "exp": "∫x²dx=x³/3. Evaluating from 0 to 1: (1³/3)-(0³/3)=1/3."
+        },
+        {
+          "order": 4,
+          "subject": "Maths",
+          "q": "How many ways can 4 different books be arranged on a shelf?",
+          "opts": [
+            "12",
+            "16",
+            "20",
+            "24"
+          ],
+          "ans": 3,
+          "exp": "Number of arrangements = 4! = 4×3×2×1 = 24."
+        },
+        {
+          "order": 5,
+          "subject": "Maths",
+          "q": "If a die is thrown once, find the probability of getting a number greater than 4.",
+          "opts": [
+            "1/6",
+            "1/3",
+            "1/2",
+            "2/3"
+          ],
+          "ans": 1,
+          "exp": "Numbers greater than 4 on a die: 5,6 (2 outcomes). P=2/6=1/3."
+        },
+        {
+          "order": 6,
+          "subject": "Maths",
+          "q": "Find the value of: (a+b)³ when a=2, b=3.",
+          "opts": [
+            "100",
+            "115",
+            "125",
+            "135"
+          ],
+          "ans": 2,
+          "exp": "(a+b)³=(2+3)³=5³=125."
+        },
+        {
+          "order": 7,
+          "subject": "Maths",
+          "q": "If a matrix A is of order 2×3 and matrix B is of order 3×2, what is the order of matrix AB?",
+          "opts": [
+            "2×2",
+            "3×3",
+            "2×3",
+            "3×2"
+          ],
+          "ans": 0,
+          "exp": "For matrix multiplication, if A is m×n and B is n×p, AB is m×p. Here 2×3 multiplied by 3×2 gives 2×2."
+        },
+        {
+          "order": 8,
+          "subject": "Maths",
+          "q": "Find the mean of the numbers 4, 8, 12, 16, 20.",
+          "opts": [
+            "10",
+            "12",
+            "14",
+            "16"
+          ],
+          "ans": 1,
+          "exp": "Mean=(4+8+12+16+20)/5=60/5=12."
+        },
+        {
+          "order": 9,
+          "subject": "Maths",
+          "q": "If the angle of elevation of the sun changes from 30° to 60°, the length of the shadow of a tower decreases by 50m. Find the height of the tower.",
+          "opts": [
+            "25√3 m",
+            "30√3 m",
+            "35√3 m",
+            "40√3 m"
+          ],
+          "ans": 0,
+          "exp": "Using tan30°=h/x and tan60°=h/(x-50): h=x/√3 and h=√3(x-50). Solving gives h=25√3 m."
+        },
+        {
+          "order": 10,
+          "subject": "Maths",
+          "q": "Find the value of: 5! / 3!",
+          "opts": [
+            "15",
+            "20",
+            "25",
+            "30"
+          ],
+          "ans": 1,
+          "exp": "5!=120, 3!=6. 120/6=20."
+        },
+        {
+          "order": 11,
+          "subject": "English",
+          "q": "Choose the correct sentence:",
+          "opts": [
+            "He is taller than me",
+            "He is taller than I am",
+            "He is more tall than me",
+            "He is much taller from me"
+          ],
+          "ans": 1,
+          "exp": "In formal comparative constructions, 'than I am' (subject form) is grammatically preferred, though 'than me' is colloquially common."
+        },
+        {
+          "order": 12,
+          "subject": "English",
+          "q": "Synonym of RELUCTANT:",
+          "opts": [
+            "Eager",
+            "Willing",
+            "Unwilling",
+            "Confident"
+          ],
+          "ans": 2,
+          "exp": "Reluctant means unwilling or disinclined to do something."
+        },
+        {
+          "order": 13,
+          "subject": "English",
+          "q": "Fill in the blank: I would have helped you if I ___ known earlier.",
+          "opts": [
+            "have",
+            "had",
+            "has",
+            "would have"
+          ],
+          "ans": 1,
+          "exp": "In third conditional sentences (past unreal), 'had' + past participle is used in the if-clause: 'if I had known'."
+        },
+        {
+          "order": 14,
+          "subject": "Physics",
+          "q": "The unit of power in the SI system is:",
+          "opts": [
+            "Joule",
+            "Watt",
+            "Newton",
+            "Pascal"
+          ],
+          "ans": 1,
+          "exp": "The SI unit of power is the Watt (W), defined as one Joule per second."
+        },
+        {
+          "order": 15,
+          "subject": "Physics",
+          "q": "Which phenomenon explains why the sky appears blue?",
+          "opts": [
+            "Reflection",
+            "Refraction",
+            "Scattering of light",
+            "Total internal reflection"
+          ],
+          "ans": 2,
+          "exp": "The sky appears blue due to Rayleigh scattering, where shorter wavelengths (blue) are scattered more than longer wavelengths by atmospheric particles."
+        },
+        {
+          "order": 16,
+          "subject": "Physics",
+          "q": "A body is thrown vertically upward with velocity 20 m/s. Find the maximum height reached (g=10 m/s²).",
+          "opts": [
+            "15m",
+            "20m",
+            "25m",
+            "30m"
+          ],
+          "ans": 1,
+          "exp": "Using v²=u²-2gh, at max height v=0: 0=400-2×10×h. h=400/20=20m."
+        },
+        {
+          "order": 17,
+          "subject": "Chemistry",
+          "q": "The chemical formula of baking soda is:",
+          "opts": [
+            "Na2CO3",
+            "NaHCO3",
+            "NaOH",
+            "CaCO3"
+          ],
+          "ans": 1,
+          "exp": "Baking soda is Sodium Bicarbonate, with chemical formula NaHCO3."
+        },
+        {
+          "order": 18,
+          "subject": "Chemistry",
+          "q": "Which element has the chemical symbol 'Au'?",
+          "opts": [
+            "Silver",
+            "Aluminium",
+            "Gold",
+            "Argon"
+          ],
+          "ans": 2,
+          "exp": "'Au' is the chemical symbol for Gold, derived from the Latin word 'Aurum'."
+        },
+        {
+          "order": 19,
+          "subject": "History",
+          "q": "The Treaty of Sugauli (1816) was signed between the British and:",
+          "opts": [
+            "Marathas",
+            "Sikhs",
+            "Nepal (Gorkhas)",
+            "Afghans"
+          ],
+          "ans": 2,
+          "exp": "The Treaty of Sugauli (1816) was signed between the British East India Company and the Kingdom of Nepal, ending the Anglo-Nepalese War."
+        },
+        {
+          "order": 20,
+          "subject": "History",
+          "q": "Who gave the famous slogan 'Jai Hind'?",
+          "opts": [
+            "Bhagat Singh",
+            "Subhash Chandra Bose",
+            "Mahatma Gandhi",
+            "Jawaharlal Nehru"
+          ],
+          "ans": 1,
+          "exp": "Subhash Chandra Bose popularized the slogan 'Jai Hind' as a salutation for the Indian National Army (INA)."
+        },
+        {
+          "order": 21,
+          "subject": "Geography",
+          "q": "Which is the deepest point in the world's oceans?",
+          "opts": [
+            "Puerto Rico Trench",
+            "Java Trench",
+            "Mariana Trench",
+            "Tonga Trench"
+          ],
+          "ans": 2,
+          "exp": "The Mariana Trench in the Pacific Ocean is the deepest known point in the world's oceans, reaching depths of about 11,000m."
+        },
+        {
+          "order": 22,
+          "subject": "Geography",
+          "q": "The 'Ring of Fire' is associated with which natural phenomenon?",
+          "opts": [
+            "Tsunamis only",
+            "Volcanic eruptions and earthquakes",
+            "Cyclones",
+            "Floods"
+          ],
+          "ans": 1,
+          "exp": "The 'Ring of Fire' is a region around the Pacific Ocean known for frequent volcanic eruptions and earthquakes due to tectonic plate boundaries."
+        },
+        {
+          "order": 23,
+          "subject": "Current",
+          "q": "India's Gaganyaan mission aims to send astronauts to:",
+          "opts": [
+            "The Moon",
+            "Mars",
+            "Low Earth Orbit",
+            "The Sun"
+          ],
+          "ans": 2,
+          "exp": "Gaganyaan is India's first human spaceflight mission, aiming to send astronauts to Low Earth Orbit."
+        },
+        {
+          "order": 24,
+          "subject": "Defence",
+          "q": "The Indian Navy's Agniveer scheme covers which entry categories?",
+          "opts": [
+            "Officers only",
+            "SSR and MR (sailors)",
+            "Pilots only",
+            "Civilian staff"
+          ],
+          "ans": 1,
+          "exp": "The Indian Navy's Agniveer scheme covers Senior Secondary Recruits (SSR) and Matric Recruits (MR) for sailor-level entries."
+        },
+        {
+          "order": 25,
+          "subject": "Defence",
+          "q": "Operation Shakti, India's nuclear tests, was conducted in which year?",
+          "opts": [
+            "1974",
+            "1988",
+            "1998",
+            "2008"
+          ],
+          "ans": 2,
+          "exp": "Operation Shakti, India's series of five nuclear tests, was conducted at Pokhran in May 1998."
+        }
+      ]
+    }
+  ]
+}

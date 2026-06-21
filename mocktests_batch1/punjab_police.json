@@ -1,0 +1,675 @@
+{
+  "examKey": "Punjab_Police",
+  "tests": [
+    {
+      "id": "pp-mock-2",
+      "title": "Punjab Police Constable Mock Test 2",
+      "description": "25 questions • All subjects • 20 mins",
+      "duration": 1200,
+      "totalQ": 25,
+      "order": 2,
+      "questions": [
+        {
+          "order": 1,
+          "subject": "Reasoning",
+          "q": "Find next: 12, 24, 48, 96, ?",
+          "opts": [
+            "144",
+            "168",
+            "192",
+            "216"
+          ],
+          "ans": 2,
+          "exp": "Geometric series: ×2 each time. 96×2=192."
+        },
+        {
+          "order": 2,
+          "subject": "Reasoning",
+          "q": "Guru Nanak Dev Ji : Sikhism :: Gautam Buddha : ?",
+          "opts": [
+            "Jainism",
+            "Buddhism",
+            "Hinduism",
+            "Christianity"
+          ],
+          "ans": 1,
+          "exp": "Guru Nanak Dev Ji founded Sikhism. Gautam Buddha founded Buddhism. Same founder-religion relationship."
+        },
+        {
+          "order": 3,
+          "subject": "Reasoning",
+          "q": "A person walks 6km South, then 8km East. Find the distance from the starting point.",
+          "opts": [
+            "10km",
+            "12km",
+            "14km",
+            "16km"
+          ],
+          "ans": 0,
+          "exp": "Using the 6-8-10 Pythagorean triplet: distance=√(6²+8²)=√(36+64)=√100=10km."
+        },
+        {
+          "order": 4,
+          "subject": "Reasoning",
+          "q": "Find the odd one: Amritsar, Ludhiana, Patiala, Chandigarh",
+          "opts": [
+            "Amritsar",
+            "Ludhiana",
+            "Patiala",
+            "Chandigarh"
+          ],
+          "ans": 3,
+          "exp": "Amritsar, Ludhiana, and Patiala are cities within Punjab state. Chandigarh is a Union Territory and the shared capital — the odd one."
+        },
+        {
+          "order": 5,
+          "subject": "Reasoning",
+          "q": "In a row of 25 students, Manpreet is 9th from the left. What is his position from the right?",
+          "opts": [
+            "16th",
+            "17th",
+            "18th",
+            "15th"
+          ],
+          "ans": 1,
+          "exp": "Position from right=Total+1-Position from left=26-9=17th."
+        },
+        {
+          "order": 6,
+          "subject": "Reasoning",
+          "q": "If GURU is coded as HVSV, how is SEWA coded in the same pattern?",
+          "opts": [
+            "TFXB",
+            "TFYB",
+            "UFXB",
+            "TGXB"
+          ],
+          "ans": 0,
+          "exp": "Each letter shifted +1: G+1=H,U+1=V,R+1=S,U+1=V. Similarly S+1=T,E+1=F,W+1=X,A+1=B = TFXB."
+        },
+        {
+          "order": 7,
+          "subject": "Reasoning",
+          "q": "Find the odd one: 36, 49, 64, 81, 90",
+          "opts": [
+            "49",
+            "64",
+            "81",
+            "90"
+          ],
+          "ans": 3,
+          "exp": "36=6², 49=7², 64=8², 81=9² — all perfect squares. 90 is not a perfect square — the odd one."
+        },
+        {
+          "order": 8,
+          "subject": "GK",
+          "q": "Guru Gobind Singh Ji founded the Khalsa Panth in which year?",
+          "opts": [
+            "1604",
+            "1675",
+            "1699",
+            "1708"
+          ],
+          "ans": 2,
+          "exp": "Guru Gobind Singh Ji founded the Khalsa Panth on Baisakhi day, 1699, at Anandpur Sahib."
+        },
+        {
+          "order": 9,
+          "subject": "GK",
+          "q": "Which Sikh Guru compiled the Adi Granth?",
+          "opts": [
+            "Guru Nanak Dev Ji",
+            "Guru Angad Dev Ji",
+            "Guru Arjan Dev Ji",
+            "Guru Gobind Singh Ji"
+          ],
+          "ans": 2,
+          "exp": "Guru Arjan Dev Ji compiled the Adi Granth in 1604. Guru Gobind Singh Ji later added compositions and declared it the eternal Guru Granth Sahib."
+        },
+        {
+          "order": 10,
+          "subject": "GK",
+          "q": "Maharaja Ranjit Singh, founder of the Sikh Empire, was known as:",
+          "opts": [
+            "Punjab Kesari",
+            "Sher-e-Punjab",
+            "Sher-e-Hind",
+            "Punjab da Sher"
+          ],
+          "ans": 1,
+          "exp": "Maharaja Ranjit Singh was known as 'Sher-e-Punjab' (Lion of Punjab) for founding and expanding the Sikh Empire in 1799."
+        },
+        {
+          "order": 11,
+          "subject": "GK",
+          "q": "The 'Golden Temple' (Harmandir Sahib) is located in which Punjab city?",
+          "opts": [
+            "Patiala",
+            "Ludhiana",
+            "Amritsar",
+            "Jalandhar"
+          ],
+          "ans": 2,
+          "exp": "The Golden Temple is located in Amritsar, built by Guru Arjan Dev Ji and considered the holiest Sikh shrine."
+        },
+        {
+          "order": 12,
+          "subject": "GK",
+          "q": "Which river does NOT flow through Punjab?",
+          "opts": [
+            "Sutlej",
+            "Beas",
+            "Ravi",
+            "Yamuna"
+          ],
+          "ans": 3,
+          "exp": "Sutlej, Beas, and Ravi flow through Punjab. Yamuna does not flow through the state of Punjab."
+        },
+        {
+          "order": 13,
+          "subject": "Maths",
+          "q": "Find the value of: 30% of 250 + 10% of 500",
+          "opts": [
+            "120",
+            "125",
+            "130",
+            "135"
+          ],
+          "ans": 2,
+          "exp": "30% of 250 = 75. 10% of 500 = 50. 75 + 50 = 125."
+        },
+        {
+          "order": 14,
+          "subject": "Maths",
+          "q": "A man buys a bicycle for ₹2400 and sells it at a loss of 15%. Find the selling price.",
+          "opts": [
+            "₹1980",
+            "₹2040",
+            "₹2100",
+            "₹2160"
+          ],
+          "ans": 1,
+          "exp": "SP=CP×(100-15)/100=2400×85/100=₹2040."
+        },
+        {
+          "order": 15,
+          "subject": "Maths",
+          "q": "Find the LCM of 14, 21, and 28.",
+          "opts": [
+            "42",
+            "64",
+            "84",
+            "98"
+          ],
+          "ans": 2,
+          "exp": "14=2×7, 21=3×7, 28=2²×7. LCM=2²×3×7=84."
+        },
+        {
+          "order": 16,
+          "subject": "Maths",
+          "q": "What is the perimeter of an equilateral triangle with side 9cm?",
+          "opts": [
+            "24cm",
+            "27cm",
+            "30cm",
+            "33cm"
+          ],
+          "ans": 1,
+          "exp": "Perimeter of equilateral triangle=3×side=3×9=27cm."
+        },
+        {
+          "order": 17,
+          "subject": "Maths",
+          "q": "If a train covers 360km in 6 hours, find its speed in km/h.",
+          "opts": [
+            "50 km/h",
+            "55 km/h",
+            "60 km/h",
+            "65 km/h"
+          ],
+          "ans": 2,
+          "exp": "Speed=Distance/Time=360/6=60 km/h."
+        },
+        {
+          "order": 18,
+          "subject": "English",
+          "q": "Synonym of HUMBLE:",
+          "opts": [
+            "Arrogant",
+            "Modest",
+            "Proud",
+            "Boastful"
+          ],
+          "ans": 1,
+          "exp": "Humble means having a modest or low estimate of one's own importance; not proud."
+        },
+        {
+          "order": 19,
+          "subject": "English",
+          "q": "Antonym of DILIGENT:",
+          "opts": [
+            "Hardworking",
+            "Lazy",
+            "Sincere",
+            "Careful"
+          ],
+          "ans": 1,
+          "exp": "Diligent means showing care and effort in work. Antonym = Lazy."
+        },
+        {
+          "order": 20,
+          "subject": "English",
+          "q": "Fill in the blank: She ___ in Punjab for ten years.",
+          "opts": [
+            "live",
+            "lives",
+            "has lived",
+            "living"
+          ],
+          "ans": 2,
+          "exp": "Present Perfect tense is used for an action continuing from the past to the present: 'has lived for ten years'."
+        },
+        {
+          "order": 21,
+          "subject": "GK",
+          "q": "Which is the state bird of Punjab?",
+          "opts": [
+            "Peacock",
+            "Baaz (Northern Goshawk)",
+            "Sparrow",
+            "Parrot"
+          ],
+          "ans": 1,
+          "exp": "The Baaz (Northern Goshawk) is the state bird of Punjab, holding special significance in Sikh tradition."
+        },
+        {
+          "order": 22,
+          "subject": "GK",
+          "q": "Lala Lajpat Rai, a key freedom fighter from Punjab, was popularly known as:",
+          "opts": [
+            "Punjab Kesari",
+            "Sher-e-Punjab",
+            "Punjab Gandhi",
+            "Veer Punjab"
+          ],
+          "ans": 0,
+          "exp": "Lala Lajpat Rai was popularly known as 'Punjab Kesari' (Lion of Punjab) for his leadership in the freedom movement."
+        },
+        {
+          "order": 23,
+          "subject": "GK",
+          "q": "Bhagat Singh was hanged by the British on which date?",
+          "opts": [
+            "13 April 1929",
+            "23 March 1931",
+            "26 January 1930",
+            "15 August 1931"
+          ],
+          "ans": 1,
+          "exp": "Bhagat Singh, along with Rajguru and Sukhdev, was hanged by the British on 23 March 1931 at Lahore Central Jail."
+        },
+        {
+          "order": 24,
+          "subject": "GK",
+          "q": "Punjab is often referred to as the 'Granary of India' due to its high production of:",
+          "opts": [
+            "Cotton and sugarcane",
+            "Wheat and rice",
+            "Tea and coffee",
+            "Spices"
+          ],
+          "ans": 1,
+          "exp": "Punjab is known as the 'Granary of India' for its high production of wheat and rice, especially after the Green Revolution of the 1960s."
+        },
+        {
+          "order": 25,
+          "subject": "GK",
+          "q": "Which Punjab festival marks the Sikh New Year and the formation of the Khalsa?",
+          "opts": [
+            "Lohri",
+            "Baisakhi",
+            "Holi",
+            "Diwali"
+          ],
+          "ans": 1,
+          "exp": "Baisakhi, celebrated on 13/14 April, marks the Sikh New Year and commemorates the formation of the Khalsa Panth by Guru Gobind Singh Ji in 1699."
+        }
+      ]
+    },
+    {
+      "id": "pp-mock-3",
+      "title": "Punjab Police Constable Mock Test 3",
+      "description": "25 questions • All subjects • 20 mins",
+      "duration": 1200,
+      "totalQ": 25,
+      "order": 3,
+      "questions": [
+        {
+          "order": 1,
+          "subject": "Reasoning",
+          "q": "Find next: 5, 11, 23, 47, 95, ?",
+          "opts": [
+            "189",
+            "191",
+            "193",
+            "195"
+          ],
+          "ans": 1,
+          "exp": "Pattern: ×2+1 each time. 95×2+1=191."
+        },
+        {
+          "order": 2,
+          "subject": "Reasoning",
+          "q": "Farmer : Plough :: Soldier : ?",
+          "opts": [
+            "Uniform",
+            "Gun",
+            "Camp",
+            "Medal"
+          ],
+          "ans": 1,
+          "exp": "A farmer uses a Plough as their primary tool. A soldier uses a Gun as their primary tool. Same worker-tool relationship."
+        },
+        {
+          "order": 3,
+          "subject": "Reasoning",
+          "q": "If facing East and turning 90° anticlockwise twice, which direction will you face?",
+          "opts": [
+            "East",
+            "West",
+            "North",
+            "South"
+          ],
+          "ans": 1,
+          "exp": "Facing East, turn 90° anticlockwise = North. Turn another 90° anticlockwise = West."
+        },
+        {
+          "order": 4,
+          "subject": "Reasoning",
+          "q": "Find the odd one: Wheat, Rice, Maize, Cotton",
+          "opts": [
+            "Wheat",
+            "Rice",
+            "Maize",
+            "Cotton"
+          ],
+          "ans": 3,
+          "exp": "Wheat, Rice, and Maize are food/cereal crops. Cotton is a fibre crop, not a food crop — the odd one."
+        },
+        {
+          "order": 5,
+          "subject": "Reasoning",
+          "q": "A is the mother of B. C is the brother of B. D is the father of C. How is A related to D?",
+          "opts": [
+            "Wife",
+            "Sister",
+            "Daughter",
+            "Mother"
+          ],
+          "ans": 0,
+          "exp": "B and C are siblings (brother). A is B's mother, D is C's father. Since B and C share parents, A and D are husband and wife."
+        },
+        {
+          "order": 6,
+          "subject": "Reasoning",
+          "q": "In a row of 22 people, P is 8th from the left and Q is 6th from the right. How many people are between P and Q?",
+          "opts": [
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "ans": 2,
+          "exp": "Q's position from left=22-6+1=17. People between P(8th) and Q(17th)=17-8-1=8."
+        },
+        {
+          "order": 7,
+          "subject": "Reasoning",
+          "q": "Find the missing term: D4, G7, J10, M13, ?",
+          "opts": [
+            "O15",
+            "P16",
+            "Q17",
+            "P15"
+          ],
+          "ans": 1,
+          "exp": "Letters skip 2 (D,G,J,M,P) and numbers increase by 3 (4,7,10,13,16). Answer=P16."
+        },
+        {
+          "order": 8,
+          "subject": "GK",
+          "q": "Who was the last Sikh Guru, and which eternal Guru did he establish?",
+          "opts": [
+            "Guru Tegh Bahadur Ji, Adi Granth",
+            "Guru Gobind Singh Ji, Guru Granth Sahib",
+            "Guru Har Rai Ji, Dasam Granth",
+            "Guru Hargobind Ji, Adi Granth"
+          ],
+          "ans": 1,
+          "exp": "Guru Gobind Singh Ji was the 10th and last human Sikh Guru. Before his death in 1708, he declared the Guru Granth Sahib as the eternal Guru."
+        },
+        {
+          "order": 9,
+          "subject": "GK",
+          "q": "The 'Jallianwala Bagh massacre' took place in which Punjab city?",
+          "opts": [
+            "Ludhiana",
+            "Amritsar",
+            "Jalandhar",
+            "Patiala"
+          ],
+          "ans": 1,
+          "exp": "The Jallianwala Bagh massacre occurred on 13 April 1919 in Amritsar, where General Dyer ordered firing on a peaceful gathering."
+        },
+        {
+          "order": 10,
+          "subject": "GK",
+          "q": "Which is the largest city in Punjab by population?",
+          "opts": [
+            "Amritsar",
+            "Jalandhar",
+            "Ludhiana",
+            "Patiala"
+          ],
+          "ans": 2,
+          "exp": "Ludhiana is the largest city in Punjab by population, also serving as a major industrial and commercial hub."
+        },
+        {
+          "order": 11,
+          "subject": "GK",
+          "q": "Punjab's capital city, Chandigarh, was designed by which architect?",
+          "opts": [
+            "Edwin Lutyens",
+            "Le Corbusier",
+            "Herbert Baker",
+            "Walter Gropius"
+          ],
+          "ans": 1,
+          "exp": "Chandigarh, the capital of Punjab (shared with Haryana), was designed by the renowned Swiss-French architect Le Corbusier."
+        },
+        {
+          "order": 12,
+          "subject": "GK",
+          "q": "Which Punjab district is known for producing the most basmati rice?",
+          "opts": [
+            "Amritsar",
+            "Gurdaspur",
+            "Patiala",
+            "Ferozepur"
+          ],
+          "ans": 1,
+          "exp": "Gurdaspur district is well known for high-quality basmati rice production in Punjab."
+        },
+        {
+          "order": 13,
+          "subject": "Maths",
+          "q": "Find the value of: 18² ÷ 6 + 15",
+          "opts": [
+            "54",
+            "57",
+            "69",
+            "72"
+          ],
+          "ans": 2,
+          "exp": "Following BODMAS: 18²=324. 324÷6=54. 54+15=69."
+        },
+        {
+          "order": 14,
+          "subject": "Maths",
+          "q": "A and B together can complete a task in 9 days. If A alone can finish it in 15 days, how many days will B alone take?",
+          "opts": [
+            "20 days",
+            "22.5 days",
+            "24 days",
+            "25 days"
+          ],
+          "ans": 1,
+          "exp": "Combined rate=1/9. A's rate=1/15. B's rate=1/9-1/15=5/45-3/45=2/45. B alone takes 45/2=22.5 days."
+        },
+        {
+          "order": 15,
+          "subject": "Maths",
+          "q": "Find the compound interest on ₹5000 at 8% per annum for 2 years.",
+          "opts": [
+            "₹800",
+            "₹816",
+            "₹832",
+            "₹848"
+          ],
+          "ans": 1,
+          "exp": "Amount = 5000×(1.08)² = 5000×1.1664 = ₹5832. CI = 5832-5000 = ₹832."
+        },
+        {
+          "order": 16,
+          "subject": "Maths",
+          "q": "What is the surface area of a cube with side 6cm?",
+          "opts": [
+            "196 cm²",
+            "206 cm²",
+            "216 cm²",
+            "226 cm²"
+          ],
+          "ans": 2,
+          "exp": "Surface area of cube=6×side²=6×36=216 cm²."
+        },
+        {
+          "order": 17,
+          "subject": "Maths",
+          "q": "Find the value of x: 7x + 3 = 5x + 15",
+          "opts": [
+            "4",
+            "5",
+            "6",
+            "7"
+          ],
+          "ans": 1,
+          "exp": "7x-5x = 15-3. 2x=12. x=6."
+        },
+        {
+          "order": 18,
+          "subject": "English",
+          "q": "Synonym of COURAGEOUS:",
+          "opts": [
+            "Timid",
+            "Brave",
+            "Fearful",
+            "Weak"
+          ],
+          "ans": 1,
+          "exp": "Courageous means not deterred by danger or pain; brave."
+        },
+        {
+          "order": 19,
+          "subject": "English",
+          "q": "Antonym of GENEROUS:",
+          "opts": [
+            "Kind",
+            "Stingy",
+            "Charitable",
+            "Liberal"
+          ],
+          "ans": 1,
+          "exp": "Generous means willing to give freely. Antonym = Stingy (unwilling to give or spend)."
+        },
+        {
+          "order": 20,
+          "subject": "English",
+          "q": "Fill in the blank: The police ___ investigating the case for two weeks.",
+          "opts": [
+            "is",
+            "are",
+            "has been",
+            "have been"
+          ],
+          "ans": 3,
+          "exp": "'Police' is treated as a plural noun in English, so 'have been investigating' is correct."
+        },
+        {
+          "order": 21,
+          "subject": "GK",
+          "q": "Which Punjab freedom fighter is associated with the 'Komagata Maru' incident?",
+          "opts": [
+            "Bhagat Singh",
+            "Udham Singh",
+            "Gurdit Singh",
+            "Kartar Singh Sarabha"
+          ],
+          "ans": 2,
+          "exp": "Gurdit Singh organized the Komagata Maru voyage (1914), carrying Indian immigrants who faced discrimination upon arrival in Canada."
+        },
+        {
+          "order": 22,
+          "subject": "GK",
+          "q": "Udham Singh assassinated which British official in 1940 in revenge for Jallianwala Bagh?",
+          "opts": [
+            "General Dyer",
+            "Michael O'Dwyer",
+            "Lord Curzon",
+            "Lord Hardinge"
+          ],
+          "ans": 1,
+          "exp": "Udham Singh assassinated Michael O'Dwyer in London in 1940, who was responsible for the Jallianwala Bagh massacre as Lieutenant Governor of Punjab."
+        },
+        {
+          "order": 23,
+          "subject": "GK",
+          "q": "Which gurdwara is known as the 'Golden Temple' of Sikh pilgrimage and also houses a free community kitchen?",
+          "opts": [
+            "Anandpur Sahib",
+            "Harmandir Sahib",
+            "Patna Sahib",
+            "Hemkund Sahib"
+          ],
+          "ans": 1,
+          "exp": "Harmandir Sahib (Golden Temple) in Amritsar houses one of the world's largest free community kitchens (Guru Ka Langar), feeding thousands daily."
+        },
+        {
+          "order": 24,
+          "subject": "GK",
+          "q": "Punjab Police's official motto reflects which core values?",
+          "opts": [
+            "Duty, Honour, Courage",
+            "Seva Suraksha",
+            "Service to Society",
+            "Protection and Justice"
+          ],
+          "ans": 1,
+          "exp": "Punjab Police follows core values reflected in its commitment to 'Seva Suraksha' (Service and Security) to the people of the state."
+        },
+        {
+          "order": 25,
+          "subject": "GK",
+          "q": "Which is the principal language and script used officially in Punjab?",
+          "opts": [
+            "Hindi - Devanagari",
+            "Punjabi - Gurmukhi",
+            "Urdu - Nastaliq",
+            "English - Roman"
+          ],
+          "ans": 1,
+          "exp": "Punjabi, written in the Gurmukhi script (invented by Guru Angad Dev Ji), is the official language of Punjab."
+        }
+      ]
+    }
+  ]
+}

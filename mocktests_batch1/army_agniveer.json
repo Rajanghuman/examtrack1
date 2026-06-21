@@ -1,0 +1,1010 @@
+{
+  "examKey": "Army_Agniveer",
+  "tests": [
+    {
+      "id": "army-mock-2",
+      "title": "Army Agniveer Mock Test 2",
+      "description": "25 questions • All subjects • 20 mins",
+      "duration": 1200,
+      "totalQ": 25,
+      "order": 2,
+      "questions": [
+        {
+          "order": 1,
+          "subject": "Maths",
+          "q": "Find the HCF of 64 and 96.",
+          "opts": [
+            "16",
+            "24",
+            "32",
+            "48"
+          ],
+          "ans": 2,
+          "exp": "64=2⁶, 96=2⁵×3. HCF=2⁵=32."
+        },
+        {
+          "order": 2,
+          "subject": "Maths",
+          "q": "If 25% of a number is 75, find the number.",
+          "opts": [
+            "200",
+            "250",
+            "300",
+            "350"
+          ],
+          "ans": 2,
+          "exp": "25% of x=75. x=75×100/25=300."
+        },
+        {
+          "order": 3,
+          "subject": "Maths",
+          "q": "A man buys an article for ₹600 and sells it for ₹750. Find his profit percentage.",
+          "opts": [
+            "20%",
+            "25%",
+            "30%",
+            "35%"
+          ],
+          "ans": 1,
+          "exp": "Profit=750-600=150. Profit%=(150/600)×100=25%."
+        },
+        {
+          "order": 4,
+          "subject": "Maths",
+          "q": "Find the simple interest on ₹2000 at 5% per annum for 4 years.",
+          "opts": [
+            "₹350",
+            "₹400",
+            "₹450",
+            "₹500"
+          ],
+          "ans": 1,
+          "exp": "SI=PRT/100=2000×5×4/100=₹400."
+        },
+        {
+          "order": 5,
+          "subject": "Maths",
+          "q": "Find the area of a rectangle with length 15m and breadth 8m.",
+          "opts": [
+            "100 m²",
+            "110 m²",
+            "120 m²",
+            "130 m²"
+          ],
+          "ans": 2,
+          "exp": "Area=length×breadth=15×8=120 m²."
+        },
+        {
+          "order": 6,
+          "subject": "Maths",
+          "q": "What is the average of the first 10 natural numbers?",
+          "opts": [
+            "4.5",
+            "5",
+            "5.5",
+            "6"
+          ],
+          "ans": 2,
+          "exp": "Sum of first 10 natural numbers=10×11/2=55. Average=55/10=5.5."
+        },
+        {
+          "order": 7,
+          "subject": "Maths",
+          "q": "If a train travels 240km in 4 hours, find its speed.",
+          "opts": [
+            "50 km/h",
+            "55 km/h",
+            "60 km/h",
+            "65 km/h"
+          ],
+          "ans": 2,
+          "exp": "Speed=Distance/Time=240/4=60 km/h."
+        },
+        {
+          "order": 8,
+          "subject": "Physics",
+          "q": "What is the SI unit of force?",
+          "opts": [
+            "Joule",
+            "Newton",
+            "Watt",
+            "Pascal"
+          ],
+          "ans": 1,
+          "exp": "The SI unit of force is the Newton (N), defined as the force needed to accelerate 1kg of mass at 1 m/s²."
+        },
+        {
+          "order": 9,
+          "subject": "Physics",
+          "q": "Which law states that an object at rest stays at rest unless acted upon by an external force?",
+          "opts": [
+            "Newton's First Law",
+            "Newton's Second Law",
+            "Newton's Third Law",
+            "Law of Gravitation"
+          ],
+          "ans": 0,
+          "exp": "Newton's First Law (Law of Inertia) states that an object remains at rest or in uniform motion unless acted upon by an external force."
+        },
+        {
+          "order": 10,
+          "subject": "Physics",
+          "q": "The acceleration due to gravity on Earth is approximately:",
+          "opts": [
+            "8.8 m/s²",
+            "9.8 m/s²",
+            "10.8 m/s²",
+            "11.8 m/s²"
+          ],
+          "ans": 1,
+          "exp": "The acceleration due to gravity on Earth's surface is approximately 9.8 m/s²."
+        },
+        {
+          "order": 11,
+          "subject": "Physics",
+          "q": "Sound cannot travel through:",
+          "opts": [
+            "Air",
+            "Water",
+            "Steel",
+            "Vacuum"
+          ],
+          "ans": 3,
+          "exp": "Sound requires a medium to travel and cannot pass through a vacuum, as there are no particles to carry the vibrations."
+        },
+        {
+          "order": 12,
+          "subject": "Chemistry",
+          "q": "What is the chemical formula of common salt?",
+          "opts": [
+            "NaOH",
+            "NaCl",
+            "Na2CO3",
+            "NaHCO3"
+          ],
+          "ans": 1,
+          "exp": "Common salt (table salt) has the chemical formula NaCl (Sodium Chloride)."
+        },
+        {
+          "order": 13,
+          "subject": "Chemistry",
+          "q": "Which gas is essential for combustion (burning)?",
+          "opts": [
+            "Nitrogen",
+            "Hydrogen",
+            "Oxygen",
+            "Carbon dioxide"
+          ],
+          "ans": 2,
+          "exp": "Oxygen is essential for combustion; it reacts with fuel to produce fire and release energy."
+        },
+        {
+          "order": 14,
+          "subject": "Chemistry",
+          "q": "The pH of an acidic solution is:",
+          "opts": [
+            "Equal to 7",
+            "Greater than 7",
+            "Less than 7",
+            "Always 0"
+          ],
+          "ans": 2,
+          "exp": "Acidic solutions have a pH value less than 7. Neutral solutions have pH=7, and basic solutions have pH greater than 7."
+        },
+        {
+          "order": 15,
+          "subject": "Chemistry",
+          "q": "Which of the following is a noble gas?",
+          "opts": [
+            "Oxygen",
+            "Nitrogen",
+            "Helium",
+            "Hydrogen"
+          ],
+          "ans": 2,
+          "exp": "Helium is a noble gas, characterized by its stable electron configuration and low reactivity."
+        },
+        {
+          "order": 16,
+          "subject": "Biology",
+          "q": "Which organ in the human body is responsible for pumping blood?",
+          "opts": [
+            "Liver",
+            "Kidney",
+            "Heart",
+            "Lungs"
+          ],
+          "ans": 2,
+          "exp": "The heart is the muscular organ responsible for pumping blood throughout the body via the circulatory system."
+        },
+        {
+          "order": 17,
+          "subject": "Biology",
+          "q": "Photosynthesis occurs in which part of a plant cell?",
+          "opts": [
+            "Nucleus",
+            "Mitochondria",
+            "Chloroplast",
+            "Ribosome"
+          ],
+          "ans": 2,
+          "exp": "Photosynthesis occurs in the chloroplasts of plant cells, where chlorophyll captures sunlight to convert CO2 and water into glucose and oxygen."
+        },
+        {
+          "order": 18,
+          "subject": "Biology",
+          "q": "Which blood group is known as the universal donor?",
+          "opts": [
+            "A+",
+            "B+",
+            "AB+",
+            "O-"
+          ],
+          "ans": 3,
+          "exp": "O- (O negative) blood group is known as the universal donor because it lacks A, B, and Rh antigens, making it compatible with all blood types."
+        },
+        {
+          "order": 19,
+          "subject": "GK",
+          "q": "Who is known as the 'Father of the Nation' in India?",
+          "opts": [
+            "Jawaharlal Nehru",
+            "Mahatma Gandhi",
+            "Sardar Patel",
+            "Subhash Chandra Bose"
+          ],
+          "ans": 1,
+          "exp": "Mahatma Gandhi is known as the 'Father of the Nation' in India for his leadership in the freedom struggle through non-violent means."
+        },
+        {
+          "order": 20,
+          "subject": "GK",
+          "q": "India's national bird is:",
+          "opts": [
+            "Sparrow",
+            "Peacock",
+            "Parrot",
+            "Crow"
+          ],
+          "ans": 1,
+          "exp": "The Indian Peacock is India's National Bird, known for its vibrant plumage."
+        },
+        {
+          "order": 21,
+          "subject": "GK",
+          "q": "Which is the highest civilian award in India?",
+          "opts": [
+            "Padma Shri",
+            "Padma Bhushan",
+            "Padma Vibhushan",
+            "Bharat Ratna"
+          ],
+          "ans": 3,
+          "exp": "Bharat Ratna is the highest civilian award in India, instituted in 1954."
+        },
+        {
+          "order": 22,
+          "subject": "GK",
+          "q": "Indian Army Day is celebrated on:",
+          "opts": [
+            "26 January",
+            "15 January",
+            "15 August",
+            "4 December"
+          ],
+          "ans": 1,
+          "exp": "Indian Army Day is celebrated on 15 January every year, commemorating General K.M. Cariappa taking over as the first Indian Commander-in-Chief in 1949."
+        },
+        {
+          "order": 23,
+          "subject": "GK",
+          "q": "Which is the highest military gallantry award in India?",
+          "opts": [
+            "Vir Chakra",
+            "Maha Vir Chakra",
+            "Param Vir Chakra",
+            "Ashoka Chakra"
+          ],
+          "ans": 2,
+          "exp": "Param Vir Chakra is India's highest wartime military gallantry award."
+        },
+        {
+          "order": 24,
+          "subject": "GK",
+          "q": "The Agnipath scheme for Armed Forces recruitment was launched in which year?",
+          "opts": [
+            "2020",
+            "2021",
+            "2022",
+            "2023"
+          ],
+          "ans": 2,
+          "exp": "The Agnipath scheme was launched by the Government of India in June 2022 for recruitment of Agniveers into the Armed Forces."
+        },
+        {
+          "order": 25,
+          "subject": "GK",
+          "q": "Which Indian state shares the longest border with Pakistan?",
+          "opts": [
+            "Punjab",
+            "Rajasthan",
+            "Gujarat",
+            "Jammu and Kashmir"
+          ],
+          "ans": 1,
+          "exp": "Rajasthan shares the longest border with Pakistan among Indian states, approximately 1,037 km."
+        }
+      ]
+    },
+    {
+      "id": "army-mock-3",
+      "title": "Army Agniveer Mock Test 3",
+      "description": "25 questions • All subjects • 20 mins",
+      "duration": 1200,
+      "totalQ": 25,
+      "order": 3,
+      "questions": [
+        {
+          "order": 1,
+          "subject": "Maths",
+          "q": "Find the LCM of 18 and 24.",
+          "opts": [
+            "64",
+            "72",
+            "84",
+            "96"
+          ],
+          "ans": 1,
+          "exp": "18=2×3², 24=2³×3. LCM=2³×3²=8×9=72."
+        },
+        {
+          "order": 2,
+          "subject": "Maths",
+          "q": "A shopkeeper gives a discount of 15% on an item marked ₹800. Find the selling price.",
+          "opts": [
+            "₹650",
+            "₹680",
+            "₹700",
+            "₹720"
+          ],
+          "ans": 1,
+          "exp": "SP=MP×(100-15)/100=800×85/100=₹680."
+        },
+        {
+          "order": 3,
+          "subject": "Maths",
+          "q": "If the perimeter of a square is 48cm, find its area.",
+          "opts": [
+            "100 cm²",
+            "121 cm²",
+            "144 cm²",
+            "169 cm²"
+          ],
+          "ans": 2,
+          "exp": "Side=48/4=12cm. Area=side²=144 cm²."
+        },
+        {
+          "order": 4,
+          "subject": "Maths",
+          "q": "Find the value of: 8² - 5²",
+          "opts": [
+            "29",
+            "35",
+            "39",
+            "41"
+          ],
+          "ans": 2,
+          "exp": "8²-5²=64-25=39."
+        },
+        {
+          "order": 5,
+          "subject": "Maths",
+          "q": "A can finish a job in 10 days, B in 15 days. How long will they take together?",
+          "opts": [
+            "5 days",
+            "6 days",
+            "7 days",
+            "8 days"
+          ],
+          "ans": 1,
+          "exp": "Combined rate=1/10+1/15=3/30+2/30=5/30=1/6. Together they take 6 days."
+        },
+        {
+          "order": 6,
+          "subject": "Maths",
+          "q": "What is 40% of 150?",
+          "opts": [
+            "50",
+            "55",
+            "60",
+            "65"
+          ],
+          "ans": 2,
+          "exp": "40% of 150=(40×150)/100=60."
+        },
+        {
+          "order": 7,
+          "subject": "Maths",
+          "q": "Find the volume of a cylinder with radius 7cm and height 10cm. (π=22/7)",
+          "opts": [
+            "1540 cm³",
+            "1340 cm³",
+            "1440 cm³",
+            "1640 cm³"
+          ],
+          "ans": 0,
+          "exp": "Volume=πr²h=22/7×49×10=1540 cm³."
+        },
+        {
+          "order": 8,
+          "subject": "Physics",
+          "q": "The unit of work done is:",
+          "opts": [
+            "Newton",
+            "Joule",
+            "Watt",
+            "Pascal"
+          ],
+          "ans": 1,
+          "exp": "The SI unit of work done is the Joule (J), equal to a force of one Newton acting over one meter."
+        },
+        {
+          "order": 9,
+          "subject": "Physics",
+          "q": "Which type of lens is used to correct short-sightedness (myopia)?",
+          "opts": [
+            "Convex lens",
+            "Concave lens",
+            "Cylindrical lens",
+            "Bifocal lens"
+          ],
+          "ans": 1,
+          "exp": "Concave lenses are used to correct myopia (short-sightedness) as they diverge light rays before they enter the eye."
+        },
+        {
+          "order": 10,
+          "subject": "Physics",
+          "q": "What happens to the resistance of a wire when its length is doubled (keeping other factors constant)?",
+          "opts": [
+            "Halved",
+            "Doubled",
+            "Unchanged",
+            "Quadrupled"
+          ],
+          "ans": 1,
+          "exp": "Resistance is directly proportional to length (R=ρL/A). Doubling the length doubles the resistance."
+        },
+        {
+          "order": 11,
+          "subject": "Physics",
+          "q": "The phenomenon of light bending when passing from one medium to another is called:",
+          "opts": [
+            "Reflection",
+            "Refraction",
+            "Diffraction",
+            "Dispersion"
+          ],
+          "ans": 1,
+          "exp": "Refraction is the bending of light as it passes from one medium to another due to a change in speed."
+        },
+        {
+          "order": 12,
+          "subject": "Chemistry",
+          "q": "Which of these elements is a liquid at room temperature?",
+          "opts": [
+            "Iron",
+            "Mercury",
+            "Sodium",
+            "Calcium"
+          ],
+          "ans": 1,
+          "exp": "Mercury (Hg) is the only metal that is liquid at room temperature."
+        },
+        {
+          "order": 13,
+          "subject": "Chemistry",
+          "q": "The process of converting a solid directly into gas without passing through the liquid state is called:",
+          "opts": [
+            "Evaporation",
+            "Condensation",
+            "Sublimation",
+            "Melting"
+          ],
+          "ans": 2,
+          "exp": "Sublimation is the process where a solid changes directly into a gas without becoming a liquid, e.g., dry ice (solid CO2)."
+        },
+        {
+          "order": 14,
+          "subject": "Chemistry",
+          "q": "What is the atomic number of Hydrogen?",
+          "opts": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ],
+          "ans": 1,
+          "exp": "Hydrogen has atomic number 1, with one proton in its nucleus."
+        },
+        {
+          "order": 15,
+          "subject": "Chemistry",
+          "q": "Which acid is found in vinegar?",
+          "opts": [
+            "Citric acid",
+            "Acetic acid",
+            "Lactic acid",
+            "Formic acid"
+          ],
+          "ans": 1,
+          "exp": "Vinegar contains Acetic acid (CH3COOH), typically 5-8% concentration."
+        },
+        {
+          "order": 16,
+          "subject": "Biology",
+          "q": "Which vitamin deficiency causes night blindness?",
+          "opts": [
+            "Vitamin A",
+            "Vitamin B",
+            "Vitamin C",
+            "Vitamin D"
+          ],
+          "ans": 0,
+          "exp": "Vitamin A deficiency causes night blindness, as it is essential for the formation of rhodopsin in the eye's rod cells."
+        },
+        {
+          "order": 17,
+          "subject": "Biology",
+          "q": "The functional unit of the kidney is called:",
+          "opts": [
+            "Neuron",
+            "Nephron",
+            "Alveolus",
+            "Nucleus"
+          ],
+          "ans": 1,
+          "exp": "The Nephron is the functional and structural unit of the kidney, responsible for filtering blood and forming urine."
+        },
+        {
+          "order": 18,
+          "subject": "Biology",
+          "q": "Which gas do plants absorb from the atmosphere during photosynthesis?",
+          "opts": [
+            "Oxygen",
+            "Nitrogen",
+            "Carbon dioxide",
+            "Hydrogen"
+          ],
+          "ans": 2,
+          "exp": "Plants absorb Carbon dioxide (CO2) from the atmosphere during photosynthesis to produce glucose and oxygen."
+        },
+        {
+          "order": 19,
+          "subject": "GK",
+          "q": "Which Indian state is known as the 'Land of Five Rivers'?",
+          "opts": [
+            "Haryana",
+            "Punjab",
+            "Rajasthan",
+            "Uttar Pradesh"
+          ],
+          "ans": 1,
+          "exp": "Punjab is known as the 'Land of Five Rivers' (Panj-Aab), referring to Sutlej, Beas, Ravi, Chenab, and Jhelum."
+        },
+        {
+          "order": 20,
+          "subject": "GK",
+          "q": "The Indian Constitution was adopted on which date?",
+          "opts": [
+            "15 August 1947",
+            "26 November 1949",
+            "26 January 1950",
+            "2 October 1950"
+          ],
+          "ans": 1,
+          "exp": "The Indian Constitution was adopted by the Constituent Assembly on 26 November 1949, and came into effect on 26 January 1950."
+        },
+        {
+          "order": 21,
+          "subject": "GK",
+          "q": "Which Indian river is known as the 'Ganga of the South'?",
+          "opts": [
+            "Krishna",
+            "Kaveri",
+            "Godavari",
+            "Tungabhadra"
+          ],
+          "ans": 2,
+          "exp": "The Godavari river is known as the 'Ganga of the South' (Dakshin Ganga), being the longest river in peninsular India."
+        },
+        {
+          "order": 22,
+          "subject": "GK",
+          "q": "Who composed India's National Anthem 'Jana Gana Mana'?",
+          "opts": [
+            "Bankim Chandra Chattopadhyay",
+            "Rabindranath Tagore",
+            "Sarojini Naidu",
+            "Subramania Bharati"
+          ],
+          "ans": 1,
+          "exp": "India's National Anthem, 'Jana Gana Mana', was composed by Rabindranath Tagore."
+        },
+        {
+          "order": 23,
+          "subject": "GK",
+          "q": "The Param Vir Chakra is awarded for acts of:",
+          "opts": [
+            "Academic excellence",
+            "Sports achievement",
+            "Conspicuous bravery in wartime",
+            "Social service"
+          ],
+          "ans": 2,
+          "exp": "Param Vir Chakra is awarded for the most conspicuous acts of bravery or self-sacrifice in the presence of the enemy during wartime."
+        },
+        {
+          "order": 24,
+          "subject": "GK",
+          "q": "Which is the largest branch of the Indian Armed Forces by personnel strength?",
+          "opts": [
+            "Indian Navy",
+            "Indian Air Force",
+            "Indian Army",
+            "Coast Guard"
+          ],
+          "ans": 2,
+          "exp": "The Indian Army is the largest branch of the Indian Armed Forces by personnel strength, with over a million active soldiers."
+        },
+        {
+          "order": 25,
+          "subject": "GK",
+          "q": "The 'Siachen Glacier', the world's highest battlefield, is located in:",
+          "opts": [
+            "Himachal Pradesh",
+            "Jammu and Kashmir/Ladakh",
+            "Uttarakhand",
+            "Sikkim"
+          ],
+          "ans": 1,
+          "exp": "The Siachen Glacier, often called the world's highest battlefield, is located in the Karakoram range in Ladakh, near the India-Pakistan border."
+        }
+      ]
+    },
+    {
+      "id": "army-mock-4",
+      "title": "Army Agniveer Mock Test 4",
+      "description": "25 questions • All subjects • 20 mins",
+      "duration": 1200,
+      "totalQ": 25,
+      "order": 4,
+      "questions": [
+        {
+          "order": 1,
+          "subject": "Maths",
+          "q": "Find the value of x: 4x - 7 = 21",
+          "opts": [
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "ans": 1,
+          "exp": "4x=21+7=28. x=28/4=7."
+        },
+        {
+          "order": 2,
+          "subject": "Maths",
+          "q": "A sum of money triples itself in 10 years at simple interest. Find the rate of interest.",
+          "opts": [
+            "15%",
+            "20%",
+            "25%",
+            "30%"
+          ],
+          "ans": 1,
+          "exp": "For sum to triple, SI=2×Principal. Rate=200/Time=200/10=20%."
+        },
+        {
+          "order": 3,
+          "subject": "Maths",
+          "q": "Find the circumference of a circle with radius 21cm. (π=22/7)",
+          "opts": [
+            "122cm",
+            "132cm",
+            "142cm",
+            "152cm"
+          ],
+          "ans": 1,
+          "exp": "Circumference=2πr=2×22/7×21=132cm."
+        },
+        {
+          "order": 4,
+          "subject": "Maths",
+          "q": "If the ratio of two numbers is 3:4 and their sum is 84, find the larger number.",
+          "opts": [
+            "36",
+            "42",
+            "48",
+            "54"
+          ],
+          "ans": 2,
+          "exp": "Total parts=3+4=7. Larger number=(4/7)×84=48."
+        },
+        {
+          "order": 5,
+          "subject": "Maths",
+          "q": "Find the square root of 1024.",
+          "opts": [
+            "28",
+            "30",
+            "32",
+            "34"
+          ],
+          "ans": 2,
+          "exp": "32×32=1024, so √1024=32."
+        },
+        {
+          "order": 6,
+          "subject": "Maths",
+          "q": "What is the compound interest on ₹10000 at 10% per annum for 2 years?",
+          "opts": [
+            "₹2000",
+            "₹2100",
+            "₹2200",
+            "₹2300"
+          ],
+          "ans": 1,
+          "exp": "Amount = 10000×(1.1)² = 10000×1.21 = ₹12100. CI = Amount - Principal = 12100-10000 = ₹2100."
+        },
+        {
+          "order": 7,
+          "subject": "Maths",
+          "q": "A man walks at a speed of 5 km/h. How much time will he take to cover 15km?",
+          "opts": [
+            "2 hours",
+            "2.5 hours",
+            "3 hours",
+            "3.5 hours"
+          ],
+          "ans": 1,
+          "exp": "Time = Distance/Speed = 15/5 = 3 hours."
+        },
+        {
+          "order": 8,
+          "subject": "Physics",
+          "q": "Which instrument is used to measure atmospheric pressure?",
+          "opts": [
+            "Thermometer",
+            "Barometer",
+            "Hygrometer",
+            "Anemometer"
+          ],
+          "ans": 1,
+          "exp": "A Barometer is used to measure atmospheric pressure."
+        },
+        {
+          "order": 9,
+          "subject": "Physics",
+          "q": "The energy possessed by a body due to its motion is called:",
+          "opts": [
+            "Potential energy",
+            "Kinetic energy",
+            "Thermal energy",
+            "Chemical energy"
+          ],
+          "ans": 1,
+          "exp": "Kinetic energy is the energy possessed by a body due to its motion, given by KE=½mv²."
+        },
+        {
+          "order": 10,
+          "subject": "Physics",
+          "q": "Which of the following is a good conductor of electricity?",
+          "opts": [
+            "Rubber",
+            "Wood",
+            "Copper",
+            "Plastic"
+          ],
+          "ans": 2,
+          "exp": "Copper is an excellent conductor of electricity due to the free movement of electrons in its structure, widely used in electrical wiring."
+        },
+        {
+          "order": 11,
+          "subject": "Physics",
+          "q": "The frequency of a wave is the number of:",
+          "opts": [
+            "Wavelengths per second",
+            "Oscillations per second",
+            "Crests only",
+            "Amplitude changes"
+          ],
+          "ans": 1,
+          "exp": "Frequency is defined as the number of oscillations (complete cycles) of a wave per second, measured in Hertz (Hz)."
+        },
+        {
+          "order": 12,
+          "subject": "Chemistry",
+          "q": "Which gas makes up the largest percentage of Earth's atmosphere?",
+          "opts": [
+            "Oxygen",
+            "Carbon dioxide",
+            "Nitrogen",
+            "Argon"
+          ],
+          "ans": 2,
+          "exp": "Nitrogen makes up about 78% of Earth's atmosphere, the largest percentage of any gas."
+        },
+        {
+          "order": 13,
+          "subject": "Chemistry",
+          "q": "Which of the following is used as a bleaching agent?",
+          "opts": [
+            "Sodium chloride",
+            "Calcium oxide",
+            "Chlorine",
+            "Sulphuric acid"
+          ],
+          "ans": 2,
+          "exp": "Chlorine is commonly used as a bleaching agent in textiles, paper, and water purification."
+        },
+        {
+          "order": 14,
+          "subject": "Chemistry",
+          "q": "What is the chemical name for 'quick lime'?",
+          "opts": [
+            "Calcium hydroxide",
+            "Calcium oxide",
+            "Calcium carbonate",
+            "Calcium chloride"
+          ],
+          "ans": 1,
+          "exp": "Quick lime is the common name for Calcium oxide (CaO)."
+        },
+        {
+          "order": 15,
+          "subject": "Chemistry",
+          "q": "Diamond and graphite are both made up of which element?",
+          "opts": [
+            "Silicon",
+            "Carbon",
+            "Sulphur",
+            "Phosphorus"
+          ],
+          "ans": 1,
+          "exp": "Both diamond and graphite are allotropes of Carbon, differing only in their crystal structure and bonding arrangement."
+        },
+        {
+          "order": 16,
+          "subject": "Biology",
+          "q": "Which part of the human body produces insulin?",
+          "opts": [
+            "Liver",
+            "Pancreas",
+            "Kidney",
+            "Spleen"
+          ],
+          "ans": 1,
+          "exp": "The Pancreas produces insulin, a hormone that regulates blood sugar levels."
+        },
+        {
+          "order": 17,
+          "subject": "Biology",
+          "q": "DNA stands for:",
+          "opts": [
+            "Deoxyribonucleic acid",
+            "Dioxyribonuclear acid",
+            "Deoxyribose nuclear acid",
+            "Diribonucleic acid"
+          ],
+          "ans": 0,
+          "exp": "DNA stands for Deoxyribonucleic Acid, the molecule that carries genetic information in living organisms."
+        },
+        {
+          "order": 18,
+          "subject": "Biology",
+          "q": "Which disease is caused by the bite of an infected female Anopheles mosquito?",
+          "opts": [
+            "Dengue",
+            "Malaria",
+            "Chikungunya",
+            "Typhoid"
+          ],
+          "ans": 1,
+          "exp": "Malaria is caused by Plasmodium parasites transmitted through the bite of an infected female Anopheles mosquito."
+        },
+        {
+          "order": 19,
+          "subject": "GK",
+          "q": "Who is the current President of India (as of late 2026 standard records)?",
+          "opts": [
+            "Ram Nath Kovind",
+            "Droupadi Murmu",
+            "Pratibha Patil",
+            "Venkaiah Naidu"
+          ],
+          "ans": 1,
+          "exp": "Droupadi Murmu has been serving as the 15th President of India since July 2022."
+        },
+        {
+          "order": 20,
+          "subject": "GK",
+          "q": "Which day is celebrated as 'World Environment Day'?",
+          "opts": [
+            "22 April",
+            "5 June",
+            "16 September",
+            "8 March"
+          ],
+          "ans": 1,
+          "exp": "World Environment Day is celebrated on 5 June every year to promote environmental awareness."
+        },
+        {
+          "order": 21,
+          "subject": "GK",
+          "q": "The 'Statue of Unity', the world's tallest statue, is located in which Indian state?",
+          "opts": [
+            "Maharashtra",
+            "Gujarat",
+            "Madhya Pradesh",
+            "Uttar Pradesh"
+          ],
+          "ans": 1,
+          "exp": "The Statue of Unity, depicting Sardar Vallabhbhai Patel, is located in Gujarat and stands at 182 meters, the world's tallest statue."
+        },
+        {
+          "order": 22,
+          "subject": "GK",
+          "q": "India's first nuclear test, 'Smiling Buddha', was conducted in which year?",
+          "opts": [
+            "1971",
+            "1974",
+            "1998",
+            "1984"
+          ],
+          "ans": 1,
+          "exp": "India's first nuclear test, codenamed 'Smiling Buddha', was conducted in 1974 at Pokhran."
+        },
+        {
+          "order": 23,
+          "subject": "GK",
+          "q": "Which is the official emblem of the Indian Army?",
+          "opts": [
+            "Lion Capital",
+            "Crossed Swords with a Lotus",
+            "Ashoka Chakra alone",
+            "National Flag"
+          ],
+          "ans": 1,
+          "exp": "The Indian Army's official emblem features crossed swords (Khanda style) with the Ashoka symbol, reflecting valor and discipline."
+        },
+        {
+          "order": 24,
+          "subject": "GK",
+          "q": "The 'Golden Quadrilateral' project connects which four major Indian cities by highways?",
+          "opts": [
+            "Delhi, Mumbai, Chennai, Kolkata",
+            "Delhi, Bengaluru, Pune, Surat",
+            "Mumbai, Chennai, Hyderabad, Kolkata",
+            "Delhi, Jaipur, Mumbai, Chennai"
+          ],
+          "ans": 0,
+          "exp": "The Golden Quadrilateral connects India's four largest metro cities — Delhi, Mumbai, Chennai, and Kolkata — via a network of highways."
+        },
+        {
+          "order": 25,
+          "subject": "GK",
+          "q": "Which branch of the Indian Armed Forces operates the MiG-29 and Tejas fighter aircraft?",
+          "opts": [
+            "Indian Army",
+            "Indian Navy",
+            "Indian Air Force",
+            "Coast Guard"
+          ],
+          "ans": 2,
+          "exp": "The Indian Air Force operates fighter aircraft including the MiG-29 and the indigenously developed Tejas."
+        }
+      ]
+    }
+  ]
+}

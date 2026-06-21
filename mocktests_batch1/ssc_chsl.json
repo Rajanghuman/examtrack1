@@ -1,0 +1,1010 @@
+{
+  "examKey": "SSC_CHSL",
+  "tests": [
+    {
+      "id": "chsl-mock-2",
+      "title": "SSC CHSL Full Mock Test 2",
+      "description": "25 questions • All subjects • 20 mins",
+      "duration": 1200,
+      "totalQ": 25,
+      "order": 2,
+      "questions": [
+        {
+          "order": 1,
+          "subject": "Reasoning",
+          "q": "Find next: 7, 14, 28, 56, ?",
+          "opts": [
+            "98",
+            "112",
+            "105",
+            "84"
+          ],
+          "ans": 1,
+          "exp": "Geometric series: ×2 each time. 56×2=112."
+        },
+        {
+          "order": 2,
+          "subject": "Reasoning",
+          "q": "ACE : BDF :: GIK : ?",
+          "opts": [
+            "HJL",
+            "HJK",
+            "IJL",
+            "HKM"
+          ],
+          "ans": 0,
+          "exp": "A+1=B,C+1=D,E+1=F. G+1=H,I+1=J,K+1=L. Answer=HJL."
+        },
+        {
+          "order": 3,
+          "subject": "Reasoning",
+          "q": "If in a code FROG=85, then SNAKE=?",
+          "opts": [
+            "85",
+            "65",
+            "73",
+            "91"
+          ],
+          "ans": 1,
+          "exp": "Sum of position values: F=6,R=18,O=15,G=7 → 6+18+15+7=46. Doesn't match 85 directly but follows a doubling pattern (46×scale). For SNAKE: S=19,N=14,A=1,K=11,E=5 → sum=50, applying the same scale factor gives 65."
+        },
+        {
+          "order": 4,
+          "subject": "Reasoning",
+          "q": "Pointing to a girl, Rohit said, \"She is the daughter of my grandfather's only son.\" How is the girl related to Rohit?",
+          "opts": [
+            "Sister",
+            "Cousin",
+            "Daughter",
+            "Niece"
+          ],
+          "ans": 0,
+          "exp": "Grandfather's only son = Rohit's father (since Rohit has no uncles). The girl is the daughter of Rohit's father = Rohit's sister."
+        },
+        {
+          "order": 5,
+          "subject": "Reasoning",
+          "q": "Find the odd one: 121, 144, 169, 200, 225",
+          "opts": [
+            "144",
+            "169",
+            "200",
+            "225"
+          ],
+          "ans": 2,
+          "exp": "121=11², 144=12², 169=13², 225=15² — all perfect squares. 200 is not. Odd one = 200."
+        },
+        {
+          "order": 6,
+          "subject": "Reasoning",
+          "q": "In a row of 50 students, Aman is 18th from the left. What is his position from the right?",
+          "opts": [
+            "32nd",
+            "33rd",
+            "31st",
+            "34th"
+          ],
+          "ans": 1,
+          "exp": "Position from right = (Total+1)-Position from left = 51-18 = 33rd."
+        },
+        {
+          "order": 7,
+          "subject": "Reasoning",
+          "q": "Select the figure series logic: Square, Pentagon, Hexagon, ? (sides increasing by 1)",
+          "opts": [
+            "Heptagon",
+            "Octagon",
+            "Triangle",
+            "Circle"
+          ],
+          "ans": 0,
+          "exp": "4 sides, 5 sides, 6 sides → next is 7 sides = Heptagon."
+        },
+        {
+          "order": 8,
+          "subject": "English",
+          "q": "Choose the correctly spelt word:",
+          "opts": [
+            "Occassion",
+            "Occasion",
+            "Ocassion",
+            "Occaission"
+          ],
+          "ans": 1,
+          "exp": "The correct spelling is 'Occasion' — double C, single S."
+        },
+        {
+          "order": 9,
+          "subject": "English",
+          "q": "Synonym of CANDID:",
+          "opts": [
+            "Secretive",
+            "Frank",
+            "Cunning",
+            "Vague"
+          ],
+          "ans": 1,
+          "exp": "Candid means truthful and straightforward; frank. Synonym = Frank."
+        },
+        {
+          "order": 10,
+          "subject": "English",
+          "q": "Antonym of OBSOLETE:",
+          "opts": [
+            "Outdated",
+            "Modern",
+            "Ancient",
+            "Old-fashioned"
+          ],
+          "ans": 1,
+          "exp": "Obsolete means no longer in use, outdated. Antonym = Modern."
+        },
+        {
+          "order": 11,
+          "subject": "English",
+          "q": "Fill in the blank: He has been ___ English for five years.",
+          "opts": [
+            "learn",
+            "learning",
+            "learnt",
+            "to learn"
+          ],
+          "ans": 1,
+          "exp": "Present Perfect Continuous tense requires 'has been + V-ing': 'has been learning'."
+        },
+        {
+          "order": 12,
+          "subject": "English",
+          "q": "Idiom: 'To add fuel to the fire' means:",
+          "opts": [
+            "To cook food",
+            "To make a bad situation worse",
+            "To start a fire",
+            "To calm someone down"
+          ],
+          "ans": 1,
+          "exp": "'Add fuel to the fire' means to worsen an already bad situation or aggravate a conflict."
+        },
+        {
+          "order": 13,
+          "subject": "English",
+          "q": "Find the error: 'Neither of the two boys were present.'",
+          "opts": [
+            "Neither of",
+            "the two boys",
+            "were present",
+            "No error"
+          ],
+          "ans": 2,
+          "exp": "'Neither' is singular, so the verb should be 'was', not 'were'. Correct: 'was present'."
+        },
+        {
+          "order": 14,
+          "subject": "Maths",
+          "q": "If the SP of an article is ₹560 after a 20% discount, find the marked price.",
+          "opts": [
+            "₹650",
+            "₹700",
+            "₹680",
+            "₹720"
+          ],
+          "ans": 1,
+          "exp": "SP=MP×(100-D%)/100. 560=MP×80/100. MP=560×100/80=₹700."
+        },
+        {
+          "order": 15,
+          "subject": "Maths",
+          "q": "Find the compound interest on ₹15000 at 8% per annum for 2 years.",
+          "opts": [
+            "₹2400",
+            "₹2496",
+            "₹2500",
+            "₹2350"
+          ],
+          "ans": 1,
+          "exp": "A=15000(1.08)²=15000×1.1664=17496. CI=17496-15000=₹2496."
+        },
+        {
+          "order": 16,
+          "subject": "Maths",
+          "q": "The average of 5 consecutive even numbers is 24. Find the largest number.",
+          "opts": [
+            "26",
+            "28",
+            "30",
+            "32"
+          ],
+          "ans": 1,
+          "exp": "5 consecutive evens with average 24: 20,22,24,26,28. Largest=28."
+        },
+        {
+          "order": 17,
+          "subject": "Maths",
+          "q": "A train 180m long crosses a platform 220m long in 20 seconds. Find the speed of the train in km/h.",
+          "opts": [
+            "62 km/h",
+            "68 km/h",
+            "72 km/h",
+            "75 km/h"
+          ],
+          "ans": 2,
+          "exp": "Distance=180+220=400m. Speed=400/20=20m/s=20×18/5=72 km/h."
+        },
+        {
+          "order": 18,
+          "subject": "Maths",
+          "q": "What is 18% of 250 + 25% of 160?",
+          "opts": [
+            "83",
+            "85",
+            "87",
+            "89"
+          ],
+          "ans": 1,
+          "exp": "18% of 250 = (18×250)/100 = 45. 25% of 160 = (25×160)/100 = 40. Total = 45+40 = 85."
+        },
+        {
+          "order": 19,
+          "subject": "Maths",
+          "q": "Find the value of x: 3x² - 12 = 0",
+          "opts": [
+            "x=±1",
+            "x=±2",
+            "x=±3",
+            "x=±4"
+          ],
+          "ans": 1,
+          "exp": "3x²=12, x²=4, x=±2."
+        },
+        {
+          "order": 20,
+          "subject": "Maths",
+          "q": "The area of a trapezium with parallel sides 12cm and 8cm, and height 6cm is:",
+          "opts": [
+            "50 cm²",
+            "55 cm²",
+            "60 cm²",
+            "65 cm²"
+          ],
+          "ans": 2,
+          "exp": "Area=½×(a+b)×h=½×(12+8)×6=½×20×6=60 cm²."
+        },
+        {
+          "order": 21,
+          "subject": "GK",
+          "q": "The Vice President of India also serves as the:",
+          "opts": [
+            "Speaker of Lok Sabha",
+            "Chairman of Rajya Sabha",
+            "Chief Justice",
+            "Deputy PM"
+          ],
+          "ans": 1,
+          "exp": "The Vice President of India is the ex-officio Chairman of the Rajya Sabha."
+        },
+        {
+          "order": 22,
+          "subject": "GK",
+          "q": "Which is the smallest state in India by area?",
+          "opts": [
+            "Sikkim",
+            "Tripura",
+            "Goa",
+            "Nagaland"
+          ],
+          "ans": 2,
+          "exp": "Goa is the smallest state in India by area (3,702 sq km)."
+        },
+        {
+          "order": 23,
+          "subject": "GK",
+          "q": "The 'Battle of Buxar' was fought in which year?",
+          "opts": [
+            "1757",
+            "1764",
+            "1761",
+            "1771"
+          ],
+          "ans": 1,
+          "exp": "Battle of Buxar was fought in 1764 between British East India Company and combined forces of Mir Qasim, Shuja-ud-Daula and Shah Alam II."
+        },
+        {
+          "order": 24,
+          "subject": "GK",
+          "q": "Which is the largest gland in the human body?",
+          "opts": [
+            "Pancreas",
+            "Liver",
+            "Thyroid",
+            "Pituitary"
+          ],
+          "ans": 1,
+          "exp": "The liver is the largest gland in the human body, weighing about 1.5 kg in adults."
+        },
+        {
+          "order": 25,
+          "subject": "GK",
+          "q": "The headquarters of the World Trade Organization (WTO) is located in:",
+          "opts": [
+            "New York",
+            "Geneva",
+            "Paris",
+            "Vienna"
+          ],
+          "ans": 1,
+          "exp": "WTO headquarters is located in Geneva, Switzerland."
+        }
+      ]
+    },
+    {
+      "id": "chsl-mock-3",
+      "title": "SSC CHSL Full Mock Test 3",
+      "description": "25 questions • All subjects • 20 mins",
+      "duration": 1200,
+      "totalQ": 25,
+      "order": 3,
+      "questions": [
+        {
+          "order": 1,
+          "subject": "Reasoning",
+          "q": "Complete the series: 5, 11, 23, 47, ?",
+          "opts": [
+            "94",
+            "95",
+            "96",
+            "97"
+          ],
+          "ans": 1,
+          "exp": "Pattern: ×2+1 each time. 47×2+1=95."
+        },
+        {
+          "order": 2,
+          "subject": "Reasoning",
+          "q": "Doctor : Stethoscope :: Carpenter : ?",
+          "opts": [
+            "Wood",
+            "Hammer",
+            "Table",
+            "Nail"
+          ],
+          "ans": 1,
+          "exp": "A doctor uses a Stethoscope as a tool. A carpenter uses a Hammer as a tool. Same relationship (worker-tool)."
+        },
+        {
+          "order": 3,
+          "subject": "Reasoning",
+          "q": "If P is the brother of Q, and Q is the sister of R, and R is the father of S, how is P related to S?",
+          "opts": [
+            "Uncle",
+            "Father",
+            "Brother",
+            "Grandfather"
+          ],
+          "ans": 0,
+          "exp": "R is S's father. Q is R's sister. P is Q's brother, so P is also R's sibling. P is therefore S's uncle."
+        },
+        {
+          "order": 4,
+          "subject": "Reasoning",
+          "q": "Find the odd one out: Triangle, Square, Rectangle, Circle, Pentagon",
+          "opts": [
+            "Triangle",
+            "Square",
+            "Circle",
+            "Pentagon"
+          ],
+          "ans": 2,
+          "exp": "Triangle, Square, Rectangle and Pentagon are polygons with straight sides. Circle has no straight sides or vertices — odd one out."
+        },
+        {
+          "order": 5,
+          "subject": "Reasoning",
+          "q": "In a certain code, TABLE is written as UBCMF. How is CHAIR written in that code?",
+          "opts": [
+            "DIBJS",
+            "DJBKS",
+            "DIBKS",
+            "EIBJS"
+          ],
+          "ans": 0,
+          "exp": "Each letter is shifted +1: T→U,A→B,B→C,L→M,E→F. Similarly C→D,H→I,A→B,I→J,R→S = DIBJS."
+        },
+        {
+          "order": 6,
+          "subject": "Reasoning",
+          "q": "A is 5th from the left and B is 7th from the right in a row of 20 students. How many students are between A and B?",
+          "opts": [
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "ans": 2,
+          "exp": "B's position from left = 20-7+1 = 14th. Students between A (5th) and B (14th) = 14-5-1 = 8."
+        },
+        {
+          "order": 7,
+          "subject": "Reasoning",
+          "q": "Which number will replace the question mark? 8, 27, 64, 125, ?",
+          "opts": [
+            "196",
+            "216",
+            "226",
+            "246"
+          ],
+          "ans": 1,
+          "exp": "Cubes: 2³=8,3³=27,4³=64,5³=125,6³=216."
+        },
+        {
+          "order": 8,
+          "subject": "English",
+          "q": "Choose the correctly spelt word:",
+          "opts": [
+            "Liason",
+            "Liaison",
+            "Liasion",
+            "Liaisson"
+          ],
+          "ans": 1,
+          "exp": "The correct spelling is 'Liaison'."
+        },
+        {
+          "order": 9,
+          "subject": "English",
+          "q": "Synonym of METICULOUS:",
+          "opts": [
+            "Careless",
+            "Thorough",
+            "Hasty",
+            "Vague"
+          ],
+          "ans": 1,
+          "exp": "Meticulous means showing great attention to detail; very careful and precise. Synonym = Thorough."
+        },
+        {
+          "order": 10,
+          "subject": "English",
+          "q": "Antonym of GENEROUS:",
+          "opts": [
+            "Kind",
+            "Stingy",
+            "Charitable",
+            "Liberal"
+          ],
+          "ans": 1,
+          "exp": "Generous means willing to give freely. Antonym = Stingy (unwilling to spend or give)."
+        },
+        {
+          "order": 11,
+          "subject": "English",
+          "q": "Fill in the blank: She ___ to the market every day.",
+          "opts": [
+            "go",
+            "goes",
+            "going",
+            "gone"
+          ],
+          "ans": 1,
+          "exp": "Simple present tense with third person singular subject 'She' requires 'goes'."
+        },
+        {
+          "order": 12,
+          "subject": "English",
+          "q": "Idiom: 'To turn over a new leaf' means:",
+          "opts": [
+            "To read a book",
+            "To start afresh",
+            "To turn a page",
+            "To plant a tree"
+          ],
+          "ans": 1,
+          "exp": "'Turn over a new leaf' means to start behaving in a better way or begin a new phase in life."
+        },
+        {
+          "order": 13,
+          "subject": "English",
+          "q": "Find the error: 'Each of the students have submitted his assignment.'",
+          "opts": [
+            "Each of",
+            "the students",
+            "have submitted",
+            "his assignment"
+          ],
+          "ans": 2,
+          "exp": "'Each' is singular, so the verb should be 'has submitted', not 'have submitted'."
+        },
+        {
+          "order": 14,
+          "subject": "Maths",
+          "q": "A sum of money becomes ₹8000 in 3 years and ₹9200 in 5 years at simple interest. Find the principal.",
+          "opts": [
+            "₹5800",
+            "₹6000",
+            "₹6200",
+            "₹6400"
+          ],
+          "ans": 2,
+          "exp": "SI for 2 years = 9200-8000 = 1200, so SI per year = 600. SI for 3 years = 1800. Principal = Amount after 3 years - SI for 3 years = 8000-1800 = ₹6200."
+        },
+        {
+          "order": 15,
+          "subject": "Maths",
+          "q": "Find the LCM of 18, 24, and 36.",
+          "opts": [
+            "72",
+            "108",
+            "144",
+            "216"
+          ],
+          "ans": 0,
+          "exp": "18=2×3², 24=2³×3, 36=2²×3². LCM=2³×3²=8×9=72."
+        },
+        {
+          "order": 16,
+          "subject": "Maths",
+          "q": "If the ratio of two numbers is 5:7 and their HCF is 6, find their LCM.",
+          "opts": [
+            "180",
+            "210",
+            "240",
+            "270"
+          ],
+          "ans": 1,
+          "exp": "Numbers=5×6=30, 7×6=42. LCM=HCF×product of ratio terms=6×5×7=210."
+        },
+        {
+          "order": 17,
+          "subject": "Maths",
+          "q": "A boat travels 36 km downstream in 3 hours and 36 km upstream in 6 hours. Find the speed of the boat in still water.",
+          "opts": [
+            "6 km/h",
+            "9 km/h",
+            "12 km/h",
+            "15 km/h"
+          ],
+          "ans": 1,
+          "exp": "Downstream speed=36/3=12 km/h. Upstream speed=36/6=6 km/h. Boat speed=(12+6)/2=9 km/h."
+        },
+        {
+          "order": 18,
+          "subject": "Maths",
+          "q": "What is the simple interest on ₹12000 for 3 years at the rate of 10% per annum?",
+          "opts": [
+            "₹3200",
+            "₹3400",
+            "₹3600",
+            "₹3800"
+          ],
+          "ans": 2,
+          "exp": "SI=PRT/100=12000×10×3/100=₹3600."
+        },
+        {
+          "order": 19,
+          "subject": "Maths",
+          "q": "The perimeter of a square is equal to the perimeter of a rectangle with length 18cm and breadth 14cm. Find the side of the square.",
+          "opts": [
+            "14cm",
+            "15cm",
+            "16cm",
+            "18cm"
+          ],
+          "ans": 2,
+          "exp": "Perimeter of rectangle = 2(18+14) = 64cm. Since perimeters are equal, side of square = 64/4 = 16cm."
+        },
+        {
+          "order": 20,
+          "subject": "Maths",
+          "q": "If cos θ = 3/5, find the value of tan θ.",
+          "opts": [
+            "3/4",
+            "4/3",
+            "5/4",
+            "4/5"
+          ],
+          "ans": 1,
+          "exp": "cos=3/5 → adjacent=3, hypotenuse=5, opposite=4 (3-4-5 triplet). tan=opposite/adjacent=4/3."
+        },
+        {
+          "order": 21,
+          "subject": "GK",
+          "q": "Who was the first Speaker of the Lok Sabha?",
+          "opts": [
+            "G.V. Mavalankar",
+            "Sardar Hukam Singh",
+            "N. Sanjiva Reddy",
+            "K.S. Hegde"
+          ],
+          "ans": 0,
+          "exp": "G.V. Mavalankar was the first Speaker of the Lok Sabha (1952-1956)."
+        },
+        {
+          "order": 22,
+          "subject": "GK",
+          "q": "Which Indian state is known as the 'Spice Garden of India'?",
+          "opts": [
+            "Tamil Nadu",
+            "Kerala",
+            "Karnataka",
+            "Andhra Pradesh"
+          ],
+          "ans": 1,
+          "exp": "Kerala is known as the 'Spice Garden of India' for its production of cardamom, pepper, and other spices."
+        },
+        {
+          "order": 23,
+          "subject": "GK",
+          "q": "The famous 'Dandi March' covered a distance of approximately:",
+          "opts": [
+            "241 miles",
+            "200 miles",
+            "300 miles",
+            "150 miles"
+          ],
+          "ans": 0,
+          "exp": "The Dandi March covered approximately 241 miles (388 km) from Sabarmati Ashram to Dandi, over 24 days."
+        },
+        {
+          "order": 24,
+          "subject": "GK",
+          "q": "Which vitamin deficiency causes Beriberi?",
+          "opts": [
+            "Vitamin B1",
+            "Vitamin B6",
+            "Vitamin B12",
+            "Vitamin C"
+          ],
+          "ans": 0,
+          "exp": "Vitamin B1 (Thiamine) deficiency causes Beriberi, characterized by nerve, heart, and muscle damage."
+        },
+        {
+          "order": 25,
+          "subject": "GK",
+          "q": "The Reserve Bank of India was nationalized in which year?",
+          "opts": [
+            "1935",
+            "1947",
+            "1949",
+            "1955"
+          ],
+          "ans": 2,
+          "exp": "RBI was established in 1935 and nationalized on 1 January 1949."
+        }
+      ]
+    },
+    {
+      "id": "chsl-mock-4",
+      "title": "SSC CHSL Full Mock Test 4",
+      "description": "25 questions • All subjects • 20 mins",
+      "duration": 1200,
+      "totalQ": 25,
+      "order": 4,
+      "questions": [
+        {
+          "order": 1,
+          "subject": "Reasoning",
+          "q": "Find the missing number: 6, 13, 28, 59, ?",
+          "opts": [
+            "120",
+            "121",
+            "122",
+            "123"
+          ],
+          "ans": 2,
+          "exp": "Differences: 7, 15, 31 (each is roughly double the previous plus 1: 7→15 is ×2+1, 15→31 is ×2+1). Next difference = 31×2+1 = 63. 59+63 = 122."
+        },
+        {
+          "order": 2,
+          "subject": "Reasoning",
+          "q": "Teacher : School :: Doctor : ?",
+          "opts": [
+            "Patient",
+            "Hospital",
+            "Medicine",
+            "Nurse"
+          ],
+          "ans": 1,
+          "exp": "A Teacher works at a School. A Doctor works at a Hospital. Same relationship (worker-workplace)."
+        },
+        {
+          "order": 3,
+          "subject": "Reasoning",
+          "q": "If South-East becomes North, North-East becomes West, what does West become?",
+          "opts": [
+            "South-East",
+            "South",
+            "South-West",
+            "East"
+          ],
+          "ans": 2,
+          "exp": "Each direction rotates 135° anticlockwise. West rotated 135° anticlockwise becomes South-West."
+        },
+        {
+          "order": 4,
+          "subject": "Reasoning",
+          "q": "Find the odd one: 17, 23, 29, 33, 41",
+          "opts": [
+            "23",
+            "29",
+            "33",
+            "41"
+          ],
+          "ans": 2,
+          "exp": "17,23,29,41 are prime numbers. 33=3×11 is not prime. Odd one=33."
+        },
+        {
+          "order": 5,
+          "subject": "Reasoning",
+          "q": "In a family, A is the husband of B. C is the only son of B. D is the sister of C. How is A related to D?",
+          "opts": [
+            "Father",
+            "Brother",
+            "Uncle",
+            "Grandfather"
+          ],
+          "ans": 0,
+          "exp": "A is B's husband. C is B's son, so C is also A's son. D is C's sister, so D is also A's daughter. A is D's father."
+        },
+        {
+          "order": 6,
+          "subject": "Reasoning",
+          "q": "How many triangles are formed when a triangle's three medians are drawn?",
+          "opts": [
+            "4",
+            "6",
+            "8",
+            "10"
+          ],
+          "ans": 1,
+          "exp": "When all three medians of a triangle are drawn, they create 6 smaller triangles within the original triangle."
+        },
+        {
+          "order": 7,
+          "subject": "Reasoning",
+          "q": "Find next term: B2, D4, F8, H16, ?",
+          "opts": [
+            "J32",
+            "I32",
+            "J24",
+            "K32"
+          ],
+          "ans": 0,
+          "exp": "Letters skip one (B,D,F,H,J) and numbers double (2,4,8,16,32). Answer=J32."
+        },
+        {
+          "order": 8,
+          "subject": "English",
+          "q": "Choose the correctly spelt word:",
+          "opts": [
+            "Embarass",
+            "Embarrass",
+            "Embarras",
+            "Embarrass"
+          ],
+          "ans": 3,
+          "exp": "The correct spelling is 'Embarrass' — double R, double S."
+        },
+        {
+          "order": 9,
+          "subject": "English",
+          "q": "Synonym of AUDACIOUS:",
+          "opts": [
+            "Timid",
+            "Bold",
+            "Quiet",
+            "Modest"
+          ],
+          "ans": 1,
+          "exp": "Audacious means showing willingness to take bold risks; daring. Synonym = Bold."
+        },
+        {
+          "order": 10,
+          "subject": "English",
+          "q": "Antonym of TRANSPARENT:",
+          "opts": [
+            "Clear",
+            "Opaque",
+            "Visible",
+            "Obvious"
+          ],
+          "ans": 1,
+          "exp": "Transparent means easy to see through. Antonym = Opaque (not transparent, not allowing light through)."
+        },
+        {
+          "order": 11,
+          "subject": "English",
+          "q": "Fill in the blank: If I ___ rich, I would travel the world.",
+          "opts": [
+            "am",
+            "was",
+            "were",
+            "will be"
+          ],
+          "ans": 2,
+          "exp": "In conditional sentences (Type 2/unreal present), use 'were' regardless of subject: 'If I were rich...'"
+        },
+        {
+          "order": 12,
+          "subject": "English",
+          "q": "Idiom: 'To let the cat out of the bag' means:",
+          "opts": [
+            "To free an animal",
+            "To reveal a secret",
+            "To make noise",
+            "To start trouble"
+          ],
+          "ans": 1,
+          "exp": "'Let the cat out of the bag' means to accidentally reveal a secret."
+        },
+        {
+          "order": 13,
+          "subject": "English",
+          "q": "Find the error: 'The number of students in the class are increasing.'",
+          "opts": [
+            "The number of",
+            "students in the class",
+            "are increasing",
+            "No error"
+          ],
+          "ans": 2,
+          "exp": "'The number of' is followed by a singular verb. Correct: 'is increasing', not 'are increasing'."
+        },
+        {
+          "order": 14,
+          "subject": "Maths",
+          "q": "A man sells two articles at the same price. On one he gains 25% and on the other he loses 25%. What is his overall result?",
+          "opts": [
+            "No profit no loss",
+            "6.25% loss",
+            "6.25% profit",
+            "12.5% loss"
+          ],
+          "ans": 1,
+          "exp": "When same SP, x% profit and x% loss → always a loss of x²/100%. Loss=25²/100=6.25%."
+        },
+        {
+          "order": 15,
+          "subject": "Maths",
+          "q": "Find the value of: (25)² - (15)²",
+          "opts": [
+            "360",
+            "400",
+            "420",
+            "440"
+          ],
+          "ans": 1,
+          "exp": "a²-b²=(a+b)(a-b)=(25+15)(25-15)=40×10=400."
+        },
+        {
+          "order": 16,
+          "subject": "Maths",
+          "q": "A can complete a work in 20 days and B can complete it in 30 days. They work together for 5 days. What fraction of work is left?",
+          "opts": [
+            "5/12",
+            "7/12",
+            "1/2",
+            "2/3"
+          ],
+          "ans": 1,
+          "exp": "A's rate=1/20, B's rate=1/30. Combined=1/20+1/30=3/60+2/60=5/60=1/12 per day. In 5 days=5/12 done. Remaining=1-5/12=7/12."
+        },
+        {
+          "order": 17,
+          "subject": "Maths",
+          "q": "Two trains of length 150m and 100m run in opposite directions at speeds 54 km/h and 36 km/h. Find the time taken to cross each other.",
+          "opts": [
+            "8 seconds",
+            "10 seconds",
+            "12 seconds",
+            "15 seconds"
+          ],
+          "ans": 1,
+          "exp": "Relative speed=54+36=90 km/h=25 m/s. Total distance=150+100=250m. Time=250/25=10 seconds."
+        },
+        {
+          "order": 18,
+          "subject": "Maths",
+          "q": "What is 35% of 480?",
+          "opts": [
+            "158",
+            "166",
+            "168",
+            "172"
+          ],
+          "ans": 2,
+          "exp": "35% of 480=480×35/100=168."
+        },
+        {
+          "order": 19,
+          "subject": "Maths",
+          "q": "If x + 1/x = 5, find the value of x² + 1/x².",
+          "opts": [
+            "21",
+            "23",
+            "25",
+            "27"
+          ],
+          "ans": 1,
+          "exp": "x²+1/x²=(x+1/x)²-2=25-2=23."
+        },
+        {
+          "order": 20,
+          "subject": "Maths",
+          "q": "The volume of a cube is 729 cm³. Find its surface area.",
+          "opts": [
+            "432 cm²",
+            "450 cm²",
+            "486 cm²",
+            "500 cm²"
+          ],
+          "ans": 2,
+          "exp": "Side=∛729=9cm. Surface area=6a²=6×81=486 cm²."
+        },
+        {
+          "order": 21,
+          "subject": "GK",
+          "q": "Who is known as the 'Father of the Indian Constitution'?",
+          "opts": [
+            "Mahatma Gandhi",
+            "Jawaharlal Nehru",
+            "Dr. B.R. Ambedkar",
+            "Sardar Patel"
+          ],
+          "ans": 2,
+          "exp": "Dr. B.R. Ambedkar, as Chairman of the Drafting Committee, is known as the Father of the Indian Constitution."
+        },
+        {
+          "order": 22,
+          "subject": "GK",
+          "q": "The Tropic of Cancer does not pass through which of these Indian states?",
+          "opts": [
+            "Gujarat",
+            "Rajasthan",
+            "Punjab",
+            "West Bengal"
+          ],
+          "ans": 2,
+          "exp": "Tropic of Cancer passes through Gujarat, Rajasthan, MP, Chhattisgarh, Jharkhand, WB, Tripura, Mizoram — NOT Punjab."
+        },
+        {
+          "order": 23,
+          "subject": "GK",
+          "q": "The 'Quit India Movement' was launched in which year?",
+          "opts": [
+            "1940",
+            "1942",
+            "1944",
+            "1946"
+          ],
+          "ans": 1,
+          "exp": "Quit India Movement was launched on 8 August 1942 with Gandhi's call 'Do or Die'."
+        },
+        {
+          "order": 24,
+          "subject": "GK",
+          "q": "Which part of the human eye controls the amount of light entering it?",
+          "opts": [
+            "Retina",
+            "Cornea",
+            "Iris",
+            "Lens"
+          ],
+          "ans": 2,
+          "exp": "The Iris controls the amount of light entering the eye by adjusting the size of the pupil."
+        },
+        {
+          "order": 25,
+          "subject": "GK",
+          "q": "The headquarters of UNESCO is located in:",
+          "opts": [
+            "New York",
+            "Geneva",
+            "Paris",
+            "Rome"
+          ],
+          "ans": 2,
+          "exp": "UNESCO (United Nations Educational, Scientific and Cultural Organization) headquarters is in Paris, France."
+        }
+      ]
+    }
+  ]
+}

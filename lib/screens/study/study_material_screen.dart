@@ -1,1085 +1,1430 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'dart:async';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:examtrack/screens/study/study_data.dart';
+import 'dart:convert';
 
 class StudyMaterialScreen extends StatefulWidget {
   const StudyMaterialScreen({super.key});
+
   @override
-  State<StudyMaterialScreen> createState() => _StudyMaterialScreenState();
+  State<StudyMaterialScreen> createState() =>
+      _StudyMaterialScreenState();
 }
 
-class _StudyMaterialScreenState extends State<StudyMaterialScreen>
+class _StudyMaterialScreenState
+    extends State<StudyMaterialScreen>
     with SingleTickerProviderStateMixin {
+
   late TabController _tabController;
-  String _selectedExam = 'SSC CGL';
-  final List<String> _exams = ['SSC CGL','SSC CHSL','RRB NTPC','Army Agniveer','Punjab Police','IBPS PO','UPSC CSE','Delhi Police','Haryana Police','NDA'];
+  String _selectedExam    = 'SSC CGL';
+  String _selectedSection = '';
+  int _currentQuizIndex   = 0;
+  String? _selectedAnswer;
+  bool _showExplanation   = false;
+  int _score              = 0;
+  bool _quizStarted       = false;
 
-  // PYQ state
-  int _quizIndex = 0;
-  String? _selAns;
-  bool _showExp = false;
-  int _score = 0;
-  bool _quizStarted = false;
+  final List<String> _exams = [
+    'SSC CGL', 'RRB NTPC', 'IBPS PO',
+    'Army Agniveer', 'Punjab Police',
+  ];
 
-  // Mock test state
-  Map<String,dynamic>? _activeMock;
-  int _mockIndex = 0;
-  String? _mockAns;
-  bool _mockShowExp = false;
-  int _mockScore = 0;
-  bool _mockDone = false;
-  Map<int, bool> _mockAnswers = {};
-  Timer? _timer;
-  int _timeLeft = 0;
-  bool _timedMode = false;
+  // Sections for current exam
+  final List<Map<String, dynamic>> _sections = [
+    {
+      'id': 'reasoning',
+      'title': 'Reasoning',
+      'icon': Icons.psychology_outlined,
+      'color': const Color(0xFF1565C0),
+      'topicCount': 8,
+    },
+    {
+      'id': 'quantitative',
+      'title': 'Maths',
+      'icon': Icons.calculate_outlined,
+      'color': const Color(0xFFE65100),
+      'topicCount': 7,
+    },
+    {
+      'id': 'english',
+      'title': 'English',
+      'icon': Icons.menu_book_outlined,
+      'color': const Color(0xFF880E4F),
+      'topicCount': 3,
+    },
+    {
+      'id': 'general-awareness',
+      'title': 'GK',
+      'icon': Icons.public_outlined,
+      'color': const Color(0xFF1B5E20),
+      'topicCount': 4,
+    },
+  ];
 
-  List<Map<String,dynamic>> get _sections => StudyData.getSections(_selectedExam);
-  List<Map<String,dynamic>> get _pyqs => StudyData.getPYQs(_selectedExam);
-  List<Map<String,dynamic>> get _mocks => StudyData.getMocks(_selectedExam);
-  List<Map<String,dynamic>> get _qr => StudyData.getQR(_selectedExam);
+  // Topics per section
+  final Map<String, List<Map<String, dynamic>>> _topics = {
+    'reasoning': [
+      {'title': 'Analogies', 'difficulty': 'Easy', 'weightage': '3-4 Qs'},
+      {'title': 'Coding-Decoding', 'difficulty': 'Easy', 'weightage': '2-3 Qs'},
+      {'title': 'Blood Relations', 'difficulty': 'Medium', 'weightage': '2-3 Qs'},
+      {'title': 'Number & Letter Series', 'difficulty': 'Easy', 'weightage': '3-4 Qs'},
+      {'title': 'Syllogism', 'difficulty': 'Medium', 'weightage': '2-3 Qs'},
+      {'title': 'Direction & Distance', 'difficulty': 'Easy', 'weightage': '2-3 Qs'},
+      {'title': 'Ranking & Arrangement', 'difficulty': 'Easy', 'weightage': '1-2 Qs'},
+      {'title': 'Matrix & Figures', 'difficulty': 'Medium', 'weightage': '2-3 Qs'},
+    ],
+    'quantitative': [
+      {'title': 'Number System', 'difficulty': 'Medium', 'weightage': '2-3 Qs'},
+      {'title': 'Percentage', 'difficulty': 'Easy', 'weightage': '3-4 Qs'},
+      {'title': 'Profit & Loss', 'difficulty': 'Easy', 'weightage': '3-4 Qs'},
+      {'title': 'Simple & Compound Interest', 'difficulty': 'Medium', 'weightage': '2-3 Qs'},
+      {'title': 'Time & Work', 'difficulty': 'Medium', 'weightage': '3-4 Qs'},
+      {'title': 'Speed, Distance & Time', 'difficulty': 'Medium', 'weightage': '3-4 Qs'},
+      {'title': 'Geometry & Mensuration', 'difficulty': 'Hard', 'weightage': '4-5 Qs'},
+    ],
+    'english': [
+      {'title': 'Grammar Rules', 'difficulty': 'Medium', 'weightage': '5-6 Qs'},
+      {'title': 'Synonyms & Antonyms', 'difficulty': 'Medium', 'weightage': '4-5 Qs'},
+      {'title': 'Reading Comprehension', 'difficulty': 'Hard', 'weightage': '5-6 Qs'},
+    ],
+    'general-awareness': [
+      {'title': 'Indian History', 'difficulty': 'Easy', 'weightage': '3-4 Qs'},
+      {'title': 'Indian Geography', 'difficulty': 'Easy', 'weightage': '3-4 Qs'},
+      {'title': 'Indian Polity', 'difficulty': 'Medium', 'weightage': '4-5 Qs'},
+      {'title': 'Static GK', 'difficulty': 'Easy', 'weightage': '5-6 Qs'},
+    ],
+  };
+
+  // PYQ questions
+  final List<Map<String, dynamic>> _pyqs = [
+    {
+      'subject': 'Reasoning',
+      'topic': 'Analogies',
+      'year': 2024,
+      'question': 'Doctor : Patient :: Teacher : ?',
+      'options': ['School', 'Student', 'Book', 'Class'],
+      'correct': 1,
+      'explanation': 'A Doctor treats a Patient. Similarly, a Teacher teaches a Student. The relationship is professional-beneficiary.',
+    },
+    {
+      'subject': 'Maths',
+      'topic': 'Percentage',
+      'year': 2024,
+      'question': 'A number is increased by 20% then decreased by 20%. Net change?',
+      'options': ['No change', '4% decrease', '4% increase', '2% decrease'],
+      'correct': 1,
+      'explanation': 'Net = A + B + AB/100 = 20 + (-20) + (20×-20)/100 = -4%. So 4% decrease.',
+    },
+    {
+      'subject': 'Maths',
+      'topic': 'Profit & Loss',
+      'year': 2024,
+      'question': 'Bought for ₹200, sold for ₹250. Profit percentage?',
+      'options': ['20%', '25%', '50%', '15%'],
+      'correct': 1,
+      'explanation': 'Profit = ₹50. Profit% = (50/200)×100 = 25%',
+    },
+    {
+      'subject': 'GK',
+      'topic': 'Polity',
+      'year': 2024,
+      'question': 'Which Article is called Heart & Soul of Constitution?',
+      'options': ['Article 14', 'Article 19', 'Article 21', 'Article 32'],
+      'correct': 3,
+      'explanation': 'Article 32 (Right to Constitutional Remedies) is called Heart & Soul by Dr. Ambedkar.',
+    },
+    {
+      'subject': 'GK',
+      'topic': 'History',
+      'year': 2023,
+      'question': 'Dandi March started on which date?',
+      'options': ['12 March 1930', '6 April 1930', '15 Aug 1930', '26 Jan 1930'],
+      'correct': 0,
+      'explanation': 'Gandhi started Dandi March on 12 March 1930, reached Dandi on 6 April 1930.',
+    },
+    {
+      'subject': 'Maths',
+      'topic': 'Speed & Distance',
+      'year': 2023,
+      'question': 'A train 150m long passes a pole in 15s. Speed in km/h?',
+      'options': ['32 km/h', '36 km/h', '40 km/h', '54 km/h'],
+      'correct': 1,
+      'explanation': 'Speed = 150/15 = 10 m/s = 10 × 18/5 = 36 km/h',
+    },
+    {
+      'subject': 'English',
+      'topic': 'Synonyms',
+      'year': 2024,
+      'question': 'Choose the synonym of BENEVOLENT',
+      'options': ['Cruel', 'Generous', 'Selfish', 'Arrogant'],
+      'correct': 1,
+      'explanation': 'Benevolent means well-meaning and kindly. Generous is the correct synonym.',
+    },
+    {
+      'subject': 'Maths',
+      'topic': 'Time & Work',
+      'year': 2024,
+      'question': 'A does work in 10 days, B in 15 days. Together?',
+      'options': ['5 days', '6 days', '8 days', '12 days'],
+      'correct': 1,
+      'explanation': 'A=1/10, B=1/15. Together=1/10+1/15=5/30=1/6. So 6 days.',
+    },
+    {
+      'subject': 'Reasoning',
+      'topic': 'Direction',
+      'year': 2024,
+      'question': 'Ravi walks 5km North, 3km East, 5km South. Distance from start?',
+      'options': ['2km', '3km', '5km', '8km'],
+      'correct': 1,
+      'explanation': '5km N + 5km S cancels. Only 3km East remains. Distance = 3km',
+    },
+    {
+      'subject': 'GK',
+      'topic': 'Geography',
+      'year': 2024,
+      'question': 'Longest river in India?',
+      'options': ['Brahmaputra', 'Godavari', 'Ganga', 'Yamuna'],
+      'correct': 2,
+      'explanation': 'Ganga is longest in India at 2525 km. Indus is longer overall but mostly in Pakistan.',
+    },
+  ];
+
+  final List<Map<String, dynamic>> _quickRevision = [
+    {
+      'title': 'Key Formulas',
+      'icon': Icons.functions,
+      'color': const Color(0xFF1565C0),
+      'items': [
+        'SI = PRT/100',
+        'CI = P(1 + R/100)ⁿ - P',
+        'Profit% = (Profit/CP) × 100',
+        'Speed = Distance/Time',
+        '1 km/h = 5/18 m/s',
+        'Area circle = πr²',
+        'Volume cylinder = πr²h',
+        'Average speed = 2S₁S₂/(S₁+S₂)',
+        'HCF × LCM = Product of two numbers',
+      ]
+    },
+    {
+      'title': 'Important GK Facts',
+      'icon': Icons.star_outline,
+      'color': const Color(0xFF1B5E20),
+      'items': [
+        'Highest peak in India: Kangchenjunga (8586m)',
+        'Longest river in India: Ganga (2525km)',
+        'Largest state: Rajasthan | Smallest: Goa',
+        'Father of Constitution: Dr. B.R. Ambedkar',
+        'Art 32 = Heart & Soul of Constitution',
+        '1st PM: Nehru | 1st President: Rajendra Prasad',
+        'National Animal: Tiger | National Bird: Peacock',
+        'Republic Day: 26 Jan 1950 | Independence: 15 Aug 1947',
+        'Dandi March: 12 March 1930',
+      ]
+    },
+    {
+      'title': 'Trick Questions',
+      'icon': Icons.warning_amber_outlined,
+      'color': const Color(0xFFE65100),
+      'items': [
+        'Highest peak in INDIA = Kangchenjunga (NOT Everest)',
+        'National Sport = Hockey (NOT Cricket)',
+        'Constitution ADOPTED 26 Nov 1949, EFFECTIVE 26 Jan 1950',
+        'Vande Mataram = National SONG (not anthem)',
+        'Jana Gana Mana = National ANTHEM',
+        'Ganga = longest IN INDIA, Indus is longer overall',
+        '2 is the ONLY even prime number',
+        '1 is NEITHER prime NOR composite',
+      ]
+    },
+  ];
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 5, vsync: this);
+    _tabController = TabController(length: 4, vsync: this);
   }
 
   @override
   void dispose() {
     _tabController.dispose();
-    _timer?.cancel();
     super.dispose();
   }
 
-  void _resetQuiz() {
-    setState(() {
-      _quizStarted = false; _quizIndex = 0;
-      _score = 0; _selAns = null; _showExp = false;
-    });
+  Color _difficultyColor(String d) {
+    switch (d) {
+      case 'Easy':   return const Color(0xFF10B981);
+      case 'Medium': return const Color(0xFFF59E0B);
+      case 'Hard':   return const Color(0xFFEF4444);
+      default:       return const Color(0xFF6B7280);
+    }
   }
 
-  void _resetMock() {
-    _timer?.cancel();
-    setState(() {
-      _activeMock = null; _mockIndex = 0; _mockScore = 0;
-      _mockAns = null; _mockShowExp = false; _mockDone = false;
-      _mockAnswers = {};
-    });
-  }
-
-  void _startTimer(int seconds) {
-    _timeLeft = seconds;
-    _timer = Timer.periodic(const Duration(seconds: 1), (t) {
-      if (_timeLeft <= 0) { t.cancel(); setState(() => _mockDone = true); }
-      else setState(() => _timeLeft--);
-    });
-  }
-
-  String _fmt(int s) => '${(s~/60).toString().padLeft(2,'0')}:${(s%60).toString().padLeft(2,'0')}';
-
-  Color _diffColor(String d) {
-    if (d.contains('Easy')) return const Color(0xFF10B981);
-    if (d.contains('Hard')) return const Color(0xFFEF4444);
-    return const Color(0xFFF59E0B);
+  void _showTopicDetail(Map<String, dynamic> topic,
+      Map<String, dynamic> section) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => _TopicDetailScreen(
+          topic: topic,
+          sectionColor: section['color'] as Color,
+          sectionTitle: section['title'] as String,
+        ),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF5F7FA),
-      body: Column(children: [
-        _header(),
-        _examSelector(),
-        _tabBar(),
-        Expanded(child: TabBarView(controller: _tabController, children: [
-          _notesTab(), _pyqTab(), _mockTab(), _qrTab(), _resourcesTab(),
-        ])),
-      ]),
-      bottomNavigationBar: _bottomNav(),
+      body: Column(
+        children: [
+          _buildHeader(),
+          _buildExamSelector(),
+          _buildTabBar(),
+          Expanded(
+            child: TabBarView(
+              controller: _tabController,
+              children: [
+                _buildNotesTab(),
+                _buildPYQTab(),
+                _buildMockTestTab(),
+                _buildQuickRevisionTab(),
+              ],
+            ),
+          ),
+        ],
+      ),
+      bottomNavigationBar: _buildBottomNav(),
     );
   }
 
-  Widget _header() => Container(
-    decoration: const BoxDecoration(
-      gradient: LinearGradient(colors: [Color(0xFF1565C0), Color(0xFF1976D2)]),
-    ),
-    padding: EdgeInsets.only(
-      top: MediaQuery.of(context).padding.top + 8,
-      left: 16, right: 16, bottom: 16,
-    ),
-    child: Row(children: [
-      GestureDetector(onTap: () => Navigator.pop(context),
-          child: const Icon(Icons.arrow_back, color: Colors.white)),
-      const SizedBox(width: 12),
-      Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Text('Study Material', style: GoogleFonts.poppins(
-            color: Colors.white, fontSize: 19, fontWeight: FontWeight.w700)),
-        Text(StudyData.getExamPattern(_selectedExam),
-            style: GoogleFonts.poppins(color: Colors.white60, fontSize: 10),
-            maxLines: 1, overflow: TextOverflow.ellipsis),
-      ]),
-    ]),
-  );
-
-  Widget _examSelector() => Container(
-    color: Colors.white,
-    padding: const EdgeInsets.symmetric(vertical: 8),
-    child: SizedBox(height: 34,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        padding: const EdgeInsets.symmetric(horizontal: 12),
-        itemCount: _exams.length,
-        itemBuilder: (_, i) {
-          final e = _exams[i]; final sel = _selectedExam == e;
-          return GestureDetector(
-            onTap: () => setState(() {
-              _selectedExam = e; _resetQuiz(); _resetMock();
-            }),
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 200),
-              margin: const EdgeInsets.only(right: 8),
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-              decoration: BoxDecoration(
-                color: sel ? const Color(0xFF1565C0) : Colors.transparent,
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: sel ? const Color(0xFF1565C0) : Colors.grey.shade300),
-              ),
-              child: Text(e, style: GoogleFonts.poppins(
-                  fontSize: 11, fontWeight: FontWeight.w500,
-                  color: sel ? Colors.white : Colors.grey.shade600)),
-            ),
-          );
-        },
-      ),
-    ),
-  );
-
-  Widget _tabBar() => Container(
-    color: Colors.white,
-    child: TabBar(
-      controller: _tabController,
-      labelColor: const Color(0xFF1565C0),
-      unselectedLabelColor: Colors.grey.shade500,
-      indicatorColor: const Color(0xFF1565C0),
-      indicatorWeight: 3,
-      labelStyle: GoogleFonts.poppins(fontSize: 11, fontWeight: FontWeight.w600),
-      unselectedLabelStyle: GoogleFonts.poppins(fontSize: 11),
-      tabs: const [
-        Tab(icon: Icon(Icons.menu_book, size: 16), text: 'Notes'),
-        Tab(icon: Icon(Icons.history_edu, size: 16), text: 'PYQ'),
-        Tab(icon: Icon(Icons.quiz, size: 16), text: 'Mock Test'),
-        Tab(icon: Icon(Icons.flash_on, size: 16), text: 'Quick Rev'),
-        Tab(icon: Icon(Icons.link, size: 16), text: 'Resources'),
-      ],
-    ),
-  );
-
-  Widget _notesTab() => ListView(padding: const EdgeInsets.all(16), children: [
-    Container(
-      padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(
-        gradient: const LinearGradient(colors: [Color(0xFF1565C0), Color(0xFF42A5F5)]),
-        borderRadius: BorderRadius.circular(14),
-      ),
-      child: Row(children: [
-        const Icon(Icons.school_rounded, color: Colors.white, size: 28),
-        const SizedBox(width: 12),
-        Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text('$_selectedExam Notes', style: GoogleFonts.poppins(
-              color: Colors.white, fontSize: 14, fontWeight: FontWeight.w700)),
-          Text('${_sections.fold(0,(s,sec)=>s+(sec['topics'] as List).length)} topics • Exam level content',
-              style: GoogleFonts.poppins(color: Colors.white70, fontSize: 11)),
-        ])),
-      ]),
-    ),
-    const SizedBox(height: 14),
-    ..._sections.map((sec) {
-      final topics = sec['topics'] as List;
-      final color = Color(sec['colorHex'] as int);
-      return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Row(children: [
-          Container(width: 34, height: 34,
-              decoration: BoxDecoration(color: color.withOpacity(0.12), borderRadius: BorderRadius.circular(10)),
-              child: Icon(Icons.circle_outlined, color: color, size: 18)),
-          const SizedBox(width: 10),
-          Expanded(child: Text(sec['title'] as String, style: GoogleFonts.poppins(
-              fontSize: 13, fontWeight: FontWeight.w700, color: const Color(0xFF1A1A2E)))),
-          Text('${topics.length} topics', style: GoogleFonts.poppins(fontSize: 11, color: Colors.grey.shade500)),
-        ]),
-        const SizedBox(height: 8),
-        ...topics.map((t) => GestureDetector(
-          onTap: () => Navigator.push(context, MaterialPageRoute(
-            builder: (_) => _TopicScreen(topic: t as Map<String,dynamic>, color: color, section: sec['title'] as String),
-          )),
-          child: Container(
-            margin: const EdgeInsets.only(bottom: 8),
-            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
-            decoration: BoxDecoration(
-              color: Colors.white, borderRadius: BorderRadius.circular(12),
-              boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.04), blurRadius: 6)],
-            ),
-            child: Row(children: [
-              Container(width: 8, height: 8, decoration: BoxDecoration(color: color, shape: BoxShape.circle)),
-              const SizedBox(width: 12),
-              Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text(t['title'] as String, style: GoogleFonts.poppins(
-                    fontSize: 13, fontWeight: FontWeight.w600, color: const Color(0xFF1A1A2E))),
-                Text('${t['weightage']} • ${t['readTime']}', style: GoogleFonts.poppins(
-                    fontSize: 11, color: Colors.grey.shade500)),
-              ])),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                decoration: BoxDecoration(
-                  color: _diffColor(t['difficulty'] as String).withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(6),
-                ),
-                child: Text(t['difficulty'] as String, style: GoogleFonts.poppins(
-                    fontSize: 10, fontWeight: FontWeight.w600,
-                    color: _diffColor(t['difficulty'] as String))),
-              ),
-              const SizedBox(width: 6),
-              Icon(Icons.chevron_right, color: Colors.grey.shade400, size: 18),
-            ]),
-          ),
-        )),
-        const SizedBox(height: 8),
-      ]);
-    }),
-  ]);
-
-  Widget _pyqTab() {
-    if (!_quizStarted) return _quizStart();
-    if (_quizIndex >= _pyqs.length) return _result(false);
-    return _question(_pyqs[_quizIndex], false);
-  }
-
-  Widget _quizStart() => Center(child: Padding(padding: const EdgeInsets.all(24), child: Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      Container(width: 90, height: 90,
-          decoration: BoxDecoration(color: const Color(0xFF1565C0).withOpacity(0.1), shape: BoxShape.circle),
-          child: const Icon(Icons.history_edu_rounded, size: 44, color: Color(0xFF1565C0))),
-      const SizedBox(height: 20),
-      Text('Previous Year Questions', style: GoogleFonts.poppins(
-          fontSize: 19, fontWeight: FontWeight.w700, color: const Color(0xFF1A1A2E))),
-      const SizedBox(height: 6),
-      Text('${_pyqs.length} questions • $_selectedExam • With explanations',
-          textAlign: TextAlign.center,
-          style: GoogleFonts.poppins(fontSize: 12, color: Colors.grey.shade500)),
-      const SizedBox(height: 24),
-      Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-        _badge('${_pyqs.length}', 'Questions'),
-        const SizedBox(width: 12),
-        _badge('2024', 'Latest'),
-      ]),
-      const SizedBox(height: 28),
-      SizedBox(width: double.infinity, child: ElevatedButton(
-        onPressed: () => setState(() { _quizStarted = true; _quizIndex = 0; _score = 0; _selAns = null; _showExp = false; }),
-        style: ElevatedButton.styleFrom(
-          backgroundColor: const Color(0xFF1565C0),
-          padding: const EdgeInsets.symmetric(vertical: 14),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+  Widget _buildHeader() {
+    return Container(
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Color(0xFF1565C0), Color(0xFF1976D2)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
         ),
-        child: Text('Start Practice', style: GoogleFonts.poppins(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600)),
-      )),
-    ],
-  )));
-
-  Widget _badge(String v, String l) => Container(
-    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-    decoration: BoxDecoration(color: const Color(0xFF1565C0).withOpacity(0.08), borderRadius: BorderRadius.circular(10)),
-    child: Column(children: [
-      Text(v, style: GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.w700, color: const Color(0xFF1565C0))),
-      Text(l, style: GoogleFonts.poppins(fontSize: 11, color: Colors.grey.shade500)),
-    ]),
-  );
-
-  Widget _question(Map<String,dynamic> q, bool isMock) {
-    final opts    = q['opts'] as List;
-    final correct = q['ans'] as int;
-    final selAns  = isMock ? _mockAns : _selAns;
-    final showExp = isMock ? _mockShowExp : _showExp;
-    final idx     = isMock ? _mockIndex : _quizIndex;
-    final total   = isMock ? (_activeMock!['questions'] as List).length : _pyqs.length;
-    final score   = isMock ? _mockScore : _score;
-
-    return SingleChildScrollView(padding: const EdgeInsets.all(16), child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        if (isMock && _timedMode)
+      ),
+      padding: EdgeInsets.only(
+        top: MediaQuery.of(context).padding.top + 8,
+        left: 16, right: 16, bottom: 20,
+      ),
+      child: Row(
+        children: [
+          GestureDetector(
+            onTap: () => Navigator.pop(context),
+            child: const Icon(Icons.arrow_back,
+                color: Colors.white),
+          ),
+          const SizedBox(width: 12),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Study Material',
+                  style: GoogleFonts.poppins(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w700)),
+              Text('Prepare smarter, score higher',
+                  style: GoogleFonts.poppins(
+                      color: Colors.white70,
+                      fontSize: 12)),
+            ],
+          ),
+          const Spacer(),
           Container(
-            margin: const EdgeInsets.only(bottom: 10),
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: _timeLeft < 60 ? const Color(0xFFEF4444).withOpacity(0.1) : const Color(0xFF1565C0).withOpacity(0.08),
+              color: Colors.white.withOpacity(0.2),
               borderRadius: BorderRadius.circular(10),
             ),
-            child: Row(children: [
-              Icon(Icons.timer, size: 18, color: _timeLeft < 60 ? const Color(0xFFEF4444) : const Color(0xFF1565C0)),
-              const SizedBox(width: 6),
-              Text(_fmt(_timeLeft), style: GoogleFonts.poppins(
-                  fontSize: 16, fontWeight: FontWeight.w700,
-                  color: _timeLeft < 60 ? const Color(0xFFEF4444) : const Color(0xFF1565C0))),
-            ]),
+            child: const Icon(Icons.bookmark_outline,
+                color: Colors.white, size: 20),
           ),
-        Row(children: [
-          Text('Q ${idx+1}/$total', style: GoogleFonts.poppins(fontSize: 12, fontWeight: FontWeight.w600, color: const Color(0xFF1565C0))),
-          const SizedBox(width: 10),
-          Expanded(child: LinearProgressIndicator(
-            value: (idx+1)/total,
-            backgroundColor: Colors.grey.shade200,
-            valueColor: const AlwaysStoppedAnimation(Color(0xFF1565C0)),
-            borderRadius: BorderRadius.circular(4), minHeight: 5,
-          )),
-          const SizedBox(width: 10),
-          Text('Score: $score', style: GoogleFonts.poppins(fontSize: 12, fontWeight: FontWeight.w600, color: const Color(0xFF10B981))),
-        ]),
-        const SizedBox(height: 10),
-        if (q.containsKey('subject')) Row(children: [
-          _tag(q['subject'] as String, const Color(0xFF1565C0)),
-          if (q.containsKey('year')) ...[const SizedBox(width: 6), _tag('${q['year']}', const Color(0xFF10B981))],
-        ]),
-        const SizedBox(height: 10),
-        Container(
-          padding: const EdgeInsets.all(14),
-          decoration: BoxDecoration(
-            color: Colors.white, borderRadius: BorderRadius.circular(14),
-            boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 8)],
-          ),
-          child: Text(q['q'] as String, style: GoogleFonts.poppins(
-              fontSize: 14, fontWeight: FontWeight.w600, color: const Color(0xFF1A1A2E), height: 1.5)),
-        ),
-        const SizedBox(height: 12),
-        // ── OPTIONS — Fixed answer highlighting ──
-        ...opts.asMap().entries.map((e) {
-          final i   = e.key;
-          final opt = e.value as String;
-          final lbl = ['A','B','C','D'][i];
-
-          // Default colors
-          Color bg     = Colors.white;
-          Color border = Colors.grey.shade200;
-          Color txt    = const Color(0xFF374151);
-          Color lblBg  = const Color(0xFF1565C0);
-          IconData? trailingIcon;
-          Color? trailingColor;
-
-          if (selAns != null) {
-            // Always make correct answer GREEN
-            if (i == correct) {
-              bg     = const Color(0xFF10B981).withOpacity(0.1);
-              border = const Color(0xFF10B981);
-              txt    = const Color(0xFF10B981);
-              lblBg  = const Color(0xFF10B981);
-              trailingIcon  = Icons.check_circle;
-              trailingColor = const Color(0xFF10B981);
-            }
-            // If user selected wrong answer — make it RED
-            else if (selAns == lbl && i != correct) {
-              bg     = const Color(0xFFEF4444).withOpacity(0.1);
-              border = const Color(0xFFEF4444);
-              txt    = const Color(0xFFEF4444);
-              lblBg  = const Color(0xFFEF4444);
-              trailingIcon  = Icons.cancel;
-              trailingColor = const Color(0xFFEF4444);
-            }
-          }
-
-          return GestureDetector(
-            onTap: selAns == null ? () {
-              if (isMock) {
-                final isCorrect = i == correct;
-                setState(() {
-                  _mockAns      = lbl;
-                  _mockShowExp  = true;
-                  if (isCorrect) _mockScore++;
-                  _mockAnswers[_mockIndex] = isCorrect;
-                });
-              } else {
-                setState(() {
-                  _selAns  = lbl;
-                  _showExp = true;
-                  if (i == correct) _score++;
-                });
-              }
-            } : null,
-            child: Container(
-              margin: const EdgeInsets.only(bottom: 8),
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: bg,
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: border),
-              ),
-              child: Row(children: [
-                Container(
-                  width: 26, height: 26,
-                  decoration: BoxDecoration(color: lblBg, borderRadius: BorderRadius.circular(7)),
-                  child: Center(child: Text(lbl, style: GoogleFonts.poppins(
-                      fontSize: 11, fontWeight: FontWeight.w700, color: Colors.white))),
-                ),
-                const SizedBox(width: 10),
-                Expanded(child: Text(opt, style: GoogleFonts.poppins(
-                    fontSize: 13, color: txt,
-                    fontWeight: selAns != null && i == correct ? FontWeight.w600 : FontWeight.w400))),
-                if (trailingIcon != null)
-                  Icon(trailingIcon, color: trailingColor, size: 18),
-              ]),
-            ),
-          );
-        }),
-        if (showExp) ...[
-          Container(
-            padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(
-              color: const Color(0xFF1565C0).withOpacity(0.06),
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: const Color(0xFF1565C0).withOpacity(0.2)),
-            ),
-            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Row(children: [
-                const Icon(Icons.lightbulb_outline, color: Color(0xFF1565C0), size: 15),
-                const SizedBox(width: 5),
-                Text('Explanation', style: GoogleFonts.poppins(fontSize: 11, fontWeight: FontWeight.w700, color: const Color(0xFF1565C0))),
-              ]),
-              const SizedBox(height: 4),
-              Text(q['exp'] as String, style: GoogleFonts.poppins(fontSize: 12, color: const Color(0xFF374151), height: 1.4)),
-            ]),
-          ),
-          const SizedBox(height: 12),
-          SizedBox(width: double.infinity, child: ElevatedButton(
-            onPressed: () {
-              if (isMock) {
-                final qList = _activeMock!['questions'] as List;
-                setState(() {
-                  if (_mockIndex < qList.length - 1) {
-                    _mockIndex++; _mockAns = null; _mockShowExp = false;
-                  } else {
-                    _mockDone = true; _timer?.cancel();
-                  }
-                });
-              } else {
-                setState(() {
-                  if (_quizIndex < _pyqs.length - 1) {
-                    _quizIndex++; _selAns = null; _showExp = false;
-                  } else {
-                    _quizIndex = _pyqs.length;
-                  }
-                });
-              }
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFF1565C0),
-              padding: const EdgeInsets.symmetric(vertical: 12),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            ),
-            child: Text(
-              isMock
-                  ? (_mockIndex < (_activeMock!['questions'] as List).length - 1 ? 'Next Question →' : 'See Results')
-                  : (_quizIndex < _pyqs.length - 1 ? 'Next Question →' : 'See Results'),
-              style: GoogleFonts.poppins(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w600),
-            ),
-          )),
         ],
-      ],
-    ));
+      ),
+    );
   }
 
-  Widget _tag(String t, Color c) => Container(
-    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-    decoration: BoxDecoration(color: c.withOpacity(0.1), borderRadius: BorderRadius.circular(5)),
-    child: Text(t, style: GoogleFonts.poppins(fontSize: 10, fontWeight: FontWeight.w600, color: c)),
-  );
-
-  // ── MOCK TEST ANALYSER RESULT ──────────────────────────────
-  Widget _result(bool isMock) {
-    final questions = isMock
-        ? (_activeMock!['questions'] as List).cast<Map<String,dynamic>>()
-        : _pyqs;
-    final total = questions.length;
-    final s     = isMock ? _mockScore : _score;
-    final pct   = total > 0 ? (s / total * 100).round() : 0;
-    final c     = pct >= 70 ? const Color(0xFF10B981) : pct >= 50 ? const Color(0xFFF59E0B) : const Color(0xFFEF4444);
-    final msg   = pct >= 70 ? 'Excellent! 🎉' : pct >= 50 ? 'Good Effort! 👍' : 'Keep Practicing! 💪';
-
-    // Build topic analysis from tracked answers
-    final Map<String, int> topicCorrect = {};
-    final Map<String, int> topicTotal   = {};
-    if (isMock) {
-      for (int i = 0; i < questions.length; i++) {
-        final subject = questions[i]['subject'] as String? ?? 'General';
-        topicTotal[subject]   = (topicTotal[subject] ?? 0) + 1;
-        topicCorrect[subject] = (topicCorrect[subject] ?? 0) + (_mockAnswers[i] == true ? 1 : 0);
-      }
-    }
-
-    return SingleChildScrollView(
-      padding: const EdgeInsets.all(20),
-      child: Column(children: [
-        // Score circle
-        Container(
-          width: 120, height: 120,
-          decoration: BoxDecoration(
-            color: c.withOpacity(0.1), shape: BoxShape.circle,
-            border: Border.all(color: c, width: 3),
-          ),
-          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Text('$pct%', style: GoogleFonts.poppins(fontSize: 28, fontWeight: FontWeight.w800, color: c)),
-            Text('$s/$total', style: GoogleFonts.poppins(fontSize: 12, color: Colors.grey.shade500)),
-          ]),
-        ),
-        const SizedBox(height: 12),
-        Text(msg, style: GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.w700, color: c)),
-        const SizedBox(height: 4),
-        Text('$s out of $total correct', style: GoogleFonts.poppins(fontSize: 13, color: Colors.grey.shade500)),
-        const SizedBox(height: 20),
-
-        // Performance banner
-        Container(
-          width: double.infinity, padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: c.withOpacity(0.08), borderRadius: BorderRadius.circular(14),
-            border: Border.all(color: c.withOpacity(0.3)),
-          ),
-          child: Row(children: [
-            Icon(pct >= 70 ? Icons.emoji_events_rounded : pct >= 50 ? Icons.thumb_up_rounded : Icons.trending_up_rounded, color: c, size: 28),
-            const SizedBox(width: 12),
-            Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text(
-                  pct >= 70 ? 'Outstanding Performance!' : pct >= 50 ? 'You are on the right track!' : "Don't give up — practice more!",
-                  style: GoogleFonts.poppins(fontSize: 13, fontWeight: FontWeight.w700, color: c)),
-              Text(
-                  pct >= 70 ? 'You are exam ready. Keep this pace!' : pct >= 50 ? 'Focus on weak areas to score 70%+' : 'Revise notes and attempt again',
-                  style: GoogleFonts.poppins(fontSize: 11, color: Colors.grey.shade600)),
-            ])),
-          ]),
-        ),
-        const SizedBox(height: 20),
-
-        // Topic-wise analysis
-        if (isMock && topicTotal.isNotEmpty) ...[
-          Align(alignment: Alignment.centerLeft,
-              child: Text('📊 Topic-wise Analysis', style: GoogleFonts.poppins(
-                  fontSize: 15, fontWeight: FontWeight.w700, color: const Color(0xFF1A1A2E)))),
-          const SizedBox(height: 10),
-          ...topicTotal.entries.map((entry) {
-            final subject  = entry.key;
-            final tTotal   = entry.value;
-            final tCorrect = topicCorrect[subject] ?? 0;
-            final tPct     = tTotal > 0 ? (tCorrect / tTotal * 100).round() : 0;
-            final tColor   = tPct >= 70 ? const Color(0xFF10B981) : tPct >= 50 ? const Color(0xFFF59E0B) : const Color(0xFFEF4444);
-            final label    = tPct >= 70 ? '✅ Strong' : tPct >= 50 ? '⚠️ Average' : '❌ Weak';
-            return Container(
-              margin: const EdgeInsets.only(bottom: 10),
-              padding: const EdgeInsets.all(14),
-              decoration: BoxDecoration(
-                color: Colors.white, borderRadius: BorderRadius.circular(12),
-                boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 6)],
-              ),
-              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                  Text(subject, style: GoogleFonts.poppins(fontSize: 13, fontWeight: FontWeight.w600, color: const Color(0xFF1A1A2E))),
-                  Row(children: [
-                    Text('$tCorrect/$tTotal', style: GoogleFonts.poppins(fontSize: 12, color: Colors.grey.shade500)),
-                    const SizedBox(width: 8),
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                      decoration: BoxDecoration(color: tColor.withOpacity(0.1), borderRadius: BorderRadius.circular(10)),
-                      child: Text(label, style: GoogleFonts.poppins(fontSize: 10, color: tColor, fontWeight: FontWeight.w600)),
-                    ),
-                  ]),
-                ]),
-                const SizedBox(height: 8),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(4),
-                  child: LinearProgressIndicator(
-                    value: tPct / 100,
-                    backgroundColor: Colors.grey.shade200,
-                    valueColor: AlwaysStoppedAnimation<Color>(tColor),
-                    minHeight: 8,
+  Widget _buildExamSelector() {
+    return Container(
+      color: Colors.white,
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: SizedBox(
+        height: 38,
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          itemCount: _exams.length,
+          itemBuilder: (_, i) {
+            final exam = _exams[i];
+            final selected = _selectedExam == exam;
+            return GestureDetector(
+              onTap: () => setState(() => _selectedExam = exam),
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 200),
+                margin: const EdgeInsets.only(right: 8),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 16, vertical: 8),
+                decoration: BoxDecoration(
+                  color: selected
+                      ? const Color(0xFF1565C0)
+                      : Colors.transparent,
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(
+                    color: selected
+                        ? const Color(0xFF1565C0)
+                        : const Color(0xFFD1D5DB),
                   ),
                 ),
-                const SizedBox(height: 4),
-                Text('$tPct% accuracy', style: GoogleFonts.poppins(fontSize: 11, color: Colors.grey.shade500)),
-              ]),
-            );
-          }),
-          const SizedBox(height: 20),
-
-          // Recommendations
-          Align(alignment: Alignment.centerLeft,
-              child: Text('💡 Recommendations', style: GoogleFonts.poppins(
-                  fontSize: 15, fontWeight: FontWeight.w700, color: const Color(0xFF1A1A2E)))),
-          const SizedBox(height: 10),
-          ...topicTotal.entries.where((e) {
-            final tPct = e.value > 0 ? ((topicCorrect[e.key] ?? 0) / e.value * 100).round() : 0;
-            return tPct < 70;
-          }).map((entry) {
-            final tPct = entry.value > 0 ? ((topicCorrect[entry.key] ?? 0) / entry.value * 100).round() : 0;
-            return Container(
-              margin: const EdgeInsets.only(bottom: 8),
-              padding: const EdgeInsets.all(14),
-              decoration: BoxDecoration(
-                color: const Color(0xFFFFF8E7), borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: const Color(0xFFF59E0B).withOpacity(0.3)),
+                child: Text(exam,
+                    style: GoogleFonts.poppins(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                        color: selected
+                            ? Colors.white
+                            : const Color(0xFF6B7280))),
               ),
-              child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                const Text('💡 ', style: TextStyle(fontSize: 16)),
-                Expanded(child: Text(_getTip(entry.key, tPct),
-                    style: GoogleFonts.poppins(fontSize: 12, color: const Color(0xFF374151)))),
-              ]),
             );
-          }),
-          const SizedBox(height: 20),
-        ],
-
-        // Buttons
-        SizedBox(width: double.infinity, child: ElevatedButton(
-          onPressed: () => isMock ? _resetMock() : _resetQuiz(),
-          style: ElevatedButton.styleFrom(
-            backgroundColor: const Color(0xFF1565C0),
-            padding: const EdgeInsets.symmetric(vertical: 14),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-          ),
-          child: Text('Try Again', style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w600)),
-        )),
-        const SizedBox(height: 10),
-        SizedBox(width: double.infinity, child: OutlinedButton(
-          onPressed: () => isMock ? _resetMock() : _resetQuiz(),
-          style: OutlinedButton.styleFrom(
-            padding: const EdgeInsets.symmetric(vertical: 14),
-            side: const BorderSide(color: Color(0xFF1565C0)),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-          ),
-          child: Text('Back to Tests', style: GoogleFonts.poppins(
-              color: const Color(0xFF1565C0), fontWeight: FontWeight.w600)),
-        )),
-        const SizedBox(height: 20),
-      ]),
+          },
+        ),
+      ),
     );
   }
 
-  String _getTip(String subject, int pct) {
-    switch (subject) {
-      case 'Reasoning': return 'Reasoning: Practice Puzzles, Series, and Blood Relations daily. Aim for 20-25 correct in SSC CGL. Use Study Notes for shortcut tricks.';
-      case 'Maths': return 'Maths: Focus on Percentage, Profit-Loss, and Time & Work. These 3 topics cover 40% of Maths questions. Practice 20 questions daily.';
-      case 'English': return 'English: Read 1 editorial daily. Focus on Error Detection and Reading Comprehension. Learn 10 new words every day.';
-      case 'GK': case 'General Knowledge': return 'GK: Read daily current affairs for 15 mins. Focus on History, Geography, Polity. Revise Quick Revision cards.';
-      case 'General Science': case 'Science': return 'Science: Focus on Biology (Cell, Human Body) and Physics basics. NCERT 8th-10th covers 80% of exam questions.';
-      case 'Banking': return 'Banking: Read RBI news, current bank rates (Repo, CRR, SLR). Focus on recent banking schemes.';
-      default: return '$subject: Revise the study notes and attempt more practice questions. Current accuracy: $pct% — aim for 70%+.';
-    }
-  }
-
-  Widget _mockTab() {
-    if (_activeMock != null) {
-      if (_mockDone) return _result(true);
-      final qList = _activeMock!['questions'] as List;
-      return _question(qList[_mockIndex] as Map<String,dynamic>, true);
-    }
-    return ListView(padding: const EdgeInsets.all(16), children: [
-      ..._mocks.map((mt) => Container(
-        margin: const EdgeInsets.only(bottom: 14),
-        decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(16),
-          boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 8)],
-        ),
-        child: Padding(padding: const EdgeInsets.all(16), child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(children: [
-              Container(width: 44, height: 44,
-                  decoration: BoxDecoration(color: const Color(0xFF1565C0).withOpacity(0.1), borderRadius: BorderRadius.circular(12)),
-                  child: const Icon(Icons.quiz_outlined, color: Color(0xFF1565C0), size: 22)),
-              const SizedBox(width: 12),
-              Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text(mt['title'] as String, style: GoogleFonts.poppins(fontSize: 13, fontWeight: FontWeight.w700, color: const Color(0xFF1A1A2E))),
-                Text(mt['description'] as String, style: GoogleFonts.poppins(fontSize: 11, color: Colors.grey.shade500)),
-              ])),
-            ]),
-            const SizedBox(height: 12),
-            const Divider(height: 1),
-            const SizedBox(height: 10),
-            Row(children: [
-              Expanded(child: OutlinedButton.icon(
-                onPressed: () => setState(() {
-                  _activeMock = mt; _mockIndex = 0; _mockScore = 0;
-                  _mockAns = null; _mockShowExp = false; _mockDone = false;
-                  _timedMode = false; _mockAnswers = {};
-                }),
-                icon: const Icon(Icons.psychology_outlined, size: 15),
-                label: Text('Practice', style: GoogleFonts.poppins(fontSize: 12)),
-                style: OutlinedButton.styleFrom(
-                  foregroundColor: const Color(0xFF1565C0),
-                  side: const BorderSide(color: Color(0xFF1565C0)),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                ),
-              )),
-              const SizedBox(width: 10),
-              Expanded(child: ElevatedButton.icon(
-                onPressed: () => setState(() {
-                  _activeMock = mt; _mockIndex = 0; _mockScore = 0;
-                  _mockAns = null; _mockShowExp = false; _mockDone = false;
-                  _timedMode = true; _mockAnswers = {};
-                  _startTimer(mt['duration'] as int);
-                }),
-                icon: const Icon(Icons.timer_outlined, size: 15, color: Colors.white),
-                label: Text('Timed (${_fmt(mt['duration'] as int)})', style: GoogleFonts.poppins(fontSize: 12, color: Colors.white)),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF1565C0),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                ),
-              )),
-            ]),
-          ],
-        )),
-      )),
-    ]);
-  }
-
-  Widget _qrTab() => ListView(padding: const EdgeInsets.all(16), children: [
-    ..._qr.map((sec) => Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Text(sec['title'] as String, style: GoogleFonts.poppins(
-          fontSize: 14, fontWeight: FontWeight.w700, color: const Color(0xFF1A1A2E))),
-      const SizedBox(height: 8),
-      Container(
-        decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(14),
-          boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.04), blurRadius: 6)],
-        ),
-        child: Column(children: (sec['items'] as List).asMap().entries.map((e) {
-          final isLast = e.key == (sec['items'] as List).length - 1;
-          return Column(children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 11),
-              child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Container(width: 22, height: 22,
-                    decoration: BoxDecoration(color: const Color(0xFF1565C0).withOpacity(0.1), borderRadius: BorderRadius.circular(5)),
-                    child: Center(child: Text('${e.key+1}', style: const TextStyle(fontSize: 10, fontWeight: FontWeight.w700, color: Color(0xFF1565C0))))),
-                const SizedBox(width: 10),
-                Expanded(child: Text(e.value as String, style: GoogleFonts.poppins(fontSize: 12, color: const Color(0xFF374151), height: 1.4))),
-              ]),
-            ),
-            if (!isLast) Divider(height: 1, color: Colors.grey.shade100),
-          ]);
-        }).toList()),
+  Widget _buildTabBar() {
+    return Container(
+      color: Colors.white,
+      child: TabBar(
+        controller: _tabController,
+        labelColor: const Color(0xFF1565C0),
+        unselectedLabelColor: const Color(0xFF6B7280),
+        indicatorColor: const Color(0xFF1565C0),
+        indicatorWeight: 3,
+        labelStyle: GoogleFonts.poppins(
+            fontSize: 11, fontWeight: FontWeight.w600),
+        unselectedLabelStyle:
+            GoogleFonts.poppins(fontSize: 11),
+        tabs: const [
+          Tab(icon: Icon(Icons.menu_book, size: 18),
+              text: 'Notes'),
+          Tab(icon: Icon(Icons.history_edu, size: 18),
+              text: 'PYQ'),
+          Tab(icon: Icon(Icons.quiz, size: 18),
+              text: 'Mock Test'),
+          Tab(icon: Icon(Icons.flash_on, size: 18),
+              text: 'Quick Rev'),
+        ],
       ),
-      const SizedBox(height: 16),
-    ])),
-  ]);
+    );
+  }
 
-  Widget _bottomNav() => BottomNavigationBar(
-    currentIndex: 0,
-    type: BottomNavigationBarType.fixed,
-    selectedItemColor: const Color(0xFF1565C0),
-    unselectedItemColor: Colors.grey.shade400,
-    selectedLabelStyle: GoogleFonts.poppins(fontSize: 11, fontWeight: FontWeight.w600),
-    unselectedLabelStyle: GoogleFonts.poppins(fontSize: 11),
-    onTap: (i) {
-      switch(i) {
-        case 0: Navigator.pushReplacementNamed(context, '/home'); break;
-        case 1: Navigator.pushReplacementNamed(context, '/jobs'); break;
-        case 2: Navigator.pushReplacementNamed(context, '/current-affairs'); break;
-        case 3: Navigator.pushReplacementNamed(context, '/saved'); break;
-        case 4: Navigator.pushReplacementNamed(context, '/profile'); break;
-      }
-    },
-    items: const [
-      BottomNavigationBarItem(icon: Icon(Icons.home_outlined), activeIcon: Icon(Icons.home), label: 'Home'),
-      BottomNavigationBarItem(icon: Icon(Icons.work_outline), activeIcon: Icon(Icons.work), label: 'Jobs'),
-      BottomNavigationBarItem(icon: Icon(Icons.newspaper_outlined), activeIcon: Icon(Icons.newspaper), label: 'News'),
-      BottomNavigationBarItem(icon: Icon(Icons.bookmark_outline), activeIcon: Icon(Icons.bookmark), label: 'Saved'),
-      BottomNavigationBarItem(icon: Icon(Icons.person_outline), activeIcon: Icon(Icons.person), label: 'Profile'),
-    ],
-  );
-
-  // ── FREE RESOURCES DATA (OFFICIAL SITES ONLY) ───────────────
-  static const Map<String, List<Map<String, dynamic>>> _resources = {
-    'SSC CGL': [
-      {'category': 'Official Exam Website', 'icon': 'official', 'color': 0xFF1565C0, 'items': [
-        {'title': 'SSC Official Website', 'subtitle': 'Notifications, syllabus, admit cards, results', 'url': 'https://ssc.gov.in'},
-        {'title': 'SSC Previous Year Papers', 'subtitle': 'Download official CGL question papers free', 'url': 'https://ssc.gov.in/candidate-corner/question-papers'},
-      ]},
-      {'category': 'Free Books & Notes', 'icon': 'book', 'color': 0xFF10B981, 'items': [
-        {'title': 'NCERT Textbooks (Free PDF)', 'subtitle': 'Class 6-12 all subjects — official NCERT site', 'url': 'https://ncert.nic.in/textbook.php'},
-        {'title': 'PIB Current Affairs', 'subtitle': 'Official Govt of India press releases for GK', 'url': 'https://pib.gov.in'},
-      ]},
-    ],
-    'SSC CHSL': [
-      {'category': 'Official Exam Website', 'icon': 'official', 'color': 0xFF1565C0, 'items': [
-        {'title': 'SSC Official Website', 'subtitle': 'CHSL notifications, syllabus, results', 'url': 'https://ssc.gov.in'},
-        {'title': 'SSC Previous Year Papers', 'subtitle': 'Download official CHSL question papers free', 'url': 'https://ssc.gov.in/candidate-corner/question-papers'},
-      ]},
-      {'category': 'Free Books & Notes', 'icon': 'book', 'color': 0xFF10B981, 'items': [
-        {'title': 'NCERT Textbooks (Free PDF)', 'subtitle': 'Class 6-12 all subjects — official NCERT site', 'url': 'https://ncert.nic.in/textbook.php'},
-        {'title': 'PIB Current Affairs', 'subtitle': 'Official Govt of India press releases for GK', 'url': 'https://pib.gov.in'},
-      ]},
-    ],
-    'RRB NTPC': [
-      {'category': 'Official Exam Website', 'icon': 'official', 'color': 0xFF1565C0, 'items': [
-        {'title': 'Indian Railways Official', 'subtitle': 'RRB NTPC notifications and recruitment', 'url': 'https://indianrailways.gov.in'},
-        {'title': 'RRB Chandigarh (North India)', 'subtitle': 'Official RRB for Punjab, Haryana, HP candidates', 'url': 'https://www.rrbcdg.gov.in'},
-        {'title': 'RRB Apply Portal', 'subtitle': 'All RRB zone notifications and applications', 'url': 'https://www.rrbapply.gov.in'},
-      ]},
-      {'category': 'Free Books & Notes', 'icon': 'book', 'color': 0xFF10B981, 'items': [
-        {'title': 'NCERT Textbooks (Free PDF)', 'subtitle': 'Maths, Science, GK — Class 6-12 official', 'url': 'https://ncert.nic.in/textbook.php'},
-        {'title': 'PIB Current Affairs', 'subtitle': 'Official Govt news for Railway GA section', 'url': 'https://pib.gov.in'},
-      ]},
-    ],
-    'Army Agniveer': [
-      {'category': 'Official Exam Website', 'icon': 'official', 'color': 0xFF1565C0, 'items': [
-        {'title': 'Join Indian Army Official', 'subtitle': 'Agniveer Army notifications and syllabus', 'url': 'https://joinindianarmy.nic.in'},
-        {'title': 'Agniveervayu (Air Force)', 'subtitle': 'Official Air Force Agniveer portal', 'url': 'https://agnipathvayu.cdac.in'},
-        {'title': 'Join Indian Navy Official', 'subtitle': 'Navy Agniveer SSR/MR notifications', 'url': 'https://www.joinindiannavy.gov.in'},
-      ]},
-      {'category': 'Free Books & Notes', 'icon': 'book', 'color': 0xFF10B981, 'items': [
-        {'title': 'NCERT Textbooks (Free PDF)', 'subtitle': 'Class 10-12 Maths, Science, English official', 'url': 'https://ncert.nic.in/textbook.php'},
-        {'title': 'PIB Current Affairs', 'subtitle': 'Official Govt news for GK section', 'url': 'https://pib.gov.in'},
-      ]},
-    ],
-    'Punjab Police': [
-      {'category': 'Official Exam Website', 'icon': 'official', 'color': 0xFF1565C0, 'items': [
-        {'title': 'Punjab Police Official', 'subtitle': 'Constable notifications, results, recruitment', 'url': 'https://punjabpolice.gov.in'},
-        {'title': 'PPSC Official Website', 'subtitle': 'Punjab Public Service Commission portal', 'url': 'https://ppsc.gov.in'},
-        {'title': 'Punjab Govt Portal', 'subtitle': 'All Punjab government recruitment notifications', 'url': 'https://punjab.gov.in'},
-      ]},
-      {'category': 'Free Books & Notes', 'icon': 'book', 'color': 0xFF10B981, 'items': [
-        {'title': 'NCERT Textbooks (Free PDF)', 'subtitle': 'Class 10-12 Hindi, English, GK official', 'url': 'https://ncert.nic.in/textbook.php'},
-        {'title': 'PIB Current Affairs', 'subtitle': 'Official Govt news for current affairs section', 'url': 'https://pib.gov.in'},
-      ]},
-    ],
-    'IBPS PO': [
-      {'category': 'Official Exam Website', 'icon': 'official', 'color': 0xFF1565C0, 'items': [
-        {'title': 'IBPS Official Website', 'subtitle': 'PO, Clerk, SO — official notifications and results', 'url': 'https://www.ibps.in'},
-        {'title': 'SBI Careers Official', 'subtitle': 'SBI PO and Clerk official notifications', 'url': 'https://www.sbi.co.in/web/careers'},
-        {'title': 'RBI Official Website', 'subtitle': 'Banking awareness — official RBI site', 'url': 'https://www.rbi.org.in'},
-      ]},
-      {'category': 'Free Books & Notes', 'icon': 'book', 'color': 0xFF10B981, 'items': [
-        {'title': 'NCERT Class 11-12 Economics', 'subtitle': 'Best source for banking economy concepts', 'url': 'https://ncert.nic.in/textbook.php'},
-        {'title': 'PIB Current Affairs', 'subtitle': 'Economy and banking news — official source', 'url': 'https://pib.gov.in'},
-        {'title': 'RBI Publications', 'subtitle': 'Annual reports, monetary policy — official RBI', 'url': 'https://www.rbi.org.in/scripts/publications.aspx'},
-      ]},
-    ],
-    'UPSC CSE': [
-      {'category': 'Official Exam Website', 'icon': 'official', 'color': 0xFF1565C0, 'items': [
-        {'title': 'UPSC Official Website', 'subtitle': 'CSE notifications, syllabus, results', 'url': 'https://upsc.gov.in'},
-        {'title': 'UPSC Previous Year Papers', 'subtitle': 'Official Prelims and Mains PYQs — free', 'url': 'https://upsc.gov.in/examinations/previous-question-papers'},
-        {'title': 'UPSC Online Application', 'subtitle': 'Apply for UPSC exams — official portal', 'url': 'https://upsconline.nic.in'},
-      ]},
-      {'category': 'Free Books & Notes', 'icon': 'book', 'color': 0xFF10B981, 'items': [
-        {'title': 'NCERT Textbooks (Free PDF)', 'subtitle': 'Class 6-12 — backbone of UPSC preparation', 'url': 'https://ncert.nic.in/textbook.php'},
-        {'title': 'PIB Current Affairs', 'subtitle': 'Must-read official source for UPSC current affairs', 'url': 'https://pib.gov.in'},
-        {'title': 'Economic Survey (Official)', 'subtitle': 'Ministry of Finance — official economic data', 'url': 'https://www.indiabudget.gov.in/economicsurvey'},
-        {'title': 'India Year Book (Official)', 'subtitle': 'Official Govt of India yearbook — free online', 'url': 'https://publications.india.gov.in'},
-      ]},
-    ],
-    'Delhi Police': [
-      {'category': 'Official Exam Website', 'icon': 'official', 'color': 0xFF1565C0, 'items': [
-        {'title': 'Delhi Police Official', 'subtitle': 'Constable and Head Constable recruitment', 'url': 'https://www.delhipolice.gov.in'},
-        {'title': 'SSC Official Website', 'subtitle': 'Delhi Police SI/Inspector via SSC CPO', 'url': 'https://ssc.gov.in'},
-        {'title': 'SSC Previous Year Papers', 'subtitle': 'Official Delhi Police CPO question papers', 'url': 'https://ssc.gov.in/candidate-corner/question-papers'},
-      ]},
-      {'category': 'Free Books & Notes', 'icon': 'book', 'color': 0xFF10B981, 'items': [
-        {'title': 'NCERT Textbooks (Free PDF)', 'subtitle': 'Class 10-12 GK, English, Science official', 'url': 'https://ncert.nic.in/textbook.php'},
-        {'title': 'PIB Current Affairs', 'subtitle': 'Official Govt news for Delhi Police GK', 'url': 'https://pib.gov.in'},
-      ]},
-    ],
-    'Haryana Police': [
-      {'category': 'Official Exam Website', 'icon': 'official', 'color': 0xFF1565C0, 'items': [
-        {'title': 'Haryana Police Official', 'subtitle': 'Constable recruitment notifications and syllabus', 'url': 'https://haryanapolice.gov.in'},
-        {'title': 'HSSC Official Website', 'subtitle': 'Haryana Staff Selection Commission portal', 'url': 'https://hssc.gov.in'},
-        {'title': 'Haryana Govt Portal', 'subtitle': 'All Haryana government recruitment info', 'url': 'https://haryana.gov.in'},
-      ]},
-      {'category': 'Free Books & Notes', 'icon': 'book', 'color': 0xFF10B981, 'items': [
-        {'title': 'NCERT Textbooks (Free PDF)', 'subtitle': 'Class 10-12 Hindi, Maths, GK — official NCERT', 'url': 'https://ncert.nic.in/textbook.php'},
-        {'title': 'PIB Current Affairs', 'subtitle': 'National and state current affairs — official', 'url': 'https://pib.gov.in'},
-      ]},
-    ],
-    'NDA': [
-      {'category': 'Official Exam Website', 'icon': 'official', 'color': 0xFF1565C0, 'items': [
-        {'title': 'UPSC NDA Official', 'subtitle': 'NDA notification, syllabus, admit card, results', 'url': 'https://upsc.gov.in'},
-        {'title': 'NDA Previous Year Papers', 'subtitle': 'Official UPSC NDA PYQs — free download', 'url': 'https://upsc.gov.in/examinations/previous-question-papers'},
-        {'title': 'Join Indian Army Official', 'subtitle': 'NDA career and training information', 'url': 'https://joinindianarmy.nic.in'},
-        {'title': 'UPSC Online Application', 'subtitle': 'Apply for NDA exam — official UPSC portal', 'url': 'https://upsconline.nic.in'},
-      ]},
-      {'category': 'Free Books & Notes', 'icon': 'book', 'color': 0xFF10B981, 'items': [
-        {'title': 'NCERT Class 11-12 Maths', 'subtitle': 'Essential for NDA Maths paper — official NCERT', 'url': 'https://ncert.nic.in/textbook.php'},
-        {'title': 'NCERT Class 11-12 Physics', 'subtitle': 'NDA GAT Science section — official NCERT', 'url': 'https://ncert.nic.in/textbook.php'},
-        {'title': 'PIB Current Affairs', 'subtitle': 'Official Govt news for NDA GAT section', 'url': 'https://pib.gov.in'},
-      ]},
-    ],
-  };
-
-  // ── RESOURCES TAB ────────────────────────────────────────────
-  Widget _resourcesTab() {
-    final examResources = _resources[_selectedExam] ?? _resources['SSC CGL']!;
+  // ── NOTES TAB ─────────────────────────────────────────
+  Widget _buildNotesTab() {
     return ListView(
       padding: const EdgeInsets.all(16),
       children: [
+        // Progress banner
         Container(
-          padding: const EdgeInsets.all(14),
+          padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            gradient: const LinearGradient(colors: [Color(0xFF6A1B9A), Color(0xFF9C27B0)]),
-            borderRadius: BorderRadius.circular(14),
+            gradient: const LinearGradient(
+              colors: [Color(0xFF1565C0), Color(0xFF42A5F5)],
+            ),
+            borderRadius: BorderRadius.circular(16),
           ),
-          child: Row(children: [
-            const Icon(Icons.auto_awesome, color: Colors.white, size: 28),
-            const SizedBox(width: 12),
-            Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text('Free Resources — \$_selectedExam',
-                  style: GoogleFonts.poppins(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w700)),
-              Text('Official government websites only',
-                  style: GoogleFonts.poppins(color: Colors.white70, fontSize: 11)),
-            ])),
-          ]),
+          child: Row(
+            children: [
+              const Icon(Icons.school_rounded,
+                  color: Colors.white, size: 32),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('$_selectedExam Notes',
+                        style: GoogleFonts.poppins(
+                            color: Colors.white,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w700)),
+                    Text('22 topics across 4 subjects',
+                        style: GoogleFonts.poppins(
+                            color: Colors.white70,
+                            fontSize: 12)),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
         const SizedBox(height: 16),
-        ...examResources.map((category) {
-          final items = category['items'] as List<dynamic>;
-          final catIcon = category['icon'] as String;
-          final Color catColor = Color(category['color'] as int);
-          final IconData catIconData = catIcon == 'official' ? Icons.language : Icons.menu_book;
-          return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Row(children: [
-              Container(
-                padding: const EdgeInsets.all(6),
-                decoration: BoxDecoration(color: catColor.withOpacity(0.1), borderRadius: BorderRadius.circular(8)),
-                child: Icon(catIconData, color: catColor, size: 16),
+
+        // Sections
+        ..._sections.map((section) {
+          final topics =
+              _topics[section['id']] ?? [];
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Container(
+                    width: 36, height: 36,
+                    decoration: BoxDecoration(
+                      color: (section['color'] as Color)
+                          .withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Icon(section['icon'] as IconData,
+                        color: section['color'] as Color,
+                        size: 20),
+                  ),
+                  const SizedBox(width: 10),
+                  Text(section['title'] as String,
+                      style: GoogleFonts.poppins(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w700,
+                          color: const Color(0xFF1A1A2E))),
+                  const Spacer(),
+                  Text('${topics.length} topics',
+                      style: GoogleFonts.poppins(
+                          fontSize: 12,
+                          color: const Color(0xFF6B7280))),
+                ],
               ),
-              const SizedBox(width: 8),
-              Text(category['category'] as String,
-                  style: GoogleFonts.poppins(fontSize: 13, fontWeight: FontWeight.w700, color: const Color(0xFF1A1A2E))),
-            ]),
-            const SizedBox(height: 8),
-            ...items.map((item) {
-              final m = item as Map<String, dynamic>;
-              return GestureDetector(
-                onTap: () => _launchUrl(m['url'] as String),
+              const SizedBox(height: 10),
+              ...topics.map((topic) => GestureDetector(
+                onTap: () =>
+                    _showTopicDetail(topic, section),
                 child: Container(
                   margin: const EdgeInsets.only(bottom: 8),
                   padding: const EdgeInsets.all(14),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(12),
-                    boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.04), blurRadius: 6)],
+                    boxShadow: [BoxShadow(
+                        color: Colors.black.withOpacity(0.04),
+                        blurRadius: 8,
+                        offset: const Offset(0, 2))],
                   ),
-                  child: Row(children: [
-                    Container(
-                      width: 40, height: 40,
-                      decoration: BoxDecoration(color: catColor.withOpacity(0.1), borderRadius: BorderRadius.circular(10)),
-                      child: Icon(catIconData, color: catColor, size: 20),
-                    ),
-                    const SizedBox(width: 12),
-                    Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                      Text(m['title'] as String,
-                          style: GoogleFonts.poppins(fontSize: 13, fontWeight: FontWeight.w600, color: const Color(0xFF1A1A2E))),
-                      Text(m['subtitle'] as String,
-                          style: GoogleFonts.poppins(fontSize: 11, color: Colors.grey.shade500)),
-                    ])),
-                    Icon(Icons.arrow_forward_ios, size: 12, color: catColor),
-                  ]),
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 8, height: 8,
+                        decoration: BoxDecoration(
+                          color: section['color'] as Color,
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment:
+                              CrossAxisAlignment.start,
+                          children: [
+                            Text(topic['title'] as String,
+                                style: GoogleFonts.poppins(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w600,
+                                    color: const Color(
+                                        0xFF1A1A2E))),
+                            Text(
+                                '${topic['weightage']} per paper',
+                                style: GoogleFonts.poppins(
+                                    fontSize: 11,
+                                    color: const Color(
+                                        0xFF6B7280))),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 4),
+                        decoration: BoxDecoration(
+                          color: _difficultyColor(
+                                  topic['difficulty'] as String)
+                              .withOpacity(0.1),
+                          borderRadius:
+                              BorderRadius.circular(6),
+                        ),
+                        child: Text(
+                            topic['difficulty'] as String,
+                            style: GoogleFonts.poppins(
+                                fontSize: 10,
+                                fontWeight: FontWeight.w600,
+                                color: _difficultyColor(
+                                    topic['difficulty']
+                                        as String))),
+                      ),
+                      const SizedBox(width: 8),
+                      const Icon(Icons.chevron_right,
+                          color: Color(0xFF9CA3AF),
+                          size: 18),
+                    ],
+                  ),
                 ),
-              );
-            }),
-            const SizedBox(height: 12),
-          ]);
+              )),
+              const SizedBox(height: 8),
+            ],
+          );
         }),
-        Container(
-          padding: const EdgeInsets.all(12),
-          decoration: BoxDecoration(
-            color: const Color(0xFFFFF8E1),
-            borderRadius: BorderRadius.circular(10),
-            border: Border.all(color: const Color(0xFFFFC107).withOpacity(0.5)),
-          ),
-          child: Row(children: [
-            const Icon(Icons.info_outline, color: Color(0xFFF59E0B), size: 16),
-            const SizedBox(width: 8),
-            Expanded(child: Text(
-              'All links open official government websites only. Internet connection required.',
-              style: GoogleFonts.poppins(fontSize: 10, color: const Color(0xFF92400E)),
-            )),
-          ]),
-        ),
-        const SizedBox(height: 80),
       ],
     );
   }
 
-  void _launchUrl(String url) async {
-    try {
-      final uri = Uri.parse(url);
-      if (await canLaunchUrl(uri)) {
-        await launchUrl(uri, mode: LaunchMode.externalApplication);
-      }
-    } catch (e) {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text('Opening: $url', style: GoogleFonts.poppins(fontSize: 12)),
-          backgroundColor: const Color(0xFF1565C0),
-          duration: const Duration(seconds: 2),
-        ));
-      }
+  // ── PYQ TAB ───────────────────────────────────────────
+  Widget _buildPYQTab() {
+    if (!_quizStarted) {
+      return _buildPYQStart();
     }
+    if (_currentQuizIndex >= _pyqs.length) {
+      return _buildQuizResult();
+    }
+    final q = _pyqs[_currentQuizIndex];
+    return _buildQuizQuestion(q);
   }
 
-}
-class _TopicScreen extends StatelessWidget {
-  final Map<String,dynamic> topic;
-  final Color color;
-  final String section;
-  const _TopicScreen({required this.topic, required this.color, required this.section});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFF5F7FA),
-      appBar: AppBar(
-        backgroundColor: color, foregroundColor: Colors.white, elevation: 0,
-        title: Text(topic['title'] as String, style: GoogleFonts.poppins(
-            color: Colors.white, fontWeight: FontWeight.w700, fontSize: 15)),
-        actions: [
-          Padding(padding: const EdgeInsets.only(right: 12),
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                decoration: BoxDecoration(color: Colors.white.withOpacity(0.2), borderRadius: BorderRadius.circular(8)),
-                child: Text(topic['difficulty'] as String, style: GoogleFonts.poppins(color: Colors.white, fontSize: 11, fontWeight: FontWeight.w600)),
-              )),
-        ],
-      ),
-      body: SingleChildScrollView(padding: const EdgeInsets.all(16), child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(children: [
-            _chip(Icons.bar_chart, '${topic['weightage']}', color),
-            const SizedBox(width: 8),
-            _chip(Icons.timer_outlined, topic['readTime'] as String, color),
-          ]),
-          const SizedBox(height: 14),
-          Container(
-            width: double.infinity, padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: Colors.white, borderRadius: BorderRadius.circular(14),
-              boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.04), blurRadius: 8)],
+  Widget _buildPYQStart() {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: 100, height: 100,
+              decoration: BoxDecoration(
+                color: const Color(0xFF1565C0).withOpacity(0.1),
+                shape: BoxShape.circle,
+              ),
+              child: const Icon(Icons.history_edu_rounded,
+                  size: 50, color: Color(0xFF1565C0)),
             ),
-            child: SelectableText(topic['content'] as String, style: GoogleFonts.poppins(
-                fontSize: 13, color: const Color(0xFF374151), height: 1.7)),
-          ),
-        ],
-      )),
+            const SizedBox(height: 24),
+            Text('Previous Year Questions',
+                style: GoogleFonts.poppins(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700,
+                    color: const Color(0xFF1A1A2E))),
+            const SizedBox(height: 8),
+            Text(
+              '${_pyqs.length} questions from SSC CGL 2023-24\nWith detailed explanations',
+              textAlign: TextAlign.center,
+              style: GoogleFonts.poppins(
+                  fontSize: 13,
+                  color: const Color(0xFF6B7280),
+                  height: 1.5),
+            ),
+            const SizedBox(height: 32),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                _statBadge('${_pyqs.length}', 'Questions'),
+                const SizedBox(width: 16),
+                _statBadge('4', 'Subjects'),
+                const SizedBox(width: 16),
+                _statBadge('2024', 'Latest'),
+              ],
+            ),
+            const SizedBox(height: 32),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () => setState(() {
+                  _quizStarted      = true;
+                  _currentQuizIndex = 0;
+                  _score            = 0;
+                  _selectedAnswer   = null;
+                  _showExplanation  = false;
+                }),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF1565C0),
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 16),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(14)),
+                ),
+                child: Text('Start Practice',
+                    style: GoogleFonts.poppins(
+                        color: Colors.white,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600)),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
-  Widget _chip(IconData icon, String label, Color c) => Container(
-    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-    decoration: BoxDecoration(color: c.withOpacity(0.1), borderRadius: BorderRadius.circular(8)),
-    child: Row(mainAxisSize: MainAxisSize.min, children: [
-      Icon(icon, size: 13, color: c),
-      const SizedBox(width: 5),
-      Text(label, style: GoogleFonts.poppins(fontSize: 11, color: c, fontWeight: FontWeight.w600)),
-    ]),
-  );
+  Widget _statBadge(String value, String label) {
+    return Container(
+      padding: const EdgeInsets.symmetric(
+          horizontal: 16, vertical: 10),
+      decoration: BoxDecoration(
+        color: const Color(0xFF1565C0).withOpacity(0.08),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Column(
+        children: [
+          Text(value,
+              style: GoogleFonts.poppins(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                  color: const Color(0xFF1565C0))),
+          Text(label,
+              style: GoogleFonts.poppins(
+                  fontSize: 11,
+                  color: const Color(0xFF6B7280))),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildQuizQuestion(Map<String, dynamic> q) {
+    final options = q['options'] as List<dynamic>;
+    final correct = q['correct'] as int;
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Progress
+          Row(
+            children: [
+              Text(
+                'Q ${_currentQuizIndex + 1}/${_pyqs.length}',
+                style: GoogleFonts.poppins(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w600,
+                    color: const Color(0xFF1565C0)),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: LinearProgressIndicator(
+                  value: (_currentQuizIndex + 1) / _pyqs.length,
+                  backgroundColor: Colors.grey.shade200,
+                  valueColor: const AlwaysStoppedAnimation(
+                      Color(0xFF1565C0)),
+                  borderRadius: BorderRadius.circular(4),
+                  minHeight: 6,
+                ),
+              ),
+              const SizedBox(width: 12),
+              Text('Score: $_score',
+                  style: GoogleFonts.poppins(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
+                      color: const Color(0xFF10B981))),
+            ],
+          ),
+          const SizedBox(height: 16),
+
+          // Tags
+          Row(
+            children: [
+              _tag(q['subject'] as String,
+                  const Color(0xFF1565C0)),
+              const SizedBox(width: 8),
+              _tag(q['topic'] as String,
+                  const Color(0xFF6B7280)),
+              const SizedBox(width: 8),
+              _tag('${q['year']}',
+                  const Color(0xFF10B981)),
+            ],
+          ),
+          const SizedBox(height: 16),
+
+          // Question
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(16),
+              boxShadow: [BoxShadow(
+                  color: Colors.black.withOpacity(0.06),
+                  blurRadius: 10)],
+            ),
+            child: Text(q['question'] as String,
+                style: GoogleFonts.poppins(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w600,
+                    color: const Color(0xFF1A1A2E),
+                    height: 1.5)),
+          ),
+          const SizedBox(height: 16),
+
+          // Options
+          ...options.asMap().entries.map((entry) {
+            final idx = entry.key;
+            final opt = entry.value as String;
+            final label =
+                ['A', 'B', 'C', 'D'][idx];
+            Color bgColor = Colors.white;
+            Color borderColor = Colors.grey.shade200;
+            Color textColor = const Color(0xFF374151);
+            Color labelBg = const Color(0xFF1565C0);
+
+            if (_selectedAnswer != null) {
+              if (idx == correct) {
+                bgColor = const Color(0xFF10B981)
+                    .withOpacity(0.1);
+                borderColor = const Color(0xFF10B981);
+                textColor = const Color(0xFF10B981);
+                labelBg = const Color(0xFF10B981);
+              } else if (_selectedAnswer == label &&
+                  idx != correct) {
+                bgColor = const Color(0xFFEF4444)
+                    .withOpacity(0.1);
+                borderColor = const Color(0xFFEF4444);
+                textColor = const Color(0xFFEF4444);
+                labelBg = const Color(0xFFEF4444);
+              }
+            }
+
+            return GestureDetector(
+              onTap: _selectedAnswer == null
+                  ? () {
+                      setState(() {
+                        _selectedAnswer = label;
+                        _showExplanation = true;
+                        if (idx == correct) _score++;
+                      });
+                    }
+                  : null,
+              child: Container(
+                margin: const EdgeInsets.only(bottom: 10),
+                padding: const EdgeInsets.all(14),
+                decoration: BoxDecoration(
+                  color: bgColor,
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: borderColor),
+                ),
+                child: Row(
+                  children: [
+                    Container(
+                      width: 28, height: 28,
+                      decoration: BoxDecoration(
+                        color: labelBg,
+                        borderRadius:
+                            BorderRadius.circular(8),
+                      ),
+                      child: Center(
+                        child: Text(label,
+                            style: GoogleFonts.poppins(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.white)),
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Text(opt,
+                          style: GoogleFonts.poppins(
+                              fontSize: 14,
+                              color: textColor,
+                              fontWeight: _selectedAnswer != null &&
+                                      idx == correct
+                                  ? FontWeight.w600
+                                  : FontWeight.w400)),
+                    ),
+                    if (_selectedAnswer != null)
+                      Icon(
+                        idx == correct
+                            ? Icons.check_circle
+                            : _selectedAnswer == label
+                                ? Icons.cancel
+                                : null,
+                        color: idx == correct
+                            ? const Color(0xFF10B981)
+                            : const Color(0xFFEF4444),
+                        size: 20,
+                      ),
+                  ],
+                ),
+              ),
+            );
+          }),
+
+          // Explanation
+          if (_showExplanation) ...[
+            Container(
+              padding: const EdgeInsets.all(14),
+              decoration: BoxDecoration(
+                color: const Color(0xFF1565C0)
+                    .withOpacity(0.06),
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(
+                    color: const Color(0xFF1565C0)
+                        .withOpacity(0.2)),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(children: [
+                    const Icon(Icons.lightbulb_outline,
+                        color: Color(0xFF1565C0), size: 16),
+                    const SizedBox(width: 6),
+                    Text('Explanation',
+                        style: GoogleFonts.poppins(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w700,
+                            color: const Color(0xFF1565C0))),
+                  ]),
+                  const SizedBox(height: 6),
+                  Text(q['explanation'] as String,
+                      style: GoogleFonts.poppins(
+                          fontSize: 13,
+                          color: const Color(0xFF374151),
+                          height: 1.4)),
+                ],
+              ),
+            ),
+            const SizedBox(height: 16),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () => setState(() {
+                  _currentQuizIndex++;
+                  _selectedAnswer  = null;
+                  _showExplanation = false;
+                }),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF1565C0),
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 14),
+                  shape: RoundedRectangleBorder(
+                      borderRadius:
+                          BorderRadius.circular(12)),
+                ),
+                child: Text(
+                  _currentQuizIndex < _pyqs.length - 1
+                      ? 'Next Question →'
+                      : 'See Results',
+                  style: GoogleFonts.poppins(
+                      color: Colors.white,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600),
+                ),
+              ),
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+
+  Widget _tag(String text, Color color) {
+    return Container(
+      padding: const EdgeInsets.symmetric(
+          horizontal: 10, vertical: 4),
+      decoration: BoxDecoration(
+        color: color.withOpacity(0.1),
+        borderRadius: BorderRadius.circular(6),
+      ),
+      child: Text(text,
+          style: GoogleFonts.poppins(
+              fontSize: 11,
+              fontWeight: FontWeight.w600,
+              color: color)),
+    );
+  }
+
+  Widget _buildQuizResult() {
+    final pct = (_score / _pyqs.length * 100).round();
+    Color resultColor;
+    String resultText;
+    if (pct >= 70) {
+      resultColor = const Color(0xFF10B981);
+      resultText  = 'Excellent!';
+    } else if (pct >= 50) {
+      resultColor = const Color(0xFFF59E0B);
+      resultText  = 'Good effort!';
+    } else {
+      resultColor = const Color(0xFFEF4444);
+      resultText  = 'Keep practicing!';
+    }
+
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: 100, height: 100,
+              decoration: BoxDecoration(
+                color: resultColor.withOpacity(0.1),
+                shape: BoxShape.circle,
+              ),
+              child: Center(
+                child: Text('$pct%',
+                    style: GoogleFonts.poppins(
+                        fontSize: 24,
+                        fontWeight: FontWeight.w800,
+                        color: resultColor)),
+              ),
+            ),
+            const SizedBox(height: 16),
+            Text(resultText,
+                style: GoogleFonts.poppins(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w700,
+                    color: resultColor)),
+            const SizedBox(height: 8),
+            Text('$_score out of ${_pyqs.length} correct',
+                style: GoogleFonts.poppins(
+                    fontSize: 14,
+                    color: const Color(0xFF6B7280))),
+            const SizedBox(height: 32),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () => setState(() {
+                  _quizStarted      = false;
+                  _currentQuizIndex = 0;
+                  _score            = 0;
+                  _selectedAnswer   = null;
+                  _showExplanation  = false;
+                }),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF1565C0),
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 14),
+                  shape: RoundedRectangleBorder(
+                      borderRadius:
+                          BorderRadius.circular(12)),
+                ),
+                child: Text('Practice Again',
+                    style: GoogleFonts.poppins(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600)),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  // ── MOCK TEST TAB ─────────────────────────────────────
+  Widget _buildMockTestTab() {
+    return ListView(
+      padding: const EdgeInsets.all(16),
+      children: [
+        _mockTestCard(
+          'Full Length Mock Test 1',
+          '100 questions • 60 mins',
+          'All sections • SSC CGL pattern',
+          Icons.timer_outlined,
+          const Color(0xFF1565C0),
+          false,
+        ),
+        _mockTestCard(
+          'Reasoning Mock Test',
+          '25 questions • 20 mins',
+          'Analogies, Series, Coding-Decoding',
+          Icons.psychology_outlined,
+          const Color(0xFF1565C0),
+          false,
+        ),
+        _mockTestCard(
+          'Maths Mock Test',
+          '25 questions • 20 mins',
+          'Percentage, P&L, SI/CI, Geometry',
+          Icons.calculate_outlined,
+          const Color(0xFFE65100),
+          false,
+        ),
+        _mockTestCard(
+          'English Mock Test',
+          '25 questions • 20 mins',
+          'Grammar, Synonyms, RC',
+          Icons.menu_book_outlined,
+          const Color(0xFF880E4F),
+          false,
+        ),
+        _mockTestCard(
+          'GK Mock Test',
+          '25 questions • 20 mins',
+          'History, Geography, Polity, Static GK',
+          Icons.public_outlined,
+          const Color(0xFF1B5E20),
+          false,
+        ),
+        const SizedBox(height: 12),
+        Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: const Color(0xFFF59E0B).withOpacity(0.1),
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(
+                color: const Color(0xFFF59E0B).withOpacity(0.3)),
+          ),
+          child: Row(
+            children: [
+              const Icon(Icons.lock_outline,
+                  color: Color(0xFFF59E0B)),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Text(
+                  'More mock tests coming soon. Full length timed tests with performance analytics.',
+                  style: GoogleFonts.poppins(
+                      fontSize: 12,
+                      color: const Color(0xFF92400E)),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _mockTestCard(
+      String title, String subtitle, String desc,
+      IconData icon, Color color, bool locked) {
+    return GestureDetector(
+      onTap: () {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('$title — Coming soon!',
+                style: GoogleFonts.poppins()),
+            backgroundColor: const Color(0xFF1C1C1E),
+            behavior: SnackBarBehavior.floating,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8)),
+          ),
+        );
+      },
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 12),
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: [BoxShadow(
+              color: Colors.black.withOpacity(0.05),
+              blurRadius: 8,
+              offset: const Offset(0, 2))],
+        ),
+        child: Row(
+          children: [
+            Container(
+              width: 48, height: 48,
+              decoration: BoxDecoration(
+                color: color.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Icon(icon, color: color, size: 24),
+            ),
+            const SizedBox(width: 14),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(title,
+                      style: GoogleFonts.poppins(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w700,
+                          color: const Color(0xFF1A1A2E))),
+                  Text(subtitle,
+                      style: GoogleFonts.poppins(
+                          fontSize: 11,
+                          color: color,
+                          fontWeight: FontWeight.w600)),
+                  Text(desc,
+                      style: GoogleFonts.poppins(
+                          fontSize: 11,
+                          color: const Color(0xFF9CA3AF))),
+                ],
+              ),
+            ),
+            Icon(
+              locked
+                  ? Icons.lock_outline
+                  : Icons.arrow_forward_ios,
+              color: const Color(0xFF9CA3AF),
+              size: 16,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  // ── QUICK REVISION TAB ────────────────────────────────
+  Widget _buildQuickRevisionTab() {
+    return ListView(
+      padding: const EdgeInsets.all(16),
+      children: _quickRevision.map((section) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(section['icon'] as IconData,
+                    color: section['color'] as Color,
+                    size: 20),
+                const SizedBox(width: 8),
+                Text(section['title'] as String,
+                    style: GoogleFonts.poppins(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w700,
+                        color: const Color(0xFF1A1A2E))),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(16),
+                boxShadow: [BoxShadow(
+                    color: Colors.black.withOpacity(0.05),
+                    blurRadius: 8)],
+              ),
+              child: Column(
+                children: (section['items'] as List)
+                    .asMap()
+                    .entries
+                    .map((e) {
+                  final isLast = e.key ==
+                      (section['items'] as List).length - 1;
+                  return Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 12),
+                        child: Row(
+                          crossAxisAlignment:
+                              CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              width: 24, height: 24,
+                              decoration: BoxDecoration(
+                                color: (section['color'] as Color)
+                                    .withOpacity(0.1),
+                                borderRadius:
+                                    BorderRadius.circular(6),
+                              ),
+                              child: Center(
+                                child: Text(
+                                    '${e.key + 1}',
+                                    style: TextStyle(
+                                        fontSize: 11,
+                                        fontWeight:
+                                            FontWeight.w700,
+                                        color: section['color']
+                                            as Color)),
+                              ),
+                            ),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: Text(e.value as String,
+                                  style: GoogleFonts.poppins(
+                                      fontSize: 13,
+                                      color: const Color(
+                                          0xFF374151),
+                                      height: 1.4)),
+                            ),
+                          ],
+                        ),
+                      ),
+                      if (!isLast)
+                        Divider(
+                            height: 1,
+                            color: Colors.grey.shade100),
+                    ],
+                  );
+                }).toList(),
+              ),
+            ),
+            const SizedBox(height: 20),
+          ],
+        );
+      }).toList(),
+    );
+  }
+
+  Widget _buildBottomNav() {
+    return BottomNavigationBar(
+      currentIndex: 1,
+      type: BottomNavigationBarType.fixed,
+      selectedItemColor: const Color(0xFF1565C0),
+      unselectedItemColor: const Color(0xFF9CA3AF),
+      selectedLabelStyle: GoogleFonts.poppins(
+          fontSize: 11, fontWeight: FontWeight.w600),
+      unselectedLabelStyle: GoogleFonts.poppins(fontSize: 11),
+      onTap: (i) {
+        switch (i) {
+          case 0: Navigator.pushReplacementNamed(
+              context, '/home'); break;
+          case 1: Navigator.pushReplacementNamed(
+              context, '/jobs'); break;
+          case 2: Navigator.pushReplacementNamed(
+              context, '/current-affairs'); break;
+          case 3: Navigator.pushReplacementNamed(
+              context, '/saved'); break;
+          case 4: Navigator.pushReplacementNamed(
+              context, '/profile'); break;
+        }
+      },
+      items: const [
+        BottomNavigationBarItem(
+            icon: Icon(Icons.home_outlined),
+            activeIcon: Icon(Icons.home),
+            label: 'Home'),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.work_outline),
+            activeIcon: Icon(Icons.work),
+            label: 'Jobs'),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.newspaper_outlined),
+            activeIcon: Icon(Icons.newspaper),
+            label: 'News'),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.bookmark_outline),
+            activeIcon: Icon(Icons.bookmark),
+            label: 'Saved'),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.person_outline),
+            activeIcon: Icon(Icons.person),
+            label: 'Profile'),
+      ],
+    );
+  }
+}
+
+// ── Topic Detail Screen ───────────────────────────────────
+class _TopicDetailScreen extends StatelessWidget {
+  final Map<String, dynamic> topic;
+  final Color sectionColor;
+  final String sectionTitle;
+
+  const _TopicDetailScreen({
+    required this.topic,
+    required this.sectionColor,
+    required this.sectionTitle,
+  });
+
+  // Topic content map
+  static const Map<String, String> _content = {
+    'Analogies': 'An analogy shows relationship between two pairs of words.\n\nTypes:\n• Synonyms: Hot:Warm :: Cold:Cool\n• Antonyms: Day:Night :: Light:Dark\n• Part-Whole: Wheel:Car :: Petal:Flower\n• Function: Pen:Write :: Knife:Cut\n\nTIP: First identify the relationship in the given pair, then find the same relationship in options.\n\nCommon relationships:\n• Tool-Work: Pen writes, Axe cuts\n• Animal-Young: Cow-Calf, Horse-Foal, Dog-Puppy\n• Animal-Sound: Lion-Roar, Snake-Hiss, Frog-Croak\n• Country-Capital: India-Delhi, France-Paris',
+    'Coding-Decoding': 'Coding is a method of transmitting messages in a secret way.\n\nTypes:\n1. Letter Coding: Each letter substituted by another\n   APPLE = BQQMF → shift +1\n\n2. Number Coding:\n   A=1, B=2 ... Z=26\n   DOOR = 4+15+15+18 = 52\n\n3. Mirror coding: A↔Z, B↔Y, C↔X...\n\n4. Reverse alphabet: A=26, B=25 ... Z=1\n\nTIP: Always find the shift pattern first. Check both forward (+) and reverse (-) shifts.',
+    'Blood Relations': 'Key Relationships:\n• Parents: Father, Mother\n• Siblings: Brother, Sister\n• Grandparents: Grandfather, Grandmother\n• Spouse: Husband, Wife\n• Uncle/Aunt: Father\'s or Mother\'s sibling\n• Nephew/Niece: Sibling\'s child\n• Cousin: Uncle/Aunt\'s child\n• In-laws: Spouse\'s family\n\nTIP: Always draw a family tree. Use M for Male, F for Female. Mark gender clearly at each node.',
+    'Number & Letter Series': 'Number Series Types:\n1. Arithmetic: +2,+3,+4... (2,5,9,14,20...)\n2. Geometric: ×2,×3 (3,6,12,24...)\n3. Square series: 1,4,9,16,25... differences = 3,5,7,9\n4. Cube series: 1,8,27,64... differences = 7,19,37\n5. Prime series: 2,3,5,7,11,13,17,19,23...\n6. Fibonacci: 1,1,2,3,5,8,13,21...\n\nLetter Series:\n• A,C,E,G (skip 1)\n• A,D,G,J (skip 2)\n• Z,X,V,T (reverse, skip 1)',
+    'Syllogism': 'Rules:\n1. All A are B + All B are C = All A are C ✅\n2. All A are B + No B are C = No A are C ✅\n3. Some A are B + All B are C = Some A are C ✅\n4. All A are B ≠ All B are A (NOT reversible)\n\nVenn Diagram Method:\n• Draw circles for each category\n• Check if conclusion is ALWAYS true\n• Only ALWAYS true = valid conclusion\n\nTIP: Some A are B = at least one A is B',
+    'Direction & Distance': 'Basic Directions:\n         North\n    NW ←  |  → NE\nWest ----+---- East\n    SW ←  |  → SE\n         South\n\nLeft Turn: N→W→S→E→N (anticlockwise)\nRight Turn: N→E→S→W→N (clockwise)\n\nDistance = √(horizontal² + vertical²)\n\nExample:\n5km N + 3km E + 5km S\n= 5N and 5S cancel\n= only 3km East remains\nDistance = 3km',
+    'Percentage': 'Key Formulas:\n• x% of y = (x×y)/100\n• % increase = (Increase/Original) × 100\n• % decrease = (Decrease/Original) × 100\n\nFraction Equivalents:\n1/2=50%, 1/3=33.33%, 1/4=25%\n1/5=20%, 1/6=16.67%, 1/8=12.5%\n1/10=10%, 1/20=5%\n\nSuccessive Change:\nNet = A + B + AB/100\nExample: +10% then +20%\n= 10+20+(10×20/100) = +32%\n\nPopulation Formula:\nP(1 + r/100)^n',
+    'Profit & Loss': 'Key Terms:\n• CP = Cost Price (bought at)\n• SP = Selling Price (sold at)\n• Profit = SP - CP (SP > CP)\n• Loss = CP - SP (CP > SP)\n\nFormulas:\n• Profit% = (Profit/CP) × 100\n• Loss% = (Loss/CP) × 100\n• SP = CP × (100+P%)/100\n• CP = SP × 100/(100+P%)\n\nDiscount (on Marked Price):\n• Discount% = (Discount/MP) × 100\n\nTRICK: If sold at x% profit and x% loss both:\nAlways a LOSS = x²/100 %',
+    'Grammar Rules': 'Parts of Speech: Noun, Pronoun, Verb, Adjective, Adverb, Preposition, Conjunction, Interjection\n\nSubject-Verb Agreement:\n• Each/Every/Either/Neither → SINGULAR verb\n• Two subjects joined by or/nor → verb agrees with nearer subject\n• Collective noun (team, jury) → SINGULAR\n\nCommon Errors:\n• Fewer (countable) vs Less (uncountable)\n• Number (countable) vs Amount (uncountable)\n• Between (two) vs Among (more than two)\n• Bring (towards speaker) vs Take (away)\n• Lie/Lay: Lie=recline, Lay=to place something',
+    'Synonyms & Antonyms': 'Important Synonyms:\n• Abundant = Plentiful, Ample\n• Benevolent = Kind, Generous\n• Candid = Frank, Honest\n• Diligent = Hardworking, Industrious\n• Frugal = Thrifty, Economical\n\nImportant Antonyms:\n• Benevolent ↔ Malevolent\n• Diligent ↔ Indolent/Lazy\n• Frugal ↔ Extravagant\n• Gregarious ↔ Introverted\n• Verbose ↔ Concise\n\nTIP: Learn word roots:\nbene=good, mal=bad\npro=for, anti=against\npre=before, post=after',
+  };
+
+  @override
+  Widget build(BuildContext context) {
+    final content = _content[topic['title']] ??
+        'Detailed notes for ${topic['title']} coming soon.\n\nThis topic has ${topic['weightage']} per paper in ${topic['difficulty'] == 'Easy' ? 'basic' : topic['difficulty'] == 'Medium' ? 'moderate' : 'advanced'} difficulty level.';
+
+    return Scaffold(
+      backgroundColor: const Color(0xFFF5F7FA),
+      appBar: AppBar(
+        backgroundColor: sectionColor,
+        foregroundColor: Colors.white,
+        title: Text(topic['title'] as String,
+            style: GoogleFonts.poppins(
+                color: Colors.white,
+                fontWeight: FontWeight.w700,
+                fontSize: 16)),
+        elevation: 0,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 12),
+            child: Container(
+              padding: const EdgeInsets.symmetric(
+                  horizontal: 10, vertical: 5),
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.2),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Text(
+                topic['difficulty'] as String,
+                style: GoogleFonts.poppins(
+                    color: Colors.white,
+                    fontSize: 11,
+                    fontWeight: FontWeight.w600),
+              ),
+            ),
+          ),
+        ],
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Stats row
+            Row(
+              children: [
+                _infoChip(Icons.bar_chart,
+                    '${topic['weightage']} per paper',
+                    sectionColor),
+                const SizedBox(width: 8),
+                _infoChip(Icons.subject,
+                    sectionTitle, sectionColor),
+              ],
+            ),
+            const SizedBox(height: 16),
+
+            // Content
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(16),
+                boxShadow: [BoxShadow(
+                    color: Colors.black.withOpacity(0.05),
+                    blurRadius: 10)],
+              ),
+              child: Text(
+                content,
+                style: GoogleFonts.poppins(
+                    fontSize: 14,
+                    color: const Color(0xFF374151),
+                    height: 1.7),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _infoChip(IconData icon, String label,
+      Color color) {
+    return Container(
+      padding: const EdgeInsets.symmetric(
+          horizontal: 12, vertical: 6),
+      decoration: BoxDecoration(
+        color: color.withOpacity(0.1),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, size: 14, color: color),
+          const SizedBox(width: 6),
+          Text(label,
+              style: GoogleFonts.poppins(
+                  fontSize: 12,
+                  color: color,
+                  fontWeight: FontWeight.w600)),
+        ],
+      ),
+    );
+  }
 }
