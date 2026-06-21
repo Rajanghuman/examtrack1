@@ -1,0 +1,1010 @@
+{
+  "examKey": "SSC_CGL",
+  "tests": [
+    {
+      "id": "cgl-mock-2",
+      "title": "SSC CGL Full Mock Test 2",
+      "description": "25 questions • All subjects • 20 mins",
+      "duration": 1200,
+      "totalQ": 25,
+      "order": 2,
+      "questions": [
+        {
+          "order": 1,
+          "subject": "Reasoning",
+          "q": "Find next: 7, 15, 31, 63, ?",
+          "opts": [
+            "121",
+            "125",
+            "127",
+            "129"
+          ],
+          "ans": 2,
+          "exp": "Pattern: ×2+1 each time. 63×2+1=127."
+        },
+        {
+          "order": 2,
+          "subject": "Reasoning",
+          "q": "Pilot : Aircraft :: Captain : ?",
+          "opts": [
+            "Sea",
+            "Ship",
+            "Sailor",
+            "Port"
+          ],
+          "ans": 1,
+          "exp": "A pilot operates an aircraft. A captain operates a ship. Same worker-vehicle relationship."
+        },
+        {
+          "order": 3,
+          "subject": "Reasoning",
+          "q": "If 'PAPER' is coded as 'QBQFS', how is 'PENCIL' coded in the same pattern?",
+          "opts": [
+            "QFODJM",
+            "QFOCJM",
+            "QFODKM",
+            "RFODJM"
+          ],
+          "ans": 0,
+          "exp": "Each letter shifted +1: P+1=Q,E+1=F,N+1=O,C+1=D,I+1=J,L+1=M = QFODJM."
+        },
+        {
+          "order": 4,
+          "subject": "Reasoning",
+          "q": "A walks 4km North, 3km West, 4km South. Find the distance from the starting point.",
+          "opts": [
+            "3km",
+            "4km",
+            "5km",
+            "7km"
+          ],
+          "ans": 0,
+          "exp": "4km North and 4km South cancel each other. Only 3km West remains. Distance=3km."
+        },
+        {
+          "order": 5,
+          "subject": "Reasoning",
+          "q": "Find the odd one: 21, 33, 39, 51, 65",
+          "opts": [
+            "33",
+            "39",
+            "51",
+            "65"
+          ],
+          "ans": 3,
+          "exp": "21,33,39,51 are all divisible by 3 (21=3×7, 33=3×11, 39=3×13, 51=3×17). 65 is not divisible by 3 — the odd one."
+        },
+        {
+          "order": 6,
+          "subject": "Reasoning",
+          "q": "In a row of 45 students, Aarav is 19th from the right. What is his position from the left?",
+          "opts": [
+            "26th",
+            "27th",
+            "28th",
+            "25th"
+          ],
+          "ans": 1,
+          "exp": "Position from left = Total+1-Position from right = 46-19 = 27th."
+        },
+        {
+          "order": 7,
+          "subject": "Reasoning",
+          "q": "All pens are pencils. Some pencils are erasers. Which conclusion follows?",
+          "opts": [
+            "All pens are erasers",
+            "Some pens are erasers",
+            "No pens are erasers",
+            "None of these conclusions follow"
+          ],
+          "ans": 3,
+          "exp": "All pens are pencils, but only SOME pencils are erasers — we cannot determine if those specific pencils overlap with pens. No definite conclusion connecting pens and erasers follows."
+        },
+        {
+          "order": 8,
+          "subject": "Maths",
+          "q": "Find the value of: 45% of 320 + 25% of 180",
+          "opts": [
+            "179",
+            "181",
+            "185",
+            "189"
+          ],
+          "ans": 3,
+          "exp": "45% of 320 = 144. 25% of 180 = 45. 144 + 45 = 189."
+        },
+        {
+          "order": 9,
+          "subject": "Maths",
+          "q": "A man sold an article for ₹918 at a loss of 10%. Find the cost price.",
+          "opts": [
+            "₹1000",
+            "₹1020",
+            "₹1050",
+            "₹1080"
+          ],
+          "ans": 1,
+          "exp": "CP=SP×100/(100-Loss%)=918×100/90=₹1020."
+        },
+        {
+          "order": 10,
+          "subject": "Maths",
+          "q": "Find the compound interest on ₹8000 at 5% per annum for 2 years.",
+          "opts": [
+            "₹800",
+            "₹810",
+            "₹820",
+            "₹830"
+          ],
+          "ans": 1,
+          "exp": "Amount = 8000×(1.05)² = 8000×1.1025 = ₹8820. CI = 8820-8000 = ₹820."
+        },
+        {
+          "order": 11,
+          "subject": "Maths",
+          "q": "A and B can complete a work in 18 days. B alone can do it in 30 days. In how many days can A alone complete it?",
+          "opts": [
+            "40 days",
+            "42 days",
+            "45 days",
+            "48 days"
+          ],
+          "ans": 2,
+          "exp": "Combined rate=1/18. B's rate=1/30. A's rate=1/18-1/30=5/90-3/90=2/90=1/45. A alone takes 45 days."
+        },
+        {
+          "order": 12,
+          "subject": "Maths",
+          "q": "Two trains 140m and 160m long run in the same direction at 72 km/h and 54 km/h. Find the time taken to cross each other.",
+          "opts": [
+            "48 seconds",
+            "52 seconds",
+            "56 seconds",
+            "60 seconds"
+          ],
+          "ans": 2,
+          "exp": "Relative speed=72-54=18 km/h=5 m/s. Total distance=140+160=300m. Time=300/5=60 seconds."
+        },
+        {
+          "order": 13,
+          "subject": "Maths",
+          "q": "Find the value of: (12.5)² - (7.5)²",
+          "opts": [
+            "80",
+            "90",
+            "100",
+            "110"
+          ],
+          "ans": 2,
+          "exp": "a²-b²=(a+b)(a-b)=(12.5+7.5)(12.5-7.5)=20×5=100."
+        },
+        {
+          "order": 14,
+          "subject": "Maths",
+          "q": "What is the area of a trapezium with parallel sides 16cm and 10cm and height 8cm?",
+          "opts": [
+            "96 cm²",
+            "104 cm²",
+            "112 cm²",
+            "120 cm²"
+          ],
+          "ans": 2,
+          "exp": "Area = ½×(a+b)×h = ½×(16+10)×8 = ½×26×8 = 104 cm²."
+        },
+        {
+          "order": 15,
+          "subject": "English",
+          "q": "Choose the correctly spelt word:",
+          "opts": [
+            "Maintainance",
+            "Maintenance",
+            "Maintainence",
+            "Maintenence"
+          ],
+          "ans": 1,
+          "exp": "The correct spelling is 'Maintenance'."
+        },
+        {
+          "order": 16,
+          "subject": "English",
+          "q": "Synonym of PRAGMATIC:",
+          "opts": [
+            "Idealistic",
+            "Practical",
+            "Theoretical",
+            "Naive"
+          ],
+          "ans": 1,
+          "exp": "Pragmatic means dealing with things sensibly and realistically; practical."
+        },
+        {
+          "order": 17,
+          "subject": "English",
+          "q": "Antonym of LUCID:",
+          "opts": [
+            "Clear",
+            "Obscure",
+            "Transparent",
+            "Plain"
+          ],
+          "ans": 1,
+          "exp": "Lucid means expressed clearly; easy to understand. Antonym = Obscure (unclear, hard to understand)."
+        },
+        {
+          "order": 18,
+          "subject": "English",
+          "q": "Fill in the blank: He insisted ___ paying the bill himself.",
+          "opts": [
+            "on",
+            "at",
+            "for",
+            "to"
+          ],
+          "ans": 0,
+          "exp": "'Insist on' is the correct preposition usage, followed by a gerund: 'insisted on paying'."
+        },
+        {
+          "order": 19,
+          "subject": "English",
+          "q": "Idiom: 'A blessing in disguise' means:",
+          "opts": [
+            "A hidden gift",
+            "Something good that initially seemed bad",
+            "A religious blessing",
+            "A surprise party"
+          ],
+          "ans": 1,
+          "exp": "'A blessing in disguise' refers to something that seems unfortunate at first but turns out to be beneficial."
+        },
+        {
+          "order": 20,
+          "subject": "English",
+          "q": "Find the error: 'Each of the players have received their certificates.'",
+          "opts": [
+            "Each of",
+            "the players",
+            "have received",
+            "their certificates"
+          ],
+          "ans": 2,
+          "exp": "'Each' is singular, so the verb should be 'has received', not 'have received'."
+        },
+        {
+          "order": 21,
+          "subject": "GK",
+          "q": "Which Mughal ruler is credited with abolishing the Jizya tax?",
+          "opts": [
+            "Babur",
+            "Akbar",
+            "Jahangir",
+            "Aurangzeb"
+          ],
+          "ans": 1,
+          "exp": "Akbar abolished the Jizya tax (a tax on non-Muslims) as part of his policy of religious tolerance."
+        },
+        {
+          "order": 22,
+          "subject": "GK",
+          "q": "The 'Sangam' period in South Indian history is associated primarily with which region?",
+          "opts": [
+            "Andhra Pradesh",
+            "Karnataka",
+            "Tamil Nadu",
+            "Kerala"
+          ],
+          "ans": 2,
+          "exp": "The Sangam period refers to the ancient era of Tamil history and literature, roughly from 300 BCE to 300 CE."
+        },
+        {
+          "order": 23,
+          "subject": "GK",
+          "q": "Which gas is most abundant in the Earth's atmosphere?",
+          "opts": [
+            "Oxygen",
+            "Carbon dioxide",
+            "Nitrogen",
+            "Argon"
+          ],
+          "ans": 2,
+          "exp": "Nitrogen makes up approximately 78% of Earth's atmosphere, the most abundant gas."
+        },
+        {
+          "order": 24,
+          "subject": "GK",
+          "q": "The 'Rajya Sabha' has a maximum strength of how many members?",
+          "opts": [
+            "238",
+            "245",
+            "250",
+            "260"
+          ],
+          "ans": 2,
+          "exp": "The Rajya Sabha has a maximum strength of 250 members — 238 elected and 12 nominated by the President."
+        },
+        {
+          "order": 25,
+          "subject": "GK",
+          "q": "Which Indian state has the largest number of UNESCO World Heritage Sites?",
+          "opts": [
+            "Rajasthan",
+            "Karnataka",
+            "Maharashtra",
+            "Uttar Pradesh"
+          ],
+          "ans": 2,
+          "exp": "Maharashtra has the largest number of UNESCO World Heritage Sites among Indian states, including Ajanta and Ellora Caves."
+        }
+      ]
+    },
+    {
+      "id": "cgl-mock-3",
+      "title": "SSC CGL Full Mock Test 3",
+      "description": "25 questions • All subjects • 20 mins",
+      "duration": 1200,
+      "totalQ": 25,
+      "order": 3,
+      "questions": [
+        {
+          "order": 1,
+          "subject": "Reasoning",
+          "q": "Find next: 81, 64, 49, 36, ?",
+          "opts": [
+            "25",
+            "27",
+            "20",
+            "30"
+          ],
+          "ans": 0,
+          "exp": "Series of decreasing perfect squares: 9²,8²,7²,6²,5²=25."
+        },
+        {
+          "order": 2,
+          "subject": "Reasoning",
+          "q": "Author : Book :: Composer : ?",
+          "opts": [
+            "Instrument",
+            "Song",
+            "Orchestra",
+            "Concert"
+          ],
+          "ans": 1,
+          "exp": "An author creates a Book. A composer creates a Song. Same worker-product relationship."
+        },
+        {
+          "order": 3,
+          "subject": "Reasoning",
+          "q": "If North-East becomes South, then South-West becomes:",
+          "opts": [
+            "North-East",
+            "North",
+            "South",
+            "South-East"
+          ],
+          "ans": 0,
+          "exp": "Each direction is rotated 135° clockwise (NE moves to S). Applying the same 135° clockwise rotation to South-West gives North-East."
+        },
+        {
+          "order": 4,
+          "subject": "Reasoning",
+          "q": "Find the odd one: Apple, Mango, Potato, Banana",
+          "opts": [
+            "Apple",
+            "Mango",
+            "Potato",
+            "Banana"
+          ],
+          "ans": 2,
+          "exp": "Apple, Mango, and Banana are fruits. Potato is a vegetable — the odd one."
+        },
+        {
+          "order": 5,
+          "subject": "Reasoning",
+          "q": "P is the daughter of Q. R is the son of P. S is the brother of R. How is Q related to S?",
+          "opts": [
+            "Father/Mother",
+            "Grandfather/Grandmother",
+            "Uncle/Aunt",
+            "Sibling"
+          ],
+          "ans": 1,
+          "exp": "P is Q's daughter. R is P's son, so R is Q's grandchild. S is R's brother, so S is also Q's grandchild. Q is S's grandparent."
+        },
+        {
+          "order": 6,
+          "subject": "Reasoning",
+          "q": "In a row of 28 people, A is 11th from the left and B is 9th from the right. How many people are between A and B?",
+          "opts": [
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "ans": 2,
+          "exp": "B's position from left=28-9+1=20. People between A(11th) and B(20th)=20-11-1=8."
+        },
+        {
+          "order": 7,
+          "subject": "Reasoning",
+          "q": "Find next term: 3, 6, 11, 18, 27, ?",
+          "opts": [
+            "36",
+            "38",
+            "40",
+            "42"
+          ],
+          "ans": 1,
+          "exp": "Differences: 3,5,7,9 → next difference=11. 27+11=38."
+        },
+        {
+          "order": 8,
+          "subject": "Maths",
+          "q": "Find the value of: 60% of 450 - 30% of 200",
+          "opts": [
+            "190",
+            "200",
+            "210",
+            "220"
+          ],
+          "ans": 1,
+          "exp": "60% of 450 = 270. 30% of 200 = 60. 270 - 60 = 210."
+        },
+        {
+          "order": 9,
+          "subject": "Maths",
+          "q": "A trader marks his goods 50% above cost price and allows a discount of 20%. Find his profit percentage.",
+          "opts": [
+            "15%",
+            "18%",
+            "20%",
+            "22%"
+          ],
+          "ans": 2,
+          "exp": "Let CP=100. MP=150. SP=150×0.8=120. Profit=20%."
+        },
+        {
+          "order": 10,
+          "subject": "Maths",
+          "q": "Find the simple interest on ₹15000 at 7% per annum for 3 years.",
+          "opts": [
+            "₹3050",
+            "₹3150",
+            "₹3250",
+            "₹3350"
+          ],
+          "ans": 1,
+          "exp": "SI=PRT/100=15000×7×3/100=₹3150."
+        },
+        {
+          "order": 11,
+          "subject": "Maths",
+          "q": "A can complete a job in 24 days. B is 50% more efficient than A. In how many days can B alone complete the job?",
+          "opts": [
+            "14 days",
+            "15 days",
+            "16 days",
+            "18 days"
+          ],
+          "ans": 1,
+          "exp": "B's efficiency = 1.5 × A's efficiency. B's time = A's time ÷ 1.5 = 24/1.5 = 16 days."
+        },
+        {
+          "order": 12,
+          "subject": "Maths",
+          "q": "A boat covers 24km upstream in 6 hours and the same distance downstream in 4 hours. Find the speed of the stream.",
+          "opts": [
+            "0.5 km/h",
+            "1 km/h",
+            "1.5 km/h",
+            "2 km/h"
+          ],
+          "ans": 0,
+          "exp": "Upstream speed=24/6=4 km/h. Downstream speed=24/4=6 km/h. Stream speed=(6-4)/2=1 km/h."
+        },
+        {
+          "order": 13,
+          "subject": "Maths",
+          "q": "Find the value of: √(144) + √(169) - √(81)",
+          "opts": [
+            "16",
+            "18",
+            "20",
+            "22"
+          ],
+          "ans": 0,
+          "exp": "√144=12, √169=13, √81=9. 12+13-9=16."
+        },
+        {
+          "order": 14,
+          "subject": "Maths",
+          "q": "The volume of a sphere with radius 6cm is approximately: (Use π=22/7)",
+          "opts": [
+            "904 cm³",
+            "850 cm³",
+            "960 cm³",
+            "1000 cm³"
+          ],
+          "ans": 0,
+          "exp": "Volume=(4/3)πr³=(4/3)×(22/7)×216=4×22×216/(3×7)=19008/21≈904.4 cm³."
+        },
+        {
+          "order": 15,
+          "subject": "English",
+          "q": "Choose the correctly spelt word:",
+          "opts": [
+            "Acommodate",
+            "Accomodate",
+            "Accommodate",
+            "Acomodate"
+          ],
+          "ans": 2,
+          "exp": "The correct spelling is 'Accommodate' — double C, double M."
+        },
+        {
+          "order": 16,
+          "subject": "English",
+          "q": "Synonym of OBSTINATE:",
+          "opts": [
+            "Flexible",
+            "Stubborn",
+            "Agreeable",
+            "Compliant"
+          ],
+          "ans": 1,
+          "exp": "Obstinate means stubbornly refusing to change one's opinion; unyielding."
+        },
+        {
+          "order": 17,
+          "subject": "English",
+          "q": "Antonym of SCARCE:",
+          "opts": [
+            "Rare",
+            "Abundant",
+            "Limited",
+            "Insufficient"
+          ],
+          "ans": 1,
+          "exp": "Scarce means insufficient for demand; in short supply. Antonym = Abundant (existing in large quantities)."
+        },
+        {
+          "order": 18,
+          "subject": "English",
+          "q": "Fill in the blank: The teacher, along with her students, ___ going on a trip.",
+          "opts": [
+            "are",
+            "is",
+            "were",
+            "have"
+          ],
+          "ans": 1,
+          "exp": "'Along with' is a parenthetical phrase; the verb agrees with the main subject 'teacher' (singular): 'is going'."
+        },
+        {
+          "order": 19,
+          "subject": "English",
+          "q": "Idiom: 'To hit the nail on the head' means:",
+          "opts": [
+            "To hammer something",
+            "To say or do exactly the right thing",
+            "To injure oneself",
+            "To finish a task quickly"
+          ],
+          "ans": 1,
+          "exp": "'Hit the nail on the head' means to describe or identify something accurately."
+        },
+        {
+          "order": 20,
+          "subject": "English",
+          "q": "Find the error: 'She is one of the most talented student in our class.'",
+          "opts": [
+            "She is one of",
+            "the most talented",
+            "student in our class",
+            "No error"
+          ],
+          "ans": 1,
+          "exp": "'One of the most talented' must be followed by a plural noun: 'students', not 'student'."
+        },
+        {
+          "order": 21,
+          "subject": "GK",
+          "q": "The 'Charter Act of 1813' allowed which activity in India for the first time?",
+          "opts": [
+            "Free trade for all British subjects",
+            "Christian missionary activities",
+            "Indian representation in councils",
+            "Local self-government"
+          ],
+          "ans": 1,
+          "exp": "The Charter Act of 1813 allowed Christian missionaries to enter India and propagate their religion, ending the East India Company's restriction on this."
+        },
+        {
+          "order": 22,
+          "subject": "GK",
+          "q": "Which is the smallest planet in our solar system?",
+          "opts": [
+            "Mars",
+            "Mercury",
+            "Venus",
+            "Pluto"
+          ],
+          "ans": 1,
+          "exp": "Mercury is the smallest planet in our solar system (Pluto is no longer classified as a planet)."
+        },
+        {
+          "order": 23,
+          "subject": "GK",
+          "q": "The 'Rowlatt Act' (1919) is also known as:",
+          "opts": [
+            "Black Act",
+            "White Paper",
+            "Salt Act",
+            "Partition Act"
+          ],
+          "ans": 0,
+          "exp": "The Rowlatt Act of 1919 was popularly known as the 'Black Act', allowing detention without trial."
+        },
+        {
+          "order": 24,
+          "subject": "GK",
+          "q": "Which vitamin is synthesized by the human body when exposed to sunlight?",
+          "opts": [
+            "Vitamin A",
+            "Vitamin C",
+            "Vitamin D",
+            "Vitamin K"
+          ],
+          "ans": 2,
+          "exp": "Vitamin D is synthesized in the skin upon exposure to sunlight (UV-B radiation)."
+        },
+        {
+          "order": 25,
+          "subject": "GK",
+          "q": "The headquarters of the International Court of Justice is located in:",
+          "opts": [
+            "New York",
+            "Geneva",
+            "The Hague",
+            "Vienna"
+          ],
+          "ans": 2,
+          "exp": "The International Court of Justice (ICJ) is headquartered in The Hague, Netherlands."
+        }
+      ]
+    },
+    {
+      "id": "cgl-mock-4",
+      "title": "SSC CGL Full Mock Test 4",
+      "description": "25 questions • All subjects • 20 mins",
+      "duration": 1200,
+      "totalQ": 25,
+      "order": 4,
+      "questions": [
+        {
+          "order": 1,
+          "subject": "Reasoning",
+          "q": "Find next: 2, 5, 11, 23, 47, ?",
+          "opts": [
+            "93",
+            "94",
+            "95",
+            "96"
+          ],
+          "ans": 2,
+          "exp": "Pattern: ×2+1 each time. 2×2+1=5, 5×2+1=11, 11×2+1=23, 23×2+1=47, 47×2+1=95."
+        },
+        {
+          "order": 2,
+          "subject": "Reasoning",
+          "q": "Key : Lock :: Password : ?",
+          "opts": [
+            "Computer",
+            "Account",
+            "Security",
+            "Login"
+          ],
+          "ans": 1,
+          "exp": "A Key opens a Lock. A Password grants access to an Account. Same access-tool relationship."
+        },
+        {
+          "order": 3,
+          "subject": "Reasoning",
+          "q": "A person facing South turns 45° clockwise, then 90° clockwise again. Which direction does he face now?",
+          "opts": [
+            "North",
+            "North-West",
+            "West",
+            "South-West"
+          ],
+          "ans": 1,
+          "exp": "Facing South, turn 45° clockwise=South-West, then turn 90° clockwise more=North-West."
+        },
+        {
+          "order": 4,
+          "subject": "Reasoning",
+          "q": "Find the odd one: Hexagon, Pentagon, Square, Sphere",
+          "opts": [
+            "Hexagon",
+            "Pentagon",
+            "Square",
+            "Sphere"
+          ],
+          "ans": 3,
+          "exp": "Hexagon, Pentagon, and Square are 2D shapes (polygons). Sphere is a 3D shape — the odd one."
+        },
+        {
+          "order": 5,
+          "subject": "Reasoning",
+          "q": "X is the brother of Y. Y is the daughter of Z. Z is the husband of W. How is X related to W?",
+          "opts": [
+            "Son",
+            "Husband",
+            "Nephew",
+            "Brother"
+          ],
+          "ans": 0,
+          "exp": "Z is W's husband. Y is Z's daughter, making Y also W's daughter. X is Y's brother, so X is also W's son."
+        },
+        {
+          "order": 6,
+          "subject": "Reasoning",
+          "q": "In a class of 50, Riya ranks 23rd from the top. What is her rank from the bottom?",
+          "opts": [
+            "27th",
+            "28th",
+            "29th",
+            "30th"
+          ],
+          "ans": 1,
+          "exp": "Rank from bottom = Total+1-Rank from top = 51-23 = 28th."
+        },
+        {
+          "order": 7,
+          "subject": "Reasoning",
+          "q": "Find the missing term: B3, E6, H9, K12, ?",
+          "opts": [
+            "N15",
+            "M15",
+            "N16",
+            "O15"
+          ],
+          "ans": 0,
+          "exp": "Letters skip 2 (B,E,H,K,N) and numbers increase by 3 (3,6,9,12,15). Answer=N15."
+        },
+        {
+          "order": 8,
+          "subject": "Maths",
+          "q": "Find the value of: 75% of 280 + 40% of 150",
+          "opts": [
+            "260",
+            "270",
+            "280",
+            "290"
+          ],
+          "ans": 0,
+          "exp": "75% of 280 = 210. 40% of 150 = 60. 210 + 60 = 270."
+        },
+        {
+          "order": 9,
+          "subject": "Maths",
+          "q": "A shopkeeper buys an article for ₹450 and sells it at a profit of 18%. Find the selling price.",
+          "opts": [
+            "₹510",
+            "₹521",
+            "₹531",
+            "₹540"
+          ],
+          "ans": 2,
+          "exp": "SP=CP×(100+18)/100=450×118/100=₹531."
+        },
+        {
+          "order": 10,
+          "subject": "Maths",
+          "q": "At what rate of compound interest will ₹2000 amount to ₹2420 in 2 years?",
+          "opts": [
+            "8%",
+            "10%",
+            "12%",
+            "15%"
+          ],
+          "ans": 1,
+          "exp": "2420=2000(1+r/100)². (1+r/100)²=1.21. 1+r/100=1.1. r=10%."
+        },
+        {
+          "order": 11,
+          "subject": "Maths",
+          "q": "15 workers can complete a project in 24 days. How many workers are needed to complete it in 18 days?",
+          "opts": [
+            "18",
+            "20",
+            "22",
+            "24"
+          ],
+          "ans": 1,
+          "exp": "Using M1D1=M2D2: 15×24=M2×18. M2=360/18=20 workers."
+        },
+        {
+          "order": 12,
+          "subject": "Maths",
+          "q": "A man rows 20km downstream in 2 hours and 12km upstream in 3 hours. Find the speed of the boat in still water.",
+          "opts": [
+            "6 km/h",
+            "7 km/h",
+            "8 km/h",
+            "9 km/h"
+          ],
+          "ans": 1,
+          "exp": "Downstream speed = 20/2 = 10 km/h. Upstream speed = 12/3 = 4 km/h. Boat speed = (10+4)/2 = 7 km/h."
+        },
+        {
+          "order": 13,
+          "subject": "Maths",
+          "q": "Find the value of: 18² + 24² - 2×18×24",
+          "opts": [
+            "36",
+            "32",
+            "30",
+            "40"
+          ],
+          "ans": 0,
+          "exp": "This is the form a²+b²-2ab=(a-b)². (18-24)²=(-6)²=36."
+        },
+        {
+          "order": 14,
+          "subject": "Maths",
+          "q": "A cylindrical tank has radius 7m and height 10m. Find its curved surface area. (π=22/7)",
+          "opts": [
+            "420 m²",
+            "440 m²",
+            "460 m²",
+            "480 m²"
+          ],
+          "ans": 1,
+          "exp": "CSA=2πrh=2×22/7×7×10=440 m²."
+        },
+        {
+          "order": 15,
+          "subject": "English",
+          "q": "Choose the correctly spelt word:",
+          "opts": [
+            "Achievment",
+            "Acheivement",
+            "Achievement",
+            "Acheivment"
+          ],
+          "ans": 2,
+          "exp": "The correct spelling is 'Achievement'."
+        },
+        {
+          "order": 16,
+          "subject": "English",
+          "q": "Synonym of ZEALOUS:",
+          "opts": [
+            "Indifferent",
+            "Enthusiastic",
+            "Lazy",
+            "Reluctant"
+          ],
+          "ans": 1,
+          "exp": "Zealous means having or showing great energy or enthusiasm in pursuit of a cause."
+        },
+        {
+          "order": 17,
+          "subject": "English",
+          "q": "Antonym of MAGNANIMOUS:",
+          "opts": [
+            "Generous",
+            "Selfish",
+            "Noble",
+            "Forgiving"
+          ],
+          "ans": 1,
+          "exp": "Magnanimous means generous and forgiving, especially towards a rival. Antonym = Selfish."
+        },
+        {
+          "order": 18,
+          "subject": "English",
+          "q": "Fill in the blank: I would rather ___ at home than go out in this rain.",
+          "opts": [
+            "stay",
+            "staying",
+            "stayed",
+            "to stay"
+          ],
+          "ans": 0,
+          "exp": "'Would rather' is followed by the base form (infinitive without 'to') of the verb: 'would rather stay'."
+        },
+        {
+          "order": 19,
+          "subject": "English",
+          "q": "Idiom: 'To beat around the bush' means:",
+          "opts": [
+            "To exercise outdoors",
+            "To avoid talking directly about something",
+            "To search for something",
+            "To argue loudly"
+          ],
+          "ans": 1,
+          "exp": "'Beat around the bush' means to avoid the main topic or speak indirectly instead of getting straight to the point."
+        },
+        {
+          "order": 20,
+          "subject": "English",
+          "q": "Find the error: 'The committee have decided to postpone the meeting.'",
+          "opts": [
+            "The committee",
+            "have decided",
+            "to postpone",
+            "the meeting"
+          ],
+          "ans": 1,
+          "exp": "'Committee' is a collective noun treated as singular when acting as one unit; correct form is 'has decided'."
+        },
+        {
+          "order": 21,
+          "subject": "GK",
+          "q": "The 'Permanent Settlement' of Bengal (1793) was introduced by which Governor-General?",
+          "opts": [
+            "Warren Hastings",
+            "Lord Cornwallis",
+            "Lord Wellesley",
+            "Lord Dalhousie"
+          ],
+          "ans": 1,
+          "exp": "Lord Cornwallis introduced the Permanent Settlement in Bengal in 1793, fixing land revenue rates permanently."
+        },
+        {
+          "order": 22,
+          "subject": "GK",
+          "q": "Which planet is known as the 'Morning Star' or 'Evening Star'?",
+          "opts": [
+            "Mars",
+            "Venus",
+            "Jupiter",
+            "Mercury"
+          ],
+          "ans": 1,
+          "exp": "Venus is known as the 'Morning Star' or 'Evening Star' due to its brightness visible near sunrise or sunset."
+        },
+        {
+          "order": 23,
+          "subject": "GK",
+          "q": "The 'Cripps Mission' (1942) was sent to India by which British leader?",
+          "opts": [
+            "Neville Chamberlain",
+            "Winston Churchill",
+            "Lord Attlee",
+            "Lord Linlithgow"
+          ],
+          "ans": 1,
+          "exp": "The Cripps Mission was sent in 1942 under Winston Churchill's government to negotiate Indian support for World War II in exchange for future self-governance."
+        },
+        {
+          "order": 24,
+          "subject": "GK",
+          "q": "Which Indian city is known as the 'Manchester of India'?",
+          "opts": [
+            "Surat",
+            "Ahmedabad",
+            "Mumbai",
+            "Kanpur"
+          ],
+          "ans": 1,
+          "exp": "Ahmedabad is known as the 'Manchester of India' due to its historical prominence in the textile industry."
+        },
+        {
+          "order": 25,
+          "subject": "GK",
+          "q": "The 'National Green Tribunal' (NGT) was established under which year's Act?",
+          "opts": [
+            "2008",
+            "2009",
+            "2010",
+            "2012"
+          ],
+          "ans": 2,
+          "exp": "The National Green Tribunal was established under the NGT Act, 2010, for effective disposal of environment-related cases."
+        }
+      ]
+    }
+  ]
+}

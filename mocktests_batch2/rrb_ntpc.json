@@ -1,0 +1,1010 @@
+{
+  "examKey": "RRB_NTPC",
+  "tests": [
+    {
+      "id": "ntpc-mock-2",
+      "title": "RRB NTPC Full Mock Test 2",
+      "description": "25 questions • All subjects • 20 mins",
+      "duration": 1200,
+      "totalQ": 25,
+      "order": 2,
+      "questions": [
+        {
+          "order": 1,
+          "subject": "Maths",
+          "q": "Find the HCF of 108 and 144.",
+          "opts": [
+            "24",
+            "30",
+            "36",
+            "42"
+          ],
+          "ans": 2,
+          "exp": "108=2²×3³, 144=2⁴×3². HCF=2²×3²=36."
+        },
+        {
+          "order": 2,
+          "subject": "Maths",
+          "q": "A sum of money becomes 1.5 times itself in 5 years at simple interest. Find the rate of interest.",
+          "opts": [
+            "8%",
+            "10%",
+            "12%",
+            "15%"
+          ],
+          "ans": 1,
+          "exp": "If sum becomes 1.5 times, SI=0.5×Principal. Rate=SI×100/(P×T)=50×100/(100×5)=10%."
+        },
+        {
+          "order": 3,
+          "subject": "Maths",
+          "q": "A train running at 90 km/h crosses a platform in 24 seconds. If the train is 300m long, find the length of the platform.",
+          "opts": [
+            "280m",
+            "300m",
+            "320m",
+            "340m"
+          ],
+          "ans": 1,
+          "exp": "Speed=90 km/h=25 m/s. Total distance covered=25×24=600m. Platform length=600-300=300m."
+        },
+        {
+          "order": 4,
+          "subject": "Maths",
+          "q": "What is 65% of 480?",
+          "opts": [
+            "302",
+            "310",
+            "312",
+            "318"
+          ],
+          "ans": 2,
+          "exp": "65% of 480 = (65×480)/100 = 312."
+        },
+        {
+          "order": 5,
+          "subject": "Maths",
+          "q": "Find the value of: 14² - 6²",
+          "opts": [
+            "156",
+            "158",
+            "160",
+            "162"
+          ],
+          "ans": 2,
+          "exp": "Using a²-b²=(a+b)(a-b): (14+6)(14-6)=20×8=160."
+        },
+        {
+          "order": 6,
+          "subject": "Maths",
+          "q": "A and B together can complete a task in 6 days. If A can do it alone in 10 days, in how many days can B alone complete it?",
+          "opts": [
+            "12 days",
+            "14 days",
+            "15 days",
+            "16 days"
+          ],
+          "ans": 2,
+          "exp": "Combined rate=1/6. A's rate=1/10. B's rate=1/6-1/10=5/30-3/30=2/30=1/15. B alone takes 15 days."
+        },
+        {
+          "order": 7,
+          "subject": "Maths",
+          "q": "Find the perimeter of a rectangle whose length is 5cm more than its breadth, and the breadth is 12cm.",
+          "opts": [
+            "56cm",
+            "58cm",
+            "60cm",
+            "62cm"
+          ],
+          "ans": 1,
+          "exp": "Length=12+5=17cm. Perimeter=2(l+b)=2(17+12)=2×29=58cm."
+        },
+        {
+          "order": 8,
+          "subject": "Reasoning",
+          "q": "Find next: 4, 7, 13, 25, 49, ?",
+          "opts": [
+            "95",
+            "97",
+            "99",
+            "101"
+          ],
+          "ans": 1,
+          "exp": "Pattern: ×2-1 each time. 49×2-1=97."
+        },
+        {
+          "order": 9,
+          "subject": "Reasoning",
+          "q": "Engine : Train :: Heart : ?",
+          "opts": [
+            "Blood",
+            "Body",
+            "Lungs",
+            "Brain"
+          ],
+          "ans": 1,
+          "exp": "An engine powers a train. A heart powers the body (via blood circulation). Same power-source relationship."
+        },
+        {
+          "order": 10,
+          "subject": "Reasoning",
+          "q": "If 'STATION' is coded as 'TUBUJPO', how is 'PLATFORM' coded in the same pattern?",
+          "opts": [
+            "QMBUHPSN",
+            "QMBUGPSN",
+            "QMBVGPSM",
+            "RMBUGPSN"
+          ],
+          "ans": 1,
+          "exp": "Each letter shifted +1: S+1=T,T+1=U,A+1=B,T+1=U,I+1=J,O+1=P,N+1=O. Similarly P+1=Q,L+1=M,A+1=B,T+1=U,F+1=G,O+1=P,R+1=S,M+1=N = QMBUGPSN."
+        },
+        {
+          "order": 11,
+          "subject": "Reasoning",
+          "q": "A train travels 6km North, then turns and travels 8km East. How far is it from the starting point?",
+          "opts": [
+            "10km",
+            "12km",
+            "14km",
+            "16km"
+          ],
+          "ans": 0,
+          "exp": "Using the 6-8-10 Pythagorean triplet: distance=√(6²+8²)=√(36+64)=√100=10km."
+        },
+        {
+          "order": 12,
+          "subject": "Reasoning",
+          "q": "Find the odd one: 729, 512, 343, 200",
+          "opts": [
+            "512",
+            "343",
+            "200",
+            "729"
+          ],
+          "ans": 2,
+          "exp": "729=9³, 512=8³, 343=7³ — all perfect cubes. 200 is not a perfect cube — the odd one."
+        },
+        {
+          "order": 13,
+          "subject": "Reasoning",
+          "q": "In a row of 32 passengers, M is 13th from the left. What is M's position from the right?",
+          "opts": [
+            "19th",
+            "20th",
+            "21st",
+            "22nd"
+          ],
+          "ans": 1,
+          "exp": "Position from right = Total+1-Position from left = 33-13 = 20th."
+        },
+        {
+          "order": 14,
+          "subject": "Reasoning",
+          "q": "Find next: Z1, X4, V9, T16, ?",
+          "opts": [
+            "R25",
+            "S25",
+            "R24",
+            "Q25"
+          ],
+          "ans": 0,
+          "exp": "Letters go backward by 2 (Z,X,V,T,R) and numbers are perfect squares (1,4,9,16,25). Answer=R25."
+        },
+        {
+          "order": 15,
+          "subject": "Reasoning",
+          "q": "All railway employees are punctual. Some punctual people are disciplined. Which conclusion follows?",
+          "opts": [
+            "All railway employees are disciplined",
+            "Some railway employees may be disciplined",
+            "No railway employee is disciplined",
+            "All disciplined people are railway employees"
+          ],
+          "ans": 1,
+          "exp": "Since some punctual people are disciplined, and all railway employees are punctual, it's possible that some railway employees are disciplined too, though not definitely certain — this is the most reasonable conclusion among the choices."
+        },
+        {
+          "order": 16,
+          "subject": "GK",
+          "q": "Indian Railways operates under which Ministry?",
+          "opts": [
+            "Ministry of Transport",
+            "Ministry of Railways",
+            "Ministry of Surface Transport",
+            "Ministry of Commerce"
+          ],
+          "ans": 1,
+          "exp": "Indian Railways operates under the Ministry of Railways, Government of India."
+        },
+        {
+          "order": 17,
+          "subject": "GK",
+          "q": "Which is the longest railway platform in the world?",
+          "opts": [
+            "Kharagpur",
+            "Gorakhpur",
+            "Kollam",
+            "Bilaspur"
+          ],
+          "ans": 1,
+          "exp": "Gorakhpur Junction in Uttar Pradesh has the world's longest railway platform at 1,366.4 meters."
+        },
+        {
+          "order": 18,
+          "subject": "GK",
+          "q": "India's first underground metro railway was launched in which city?",
+          "opts": [
+            "Delhi",
+            "Mumbai",
+            "Kolkata",
+            "Chennai"
+          ],
+          "ans": 2,
+          "exp": "Kolkata Metro, inaugurated in 1984, was India's first underground metro rail system."
+        },
+        {
+          "order": 19,
+          "subject": "GK",
+          "q": "Which is India's fastest train (as of standard recent records)?",
+          "opts": [
+            "Rajdhani Express",
+            "Shatabdi Express",
+            "Vande Bharat Express",
+            "Gatimaan Express"
+          ],
+          "ans": 3,
+          "exp": "Gatimaan Express, running between Delhi and Agra, is recognized as India's fastest train, reaching speeds of 160 km/h."
+        },
+        {
+          "order": 20,
+          "subject": "GK",
+          "q": "The 'Konkan Railway' connects which two Indian states primarily?",
+          "opts": [
+            "Goa and Karnataka",
+            "Maharashtra and Kerala",
+            "Gujarat and Maharashtra",
+            "Karnataka and Kerala"
+          ],
+          "ans": 1,
+          "exp": "Konkan Railway primarily connects Maharashtra and passes through Goa, Karnataka, down to Kerala, but is most associated with linking Maharashtra and Kerala via the western coastal route."
+        },
+        {
+          "order": 21,
+          "subject": "GK",
+          "q": "Who is regarded as the 'Father of Indian Railways'?",
+          "opts": [
+            "Lord Dalhousie",
+            "Lord Curzon",
+            "Lord Hardinge",
+            "Lord Canning"
+          ],
+          "ans": 0,
+          "exp": "Lord Dalhousie is regarded as the 'Father of Indian Railways' for laying the foundation of the railway network in India."
+        },
+        {
+          "order": 22,
+          "subject": "GK",
+          "q": "What is the gauge width of Broad Gauge railway tracks in India?",
+          "opts": [
+            "1000mm",
+            "1435mm",
+            "1676mm",
+            "762mm"
+          ],
+          "ans": 2,
+          "exp": "Broad Gauge, the most common gauge in India, has a width of 1,676mm (5 feet 6 inches)."
+        },
+        {
+          "order": 23,
+          "subject": "GK",
+          "q": "Which is the first high-speed rail corridor under construction in India?",
+          "opts": [
+            "Delhi-Mumbai",
+            "Mumbai-Ahmedabad",
+            "Chennai-Bengaluru",
+            "Delhi-Kolkata"
+          ],
+          "ans": 1,
+          "exp": "The Mumbai-Ahmedabad High Speed Rail Corridor (Bullet Train project) is India's first high-speed rail project under construction."
+        },
+        {
+          "order": 24,
+          "subject": "GK",
+          "q": "Indian Railways' research wing, RDSO, is headquartered in:",
+          "opts": [
+            "New Delhi",
+            "Mumbai",
+            "Lucknow",
+            "Kolkata"
+          ],
+          "ans": 2,
+          "exp": "The Research Design and Standards Organisation (RDSO) is headquartered in Lucknow, Uttar Pradesh."
+        },
+        {
+          "order": 25,
+          "subject": "GK",
+          "q": "Which is the busiest railway station in India by passenger footfall?",
+          "opts": [
+            "New Delhi",
+            "Mumbai CST",
+            "Howrah",
+            "Kanpur Central"
+          ],
+          "ans": 0,
+          "exp": "New Delhi Railway Station handles one of the highest passenger footfalls in the country among Indian Railways stations."
+        }
+      ]
+    },
+    {
+      "id": "ntpc-mock-3",
+      "title": "RRB NTPC Full Mock Test 3",
+      "description": "25 questions • All subjects • 20 mins",
+      "duration": 1200,
+      "totalQ": 25,
+      "order": 3,
+      "questions": [
+        {
+          "order": 1,
+          "subject": "Maths",
+          "q": "Find the LCM of 16, 24, and 40.",
+          "opts": [
+            "180",
+            "220",
+            "240",
+            "260"
+          ],
+          "ans": 2,
+          "exp": "16=2⁴, 24=2³×3, 40=2³×5. LCM=2⁴×3×5=240."
+        },
+        {
+          "order": 2,
+          "subject": "Maths",
+          "q": "A shopkeeper allows a discount of 12% on the marked price of ₹850. Find the selling price.",
+          "opts": [
+            "₹728",
+            "₹738",
+            "₹748",
+            "₹758"
+          ],
+          "ans": 1,
+          "exp": "SP=MP×(100-12)/100=850×88/100=₹748."
+        },
+        {
+          "order": 3,
+          "subject": "Maths",
+          "q": "Find the compound interest on ₹12000 at 10% per annum for 2 years, compounded annually.",
+          "opts": [
+            "₹2400",
+            "₹2420",
+            "₹2500",
+            "₹2520"
+          ],
+          "ans": 3,
+          "exp": "Amount=12000×(1.1)²=12000×1.21=₹14520. CI=14520-12000=₹2520."
+        },
+        {
+          "order": 4,
+          "subject": "Maths",
+          "q": "What is the average of the first 20 odd natural numbers?",
+          "opts": [
+            "18",
+            "19",
+            "20",
+            "21"
+          ],
+          "ans": 2,
+          "exp": "First 20 odd numbers: 1,3,5,...,39. Average=(first+last)/2=(1+39)/2=20."
+        },
+        {
+          "order": 5,
+          "subject": "Maths",
+          "q": "A train 240m long passes a man standing on the platform in 12 seconds. Find the speed of the train in km/h.",
+          "opts": [
+            "68 km/h",
+            "72 km/h",
+            "76 km/h",
+            "80 km/h"
+          ],
+          "ans": 1,
+          "exp": "Speed=240/12=20 m/s=20×18/5=72 km/h."
+        },
+        {
+          "order": 6,
+          "subject": "Maths",
+          "q": "If x:y = 4:5 and y:z = 3:7, find x:y:z.",
+          "opts": [
+            "12:15:35",
+            "4:5:7",
+            "12:20:35",
+            "8:10:21"
+          ],
+          "ans": 0,
+          "exp": "x:y=4:5=12:15. y:z=3:7=15:35. x:y:z=12:15:35."
+        },
+        {
+          "order": 7,
+          "subject": "Maths",
+          "q": "Find the value of: 3³ + 4³ - 2³",
+          "opts": [
+            "79",
+            "81",
+            "83",
+            "85"
+          ],
+          "ans": 2,
+          "exp": "3³=27, 4³=64, 2³=8. 27+64-8=83."
+        },
+        {
+          "order": 8,
+          "subject": "Reasoning",
+          "q": "Find next: 100, 81, 64, 49, ?",
+          "opts": [
+            "36",
+            "38",
+            "40",
+            "42"
+          ],
+          "ans": 0,
+          "exp": "Series of decreasing perfect squares: 10²,9²,8²,7²,6²=36."
+        },
+        {
+          "order": 9,
+          "subject": "Reasoning",
+          "q": "Driver : Vehicle :: Pilot : ?",
+          "opts": [
+            "Sky",
+            "Aircraft",
+            "Runway",
+            "Airport"
+          ],
+          "ans": 1,
+          "exp": "A driver operates a vehicle. A pilot operates an aircraft. Same operator-machine relationship."
+        },
+        {
+          "order": 10,
+          "subject": "Reasoning",
+          "q": "If 'BRIDGE' is coded as 'CSJEHF', how is 'TUNNEL' coded in the same pattern?",
+          "opts": [
+            "UVOOFM",
+            "UVOOEM",
+            "UVOPFM",
+            "TVOOFM"
+          ],
+          "ans": 0,
+          "exp": "Each letter shifted +1: T+1=U,U+1=V,N+1=O,N+1=O,E+1=F,L+1=M = UVOOFM."
+        },
+        {
+          "order": 11,
+          "subject": "Reasoning",
+          "q": "A man walks 9km East, then 12km North. Find his distance from the starting point.",
+          "opts": [
+            "13km",
+            "14km",
+            "15km",
+            "16km"
+          ],
+          "ans": 2,
+          "exp": "Using the 9-12-15 triplet (3×3-4-5): distance=√(9²+12²)=√(81+144)=√225=15km."
+        },
+        {
+          "order": 12,
+          "subject": "Reasoning",
+          "q": "Find the odd one: 11, 13, 17, 19, 21",
+          "opts": [
+            "13",
+            "17",
+            "19",
+            "21"
+          ],
+          "ans": 3,
+          "exp": "11,13,17,19 are prime numbers. 21=3×7 is not prime — the odd one."
+        },
+        {
+          "order": 13,
+          "subject": "Reasoning",
+          "q": "In a queue of 40 people, Vikram is 16th from the front. What is his position from the back?",
+          "opts": [
+            "24th",
+            "25th",
+            "26th",
+            "23rd"
+          ],
+          "ans": 1,
+          "exp": "Position from back = Total+1-Position from front = 41-16 = 25th."
+        },
+        {
+          "order": 14,
+          "subject": "Reasoning",
+          "q": "Find next: D5, G10, J15, M20, ?",
+          "opts": [
+            "P25",
+            "O25",
+            "P24",
+            "Q25"
+          ],
+          "ans": 0,
+          "exp": "Letters skip 2 (D,G,J,M,P) and numbers increase by 5 (5,10,15,20,25). Answer=P25."
+        },
+        {
+          "order": 15,
+          "subject": "Reasoning",
+          "q": "All signals are checked daily. Some checked items are faulty. Which conclusion follows?",
+          "opts": [
+            "All signals are faulty",
+            "Some signals may be faulty",
+            "No signal is faulty",
+            "All faulty items are signals"
+          ],
+          "ans": 1,
+          "exp": "Since some checked items are faulty and all signals are checked, it's possible some signals are among those faulty items — this is the most reasonable conclusion."
+        },
+        {
+          "order": 16,
+          "subject": "GK",
+          "q": "How many railway zones does Indian Railways currently have?",
+          "opts": [
+            "16",
+            "17",
+            "18",
+            "19"
+          ],
+          "ans": 2,
+          "exp": "Indian Railways currently has 18 railway zones, each headed by a General Manager."
+        },
+        {
+          "order": 17,
+          "subject": "GK",
+          "q": "Which is the first train to run in India (1853)?",
+          "opts": [
+            "Deccan Queen",
+            "Frontier Mail",
+            "Mumbai-Thane passenger train",
+            "Calcutta Mail"
+          ],
+          "ans": 2,
+          "exp": "The first passenger train in India ran between Mumbai (Bombay) and Thane on 16 April 1853."
+        },
+        {
+          "order": 18,
+          "subject": "GK",
+          "q": "IRCTC stands for:",
+          "opts": [
+            "Indian Railway Catering and Tourism Corporation",
+            "Indian Rail Cargo and Transport Company",
+            "Indian Railway Construction and Technology Corporation",
+            "Indian Rail Customer and Ticketing Council"
+          ],
+          "ans": 0,
+          "exp": "IRCTC stands for Indian Railway Catering and Tourism Corporation, handling ticketing, catering, and tourism services."
+        },
+        {
+          "order": 19,
+          "subject": "GK",
+          "q": "Which is the headquarters of Northern Railway zone?",
+          "opts": [
+            "Mumbai",
+            "New Delhi",
+            "Lucknow",
+            "Jaipur"
+          ],
+          "ans": 1,
+          "exp": "Northern Railway zone is headquartered in New Delhi."
+        },
+        {
+          "order": 20,
+          "subject": "GK",
+          "q": "What is the standard color of the 'Rajdhani Express' livery (historically)?",
+          "opts": [
+            "Blue and Cream",
+            "Red and Yellow",
+            "Green and White",
+            "Orange and Grey"
+          ],
+          "ans": 0,
+          "exp": "Rajdhani Express trains have traditionally been associated with a Blue and Cream livery, though newer LHB coaches may vary."
+        },
+        {
+          "order": 21,
+          "subject": "GK",
+          "q": "Which organization is responsible for manufacturing railway coaches in Kapurthala, Punjab?",
+          "opts": [
+            "ICF Chennai",
+            "RCF Kapurthala",
+            "DLW Varanasi",
+            "CLW Chittaranjan"
+          ],
+          "ans": 1,
+          "exp": "Rail Coach Factory (RCF), located in Kapurthala, Punjab, manufactures railway coaches for Indian Railways."
+        },
+        {
+          "order": 22,
+          "subject": "GK",
+          "q": "Which is the only rack railway in India?",
+          "opts": [
+            "Darjeeling Himalayan Railway",
+            "Nilgiri Mountain Railway",
+            "Kalka-Shimla Railway",
+            "Matheran Hill Railway"
+          ],
+          "ans": 1,
+          "exp": "The Nilgiri Mountain Railway is the only rack railway system in India, used to climb steep gradients in the Nilgiri Hills."
+        },
+        {
+          "order": 23,
+          "subject": "GK",
+          "q": "Vande Bharat Express was manufactured at which facility?",
+          "opts": [
+            "ICF Chennai",
+            "RCF Kapurthala",
+            "MCF Raebareli",
+            "DLW Varanasi"
+          ],
+          "ans": 0,
+          "exp": "Vande Bharat Express trains were manufactured at the Integral Coach Factory (ICF) in Chennai."
+        },
+        {
+          "order": 24,
+          "subject": "GK",
+          "q": "Which year was the railway budget merged with the Union Budget?",
+          "opts": [
+            "2015",
+            "2016",
+            "2017",
+            "2018"
+          ],
+          "ans": 2,
+          "exp": "The Railway Budget was merged with the Union Budget starting from 2017, ending the practice of presenting a separate railway budget."
+        },
+        {
+          "order": 25,
+          "subject": "GK",
+          "q": "The 'National Rail Museum' is located in which city?",
+          "opts": [
+            "Mumbai",
+            "New Delhi",
+            "Chennai",
+            "Kolkata"
+          ],
+          "ans": 1,
+          "exp": "The National Rail Museum, established in 1977, is located in New Delhi, showcasing the history of Indian Railways."
+        }
+      ]
+    },
+    {
+      "id": "ntpc-mock-4",
+      "title": "RRB NTPC Full Mock Test 4",
+      "description": "25 questions • All subjects • 20 mins",
+      "duration": 1200,
+      "totalQ": 25,
+      "order": 4,
+      "questions": [
+        {
+          "order": 1,
+          "subject": "Maths",
+          "q": "Find the value of x: 5x - 8 = 3x + 14",
+          "opts": [
+            "9",
+            "10",
+            "11",
+            "12"
+          ],
+          "ans": 2,
+          "exp": "5x-3x=14+8. 2x=22. x=11."
+        },
+        {
+          "order": 2,
+          "subject": "Maths",
+          "q": "A sum of ₹9000 is divided among A, B, and C in the ratio 2:3:4. Find C's share.",
+          "opts": [
+            "₹3000",
+            "₹3500",
+            "₹4000",
+            "₹4500"
+          ],
+          "ans": 2,
+          "exp": "Total parts=2+3+4=9. C's share=(4/9)×9000=₹4000."
+        },
+        {
+          "order": 3,
+          "subject": "Maths",
+          "q": "Find the value of: √576",
+          "opts": [
+            "22",
+            "24",
+            "26",
+            "28"
+          ],
+          "ans": 1,
+          "exp": "24×24=576, so √576=24."
+        },
+        {
+          "order": 4,
+          "subject": "Maths",
+          "q": "A train running at 60 km/h takes 30 seconds to cross a bridge 200m long. Find the length of the train.",
+          "opts": [
+            "280m",
+            "290m",
+            "300m",
+            "310m"
+          ],
+          "ans": 2,
+          "exp": "Speed=60×5/18=16.67 m/s. Total distance covered=16.67×30≈500m. Train length=500-200=300m."
+        },
+        {
+          "order": 5,
+          "subject": "Maths",
+          "q": "Find the area of a square whose diagonal is 10√2 cm.",
+          "opts": [
+            "80 cm²",
+            "90 cm²",
+            "100 cm²",
+            "110 cm²"
+          ],
+          "ans": 2,
+          "exp": "For a square, diagonal=side×√2. Side=10√2/√2=10cm. Area=side²=100 cm²."
+        },
+        {
+          "order": 6,
+          "subject": "Maths",
+          "q": "Two pipes A and B can fill a tank in 12 hours and 18 hours respectively. A third pipe C can empty it in 9 hours. If all three are opened together, in how many hours will the tank be filled?",
+          "opts": [
+            "32 hours",
+            "34 hours",
+            "36 hours",
+            "38 hours"
+          ],
+          "ans": 2,
+          "exp": "Combined rate=1/12+1/18-1/9=3/36+2/36-4/36=1/36. Time=36 hours."
+        },
+        {
+          "order": 7,
+          "subject": "Maths",
+          "q": "If the simple interest on a sum for 2 years at 8% is ₹960, find the sum.",
+          "opts": [
+            "₹5500",
+            "₹6000",
+            "₹6500",
+            "₹7000"
+          ],
+          "ans": 1,
+          "exp": "Sum=SI×100/(R×T)=960×100/(8×2)=96000/16=₹6000."
+        },
+        {
+          "order": 8,
+          "subject": "Reasoning",
+          "q": "Find next: 1, 1, 2, 3, 5, 8, ?",
+          "opts": [
+            "11",
+            "12",
+            "13",
+            "14"
+          ],
+          "ans": 2,
+          "exp": "Fibonacci series: each term is the sum of the previous two. 5+8=13."
+        },
+        {
+          "order": 9,
+          "subject": "Reasoning",
+          "q": "Signal : Track :: Lock : ?",
+          "opts": [
+            "Key",
+            "Door",
+            "Safe",
+            "Gate"
+          ],
+          "ans": 1,
+          "exp": "A signal controls movement on a track. A lock controls access to a door. Both serve a controlling/restricting function for their respective domain."
+        },
+        {
+          "order": 10,
+          "subject": "Reasoning",
+          "q": "A train departs from Station X heading 10km North, then 6km West. How far is it from Station X now?",
+          "opts": [
+            "√(136)km",
+            "√(116)km",
+            "12km",
+            "16km"
+          ],
+          "ans": 0,
+          "exp": "Using Pythagoras: distance=√(10²+6²)=√(100+36)=√136 km ≈ 11.66km."
+        },
+        {
+          "order": 11,
+          "subject": "Reasoning",
+          "q": "Find the odd one: 14, 21, 28, 35, 41",
+          "opts": [
+            "21",
+            "28",
+            "35",
+            "41"
+          ],
+          "ans": 3,
+          "exp": "14,21,28,35 are all multiples of 7. 41 is not a multiple of 7 — the odd one."
+        },
+        {
+          "order": 12,
+          "subject": "Reasoning",
+          "q": "In a row of 50 people, P is 21st from the right. What is P's position from the left?",
+          "opts": [
+            "28th",
+            "29th",
+            "30th",
+            "31st"
+          ],
+          "ans": 1,
+          "exp": "Position from left = Total+1-Position from right = 51-21 = 30th."
+        },
+        {
+          "order": 13,
+          "subject": "Reasoning",
+          "q": "Find next: W2, T6, Q12, N20, ?",
+          "opts": [
+            "K30",
+            "L30",
+            "K28",
+            "J30"
+          ],
+          "ans": 0,
+          "exp": "Letters go backward by 3 (W,T,Q,N,K) and numbers follow pattern n(n+1): 2,6,12,20,30. Answer=K30."
+        },
+        {
+          "order": 14,
+          "subject": "Reasoning",
+          "q": "All trains are vehicles. Some vehicles are fast. Which conclusion definitely follows?",
+          "opts": [
+            "All trains are fast",
+            "Some trains may be fast",
+            "No train is fast",
+            "All fast things are trains"
+          ],
+          "ans": 1,
+          "exp": "Since some vehicles are fast and all trains are vehicles, it's possible some trains are fast, though not certain — the most reasonable conclusion."
+        },
+        {
+          "order": 15,
+          "subject": "Reasoning",
+          "q": "A is the son of B. C is the sister of A. D is the mother of B. How is C related to D?",
+          "opts": [
+            "Daughter",
+            "Granddaughter",
+            "Niece",
+            "Sister"
+          ],
+          "ans": 1,
+          "exp": "D is B's mother. A is B's son, so A is D's grandchild. C is A's sister, so C is also D's granddaughter."
+        },
+        {
+          "order": 16,
+          "subject": "GK",
+          "q": "Which Indian Railway zone is the largest by route length?",
+          "opts": [
+            "Northern Railway",
+            "Southern Railway",
+            "Western Railway",
+            "South Central Railway"
+          ],
+          "ans": 0,
+          "exp": "Northern Railway is one of the largest zones by route length, headquartered in New Delhi, covering significant parts of North India."
+        },
+        {
+          "order": 17,
+          "subject": "GK",
+          "q": "What does 'PNR' stand for in railway ticketing?",
+          "opts": [
+            "Passenger Name Record",
+            "Personal Number Reference",
+            "Public Number Registration",
+            "Passenger Number Receipt"
+          ],
+          "ans": 0,
+          "exp": "PNR stands for Passenger Name Record, a unique number assigned to each train booking."
+        },
+        {
+          "order": 18,
+          "subject": "GK",
+          "q": "Which Indian Railways train service connects India to Bangladesh?",
+          "opts": [
+            "Samjhauta Express",
+            "Maitree Express",
+            "Thar Express",
+            "Lahore-Delhi Express"
+          ],
+          "ans": 1,
+          "exp": "Maitree Express runs between Kolkata (India) and Dhaka (Bangladesh), symbolizing friendship between the two nations."
+        },
+        {
+          "order": 19,
+          "subject": "GK",
+          "q": "Indian Railways' free WiFi initiative (with Google) was first launched at which station?",
+          "opts": [
+            "New Delhi",
+            "Mumbai Central",
+            "Bengaluru",
+            "Chennai Central"
+          ],
+          "ans": 1,
+          "exp": "Indian Railways, in partnership with Google and RailTel, launched free high-speed WiFi first at Mumbai Central railway station in January 2016."
+        },
+        {
+          "order": 20,
+          "subject": "GK",
+          "q": "The 'Statue of Unity' railway station serves which famous monument?",
+          "opts": [
+            "Taj Mahal",
+            "Statue of Unity (Sardar Patel)",
+            "Gateway of India",
+            "Charminar"
+          ],
+          "ans": 1,
+          "exp": "The Kevadia/Statue of Unity railway station was specially built to serve tourists visiting the Statue of Unity in Gujarat."
+        },
+        {
+          "order": 21,
+          "subject": "GK",
+          "q": "Which railway zone covers Punjab and parts of Himachal Pradesh?",
+          "opts": [
+            "Northern Railway",
+            "North Western Railway",
+            "Eastern Railway",
+            "Western Railway"
+          ],
+          "ans": 0,
+          "exp": "Northern Railway zone covers Punjab, Haryana, Delhi, and parts of Himachal Pradesh and Uttar Pradesh."
+        },
+        {
+          "order": 22,
+          "subject": "GK",
+          "q": "What is the full form of 'CRS' in the context of Indian Railways?",
+          "opts": [
+            "Commissioner of Railway Safety",
+            "Central Railway Service",
+            "Chief Railway Supervisor",
+            "Coach Repair Service"
+          ],
+          "ans": 0,
+          "exp": "CRS stands for Commissioner of Railway Safety, responsible for ensuring safety standards across Indian Railways."
+        },
+        {
+          "order": 23,
+          "subject": "GK",
+          "q": "Which is India's first solar-powered train (DEMU)?",
+          "opts": [
+            "Vande Bharat",
+            "A DEMU train near Delhi (Safdarjung area)",
+            "Tejas Express",
+            "Humsafar Express"
+          ],
+          "ans": 1,
+          "exp": "Indian Railways launched its first solar-powered DEMU (Diesel Electric Multiple Unit) train on a route near Delhi as a step towards renewable energy adoption."
+        },
+        {
+          "order": 24,
+          "subject": "GK",
+          "q": "Mumbai's local train network is operated mainly under which zone(s)?",
+          "opts": [
+            "Western and Central Railway",
+            "Northern Railway",
+            "South Central Railway",
+            "Eastern Railway"
+          ],
+          "ans": 0,
+          "exp": "Mumbai's suburban local train network operates under both Western Railway and Central Railway zones."
+        },
+        {
+          "order": 25,
+          "subject": "GK",
+          "q": "The 'Tejas Express', a premium train service, is operated by which entity?",
+          "opts": [
+            "Indian Railways directly",
+            "IRCTC",
+            "RDSO",
+            "RailTel"
+          ],
+          "ans": 1,
+          "exp": "Tejas Express is operated by IRCTC (Indian Railway Catering and Tourism Corporation), India's first corporate-operated train service."
+        }
+      ]
+    }
+  ]
+}

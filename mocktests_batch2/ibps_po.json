@@ -1,0 +1,1010 @@
+{
+  "examKey": "IBPS_PO",
+  "tests": [
+    {
+      "id": "ibps-mock-2",
+      "title": "IBPS PO Full Mock Test 2",
+      "description": "25 questions • All subjects • 20 mins",
+      "duration": 1200,
+      "totalQ": 25,
+      "order": 2,
+      "questions": [
+        {
+          "order": 1,
+          "subject": "Maths",
+          "q": "Find next: 6, 14, 30, 62, ?",
+          "opts": [
+            "120",
+            "124",
+            "126",
+            "128"
+          ],
+          "ans": 2,
+          "exp": "Pattern: ×2+2 each time. 62×2+2=126."
+        },
+        {
+          "order": 2,
+          "subject": "Maths",
+          "q": "If 30% of a number is 90, find 50% of the same number.",
+          "opts": [
+            "120",
+            "140",
+            "150",
+            "160"
+          ],
+          "ans": 2,
+          "exp": "30% of x=90. x=90×100/30=300. 50% of 300=150."
+        },
+        {
+          "order": 3,
+          "subject": "Maths",
+          "q": "A invests ₹8000 for 9 months and B invests ₹6000 for 12 months in a business. Find the ratio of their profits.",
+          "opts": [
+            "1:1",
+            "2:1",
+            "3:2",
+            "4:3"
+          ],
+          "ans": 0,
+          "exp": "Profit ratio=Capital×Time. A=8000×9=72000. B=6000×12=72000. Ratio=72000:72000=1:1."
+        },
+        {
+          "order": 4,
+          "subject": "Maths",
+          "q": "Find the compound interest on ₹20000 at 12% per annum for 2 years.",
+          "opts": [
+            "₹4988",
+            "₹5088",
+            "₹5188",
+            "₹5288"
+          ],
+          "ans": 1,
+          "exp": "Amount=20000×(1.12)²=20000×1.2544=₹25088. CI=25088-20000=₹5088."
+        },
+        {
+          "order": 5,
+          "subject": "Maths",
+          "q": "Two dice are thrown together. Find the probability of getting a sum of 9.",
+          "opts": [
+            "1/9",
+            "1/12",
+            "4/36",
+            "5/36"
+          ],
+          "ans": 2,
+          "exp": "Combinations giving sum 9: (3,6),(4,5),(5,4),(6,3) = 4 outcomes. Total outcomes=36. P=4/36=1/9, equivalent fraction form 4/36 matches directly."
+        },
+        {
+          "order": 6,
+          "subject": "Maths",
+          "q": "In a data set, if the mean of 8 numbers is 24, and one number 30 is removed, find the new mean.",
+          "opts": [
+            "22.5",
+            "23",
+            "23.5",
+            "24"
+          ],
+          "ans": 1,
+          "exp": "Sum of 8 numbers=8×24=192. After removing 30: sum=162, count=7. New mean=162/7=23.14≈23."
+        },
+        {
+          "order": 7,
+          "subject": "Maths",
+          "q": "Find the value of: (15% of 400) + (8% of 250)",
+          "opts": [
+            "78",
+            "80",
+            "82",
+            "84"
+          ],
+          "ans": 2,
+          "exp": "15% of 400 = 60. 8% of 250 = 20. 60 + 20 = 80."
+        },
+        {
+          "order": 8,
+          "subject": "Reasoning",
+          "q": "Find the missing term: 3, 9, 27, 81, ?",
+          "opts": [
+            "162",
+            "189",
+            "243",
+            "270"
+          ],
+          "ans": 2,
+          "exp": "Geometric series: ×3 each time. 81×3=243."
+        },
+        {
+          "order": 9,
+          "subject": "Reasoning",
+          "q": "If P is coded as 16, Q as 17, then how is 'BANK' coded (sum of position values)?",
+          "opts": [
+            "26",
+            "27",
+            "28",
+            "29"
+          ],
+          "ans": 2,
+          "exp": "B=2, A=1, N=14, K=11 (position in alphabet). Sum = 2+1+14+11 = 28."
+        },
+        {
+          "order": 10,
+          "subject": "Reasoning",
+          "q": "A is the father of B. B is the husband of C. D is the daughter of C. How is A related to D?",
+          "opts": [
+            "Father",
+            "Grandfather",
+            "Uncle",
+            "Brother"
+          ],
+          "ans": 1,
+          "exp": "B is C's husband, D is C's daughter, so D is also B's daughter. A is B's father, making A the grandfather of D."
+        },
+        {
+          "order": 11,
+          "subject": "Reasoning",
+          "q": "In a queue of 30 people, X is 14th from the front. If Y is exactly opposite X (i.e., the same distance from the back as X is from the front), what is Y's position from the front?",
+          "opts": [
+            "16th",
+            "17th",
+            "18th",
+            "19th"
+          ],
+          "ans": 1,
+          "exp": "X is 14th from front, meaning 14th from back would be position 30-14+1=17. Y, being symmetric to X, is the 17th from the front."
+        },
+        {
+          "order": 12,
+          "subject": "Reasoning",
+          "q": "Find the odd one: Cheque, Draft, Passbook, Currency",
+          "opts": [
+            "Cheque",
+            "Draft",
+            "Passbook",
+            "Currency"
+          ],
+          "ans": 2,
+          "exp": "Cheque, Draft, and Currency are all forms of payment/monetary instruments. Passbook is a record-keeping document, not a payment instrument — the odd one."
+        },
+        {
+          "order": 13,
+          "subject": "Reasoning",
+          "q": "If in a certain code, 'LOAN' is written as 'MPBO', how is 'BANK' written in the same code?",
+          "opts": [
+            "CBOL",
+            "CBOM",
+            "CBPL",
+            "DBOL"
+          ],
+          "ans": 0,
+          "exp": "Each letter shifted +1: L+1=M,O+1=P,A+1=B,N+1=O. Similarly B+1=C,A+1=B,N+1=O,K+1=L = CBOL."
+        },
+        {
+          "order": 14,
+          "subject": "Reasoning",
+          "q": "All banks are financial institutions. Some financial institutions offer insurance. Which conclusion follows?",
+          "opts": [
+            "All banks offer insurance",
+            "Some banks may offer insurance",
+            "No bank offers insurance",
+            "All insurance providers are banks"
+          ],
+          "ans": 1,
+          "exp": "Since some financial institutions offer insurance, and all banks are financial institutions, it's possible some banks offer insurance — the most reasonable conclusion among the choices."
+        },
+        {
+          "order": 15,
+          "subject": "English",
+          "q": "Choose the correctly spelt word:",
+          "opts": [
+            "Questionnaire",
+            "Questionnair",
+            "Questionaire",
+            "Questionnairre"
+          ],
+          "ans": 0,
+          "exp": "The correct spelling is 'Questionnaire'."
+        },
+        {
+          "order": 16,
+          "subject": "English",
+          "q": "Synonym of LUCRATIVE:",
+          "opts": [
+            "Unprofitable",
+            "Profitable",
+            "Wasteful",
+            "Costly"
+          ],
+          "ans": 1,
+          "exp": "Lucrative means producing a great deal of profit; profitable."
+        },
+        {
+          "order": 17,
+          "subject": "English",
+          "q": "Antonym of VOLATILE:",
+          "opts": [
+            "Unstable",
+            "Stable",
+            "Unpredictable",
+            "Erratic"
+          ],
+          "ans": 1,
+          "exp": "Volatile means liable to change rapidly and unpredictably. Antonym = Stable (steady, not changing)."
+        },
+        {
+          "order": 18,
+          "subject": "English",
+          "q": "Fill in the blank: The bank ___ its interest rates last month.",
+          "opts": [
+            "raise",
+            "raises",
+            "raised",
+            "rising"
+          ],
+          "ans": 2,
+          "exp": "Simple past tense is required: 'raised', referring to a completed past action ('last month')."
+        },
+        {
+          "order": 19,
+          "subject": "English",
+          "q": "Idiom: 'In the red' means:",
+          "opts": [
+            "Angry",
+            "Operating at a loss/in debt",
+            "Very busy",
+            "Making a profit"
+          ],
+          "ans": 1,
+          "exp": "'In the red' means a business or account is operating at a loss or in debt, as losses were traditionally recorded in red ink."
+        },
+        {
+          "order": 20,
+          "subject": "Banking",
+          "q": "What does 'NEFT' stand for in Indian banking?",
+          "opts": [
+            "National Electronic Funds Transfer",
+            "National Easy Funds Transfer",
+            "New Electronic Finance Transfer",
+            "National Economic Funds Transaction"
+          ],
+          "ans": 0,
+          "exp": "NEFT stands for National Electronic Funds Transfer, a system for transferring funds electronically between bank accounts."
+        },
+        {
+          "order": 21,
+          "subject": "Banking",
+          "q": "Which rate is the rate at which RBI borrows money from commercial banks?",
+          "opts": [
+            "Repo Rate",
+            "Reverse Repo Rate",
+            "Bank Rate",
+            "MSF Rate"
+          ],
+          "ans": 1,
+          "exp": "Reverse Repo Rate is the rate at which RBI borrows money from commercial banks, opposite of the Repo Rate."
+        },
+        {
+          "order": 22,
+          "subject": "Banking",
+          "q": "CASA ratio in banking refers to:",
+          "opts": [
+            "Capital Adequacy Service Account",
+            "Current Account Savings Account ratio",
+            "Credit Account Service Agreement",
+            "Cash Asset Security Account"
+          ],
+          "ans": 1,
+          "exp": "CASA ratio refers to the proportion of deposits in Current Account and Savings Account relative to total deposits — a low-cost funding source for banks."
+        },
+        {
+          "order": 23,
+          "subject": "Banking",
+          "q": "Which committee recommended banking sector reforms in India in 1991?",
+          "opts": [
+            "Narasimham Committee",
+            "Tarapore Committee",
+            "Verma Committee",
+            "Rangarajan Committee"
+          ],
+          "ans": 0,
+          "exp": "The Narasimham Committee (1991) recommended major banking sector reforms in India, including capital adequacy norms and reduction in priority sector lending."
+        },
+        {
+          "order": 24,
+          "subject": "Banking",
+          "q": "Which is India's first payments bank to start operations?",
+          "opts": [
+            "Airtel Payments Bank",
+            "India Post Payments Bank",
+            "Paytm Payments Bank",
+            "Fino Payments Bank"
+          ],
+          "ans": 0,
+          "exp": "Airtel Payments Bank became India's first payments bank to begin operations in January 2017."
+        },
+        {
+          "order": 25,
+          "subject": "Banking",
+          "q": "What is the full form of 'KYC' in banking?",
+          "opts": [
+            "Know Your Customer",
+            "Keep Your Cash",
+            "Know Your Credit",
+            "Keep Your Currency"
+          ],
+          "ans": 0,
+          "exp": "KYC stands for Know Your Customer, a mandatory process to verify customer identity before account opening."
+        }
+      ]
+    },
+    {
+      "id": "ibps-mock-3",
+      "title": "IBPS PO Full Mock Test 3",
+      "description": "25 questions • All subjects • 20 mins",
+      "duration": 1200,
+      "totalQ": 25,
+      "order": 3,
+      "questions": [
+        {
+          "order": 1,
+          "subject": "Maths",
+          "q": "Find next: 2, 6, 14, 30, 62, ?",
+          "opts": [
+            "120",
+            "124",
+            "126",
+            "128"
+          ],
+          "ans": 2,
+          "exp": "Pattern: ×2+2 each time. 62×2+2=126."
+        },
+        {
+          "order": 2,
+          "subject": "Maths",
+          "q": "A and B together invest ₹50000 in a business in the ratio 3:2. If the total profit is ₹15000, find A's share.",
+          "opts": [
+            "₹8000",
+            "₹8500",
+            "₹9000",
+            "₹9500"
+          ],
+          "ans": 2,
+          "exp": "A's share=(3/5)×15000=₹9000."
+        },
+        {
+          "order": 3,
+          "subject": "Maths",
+          "q": "Find the value of: 12.5% of 640 + 37.5% of 320",
+          "opts": [
+            "190",
+            "200",
+            "210",
+            "220"
+          ],
+          "ans": 1,
+          "exp": "12.5% of 640=80. 37.5% of 320=120. 80+120=200."
+        },
+        {
+          "order": 4,
+          "subject": "Maths",
+          "q": "A bag contains 5 red, 4 blue, and 3 green balls. If one ball is drawn at random, find the probability that it is not green.",
+          "opts": [
+            "1/4",
+            "3/4",
+            "1/3",
+            "2/3"
+          ],
+          "ans": 1,
+          "exp": "Total balls=12. Green balls=3. P(not green)=1-3/12=9/12=3/4."
+        },
+        {
+          "order": 5,
+          "subject": "Maths",
+          "q": "Find the compound interest on ₹15000 at 8% per annum for 2 years, compounded annually.",
+          "opts": [
+            "₹2436",
+            "₹2496",
+            "₹2536",
+            "₹2596"
+          ],
+          "ans": 1,
+          "exp": "Amount=15000×(1.08)²=15000×1.1664=₹17496. CI=17496-15000=₹2496."
+        },
+        {
+          "order": 6,
+          "subject": "Maths",
+          "q": "The marked price of an item is ₹1200. After two successive discounts of 10% and 5%, find the selling price.",
+          "opts": [
+            "₹1014",
+            "₹1026",
+            "₹1038",
+            "₹1050"
+          ],
+          "ans": 1,
+          "exp": "After 10% discount: 1200×0.9=1080. After 5% discount: 1080×0.95=₹1026."
+        },
+        {
+          "order": 7,
+          "subject": "Maths",
+          "q": "If the ratio of ages of A and B is 5:7 and the sum of their ages is 60 years, find A's age.",
+          "opts": [
+            "20 years",
+            "25 years",
+            "30 years",
+            "35 years"
+          ],
+          "ans": 1,
+          "exp": "Total parts=5+7=12. A's age=(5/12)×60=25 years."
+        },
+        {
+          "order": 8,
+          "subject": "Reasoning",
+          "q": "Find next: J, L, O, S, ?",
+          "opts": [
+            "W",
+            "X",
+            "V",
+            "U"
+          ],
+          "ans": 0,
+          "exp": "Letter positions: J(10), L(12), O(15), S(19). Differences: 2, 3, 4 — increasing by 1 each time. Next difference = 5. 19+5 = 24th letter = X."
+        },
+        {
+          "order": 9,
+          "subject": "Reasoning",
+          "q": "Loan : Repayment :: Investment : ?",
+          "opts": [
+            "Bank",
+            "Returns",
+            "Risk",
+            "Capital"
+          ],
+          "ans": 1,
+          "exp": "A loan is followed by repayment over time. An investment is followed by returns over time. Same input-outcome relationship."
+        },
+        {
+          "order": 10,
+          "subject": "Reasoning",
+          "q": "If 'CREDIT' is coded as 'DSFEJU', how is 'DEBIT' coded in the same pattern?",
+          "opts": [
+            "EFCJU",
+            "EFCJV",
+            "EFDJU",
+            "FFCJU"
+          ],
+          "ans": 0,
+          "exp": "Each letter shifted +1: D+1=E,E+1=F,B+1=C,I+1=J,T+1=U = EFCJU."
+        },
+        {
+          "order": 11,
+          "subject": "Reasoning",
+          "q": "P is the wife of Q. R is the son of Q. S is the sister of R. How is P related to S?",
+          "opts": [
+            "Mother",
+            "Sister",
+            "Aunt",
+            "Grandmother"
+          ],
+          "ans": 0,
+          "exp": "Q is P's husband. R is Q's son, so R is also P's son. S is R's sister, so S is also P's daughter. P is S's mother."
+        },
+        {
+          "order": 12,
+          "subject": "Reasoning",
+          "q": "Find the odd one: Deposit, Withdrawal, Transfer, Signature",
+          "opts": [
+            "Deposit",
+            "Withdrawal",
+            "Transfer",
+            "Signature"
+          ],
+          "ans": 3,
+          "exp": "Deposit, Withdrawal, and Transfer are all banking transactions. Signature is an authentication method, not a transaction — the odd one."
+        },
+        {
+          "order": 13,
+          "subject": "Reasoning",
+          "q": "In a row of 36 customers, M is 15th from the left and N is 10th from the right. How many customers are between M and N?",
+          "opts": [
+            "9",
+            "10",
+            "11",
+            "12"
+          ],
+          "ans": 2,
+          "exp": "N's position from left = 36-10+1 = 27. Customers between M(15th) and N(27th) = 27-15-1 = 11."
+        },
+        {
+          "order": 14,
+          "subject": "Reasoning",
+          "q": "All deposits earn interest. Some interest-earning accounts are tax-free. Which conclusion follows?",
+          "opts": [
+            "All deposits are tax-free",
+            "Some deposits may be tax-free",
+            "No deposit is tax-free",
+            "All tax-free accounts are deposits"
+          ],
+          "ans": 1,
+          "exp": "Since some interest-earning accounts are tax-free, and all deposits earn interest, it's possible some deposits are tax-free — the most reasonable conclusion."
+        },
+        {
+          "order": 15,
+          "subject": "English",
+          "q": "Choose the correctly spelt word:",
+          "opts": [
+            "Bankrupcy",
+            "Bankruptcy",
+            "Bankruptsy",
+            "Bankrupcty"
+          ],
+          "ans": 1,
+          "exp": "The correct spelling is 'Bankruptcy'."
+        },
+        {
+          "order": 16,
+          "subject": "English",
+          "q": "Synonym of PRUDENT:",
+          "opts": [
+            "Reckless",
+            "Wise",
+            "Careless",
+            "Foolish"
+          ],
+          "ans": 1,
+          "exp": "Prudent means acting with or showing care and thought for the future; wise and cautious."
+        },
+        {
+          "order": 17,
+          "subject": "English",
+          "q": "Antonym of SOLVENT:",
+          "opts": [
+            "Wealthy",
+            "Insolvent",
+            "Stable",
+            "Liquid"
+          ],
+          "ans": 1,
+          "exp": "Solvent means having enough money to pay debts. Antonym = Insolvent (unable to pay debts; bankrupt)."
+        },
+        {
+          "order": 18,
+          "subject": "English",
+          "q": "Fill in the blank: The loan application ___ rejected due to insufficient documents.",
+          "opts": [
+            "was",
+            "were",
+            "is",
+            "are"
+          ],
+          "ans": 0,
+          "exp": "Singular subject 'application' requires the singular past tense verb 'was'."
+        },
+        {
+          "order": 19,
+          "subject": "English",
+          "q": "Idiom: 'To make ends meet' means:",
+          "opts": [
+            "To complete a task",
+            "To manage with limited financial resources",
+            "To finish a race",
+            "To agree with someone"
+          ],
+          "ans": 1,
+          "exp": "'Make ends meet' means to have just enough money to cover basic expenses."
+        },
+        {
+          "order": 20,
+          "subject": "Banking",
+          "q": "Which institution regulates Non-Banking Financial Companies (NBFCs) in India?",
+          "opts": [
+            "SEBI",
+            "RBI",
+            "IRDAI",
+            "PFRDA"
+          ],
+          "ans": 1,
+          "exp": "The Reserve Bank of India (RBI) regulates Non-Banking Financial Companies (NBFCs) in India."
+        },
+        {
+          "order": 21,
+          "subject": "Banking",
+          "q": "What is the minimum capital requirement aspect known as in banking regulation, ensuring banks can absorb losses?",
+          "opts": [
+            "CRR",
+            "SLR",
+            "CAR (Capital Adequacy Ratio)",
+            "NPA"
+          ],
+          "ans": 2,
+          "exp": "Capital Adequacy Ratio (CAR) measures a bank's capital in relation to its risk, ensuring it can absorb losses before becoming insolvent."
+        },
+        {
+          "order": 22,
+          "subject": "Banking",
+          "q": "Which scheme provides accident insurance cover at a nominal premium under Jan Suraksha schemes?",
+          "opts": [
+            "PMJJBY",
+            "PMSBY",
+            "APY",
+            "PMJDY"
+          ],
+          "ans": 1,
+          "exp": "Pradhan Mantri Suraksha Bima Yojana (PMSBY) provides accident insurance cover at a very low annual premium."
+        },
+        {
+          "order": 23,
+          "subject": "Banking",
+          "q": "UPI (Unified Payments Interface) is regulated/operated by which entity?",
+          "opts": [
+            "RBI directly",
+            "NPCI",
+            "SBI",
+            "SEBI"
+          ],
+          "ans": 1,
+          "exp": "UPI is operated by the National Payments Corporation of India (NPCI), which also manages RuPay cards."
+        },
+        {
+          "order": 24,
+          "subject": "Banking",
+          "q": "What is a 'Non-Performing Asset' (NPA) in banking terms?",
+          "opts": [
+            "A profitable loan",
+            "A loan with overdue payments beyond 90 days",
+            "A fixed deposit",
+            "A savings account"
+          ],
+          "ans": 1,
+          "exp": "An NPA is a loan or advance where the borrower has not paid interest or principal for 90 days or more."
+        },
+        {
+          "order": 25,
+          "subject": "Banking",
+          "q": "Which bank was India's first to introduce internet banking?",
+          "opts": [
+            "ICICI Bank",
+            "HDFC Bank",
+            "SBI",
+            "Citibank"
+          ],
+          "ans": 0,
+          "exp": "ICICI Bank was among the first banks in India to introduce internet banking services in 1996-97."
+        }
+      ]
+    },
+    {
+      "id": "ibps-mock-4",
+      "title": "IBPS PO Full Mock Test 4",
+      "description": "25 questions • All subjects • 20 mins",
+      "duration": 1200,
+      "totalQ": 25,
+      "order": 4,
+      "questions": [
+        {
+          "order": 1,
+          "subject": "Maths",
+          "q": "Find next: 5, 10, 20, 40, 80, ?",
+          "opts": [
+            "120",
+            "140",
+            "160",
+            "180"
+          ],
+          "ans": 2,
+          "exp": "Geometric series: ×2 each time. 80×2=160."
+        },
+        {
+          "order": 2,
+          "subject": "Maths",
+          "q": "A and B together can complete a task in 12 days. After working together for 4 days, A leaves and B completes the remaining work in 16 more days. In how many days can A alone complete the task?",
+          "opts": [
+            "20 days",
+            "24 days",
+            "28 days",
+            "30 days"
+          ],
+          "ans": 1,
+          "exp": "Combined rate = 1/12 per day. Work done together in 4 days = 4/12 = 1/3. Remaining work = 2/3, completed by B alone in 16 days, so B's rate = (2/3)/16 = 1/24 per day. A's rate = 1/12 - 1/24 = 1/24 per day. So A alone also takes 24 days."
+        },
+        {
+          "order": 3,
+          "subject": "Maths",
+          "q": "Find the value of: 22% of 350 + 18% of 250",
+          "opts": [
+            "120",
+            "122",
+            "124",
+            "126"
+          ],
+          "ans": 1,
+          "exp": "22% of 350=77. 18% of 250=45. 77+45=122."
+        },
+        {
+          "order": 4,
+          "subject": "Maths",
+          "q": "A sum of money is divided among P, Q, and R such that P gets twice as much as Q, and Q gets thrice as much as R. If R gets ₹2000, find the total sum.",
+          "opts": [
+            "₹16000",
+            "₹18000",
+            "₹20000",
+            "₹22000"
+          ],
+          "ans": 0,
+          "exp": "R = 2000. Q = 3×2000 = 6000. P = 2×6000 = 12000. Total = 12000+6000+2000 = ₹20000."
+        },
+        {
+          "order": 5,
+          "subject": "Maths",
+          "q": "Find the compound interest on ₹25000 at 6% per annum for 2 years.",
+          "opts": [
+            "₹2980",
+            "₹3000",
+            "₹3090",
+            "₹3120"
+          ],
+          "ans": 2,
+          "exp": "Amount=25000×(1.06)²=25000×1.1236=₹28090. CI=28090-25000=₹3090."
+        },
+        {
+          "order": 6,
+          "subject": "Maths",
+          "q": "If 3 men or 5 women can complete a task in 12 days, how many days will 6 men and 5 women together take to complete it?",
+          "opts": [
+            "4 days",
+            "5 days",
+            "6 days",
+            "7 days"
+          ],
+          "ans": 0,
+          "exp": "3 men=5 women in efficiency, so 1 man=5/3 women. 6 men=10 women. 6 men+5 women=15 women equivalent. 5 women take 12 days, so 1 woman-day of work=1/60 of task. 15 women take 60/15=4 days."
+        },
+        {
+          "order": 7,
+          "subject": "Maths",
+          "q": "Find the value of x if: 2(x+5) = 3(x-2)",
+          "opts": [
+            "14",
+            "15",
+            "16",
+            "17"
+          ],
+          "ans": 2,
+          "exp": "2x+10=3x-6. 10+6=3x-2x. x=16."
+        },
+        {
+          "order": 8,
+          "subject": "Reasoning",
+          "q": "Find next: 4, 9, 20, 43, ?",
+          "opts": [
+            "88",
+            "90",
+            "92",
+            "94"
+          ],
+          "ans": 2,
+          "exp": "Pattern: each term ×2 plus an increasing increment (+1, +2, +3, +4). 4×2+1=9, 9×2+2=20, 20×2+3=43, 43×2+4=90."
+        },
+        {
+          "order": 9,
+          "subject": "Reasoning",
+          "q": "Customer : Bank :: Patient : ?",
+          "opts": [
+            "Doctor",
+            "Hospital",
+            "Medicine",
+            "Nurse"
+          ],
+          "ans": 1,
+          "exp": "A customer visits/uses services of a Bank. A patient visits/uses services of a Hospital. Same person-institution relationship."
+        },
+        {
+          "order": 10,
+          "subject": "Reasoning",
+          "q": "If 'FINANCE' is coded as 'GJOBODF', how is 'BANKING' coded in the same pattern?",
+          "opts": [
+            "CBOLJOH",
+            "CBOLJOG",
+            "CBOMJOH",
+            "DBOLJOH"
+          ],
+          "ans": 0,
+          "exp": "Each letter shifted +1: B+1=C,A+1=B,N+1=O,K+1=L,I+1=J,N+1=O,G+1=H = CBOLJOH."
+        },
+        {
+          "order": 11,
+          "subject": "Reasoning",
+          "q": "M is the mother of N. N is the brother of O. P is the father of O. How is M related to P?",
+          "opts": [
+            "Wife",
+            "Sister",
+            "Daughter",
+            "Mother"
+          ],
+          "ans": 0,
+          "exp": "N and O are siblings. P is O's father, so P is also N's father. M is N's mother. Since N and O share parents, M and P are husband and wife."
+        },
+        {
+          "order": 12,
+          "subject": "Reasoning",
+          "q": "Find the odd one: Savings, Current, Recurring, Cheque",
+          "opts": [
+            "Savings",
+            "Current",
+            "Recurring",
+            "Cheque"
+          ],
+          "ans": 3,
+          "exp": "Savings, Current, and Recurring are all types of bank accounts. Cheque is a payment instrument, not an account type — the odd one."
+        },
+        {
+          "order": 13,
+          "subject": "Reasoning",
+          "q": "In a row of 24 employees, X is 9th from the left and Y is 8th from the right. How many employees are between X and Y?",
+          "opts": [
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "ans": 1,
+          "exp": "Y's position from left = 24-8+1 = 17. Employees between X(9th) and Y(17th) = 17-9-1 = 7."
+        },
+        {
+          "order": 14,
+          "subject": "Reasoning",
+          "q": "All term deposits have a lock-in period. Some lock-in deposits offer premature withdrawal. Which conclusion follows?",
+          "opts": [
+            "All term deposits offer premature withdrawal",
+            "Some term deposits may offer premature withdrawal",
+            "No term deposit offers premature withdrawal",
+            "All premature withdrawal options are term deposits"
+          ],
+          "ans": 1,
+          "exp": "Since some lock-in deposits offer premature withdrawal, and all term deposits have a lock-in period, it's possible some term deposits offer premature withdrawal — the most reasonable conclusion."
+        },
+        {
+          "order": 15,
+          "subject": "English",
+          "q": "Choose the correctly spelt word:",
+          "opts": [
+            "Reciept",
+            "Receipt",
+            "Receit",
+            "Receipte"
+          ],
+          "ans": 1,
+          "exp": "The correct spelling is 'Receipt'."
+        },
+        {
+          "order": 16,
+          "subject": "English",
+          "q": "Synonym of STRINGENT:",
+          "opts": [
+            "Lenient",
+            "Strict",
+            "Flexible",
+            "Loose"
+          ],
+          "ans": 1,
+          "exp": "Stringent means strict and precisely controlled; rigorous, especially regarding rules or requirements."
+        },
+        {
+          "order": 17,
+          "subject": "English",
+          "q": "Antonym of LIQUIDITY:",
+          "opts": [
+            "Cash flow",
+            "Illiquidity",
+            "Solvency",
+            "Capital"
+          ],
+          "ans": 1,
+          "exp": "Liquidity refers to the ease of converting assets to cash. Antonym = Illiquidity (difficulty in converting assets to cash)."
+        },
+        {
+          "order": 18,
+          "subject": "English",
+          "q": "Fill in the blank: By the time the manager arrived, the meeting ___ already started.",
+          "opts": [
+            "has",
+            "have",
+            "had",
+            "having"
+          ],
+          "ans": 2,
+          "exp": "Past Perfect tense is required for an action completed before another past action: 'had already started'."
+        },
+        {
+          "order": 19,
+          "subject": "English",
+          "q": "Idiom: 'To put all eggs in one basket' means:",
+          "opts": [
+            "To cook breakfast",
+            "To risk everything on a single venture",
+            "To organize carefully",
+            "To save money"
+          ],
+          "ans": 1,
+          "exp": "'Put all eggs in one basket' means to risk everything on the success of one venture or plan, without diversifying."
+        },
+        {
+          "order": 20,
+          "subject": "Banking",
+          "q": "What is the full form of 'MCLR' in banking?",
+          "opts": [
+            "Marginal Cost of Funds based Lending Rate",
+            "Monthly Credit Limit Rate",
+            "Minimum Capital Loan Rate",
+            "Maximum Credit Lending Ratio"
+          ],
+          "ans": 0,
+          "exp": "MCLR stands for Marginal Cost of Funds based Lending Rate, the minimum interest rate a bank can charge on loans."
+        },
+        {
+          "order": 21,
+          "subject": "Banking",
+          "q": "Which is the apex institution for housing finance regulation in India?",
+          "opts": [
+            "RBI (via NHB)",
+            "SEBI",
+            "IRDAI",
+            "PFRDA"
+          ],
+          "ans": 0,
+          "exp": "The National Housing Bank (NHB), under RBI's regulatory framework, oversees housing finance companies in India."
+        },
+        {
+          "order": 22,
+          "subject": "Banking",
+          "q": "What does 'IFSC' code represent in Indian banking?",
+          "opts": [
+            "Indian Financial System Code",
+            "International Funds Security Code",
+            "Indian Foreign Settlement Code",
+            "Internal Finance Service Code"
+          ],
+          "ans": 0,
+          "exp": "IFSC stands for Indian Financial System Code, an 11-character code identifying bank branches for electronic fund transfers."
+        },
+        {
+          "order": 23,
+          "subject": "Banking",
+          "q": "Which is India's largest public sector bank by assets?",
+          "opts": [
+            "Punjab National Bank",
+            "Bank of Baroda",
+            "State Bank of India",
+            "Canara Bank"
+          ],
+          "ans": 2,
+          "exp": "State Bank of India (SBI) is India's largest public sector bank by assets, branches, and customer base."
+        },
+        {
+          "order": 24,
+          "subject": "Banking",
+          "q": "What is the purpose of the 'Banking Ombudsman' scheme in India?",
+          "opts": [
+            "To regulate stock markets",
+            "To resolve customer complaints against banks",
+            "To issue currency notes",
+            "To set interest rates"
+          ],
+          "ans": 1,
+          "exp": "The Banking Ombudsman scheme, introduced by RBI, provides a mechanism for customers to resolve complaints against banks free of cost."
+        },
+        {
+          "order": 25,
+          "subject": "Banking",
+          "q": "Which entity issues the 'Base Rate' guidelines that were later replaced by MCLR?",
+          "opts": [
+            "SEBI",
+            "RBI",
+            "Finance Ministry",
+            "NABARD"
+          ],
+          "ans": 1,
+          "exp": "The Reserve Bank of India (RBI) issued the Base Rate guidelines (introduced 2010), which were later replaced by the MCLR system in 2016 for better transmission of policy rates."
+        }
+      ]
+    }
+  ]
+}
