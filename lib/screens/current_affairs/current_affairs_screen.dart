@@ -1,12 +1,17 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:provider/provider.dart';
 import '../../constants/app_colors.dart';
 import '../../services/rss_service.dart';
+import '../../l10n/language_provider.dart';
+import '../../l10n/app_strings.dart';
 
 class CurrentAffairsScreen extends StatefulWidget {
-  const CurrentAffairsScreen({super.key});
+  final int initialTabIndex;
+
+  const CurrentAffairsScreen({super.key, this.initialTabIndex = 0});
 
   @override
   State<CurrentAffairsScreen> createState() =>
@@ -40,26 +45,34 @@ class _CurrentAffairsScreenState extends State<CurrentAffairsScreen>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(
+      length: 3,
+      vsync: this,
+      initialIndex: widget.initialTabIndex,
+    );
     _loadNews();
     _loadQuizQuestions();
   }
 
   // ── Load RSS News ──────────────────────────────────────
   Future<void> _loadNews() async {
+    if (!mounted) return;
     setState(() {
       _isLoadingNews = true;
       _newsError = '';
     });
     try {
       final articles = await RssService.fetchAllArticles();
+      if (!mounted) return;
       setState(() {
         _articles = articles;
         _isLoadingNews = false;
       });
     } catch (e) {
+      if (!mounted) return;
+      final lang = context.read<LanguageProvider>().languageCode;
       setState(() {
-        _newsError = 'Could not load news. Check your internet connection.';
+        _newsError = AppStrings.get('check_internet_connection', lang);
         _isLoadingNews = false;
       });
     }
@@ -83,11 +96,13 @@ class _CurrentAffairsScreenState extends State<CurrentAffairsScreen>
       questions.shuffle();
       final selected = questions.take(10).toList();
 
+      if (!mounted) return;
       setState(() {
         _quizQuestions = selected;
         _isLoadingQuiz = false;
       });
     } catch (e) {
+      if (!mounted) return;
       setState(() => _isLoadingQuiz = false);
     }
   }
@@ -118,11 +133,12 @@ class _CurrentAffairsScreenState extends State<CurrentAffairsScreen>
 
   @override
   Widget build(BuildContext context) {
+    final lang = context.watch<LanguageProvider>().languageCode;
     return Scaffold(
       backgroundColor: const Color(0xFFF5F7FA),
       body: Column(
         children: [
-          _buildHeader(),
+          _buildHeader(lang),
           Container(
             color: Colors.white,
             child: TabBar(
@@ -133,10 +149,10 @@ class _CurrentAffairsScreenState extends State<CurrentAffairsScreen>
               unselectedLabelColor: Colors.grey.shade500,
               labelStyle: GoogleFonts.poppins(
                   fontWeight: FontWeight.bold, fontSize: 13),
-              tabs: const [
-                Tab(text: "Today's News"),
-                Tab(text: 'Daily Quiz'),
-                Tab(text: 'Monthly PDF'),
+              tabs: [
+                Tab(text: AppStrings.get('tab_todays_news', lang)),
+                Tab(text: AppStrings.get('tab_daily_quiz', lang)),
+                Tab(text: AppStrings.get('tab_monthly_pdf', lang)),
               ],
             ),
           ),
@@ -144,19 +160,19 @@ class _CurrentAffairsScreenState extends State<CurrentAffairsScreen>
             child: TabBarView(
               controller: _tabController,
               children: [
-                _buildNewsTab(),
-                _buildQuizTab(),
-                _buildPDFTab(),
+                _buildNewsTab(lang),
+                _buildQuizTab(lang),
+                _buildPDFTab(lang),
               ],
             ),
           ),
         ],
       ),
-      bottomNavigationBar: _buildBottomNav(),
+      bottomNavigationBar: _buildBottomNav(lang),
     );
   }
 
-  Widget _buildHeader() {
+  Widget _buildHeader(String lang) {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.only(
@@ -192,11 +208,11 @@ class _CurrentAffairsScreenState extends State<CurrentAffairsScreen>
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Current Affairs',
+                  Text(AppStrings.get('current_affairs_title', lang),
                       style: GoogleFonts.poppins(
                           color: Colors.white, fontSize: 22,
                           fontWeight: FontWeight.bold)),
-                  Text('Stay updated for your exams!',
+                  Text(AppStrings.get('stay_updated_subtitle', lang),
                       style: GoogleFonts.poppins(
                           color: Colors.white70, fontSize: 13)),
                 ],
@@ -224,15 +240,15 @@ class _CurrentAffairsScreenState extends State<CurrentAffairsScreen>
                   _isLoadingNews
                       ? '...'
                       : '${_articles.length}',
-                  'Today\'s\nArticles'),
+                  AppStrings.get('todays_articles_stat', lang)),
               const SizedBox(width: 24),
               _buildHeaderStat(
                   _isLoadingQuiz
                       ? '...'
                       : '${_quizQuestions.length}',
-                  'Quiz\nQuestions'),
+                  AppStrings.get('quiz_questions_stat', lang)),
               const SizedBox(width: 24),
-              _buildHeaderStat('3', 'News\nSources'),
+              _buildHeaderStat('3', AppStrings.get('news_sources_stat', lang)),
             ],
           ),
         ],
@@ -256,7 +272,12 @@ class _CurrentAffairsScreenState extends State<CurrentAffairsScreen>
   }
 
   // ── News Tab ───────────────────────────────────────────
-  Widget _buildNewsTab() {
+  // NOTE: category chip filter values (_categories list) stay in English
+  // since they're matched against RssArticle.category data from the feed
+  // itself — translating display-only would require the same name/key
+  // split pattern used elsewhere, deferred for this pass since these are
+  // mostly proper nouns (National, Economy) already short and recognizable.
+  Widget _buildNewsTab(String lang) {
     return Column(
       children: [
         // Category chips
@@ -308,24 +329,24 @@ class _CurrentAffairsScreenState extends State<CurrentAffairsScreen>
         // News list
         Expanded(
           child: _isLoadingNews
-              ? const Center(
+              ? Center(
             child: Column(
               mainAxisAlignment:
               MainAxisAlignment.center,
               children: [
-                CircularProgressIndicator(
+                const CircularProgressIndicator(
                     color: Color(0xFF1565C0)),
-                SizedBox(height: 16),
-                Text('Loading latest news...',
-                    style: TextStyle(
+                const SizedBox(height: 16),
+                Text(AppStrings.get('loading_news', lang),
+                    style: const TextStyle(
                         color: Color(0xFF6B7280))),
               ],
             ),
           )
               : _newsError.isNotEmpty
-              ? _buildErrorState()
+              ? _buildErrorState(lang)
               : _filteredArticles.isEmpty
-              ? _buildEmptyState()
+              ? _buildEmptyState(lang)
               : RefreshIndicator(
             onRefresh: _loadNews,
             child: ListView.builder(
@@ -334,7 +355,7 @@ class _CurrentAffairsScreenState extends State<CurrentAffairsScreen>
               _filteredArticles.length,
               itemBuilder: (context, index) =>
                   _buildArticleCard(
-                      _filteredArticles[index]),
+                      _filteredArticles[index], lang),
             ),
           ),
         ),
@@ -342,7 +363,7 @@ class _CurrentAffairsScreenState extends State<CurrentAffairsScreen>
     );
   }
 
-  Widget _buildErrorState() {
+  Widget _buildErrorState(String lang) {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -350,12 +371,12 @@ class _CurrentAffairsScreenState extends State<CurrentAffairsScreen>
           Icon(Icons.wifi_off_rounded,
               size: 64, color: Colors.grey.shade300),
           const SizedBox(height: 16),
-          Text('Could not load news',
+          Text(AppStrings.get('could_not_load_news', lang),
               style: GoogleFonts.poppins(
                   fontSize: 16, fontWeight: FontWeight.w600,
                   color: const Color(0xFF374151))),
           const SizedBox(height: 8),
-          Text('Please check your internet connection',
+          Text(AppStrings.get('check_internet_connection', lang),
               style: GoogleFonts.poppins(
                   fontSize: 13,
                   color: const Color(0xFF6B7280))),
@@ -364,7 +385,7 @@ class _CurrentAffairsScreenState extends State<CurrentAffairsScreen>
             onPressed: _loadNews,
             icon: const Icon(Icons.refresh_rounded,
                 color: Colors.white),
-            label: Text('Try Again',
+            label: Text(AppStrings.get('try_again_btn', lang),
                 style: GoogleFonts.poppins(
                     color: Colors.white)),
             style: ElevatedButton.styleFrom(
@@ -378,7 +399,7 @@ class _CurrentAffairsScreenState extends State<CurrentAffairsScreen>
     );
   }
 
-  Widget _buildEmptyState() {
+  Widget _buildEmptyState(String lang) {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -386,7 +407,7 @@ class _CurrentAffairsScreenState extends State<CurrentAffairsScreen>
           Icon(Icons.newspaper_outlined,
               size: 64, color: Colors.grey.shade300),
           const SizedBox(height: 16),
-          Text('No articles found',
+          Text(AppStrings.get('no_articles_found', lang),
               style: GoogleFonts.poppins(
                   fontSize: 16, fontWeight: FontWeight.w600,
                   color: const Color(0xFF374151))),
@@ -394,7 +415,7 @@ class _CurrentAffairsScreenState extends State<CurrentAffairsScreen>
           TextButton(
             onPressed: () =>
                 setState(() => _selectedCategory = 'All'),
-            child: Text('Show All',
+            child: Text(AppStrings.get('show_all_btn', lang),
                 style: GoogleFonts.poppins(
                     color: AppColors.primary)),
           ),
@@ -403,7 +424,10 @@ class _CurrentAffairsScreenState extends State<CurrentAffairsScreen>
     );
   }
 
-  Widget _buildArticleCard(RssArticle article) {
+  // NOTE: article.title, article.description, article.source, and
+  // article.category come from live RSS feeds — real news content,
+  // not translated (same boundary as job/syllabus data elsewhere).
+  Widget _buildArticleCard(RssArticle article, String lang) {
     Color categoryColor;
     IconData categoryIcon;
 
@@ -504,7 +528,7 @@ class _CurrentAffairsScreenState extends State<CurrentAffairsScreen>
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 GestureDetector(
-                  onTap: () => _openURL(article.link),
+                  onTap: () => _openURL(article.link, lang),
                   child: Container(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 14, vertical: 7),
@@ -513,7 +537,7 @@ class _CurrentAffairsScreenState extends State<CurrentAffairsScreen>
                       borderRadius:
                       BorderRadius.circular(20),
                     ),
-                    child: Text('Read More →',
+                    child: Text(AppStrings.get('read_more_btn', lang),
                         style: GoogleFonts.poppins(
                             fontSize: 12,
                             color: Colors.white,
@@ -545,9 +569,9 @@ class _CurrentAffairsScreenState extends State<CurrentAffairsScreen>
   }
 
   // ── Open URL in browser ────────────────────────────────
-  Future<void> _openURL(String url) async {
+  Future<void> _openURL(String url, String lang) async {
     if (url.isEmpty) {
-      _showToast('Link not available', success: false);
+      _showToast(AppStrings.get('link_not_available', lang), success: false);
       return;
     }
     final uri = Uri.parse(url);
@@ -555,7 +579,7 @@ class _CurrentAffairsScreenState extends State<CurrentAffairsScreen>
       await launchUrl(uri,
           mode: LaunchMode.externalApplication);
     } else {
-      _showToast('Unable to open link', success: false);
+      _showToast(AppStrings.get('unable_to_open_link', lang), success: false);
     }
   }
 
@@ -617,7 +641,9 @@ class _CurrentAffairsScreenState extends State<CurrentAffairsScreen>
   }
 
   // ── Quiz Tab ───────────────────────────────────────────
-  Widget _buildQuizTab() {
+  // NOTE: question['question'], question['category'], options text come
+  // from Firestore quiz content — real data, not translated.
+  Widget _buildQuizTab(String lang) {
     if (_isLoadingQuiz) {
       return const Center(
         child: CircularProgressIndicator(
@@ -633,7 +659,7 @@ class _CurrentAffairsScreenState extends State<CurrentAffairsScreen>
             Icon(Icons.quiz_outlined,
                 size: 64, color: Colors.grey.shade300),
             const SizedBox(height: 16),
-            Text('No questions available',
+            Text(AppStrings.get('no_questions_available', lang),
                 style: GoogleFonts.poppins(
                     fontSize: 16,
                     color: const Color(0xFF374151))),
@@ -642,7 +668,7 @@ class _CurrentAffairsScreenState extends State<CurrentAffairsScreen>
               onPressed: _resetQuiz,
               style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.primary),
-              child: Text('Try Again',
+              child: Text(AppStrings.get('try_again_btn', lang),
                   style: GoogleFonts.poppins(
                       color: Colors.white)),
             ),
@@ -651,7 +677,7 @@ class _CurrentAffairsScreenState extends State<CurrentAffairsScreen>
       );
     }
 
-    if (_quizComplete) return _buildQuizComplete();
+    if (_quizComplete) return _buildQuizComplete(lang);
 
     final question = _quizQuestions[_currentQuizIndex];
     final options = question['options'] as List<dynamic>;
@@ -667,14 +693,14 @@ class _CurrentAffairsScreenState extends State<CurrentAffairsScreen>
             MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Question ${_currentQuizIndex + 1}/${_quizQuestions.length}',
+                '${AppStrings.get('question_label', lang)} ${_currentQuizIndex + 1}/${_quizQuestions.length}',
                 style: GoogleFonts.poppins(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
                     color: const Color(0xFF1A1A2E)),
               ),
               Text(
-                'Score: $_score/${_quizQuestions.length}',
+                '${AppStrings.get('score_label', lang)} $_score/${_quizQuestions.length}',
                 style: GoogleFonts.poppins(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
@@ -869,8 +895,8 @@ class _CurrentAffairsScreenState extends State<CurrentAffairsScreen>
                 child: Center(
                   child: Text(
                     _currentQuizIndex < (_quizQuestions.length - 1)
-                        ? 'Next Question →'
-                        : 'See Results →',
+                        ? AppStrings.get('next_question_btn', lang)
+                        : AppStrings.get('see_results_arrow_btn', lang),
                     style: GoogleFonts.poppins(
                         color: Colors.white,
                         fontSize: 16,
@@ -885,7 +911,7 @@ class _CurrentAffairsScreenState extends State<CurrentAffairsScreen>
     );
   }
 
-  Widget _buildQuizComplete() {
+  Widget _buildQuizComplete(String lang) {
     final percentage =
     (_score / _quizQuestions.length * 100).toInt();
     Color resultColor;
@@ -894,15 +920,15 @@ class _CurrentAffairsScreenState extends State<CurrentAffairsScreen>
 
     if (percentage >= 80) {
       resultColor = const Color(0xFF10B981);
-      resultText = 'Excellent! 🎉';
+      resultText = AppStrings.get('excellent_result', lang);
       resultIcon = Icons.emoji_events_rounded;
     } else if (percentage >= 60) {
       resultColor = const Color(0xFFF59E0B);
-      resultText = 'Good Job! 👍';
+      resultText = AppStrings.get('good_effort_result', lang);
       resultIcon = Icons.thumb_up_rounded;
     } else {
       resultColor = const Color(0xFFEF4444);
-      resultText = 'Keep Practicing! 💪';
+      resultText = AppStrings.get('keep_practicing_result', lang);
       resultIcon = Icons.fitness_center_rounded;
     }
 
@@ -933,7 +959,7 @@ class _CurrentAffairsScreenState extends State<CurrentAffairsScreen>
                         fontSize: 24,
                         fontWeight: FontWeight.bold)),
                 const SizedBox(height: 8),
-                Text('Quiz Complete!',
+                Text(AppStrings.get('quiz_complete_title', lang),
                     style: GoogleFonts.poppins(
                         color: Colors.white70,
                         fontSize: 16)),
@@ -948,14 +974,14 @@ class _CurrentAffairsScreenState extends State<CurrentAffairsScreen>
                     mainAxisAlignment:
                     MainAxisAlignment.spaceAround,
                     children: [
-                      _scoreItem('$_score', 'Correct',
+                      _scoreItem('$_score', AppStrings.get('correct_score_label', lang),
                           const Color(0xFF10B981)),
                       _scoreItem(
                           '${_quizQuestions.length - _score}',
-                          'Wrong',
+                          AppStrings.get('wrong_score_label', lang),
                           const Color(0xFFEF4444)),
                       _scoreItem(
-                          '$percentage%', 'Score', Colors.white),
+                          '$percentage%', AppStrings.get('score_label_pdf', lang), Colors.white),
                     ],
                   ),
                 ),
@@ -970,7 +996,7 @@ class _CurrentAffairsScreenState extends State<CurrentAffairsScreen>
               onPressed: _resetQuiz,
               icon: const Icon(Icons.refresh_rounded,
                   color: Colors.white),
-              label: Text('Play Again',
+              label: Text(AppStrings.get('play_again_btn', lang),
                   style: GoogleFonts.poppins(
                       color: Colors.white,
                       fontSize: 16,
@@ -1004,7 +1030,10 @@ class _CurrentAffairsScreenState extends State<CurrentAffairsScreen>
   }
 
   // ── PDF Tab ────────────────────────────────────────────
-  Widget _buildPDFTab() {
+  // NOTE: month names (May 2026, etc.) intentionally left as-is — they're
+  // calendar data, displayed alongside the translated "Current Affairs"
+  // prefix and page/topic counts.
+  Widget _buildPDFTab(String lang) {
     final pdfs = [
       {
         'month': 'May 2026',
@@ -1080,7 +1109,7 @@ class _CurrentAffairsScreenState extends State<CurrentAffairsScreen>
                   CrossAxisAlignment.start,
                   children: [
                     Text(
-                        'Current Affairs ${pdf['month']}',
+                        '${AppStrings.get('current_affairs_pdf_prefix', lang)} ${pdf['month']}',
                         style: GoogleFonts.poppins(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
@@ -1096,11 +1125,11 @@ class _CurrentAffairsScreenState extends State<CurrentAffairsScreen>
               ),
               ElevatedButton.icon(
                 onPressed: () {
-                  _showToast('This feature is coming soon');
+                  _showToast(AppStrings.get('feature_coming_soon', lang));
                 },
                 icon: const Icon(Icons.download_rounded,
                     color: Colors.white, size: 16),
-                label: Text('Download',
+                label: Text(AppStrings.get('download_btn', lang),
                     style: GoogleFonts.poppins(
                         color: Colors.white, fontSize: 12)),
                 style: ElevatedButton.styleFrom(
@@ -1119,7 +1148,7 @@ class _CurrentAffairsScreenState extends State<CurrentAffairsScreen>
     );
   }
 
-  Widget _buildBottomNav() {
+  Widget _buildBottomNav(String lang) {
     return BottomNavigationBar(
       currentIndex: 0,
       type: BottomNavigationBarType.fixed,
@@ -1137,12 +1166,12 @@ class _CurrentAffairsScreenState extends State<CurrentAffairsScreen>
           case 4: Navigator.pushReplacementNamed(context, '/profile'); break;
         }
       },
-      items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.home_outlined), activeIcon: Icon(Icons.home), label: 'Home'),
-        BottomNavigationBarItem(icon: Icon(Icons.work_outline), activeIcon: Icon(Icons.work), label: 'Jobs'),
-        BottomNavigationBarItem(icon: Icon(Icons.newspaper_outlined), activeIcon: Icon(Icons.newspaper), label: 'News'),
-        BottomNavigationBarItem(icon: Icon(Icons.bookmark_outline), activeIcon: Icon(Icons.bookmark), label: 'Saved'),
-        BottomNavigationBarItem(icon: Icon(Icons.person_outline), activeIcon: Icon(Icons.person), label: 'Profile'),
+      items: [
+        BottomNavigationBarItem(icon: const Icon(Icons.home_outlined), activeIcon: const Icon(Icons.home), label: AppStrings.get('nav_home', lang)),
+        BottomNavigationBarItem(icon: const Icon(Icons.work_outline), activeIcon: const Icon(Icons.work), label: AppStrings.get('nav_jobs', lang)),
+        BottomNavigationBarItem(icon: const Icon(Icons.newspaper_outlined), activeIcon: const Icon(Icons.newspaper), label: AppStrings.get('nav_news', lang)),
+        BottomNavigationBarItem(icon: const Icon(Icons.bookmark_outline), activeIcon: const Icon(Icons.bookmark), label: AppStrings.get('nav_saved', lang)),
+        BottomNavigationBarItem(icon: const Icon(Icons.person_outline), activeIcon: const Icon(Icons.person), label: AppStrings.get('nav_profile', lang)),
       ],
     );
   }

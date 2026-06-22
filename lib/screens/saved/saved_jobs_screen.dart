@@ -2,7 +2,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import '../../constants/app_colors.dart';
+import '../../l10n/language_provider.dart';
+import '../../l10n/app_strings.dart';
 
 class SavedJobsScreen extends StatefulWidget {
   const SavedJobsScreen({super.key});
@@ -37,23 +40,24 @@ class _SavedJobsScreenState extends State<SavedJobsScreen>
     super.dispose();
   }
 
-  // ── Load saved jobs from Firebase ─────────────────────
   Future<void> _loadSavedJobs() async {
+    if (!mounted) return;
     setState(() => _isLoading = true);
     try {
       final user = FirebaseAuth.instance.currentUser;
       if (user == null) {
+        if (!mounted) return;
         setState(() => _isLoading = false);
         return;
       }
 
-      // Get user's saved job IDs
       final userDoc = await FirebaseFirestore.instance
           .collection('users')
           .doc(user.uid)
           .get();
 
       if (!userDoc.exists) {
+        if (!mounted) return;
         setState(() => _isLoading = false);
         return;
       }
@@ -64,7 +68,6 @@ class _SavedJobsScreenState extends State<SavedJobsScreen>
       final appliedIds =
       List<String>.from(data['appliedJobs'] ?? []);
 
-      // Fetch saved job details
       List<Map<String, dynamic>> savedJobs = [];
       for (final id in savedIds) {
         try {
@@ -82,7 +85,6 @@ class _SavedJobsScreenState extends State<SavedJobsScreen>
         }
       }
 
-      // Fetch applied job details
       List<Map<String, dynamic>> appliedJobs = [];
       for (final id in appliedIds) {
         try {
@@ -100,17 +102,18 @@ class _SavedJobsScreenState extends State<SavedJobsScreen>
         }
       }
 
+      if (!mounted) return;
       setState(() {
         _savedJobs   = savedJobs;
         _appliedJobs = appliedJobs;
         _isLoading   = false;
       });
     } catch (e) {
+      if (!mounted) return;
       setState(() => _isLoading = false);
     }
   }
 
-  // ── Remove saved job ───────────────────────────────────
   Future<void> _removeSavedJob(String jobId) async {
     try {
       final user = FirebaseAuth.instance.currentUser;
@@ -123,6 +126,7 @@ class _SavedJobsScreenState extends State<SavedJobsScreen>
         'savedJobs': FieldValue.arrayRemove([jobId]),
       }, SetOptions(merge: true));
 
+      if (!mounted) return;
       setState(() {
         _savedJobs.removeWhere((j) => j['id'] == jobId);
       });
@@ -216,6 +220,22 @@ class _SavedJobsScreenState extends State<SavedJobsScreen>
     }
   }
 
+  // Same pattern as job_listing_screen.dart: filter VALUE stays English
+  // (used for actual filtering logic), only the DISPLAYED label translates.
+  String _categoryLabel(String cat, String lang) {
+    const keyMap = {
+      'All': 'cat_all',
+      'Railway': 'cat_railway',
+      'Police': 'cat_police',
+      'Banking': 'cat_banking',
+      'SSC': 'cat_ssc',
+      'Army': 'cat_army',
+    };
+    final key = keyMap[cat];
+    if (key == null) return cat;
+    return AppStrings.get(key, lang);
+  }
+
   int _calculateDaysLeft(dynamic lastDate) {
     try {
       if (lastDate == null) return 0;
@@ -242,11 +262,12 @@ class _SavedJobsScreenState extends State<SavedJobsScreen>
 
   @override
   Widget build(BuildContext context) {
+    final lang = context.watch<LanguageProvider>().languageCode;
     return Scaffold(
       backgroundColor: AppColors.background,
       body: Column(
         children: [
-          _buildHeader(),
+          _buildHeader(lang),
           Container(
             color: Colors.white,
             child: TabBar(
@@ -266,7 +287,7 @@ class _SavedJobsScreenState extends State<SavedJobsScreen>
                       const Icon(Icons.bookmark_rounded,
                           size: 18),
                       const SizedBox(width: 6),
-                      Text('Saved (${_savedJobs.length})'),
+                      Text('${AppStrings.get('saved_tab_label', lang)} (${_savedJobs.length})'),
                     ],
                   ),
                 ),
@@ -280,7 +301,7 @@ class _SavedJobsScreenState extends State<SavedJobsScreen>
                           size: 18),
                       const SizedBox(width: 6),
                       Text(
-                          'Applied (${_appliedJobs.length})'),
+                          '${AppStrings.get('applied_tab_label', lang)} (${_appliedJobs.length})'),
                     ],
                   ),
                 ),
@@ -295,18 +316,18 @@ class _SavedJobsScreenState extends State<SavedJobsScreen>
                 : TabBarView(
               controller: _tabController,
               children: [
-                _buildSavedTab(),
-                _buildAppliedTab(),
+                _buildSavedTab(lang),
+                _buildAppliedTab(lang),
               ],
             ),
           ),
         ],
       ),
-      bottomNavigationBar: _buildBottomNav(),
+      bottomNavigationBar: _buildBottomNav(lang),
     );
   }
 
-  Widget _buildHeader() {
+  Widget _buildHeader(String lang) {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.only(
@@ -328,11 +349,11 @@ class _SavedJobsScreenState extends State<SavedJobsScreen>
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('My Jobs',
+                  Text(AppStrings.get('my_jobs_title', lang),
                       style: GoogleFonts.poppins(
                           color: Colors.white, fontSize: 22,
                           fontWeight: FontWeight.bold)),
-                  Text('Saved and applied jobs',
+                  Text(AppStrings.get('my_jobs_subtitle', lang),
                       style: GoogleFonts.poppins(
                           color: Colors.white70,
                           fontSize: 13)),
@@ -358,12 +379,12 @@ class _SavedJobsScreenState extends State<SavedJobsScreen>
           Row(
             children: [
               _headerStat('${_savedJobs.length}',
-                  'Saved\nJobs'),
+                  '${AppStrings.get('saved_stat', lang)}\n${AppStrings.get('nav_jobs', lang)}'),
               const SizedBox(width: 24),
               _headerStat('${_appliedJobs.length}',
-                  'Applied\nJobs'),
+                  '${AppStrings.get('applied_stat', lang)}\n${AppStrings.get('nav_jobs', lang)}'),
               const SizedBox(width: 24),
-              _headerStat('0', 'Selected\nJobs'),
+              _headerStat('0', '${AppStrings.get('selected_stat', lang)}\n${AppStrings.get('nav_jobs', lang)}'),
             ],
           ),
         ],
@@ -386,10 +407,9 @@ class _SavedJobsScreenState extends State<SavedJobsScreen>
     );
   }
 
-  Widget _buildSavedTab() {
+  Widget _buildSavedTab(String lang) {
     return Column(
       children: [
-        // Filter chips
         Container(
           color: Colors.white,
           padding: const EdgeInsets.symmetric(vertical: 10),
@@ -420,7 +440,7 @@ class _SavedJobsScreenState extends State<SavedJobsScreen>
                             : Colors.grey.shade200,
                       ),
                     ),
-                    child: Text(filter,
+                    child: Text(_categoryLabel(filter, lang),
                       style: TextStyle(
                         color: isSelected
                             ? Colors.white
@@ -439,8 +459,8 @@ class _SavedJobsScreenState extends State<SavedJobsScreen>
         Expanded(
           child: _filteredJobs.isEmpty
               ? _buildEmptyState(
-              'No saved jobs yet!',
-              'Browse jobs and tap Save Job to add them here',
+              AppStrings.get('no_saved_jobs_title', lang),
+              AppStrings.get('no_saved_jobs_sub', lang),
               Icons.bookmark_border_rounded)
               : RefreshIndicator(
             onRefresh: _loadSavedJobs,
@@ -587,11 +607,11 @@ class _SavedJobsScreenState extends State<SavedJobsScreen>
     );
   }
 
-  Widget _buildAppliedTab() {
+  Widget _buildAppliedTab(String lang) {
     if (_appliedJobs.isEmpty) {
       return _buildEmptyState(
-          'No applied jobs yet!',
-          'Jobs you apply for will appear here',
+          AppStrings.get('no_applied_jobs_title', lang),
+          AppStrings.get('no_applied_jobs_sub', lang),
           Icons.track_changes_rounded);
     }
 
@@ -720,7 +740,7 @@ class _SavedJobsScreenState extends State<SavedJobsScreen>
     );
   }
 
-  Widget _buildBottomNav() {
+  Widget _buildBottomNav(String lang) {
     return BottomNavigationBar(
       currentIndex: 3,
       type: BottomNavigationBarType.fixed,
@@ -739,12 +759,12 @@ class _SavedJobsScreenState extends State<SavedJobsScreen>
           case 4: Navigator.pushReplacementNamed(context, '/profile'); break;
         }
       },
-      items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.home_outlined), activeIcon: Icon(Icons.home), label: 'Home'),
-        BottomNavigationBarItem(icon: Icon(Icons.work_outline), activeIcon: Icon(Icons.work), label: 'Jobs'),
-        BottomNavigationBarItem(icon: Icon(Icons.newspaper_outlined), activeIcon: Icon(Icons.newspaper), label: 'News'),
-        BottomNavigationBarItem(icon: Icon(Icons.bookmark_outline), activeIcon: Icon(Icons.bookmark), label: 'Saved'),
-        BottomNavigationBarItem(icon: Icon(Icons.person_outline), activeIcon: Icon(Icons.person), label: 'Profile'),
+      items: [
+        BottomNavigationBarItem(icon: const Icon(Icons.home_outlined), activeIcon: const Icon(Icons.home), label: AppStrings.get('nav_home', lang)),
+        BottomNavigationBarItem(icon: const Icon(Icons.work_outline), activeIcon: const Icon(Icons.work), label: AppStrings.get('nav_jobs', lang)),
+        BottomNavigationBarItem(icon: const Icon(Icons.newspaper_outlined), activeIcon: const Icon(Icons.newspaper), label: AppStrings.get('nav_news', lang)),
+        BottomNavigationBarItem(icon: const Icon(Icons.bookmark_outline), activeIcon: const Icon(Icons.bookmark), label: AppStrings.get('nav_saved', lang)),
+        BottomNavigationBarItem(icon: const Icon(Icons.person_outline), activeIcon: const Icon(Icons.person), label: AppStrings.get('nav_profile', lang)),
       ],
     );
   }

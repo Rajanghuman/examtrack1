@@ -1,10 +1,13 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:provider/provider.dart';
 import '../../constants/app_colors.dart';
+import '../../l10n/language_provider.dart';
+import '../../l10n/app_strings.dart';
 
 class JobDetailScreen extends StatefulWidget {
   const JobDetailScreen({super.key});
@@ -37,6 +40,7 @@ class _JobDetailScreenState extends State<JobDetailScreen>
             .collection('users').doc(user.uid).get();
         if (doc.exists) {
           final data = doc.data()!;
+          if (!mounted) return;
           setState(() {
             _userQualification = data['qualification'] as String? ?? '';
             _userState = data['state'] as String? ?? '';
@@ -241,18 +245,20 @@ class _JobDetailScreenState extends State<JobDetailScreen>
 
   Future<void> _openURL(BuildContext context, String url) async {
     final uri = Uri.parse(url);
+    final lang = context.read<LanguageProvider>().languageCode;
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri, mode: LaunchMode.externalApplication);
     } else {
-      _showToast(context, 'Could not open link!', success: false);
+      _showToast(context, AppStrings.get('could_not_open_link', lang), success: false);
     }
   }
 
   Future<void> _saveJob(String jobId, String title) async {
+    final lang = context.read<LanguageProvider>().languageCode;
     try {
       final user = FirebaseAuth.instance.currentUser;
       if (user == null) {
-        _showToast(context, 'Please login to save jobs!', success: false);
+        _showToast(context, AppStrings.get('login_to_save', lang), success: false);
         return;
       }
       await FirebaseFirestore.instance
@@ -261,10 +267,11 @@ class _JobDetailScreenState extends State<JobDetailScreen>
           .set({
         'savedJobs': FieldValue.arrayUnion([jobId]),
       }, SetOptions(merge: true));
+      if (!mounted) return;
       setState(() => _isSaved = true);
-      _showToast(context, '$title saved! ✅');
+      _showToast(context, '$title ${AppStrings.get('job_saved_toast', lang)}');
     } catch (e) {
-      _showToast(context, 'Error saving job. Try again!', success: false);
+      _showToast(context, AppStrings.get('save_error_toast', lang), success: false);
     }
   }
 
@@ -277,6 +284,7 @@ class _JobDetailScreenState extends State<JobDetailScreen>
     required String notes,
     required String userCategory,
   }) async {
+    final lang = context.read<LanguageProvider>().languageCode;
     try {
       final user = FirebaseAuth.instance.currentUser;
       if (user == null) return;
@@ -318,10 +326,11 @@ class _JobDetailScreenState extends State<JobDetailScreen>
         'stages':         _defaultStages(category),
       });
 
+      if (!mounted) return;
       setState(() => _isApplied = true);
-      _showToast(context, 'Marked as Applied! ✅');
+      _showToast(context, AppStrings.get('marked_applied_toast', lang));
     } catch (e) {
-      _showToast(context, 'Error. Try again!', success: false);
+      _showToast(context, AppStrings.get('generic_error_toast', lang), success: false);
     }
   }
 
@@ -381,6 +390,7 @@ class _JobDetailScreenState extends State<JobDetailScreen>
     required String organization,
     required String category,
   }) {
+    final lang = context.read<LanguageProvider>().languageCode;
     final regNoController  = TextEditingController();
     final notesController  = TextEditingController();
     String selectedCategory = 'General';
@@ -412,7 +422,7 @@ class _JobDetailScreenState extends State<JobDetailScreen>
                       color: Color(0xFF10B981), size: 24),
                   const SizedBox(width: 10),
                   Expanded(
-                    child: Text('Mark as Applied',
+                    child: Text(AppStrings.get('mark_as_applied_title', lang),
                         style: GoogleFonts.poppins(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -431,7 +441,7 @@ class _JobDetailScreenState extends State<JobDetailScreen>
                 TextField(
                   controller: regNoController,
                   decoration: InputDecoration(
-                    hintText: 'Registration Number (optional)',
+                    hintText: AppStrings.get('reg_no_hint', lang),
                     hintStyle: TextStyle(color: Colors.grey.shade400, fontSize: 14),
                     prefixIcon: Icon(Icons.confirmation_number_outlined,
                         color: const Color(0xFF1565C0), size: 20),
@@ -456,7 +466,7 @@ class _JobDetailScreenState extends State<JobDetailScreen>
                       DropdownButtonFormField<String>(
                         value: selectedCategory,
                         decoration: InputDecoration(
-                          labelText: 'Your Category',
+                          labelText: AppStrings.get('your_category_label', lang),
                           labelStyle: GoogleFonts.poppins(fontSize: 13),
                           prefixIcon: const Icon(Icons.category_outlined,
                               color: Color(0xFF1565C0), size: 20),
@@ -489,7 +499,7 @@ class _JobDetailScreenState extends State<JobDetailScreen>
                   controller: notesController,
                   maxLines: 2,
                   decoration: InputDecoration(
-                    hintText: 'Notes (optional)',
+                    hintText: AppStrings.get('notes_hint', lang),
                     hintStyle: TextStyle(color: Colors.grey.shade400, fontSize: 14),
                     prefixIcon: Icon(Icons.notes_outlined,
                         color: const Color(0xFF1565C0), size: 20),
@@ -526,7 +536,7 @@ class _JobDetailScreenState extends State<JobDetailScreen>
                       );
                     },
                     icon: const Icon(Icons.check_rounded, color: Colors.white),
-                    label: Text('Confirm — I Applied!',
+                    label: Text(AppStrings.get('confirm_applied_btn', lang),
                         style: GoogleFonts.poppins(
                             color: Colors.white,
                             fontSize: 15,
@@ -549,6 +559,7 @@ class _JobDetailScreenState extends State<JobDetailScreen>
 
   @override
   Widget build(BuildContext context) {
+    final lang = context.watch<LanguageProvider>().languageCode;
     final Map<String, dynamic> job =
         (ModalRoute.of(context)?.settings.arguments
         as Map<String, dynamic>?) ?? {};
@@ -712,11 +723,11 @@ class _JobDetailScreenState extends State<JobDetailScreen>
                 labelStyle: const TextStyle(
                     fontSize: 12, fontWeight: FontWeight.w600),
                 unselectedLabelStyle: const TextStyle(fontSize: 12),
-                tabs: const [
-                  Tab(text: 'Overview'),
-                  Tab(text: 'Selection'),
-                  Tab(text: 'Syllabus'),
-                  Tab(text: 'Papers'),
+                tabs: [
+                  Tab(text: AppStrings.get('tab_overview', lang)),
+                  Tab(text: AppStrings.get('tab_selection', lang)),
+                  Tab(text: AppStrings.get('tab_syllabus', lang)),
+                  Tab(text: AppStrings.get('tab_papers', lang)),
                 ],
               ),
             ),
@@ -727,15 +738,15 @@ class _JobDetailScreenState extends State<JobDetailScreen>
           children: [
             _buildOverviewTab(job, title, vacancies, lastDate, examDate,
                 salary, qualification, fee, ageMin, ageMax, catColor,
-                ageLimit, applicationFee, examPattern, notes),
-            _buildSelectionTab(catColor, selectionProcess),
-            _buildSyllabusTab(catColor, syllabus, category, title),
-            _buildPapersTab(title, category, catColor),
+                ageLimit, applicationFee, examPattern, notes, lang),
+            _buildSelectionTab(catColor, selectionProcess, lang),
+            _buildSyllabusTab(catColor, syllabus, category, title, lang),
+            _buildPapersTab(title, category, catColor, lang),
           ],
         ),
       ),
       bottomNavigationBar: _buildApplyButton(
-          catColor, jobId, title, organization, category, url),
+          catColor, jobId, title, organization, category, url, lang),
     );
   }
 
@@ -755,6 +766,7 @@ class _JobDetailScreenState extends State<JobDetailScreen>
       String applicationFee,
       String examPattern,
       String notes,
+      String lang,
       ) {
     return SingleChildScrollView(
       padding: const EdgeInsets.all(20),
@@ -763,74 +775,74 @@ class _JobDetailScreenState extends State<JobDetailScreen>
         children: [
           Row(children: [
             Expanded(child: _buildInfoCard(
-                'Total Vacancies',
+                AppStrings.get('total_vacancies', lang),
                 vacancies == 0 ? 'N/A' : '$vacancies',
                 Icons.people_rounded, catColor)),
             const SizedBox(width: 12),
-            Expanded(child: _buildInfoCard('Last Date',
-                lastDate == 'TBA' ? 'Not Announced' : lastDate,
+            Expanded(child: _buildInfoCard(AppStrings.get('last_date_label', lang),
+                lastDate == 'TBA' ? AppStrings.get('not_announced', lang) : lastDate,
                 Icons.calendar_today_rounded, Colors.orange)),
           ]),
           const SizedBox(height: 12),
           Row(children: [
-            Expanded(child: _buildInfoCard('Salary',
+            Expanded(child: _buildInfoCard(AppStrings.get('salary_label', lang),
                 salary.startsWith('₹') ? salary : '₹$salary',
                 Icons.currency_rupee_rounded, Colors.green)),
             const SizedBox(width: 12),
             Expanded(child: _buildInfoCard(
-                'Qualification', qualification,
+                AppStrings.get('qualification_label', lang), qualification,
                 Icons.school_rounded, Colors.purple)),
           ]),
           const SizedBox(height: 20),
-          _buildSection('Age Limit', Icons.cake_rounded,
+          _buildSection(AppStrings.get('age_limit_section', lang), Icons.cake_rounded,
             Column(children: [
               if (ageLimit.isNotEmpty && ageMin == 18 && ageMax == 35)
-                _buildDetailRow('Age Limit', ageLimit)
+                _buildDetailRow(AppStrings.get('age_limit_section', lang), ageLimit)
               else ...[
-                _buildDetailRow('Minimum Age', '$ageMin Years'),
-                _buildDetailRow('Maximum Age', '$ageMax Years'),
+                _buildDetailRow(AppStrings.get('minimum_age', lang), '$ageMin ${AppStrings.get('years_suffix', lang)}'),
+                _buildDetailRow(AppStrings.get('maximum_age', lang), '$ageMax ${AppStrings.get('years_suffix', lang)}'),
               ],
-              _buildDetailRow('OBC Relaxation', '+3 Years'),
-              _buildDetailRow('SC/ST Relaxation', '+5 Years'),
+              _buildDetailRow(AppStrings.get('obc_relaxation', lang), '+3 ${AppStrings.get('years_suffix', lang)}'),
+              _buildDetailRow(AppStrings.get('scst_relaxation', lang), '+5 ${AppStrings.get('years_suffix', lang)}'),
             ]),
           ),
           const SizedBox(height: 16),
-          _buildSection('Application Fee', Icons.payment_rounded,
+          _buildSection(AppStrings.get('application_fee_section', lang), Icons.payment_rounded,
             Column(children: [
               if (applicationFee.isNotEmpty)
-                _buildDetailRow('Fee Details', applicationFee)
+                _buildDetailRow(AppStrings.get('fee_details', lang), applicationFee)
               else ...[
-                _buildDetailRow('General/OBC',
-                    fee == 0 ? 'No Fee' : '₹$fee'),
-                _buildDetailRow('SC/ST/PWD/Female',
-                    fee == 0 ? 'No Fee'
-                        : '₹${(fee * 0.6).toInt()} approx'),
+                _buildDetailRow(AppStrings.get('general_obc_label', lang),
+                    fee == 0 ? AppStrings.get('no_fee', lang) : '₹$fee'),
+                _buildDetailRow(AppStrings.get('scst_pwd_female', lang),
+                    fee == 0 ? AppStrings.get('no_fee', lang)
+                        : '₹${(fee * 0.6).toInt()} ${AppStrings.get('approx_suffix', lang)}'),
               ],
-              _buildDetailRow('Payment Mode', 'Online Only'),
+              _buildDetailRow(AppStrings.get('payment_mode', lang), AppStrings.get('online_only', lang)),
             ]),
           ),
           const SizedBox(height: 16),
-          _buildSection('Important Dates', Icons.event_rounded,
+          _buildSection(AppStrings.get('important_dates_section', lang), Icons.event_rounded,
             Column(children: [
-              _buildDetailRow('Last Date to Apply',
-                  lastDate == 'TBA' ? 'Not Announced Yet' : lastDate),
-              _buildDetailRow('Exam Date',
-                  examDate == 'TBA' ? 'Not Announced Yet' : examDate),
+              _buildDetailRow(AppStrings.get('last_date_to_apply', lang),
+                  lastDate == 'TBA' ? AppStrings.get('not_announced_yet', lang) : lastDate),
+              _buildDetailRow(AppStrings.get('exam_date_section', lang),
+                  examDate == 'TBA' ? AppStrings.get('not_announced_yet', lang) : examDate),
             ]),
           ),
           if (examPattern.isNotEmpty) ...[
             const SizedBox(height: 16),
-            _buildSection('Exam Pattern', Icons.quiz_rounded,
+            _buildSection(AppStrings.get('exam_pattern_section', lang), Icons.quiz_rounded,
               Column(children: [
-                _buildDetailRow('Pattern', examPattern),
+                _buildDetailRow(AppStrings.get('pattern_label', lang), examPattern),
               ]),
             ),
           ],
           if (notes.isNotEmpty) ...[
             const SizedBox(height: 16),
-            _buildSection('Important Notes', Icons.info_rounded,
+            _buildSection(AppStrings.get('important_notes_section', lang), Icons.info_rounded,
               Column(children: [
-                _buildDetailRow('Note', notes),
+                _buildDetailRow(AppStrings.get('note_label', lang), notes),
               ]),
             ),
           ],
@@ -839,11 +851,11 @@ class _JobDetailScreenState extends State<JobDetailScreen>
     );
   }
 
-  Widget _buildSelectionTab(Color catColor, List<dynamic> selectionProcess) {
+  Widget _buildSelectionTab(Color catColor, List<dynamic> selectionProcess, String lang) {
     if (selectionProcess.isEmpty) {
       return _buildNoDataWidget(
-          'Selection process will be updated soon!',
-          'Check official notification for details',
+          AppStrings.get('selection_empty_title', lang),
+          AppStrings.get('selection_empty_sub', lang),
           Icons.fact_check_outlined, catColor);
     }
 
@@ -862,9 +874,9 @@ class _JobDetailScreenState extends State<JobDetailScreen>
             const SizedBox(width: 12),
             Expanded(
               child: Text(
-                'Complete selection process has '
-                    '${selectionProcess.length} stages. '
-                    'Clear each stage to proceed.',
+                '${AppStrings.get('selection_stages_info', lang)} '
+                    '${selectionProcess.length} '
+                    '${AppStrings.get('stages_clear_info', lang)}',
                 style: TextStyle(color: catColor, fontSize: 13),
               ),
             ),
@@ -1058,8 +1070,6 @@ class _JobDetailScreenState extends State<JobDetailScreen>
     return Icons.verified_rounded;
   }
 
-  // ── UPDATED: Syllabus Tab with Official Links ─────────────────
-  // Returns the correct official website URL for each exam category/title
   String _getOfficialSiteUrl(String category, String title) {
     final t = title.toLowerCase();
     if (t.contains('ntpc') || t.contains('alp') || t.contains('group d') ||
@@ -1095,7 +1105,6 @@ class _JobDetailScreenState extends State<JobDetailScreen>
     return 'https://ncs.gov.in';
   }
 
-  // Returns the display name of the official site
   String _getOfficialSiteName(String category, String title) {
     final t = title.toLowerCase();
     if (t.contains('ntpc') || t.contains('alp') || t.contains('group d') ||
@@ -1120,12 +1129,11 @@ class _JobDetailScreenState extends State<JobDetailScreen>
   }
 
   Widget _buildSyllabusTab(Color catColor,
-      Map<String, dynamic> syllabus, String category, String title) {
+      Map<String, dynamic> syllabus, String category, String title, String lang) {
 
     final officialUrl  = _getOfficialSiteUrl(category, title);
     final officialName = _getOfficialSiteName(category, title);
 
-    // Official site button — shown always at top
     final officialButton = GestureDetector(
       onTap: () => _openURL(context, officialUrl),
       child: Container(
@@ -1156,7 +1164,7 @@ class _JobDetailScreenState extends State<JobDetailScreen>
           Expanded(child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Find Syllabus on Official Website',
+              Text(AppStrings.get('find_syllabus_official', lang),
                   style: GoogleFonts.poppins(
                       color: Colors.white,
                       fontSize: 13,
@@ -1190,12 +1198,12 @@ class _JobDetailScreenState extends State<JobDetailScreen>
               Icon(Icons.menu_book_outlined,
                   size: 52, color: Colors.grey.shade300),
               const SizedBox(height: 12),
-              Text('Syllabus not available yet',
+              Text(AppStrings.get('syllabus_not_available', lang),
                   style: GoogleFonts.poppins(
                       fontSize: 15, fontWeight: FontWeight.w600,
                       color: const Color(0xFF374151))),
               const SizedBox(height: 6),
-              Text('Tap the button above to find the official syllabus on the government website.',
+              Text(AppStrings.get('syllabus_tap_hint', lang),
                   textAlign: TextAlign.center,
                   style: GoogleFonts.poppins(
                       fontSize: 12, color: const Color(0xFF9CA3AF))),
@@ -1208,11 +1216,9 @@ class _JobDetailScreenState extends State<JobDetailScreen>
     return SingleChildScrollView(
       padding: const EdgeInsets.all(20),
       child: Column(children: [
-        // Official site button at top
         officialButton,
         const SizedBox(height: 12),
 
-        // Disclaimer
         Container(
           padding: const EdgeInsets.all(12),
           margin: const EdgeInsets.only(bottom: 16),
@@ -1226,7 +1232,7 @@ class _JobDetailScreenState extends State<JobDetailScreen>
             const SizedBox(width: 8),
             Expanded(
               child: Text(
-                'Always verify syllabus from official notification before starting preparation.',
+                AppStrings.get('syllabus_disclaimer', lang),
                 style: GoogleFonts.poppins(
                     fontSize: 11, color: Colors.amber.shade800),
               ),
@@ -1234,16 +1240,13 @@ class _JobDetailScreenState extends State<JobDetailScreen>
           ]),
         ),
 
-        // Syllabus topics from Firestore
+        // Syllabus topics from Firestore — subject names and topics
+        // are NOT translated (real exam content, not app UI chrome).
         ...syllabus.entries.map((entry) {
           final subjectName = entry.key;
           final dynamic rawValue = entry.value;
           List<String> topics = [];
           if (rawValue is String) {
-            // Split on commas to render each topic as its own bullet,
-            // instead of one giant unbroken paragraph. This is a pure
-            // display fix — no content is lost, it's just rendered
-            // as a clean bulleted list instead of one dense sentence.
             topics = rawValue
                 .split(',')
                 .map((t) => t.trim())
@@ -1276,8 +1279,8 @@ class _JobDetailScreenState extends State<JobDetailScreen>
                       fontSize: 14, fontWeight: FontWeight.bold)),
               subtitle: Text(
                   topics.length == 1
-                      ? 'Tap to expand'
-                      : '${topics.length} topics',
+                      ? AppStrings.get('tap_to_expand', lang)
+                      : '${topics.length} ${AppStrings.get('topics_suffix', lang)}',
                   style: TextStyle(fontSize: 12, color: catColor)),
               children: topics.map((topic) => ListTile(
                 dense: true,
@@ -1318,7 +1321,10 @@ class _JobDetailScreenState extends State<JobDetailScreen>
     );
   }
 
-  Widget _buildPapersTab(String title, String category, Color catColor) {
+  Widget _buildPapersTab(String title, String category, Color catColor, String lang) {
+    // NOTE: paperSources content (names, descriptions of external sites)
+    // intentionally NOT translated — these are real-world proper nouns
+    // and official site descriptions, same treatment as job titles.
     final Map<String, List<Map<String, String>>> paperSources = {
       'SSC': [
         {
@@ -1500,8 +1506,7 @@ class _JobDetailScreenState extends State<JobDetailScreen>
             const SizedBox(width: 10),
             Expanded(
               child: Text(
-                'Tap any source below to view & download '
-                    'official previous year papers.',
+                AppStrings.get('papers_tap_hint', lang),
                 style: GoogleFonts.poppins(
                     fontSize: 12, color: catColor, height: 1.4),
               ),
@@ -1645,7 +1650,7 @@ class _JobDetailScreenState extends State<JobDetailScreen>
   }
 
   Widget _buildApplyButton(Color catColor, String jobId, String title,
-      String organization, String category, String url) {
+      String organization, String category, String url, String lang) {
     return Container(
       padding: EdgeInsets.only(
         left: 16, right: 16, top: 12,
@@ -1680,7 +1685,7 @@ class _JobDetailScreenState extends State<JobDetailScreen>
               ),
               child: Center(
                 child: Text(
-                  _isApplied ? 'Applied ✅' : 'Mark Applied',
+                  _isApplied ? AppStrings.get('applied_check', lang) : AppStrings.get('mark_applied', lang),
                   style: TextStyle(
                       color: _isApplied ? Colors.white : const Color(0xFF10B981),
                       fontSize: 14, fontWeight: FontWeight.bold),
@@ -1704,9 +1709,9 @@ class _JobDetailScreenState extends State<JobDetailScreen>
                     color: catColor.withOpacity(0.3),
                     blurRadius: 12, offset: const Offset(0, 6))],
               ),
-              child: const Center(
-                child: Text('Apply Now →',
-                    style: TextStyle(
+              child: Center(
+                child: Text(AppStrings.get('apply_now_btn', lang),
+                    style: const TextStyle(
                         color: Colors.white,
                         fontSize: 16, fontWeight: FontWeight.bold)),
               ),

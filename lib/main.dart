@@ -1,8 +1,10 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
 import 'constants/app_colors.dart';
 import 'services/notification_service.dart';
+import 'l10n/language_provider.dart';
 import 'screens/splash/splash_screen.dart';
 import 'screens/onboarding/onboarding_screen.dart';
 import 'screens/auth/login_screen.dart';
@@ -33,7 +35,19 @@ void main() async {
     await NotificationService.subscribeToDefaultTopics();
   } catch (e) {
   }
-  runApp(const ExamTrackApp());
+
+  // Load any previously saved language choice BEFORE the first frame,
+  // so the app opens directly in the user's chosen language instead
+  // of flashing English first and then switching.
+  final languageProvider = LanguageProvider();
+  await languageProvider.loadSavedLanguage();
+
+  runApp(
+    ChangeNotifierProvider.value(
+      value: languageProvider,
+      child: const ExamTrackApp(),
+    ),
+  );
 }
 
 class ExamTrackApp extends StatelessWidget {

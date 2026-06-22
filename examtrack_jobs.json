@@ -1606,11 +1606,7 @@
       "examDate": "To be announced",
       "selectionProcess": "Stage 1: CBT (GK + English, 100 marks) → Stage 2: CPT (Spreadsheet + Typing — qualifying only) → Stage 3: Document Verification",
       "examPattern": "CBT: 100 marks total | GK: 50 objective (1 mark each, -1/4 negative) | English: 50 marks (20 objective + 30 subjective) | Min 33% per subject, 40% aggregate",
-      "syllabus": {
-        "General Knowledge": "History, Geography, Polity, Current Affairs, Science",
-        "English": "Essay (150 words), Letter, Precis, Translation Hindi to English",
-        "CPT": "Spreadsheet (10 marks), English Typing (30 wpm)"
-      },
+      "syllabus": "General Knowledge: History, Geography, Polity, Current Affairs, Science | English: Essay (150 words), Letter, Precis, Translation Hindi to English | CPT: Spreadsheet (10 marks), English Typing (30 wpm)",
       "status": "Active — Last Date: 23 Jun 2026 (12 days left)",
       "isNew": true,
       "isFeatured": true,
@@ -1683,11 +1679,7 @@
       "examDate": "To be announced",
       "selectionProcess": "Stage 1: Written Exam (OMR/CBT, 100 marks, 2hrs) → Stage 2: PST (Physical Standard Test) → Stage 3: Documentation → Stage 4: BVAT (Basic Vocational Aptitude Test) → Stage 5: Medical Examination (DME + RME)",
       "examPattern": "100 marks | 2 hours | Objective MCQ | Bilingual (Hindi+English) | NO negative marking | Trade-specific knowledge",
-      "syllabus": {
-        "ASI Pharmacist": "Pharmacology, Drug standards, Pharmacy Act, Dispensing, Drug interactions",
-        "ASI X-Ray Tech": "Radiography principles, X-Ray equipment, Radiation safety",
-        "ASI Lab Tech": "Haematology, Microbiology, Biochemistry, Blood banking"
-      },
+      "syllabus": "ASI Pharmacist: Pharmacology, Drug standards, Pharmacy Act, Dispensing, Drug interactions | ASI X-Ray Tech: Radiography principles, X-Ray equipment, Radiation safety | ASI Lab Tech: Haematology, Microbiology, Biochemistry, Blood banking",
       "status": "Active — Apply Now Open",
       "isNew": true,
       "isFeatured": false,
@@ -1718,11 +1710,7 @@
       "examDate": "August 2026 (tentative)",
       "selectionProcess": "Stage 1: CBT (120 MCQ, 480 marks, 3hrs, negative marking) → Stage 2: Document Verification → Stage 3: Medical Examination",
       "examPattern": "120 MCQ × 4 marks = 480 total | 3 hours | Negative marking: 1 mark per wrong | 3 sections: Engineering I + Engineering II + General Ability | Min qualifying: 40% per section, 50% overall (UR/OBC-CL)",
-      "syllabus": {
-        "Engineering Section I": "Material & Components, Electronic Devices, ICs, Network Theory, Electromagnetic Theory, Measurements, Power Electronics",
-        "Engineering Section II": "Analog & Digital Circuits, Control Systems, Communication Systems, Microwave, Computer Engineering, Microprocessors",
-        "General Ability": "English, Reasoning, General Awareness, Quantitative Aptitude"
-      },
+      "syllabus": "Engineering Section I: Material & Components, Electronic Devices, ICs, Network Theory, Electromagnetic Theory, Measurements, Power Electronics | Engineering Section II: Analog & Digital Circuits, Control Systems, Communication Systems, Microwave, Computer Engineering, Microprocessors | General Ability: English, Reasoning, General Awareness, Quantitative Aptitude",
       "status": "Active",
       "isNew": true,
       "isFeatured": false,
@@ -1756,13 +1744,7 @@
       "examDate": "08 August 2026",
       "selectionProcess": "Stage 1: AFCAT Written Exam (online CBT, 100 MCQ, 2 hrs) → Stage 2: AFSB Interview (5 days at Air Force Selection Board) → Stage 3: Medical Examination (at IAF medical centres) → Stage 4: Final All India Merit List | NCC Special Entry: Skip Stage 1, direct AFSB",
       "examPattern": "100 MCQ | 300 marks total | 3 marks per correct answer | -1 mark per wrong answer | 2 hours duration | 4 Sections: General Awareness, Verbal Ability in English, Numerical Ability, Reasoning & Military Aptitude | Ground Duty Technical candidates also give EKT (Engineering Knowledge Test)",
-      "syllabus": {
-        "General Awareness": "History, Geography, Civics, Science & Technology, Current Affairs, Defence, Sports",
-        "English": "Comprehension, Error Detection, Sentence Completion, Synonyms/Antonyms, Vocabulary",
-        "Numerical Ability": "Decimal Fractions, Simple Interest, Time & Work, Profit/Loss, Ratio, Average, Percentage, LCM/HCF",
-        "Reasoning & Military Aptitude": "Verbal & Non-verbal Reasoning, Spatial Ability, Rotated Blocks, Hidden Figures, Distance & Direction",
-        "EKT (Technical only)": "Electronics/Electrical/Mechanical/Computer Science as per discipline"
-      },
+      "syllabus": "General Awareness: History, Geography, Civics, Science & Technology, Current Affairs, Defence, Sports | English: Comprehension, Error Detection, Sentence Completion, Synonyms/Antonyms, Vocabulary | Numerical Ability: Decimal Fractions, Simple Interest, Time & Work, Profit/Loss, Ratio, Average, Percentage, LCM/HCF | Reasoning & Military Aptitude: Verbal & Non-verbal Reasoning, Spatial Ability, Rotated Blocks, Hidden Figures, Distance & Direction | EKT (Technical only): Electronics/Electrical/Mechanical/Computer Science as per discipline",
       "status": "⚠️ Apply Now — Last Date: 19 Jun 2026 (8 days left)",
       "isNew": true,
       "isFeatured": true,
@@ -1937,13 +1919,12 @@
         "Medical Examination": "For certain posts as applicable"
       },
       "syllabus": {
-        "General Awareness — with special reference to J&K UT": "Current Events of National and International importance, Political and Physical divisions of World and India, Indian Culture Heritage and Freedom Struggle, Transport and Communication, Demography — Census features and functions, Important Rivers and Lakes in India, Weather Climate Crops and Means of Transport of India, Environment Ecology and Biodiversity, J&K History Economy and Geography (weather climate crops rivers lakes flora fauna), J&K Heritage Culture and Tourist Destinations, J&K Reorganisation Act 2019 and recent administrative changes",
-        "General English": "Comprehension passages, Grammar rules and sentence structure, Vocabulary — synonyms and antonyms, Error detection and correction",
-        "General Science": "Physics Chemistry and Biology at 10th standard level, Basic scientific principles and everyday applications",
-        "Mathematics": "Number System, Basic Arithmetic operations, Elementary Algebra, Percentage Ratio and Average",
-        "Reasoning": "Number and Letter Series, Analogies and Classification, Coding-Decoding",
-        "Trade / Technical (post-specific)": "Based on the specific ITI trade, Diploma discipline, or graduation subject relevant to the post applied for — refer to the official notification for the exact post-wise technical syllabus",
-        "Exam Pattern Note": "JKSSB exam patterns vary somewhat by specific post category (e.g. Finance Accounts Assistant uses 120 questions/120 marks/2 hours/0.25 negative marking, while other technical posts may differ). Always confirm the exact pattern from the specific post's official notification on jkssb.nic.in before finalizing your preparation plan."
+        "General Awareness": "J&K History, Geography, Culture, Current Affairs, Indian History, Polity, Economy",
+        "General English": "Comprehension, Grammar, Vocabulary",
+        "General Science": "Physics, Chemistry, Biology (10th level)",
+        "Mathematics": "Number System, Arithmetic, Basic Algebra",
+        "Reasoning": "Series, Analogies, Coding-Decoding",
+        "Trade/Technical (post-specific)": "Based on ITI/Diploma trade or graduation subject"
       },
       "faq": [
         {
@@ -1995,9 +1976,10 @@
         "Document Verification": "Original certificates, SSO ID"
       },
       "syllabus": {
-        "Paper I — Rajasthan GK & General Ability (100 marks)": "Rajasthan History Culture Geography Art and Heritage, Current Affairs — Rajasthan and National, Indian Polity and Constitution, Indian Economy, General Science and Technology, Environmental Studies, Reasoning and Mental Ability — Number Series Coding-Decoding Blood Relations Direction Sense Analogy and Classification Data Interpretation Logical Reasoning Puzzles Decision Making, Basic Numeracy at Class X level",
-        "Paper II — Computer Science & Teaching Methodology (100 marks)": "Computer Fundamentals — generations input/output devices memory hardware and software, Operating Systems — types process and memory management file systems, Programming Concepts — algorithms flowcharts C/C++ OOPs data types loops functions, Database Management Systems (DBMS), Computer Networks and basic network security, Data Structures fundamentals, Web Development basics, Pedagogy and Teaching Methodology — child development and teaching methods relevant to classroom instruction",
-        "Exam Pattern": "Two separate papers, each 100 marks (200 marks total), 2 hours duration per paper, MCQ-based with 5 options per question (A-E, where E is for unattempted), 1/3 mark negative marking per wrong answer, minimum 40% qualifying marks required (5% relaxation for SC/ST candidates)"
+        "Computer Science": "Programming basics, MS Office, Internet, Database, Networking, Hardware & Software",
+        "Teaching Methodology": "Pedagogy, Child development, Teaching methods",
+        "General Knowledge": "Rajasthan GK, Current Affairs, Indian History, Polity",
+        "Rajasthan GK": "Rajasthan History, Geography, Culture, Art, Festivals"
       },
       "faq": [
         {
@@ -2048,11 +2030,10 @@
         "Document Verification": "PET scorecard, 12th marksheet, caste certificate"
       },
       "syllabus": {
-        "Part I — General Knowledge (UP focus, 15 marks)": "History of India and Indian National Movement, Indian Polity and Constitutional development, Indian Economy and recent policies, General Science and Technology, Geography of India, Environment Ecology and Disaster Management, Uttar Pradesh specific History Geography and Culture",
-        "Part II — General Hindi (Grammar & Comprehension)": "Sandhi and Sandhi-vichchhed, Samas, Tatsama and Tadbhav words, Paryayvachi (synonyms), Vilom (antonyms), Muhavare evam Lokoktiyan, Vakya Shuddhi (sentence correction), Anuched (comprehension passage)",
-        "Part III — Computer and Information Technology (15 marks)": "History introduction and applications of computers, Internet and World Wide Web (WWW), Email and digital communication, MS Office basics (Word Excel PowerPoint), Cyber security fundamentals, Emerging technologies like AI and IoT",
-        "Part IV — Numerical and Mental Ability": "Number System, Percentage, Ratio and Proportion, Average, Simple Interest, Profit and Loss, Time and Work, Data Interpretation (tables graphs charts), Reasoning — Series Analogies Coding-Decoding Blood Relations Directions",
-        "Exam Pattern": "100 questions, 100 marks, 2 hours duration, 0.25 negative marking per wrong answer, bilingual (Hindi and English), OMR-based offline test"
+        "General Hindi": "Grammar, Comprehension, Vocabulary, Composition",
+        "General Knowledge": "UP Current Affairs, National Affairs, History, Geography, Polity",
+        "Reasoning": "Series, Analogies, Coding, Blood Relations, Directions",
+        "Mathematics": "Arithmetic, Number System, Percentage, Ratio, Average"
       },
       "faq": [
         {
@@ -2103,11 +2084,10 @@
         "Document Verification": "Certificates and PET scorecard"
       },
       "syllabus": {
-        "Part I — Subject Related Knowledge: Forest & Wildlife (50 marks)": "Forest types and classification in India, Wildlife conservation and protected areas, Indian Forest Act and Wildlife Protection Act, Flora and Fauna of India, Ecosystem and ecological balance — food chains webs ozone layer depletion waste management, Climate change and its impact on forests, Soil conservation, National Parks and Wildlife Sanctuaries in Uttar Pradesh",
-        "Part II — Elementary Mathematics & Biology (15 marks)": "Number System LCM and HCF, Percentage Profit and Loss, Simple and Compound Interest, Average Time and Work, Area and Perimeter, Control and Coordination — animal nervous system human brain coordination in plants hormones, Reproduction — methods in organisms sexual reproduction in humans and flowers",
-        "Part III — Computer & Information Technology (15 marks)": "History introduction and application of computers, Internet and World Wide Web, Basic hardware and software concepts, MS Office fundamentals",
-        "Part IV — General Information about Uttar Pradesh (20 marks)": "UP History Culture and Heritage, Geography Natural Resources and Economy of UP, Administrative structure of the state, Recent developments and achievements of UP government",
-        "Exam Pattern": "100 questions, 100 marks, 2 hours (120 minutes), OMR-based offline test, bilingual (Hindi and English), 0.25 negative marking per wrong answer"
+        "General Hindi": "Grammar, Comprehension, Vocabulary",
+        "General Knowledge": "UP Current Affairs, National Affairs, Environment & Ecology, Forest & Wildlife",
+        "General Science": "Biology, Environment, Ecology, Conservation",
+        "Mathematics & Reasoning": "Basic Arithmetic, Series, Analogies"
       },
       "faq": [
         {
@@ -2157,13 +2137,10 @@
         "Document Verification": "Graduation certificate, PET scorecard"
       },
       "syllabus": {
-        "General Knowledge — Uttar Pradesh focus (20 marks, highest weightage)": "UP History Geography and Culture, Current Affairs national and state-level, Indian Polity and Constitution, Indian Economy basics, General Science everyday applications",
-        "Computer & Information Technology (15 marks)": "Computer fundamentals and generations, Internet and World Wide Web basics, MS Office (Word Excel PowerPoint), Basic cybersecurity awareness",
-        "Reasoning & Mental Ability": "Number and letter Series, Analogies and Classification, Coding-Decoding, Blood Relations, Directions and Distance, Puzzles and Seating Arrangement",
-        "Numerical Aptitude": "Number System, Percentage Ratio and Proportion, Average, Profit and Loss, Simple Interest, Mensuration basics",
-        "Human Anatomy & First Aid Basics (lower weightage, often overlooked)": "Basic human body systems at 10th standard Biology level, First aid awareness relevant to field duty",
-        "Note on General Hindi": "Some preparation sources state this exam has NO separate General Hindi/grammar section (unlike older UP Police or Lekhpal patterns), while others list it as included. This specific detail could not be independently confirmed from the official notification at the time of writing — candidates should verify directly from the official UPSSSC Advt No. 10-Exam/2026 notification before skipping or prioritizing Hindi preparation.",
-        "Exam Pattern": "100 questions, 100 marks, 2 hours, 0.25 negative marking per wrong answer. Physical Measurement Test and Physical Efficiency Test (running) follow the written exam as qualifying-only stages — they do not add to merit marks."
+        "General Hindi": "Grammar, Comprehension, Vocabulary",
+        "General Knowledge": "UP Current Affairs, National Affairs, History, Polity",
+        "Reasoning": "Series, Analogies, Coding-Decoding, Puzzles",
+        "Mathematics": "Arithmetic, Number System, Mensuration"
       },
       "faq": [
         {
@@ -2208,12 +2185,9 @@
         "Document Verification": "Original certificates"
       },
       "syllabus": {
-        "General Knowledge": "Geography Culture and Sports, General Science, History — Indian and World, Who is Who and current personalities, Tourism, Current events national and international, Indian and Himachal Pradesh specific polity, Books and Authors, Important Dates and Days, Countries and Capitals, World organizations (UN WHO IMF etc), Himachal Pradesh History Geography and Heritage",
-        "Reasoning Ability": "Series and Analogies, Blood Relations, Coding-Decoding, Decision Making, Puzzles and logical reasoning",
-        "Computer Awareness": "Basic computer concepts and operating systems, MS Office (Word Excel PowerPoint), Internet usage and digital tools, Typing fundamentals",
-        "English & Hindi Language": "Grammar and comprehension in both languages, Essay writing, Letter writing, Translation between Hindi and English, Vocabulary and sentence correction",
-        "Typing Test (Qualifying stage, after written exam)": "English typing speed: minimum 30 words per minute, Hindi typing speed: minimum 25 words per minute, Maximum 10% errors permitted",
-        "Exam Pattern": "Selection involves a Screening Test (MCQ, no negative marking) followed by a Written Test and a Typing Test. Candidates must qualify each stage to proceed. Refer to the official syllabus PDF at hphighcourt.nic.in for the exact screening test structure."
+        "General Knowledge": "HP History, Geography, Current Affairs, Indian Polity",
+        "English": "Grammar, Comprehension, Vocabulary",
+        "Reasoning": "Series, Analogies, Basic reasoning"
       },
       "faq": [
         {
@@ -2226,8 +2200,122 @@
       "isActive": true,
       "isTrending": false,
       "isUrgent": false
+    },
+    {
+      "id": "upsssc-auditor-accountant-2026",
+      "title": "UPSSSC Auditor & Assistant Accountant 2026 (1829 Posts)",
+      "organization": "UP Subordinate Services Selection Commission",
+      "department": "Various UP Government Departments (22 departments)",
+      "category": "State",
+      "state": "Uttar Pradesh",
+      "vacancies": 1829,
+      "salary": "29,200 - 92,300 (Level 5)",
+      "qualification": "Bachelor's Degree in Commerce (B.Com) OR Post Graduate Diploma in Accountancy, with 'O' Level Computer Diploma",
+      "ageMin": 21,
+      "ageMax": 40,
+      "lastDate": "03 Aug 2026",
+      "examDate": "To be announced",
+      "status": "Apply: 14 Jul to 03 Aug 2026",
+      "applyLink": "https://upsssc.gov.in",
+      "officialWebsite": "https://upsssc.gov.in",
+      "description": "UPSSSC Auditor (Lekha Pareekshak) & Assistant Accountant (Sahayak Lekhakaar) Main Examination 2026 for 1,829 vacancies across 22 departments of the UP Government, under Advertisement No. 14-Exam/2026. PET 2025 qualified candidates only.",
+      "highlights": [
+        "1,829 vacancies across 22 UP government departments",
+        "PET 2025 qualified candidates only",
+        "B.Com or PG Diploma in Accountancy required",
+        "Age: 21-40 years",
+        "Pay Level-5 (₹29,200 - ₹92,300)",
+        "Apply: 14 Jul to 03 Aug 2026"
+      ],
+      "selectionProcess": {
+        "PET Score Shortlisting": "UPSSSC PET 2025 normalized score based",
+        "Main Written Examination": "100 questions, 100 marks, 2 hours, 0.25 negative marking",
+        "Document Verification": "Certificates and PET scorecard"
+      },
+      "syllabus": {
+        "Core Auditing & Accountancy (65 Questions)": "Audit basics, final accounts, ledgers, depreciation, double accounting, bank reconciliation, financial rules, computers in RTGS/e-banking, budget control, advanced accountancy, basic tax rules (Income Tax, GST)",
+        "Computer & IT Concepts (15 Questions)": "Computer hardware, software, operating systems, e-governance, cybersecurity, emerging fields like AI, Big Data, Machine Learning",
+        "General Knowledge of Uttar Pradesh (20 Questions)": "UP history, art, architecture, geography, languages, environment, minerals, agriculture, politics, recent achievements"
+      },
+      "faq": [
+        {
+          "q": "Is PET 2025 mandatory?",
+          "a": "Yes. Only candidates who appeared in PET 2025 and hold a valid score card can apply for this Main Examination."
+        },
+        {
+          "q": "What is the application fee?",
+          "a": "₹25 online processing fee for all categories. The Main Examination fee is charged separately from shortlisted candidates."
+        },
+        {
+          "q": "Can I apply with just a B.Com degree?",
+          "a": "Yes, a Bachelor's Degree in Commerce from a recognized university is the primary qualification, along with an 'O' Level Computer Diploma. Some posts also accept a Post Graduate Diploma in Accountancy."
+        }
+      ],
+      "createdAt": "2026-06-22",
+      "lastUpdated": "2026-06-22",
+      "isActive": true,
+      "isTrending": false,
+      "isUrgent": false
+    },
+    {
+      "id": "upsssc-vidhan-bhavan-rakshak-2026",
+      "title": "UPSSSC Vidhan Bhavan Rakshak & Fireman 2026 (170 Posts)",
+      "organization": "UP Subordinate Services Selection Commission",
+      "department": "Secretariat Administration Department (UP Vidhan Sabha)",
+      "category": "State",
+      "state": "Uttar Pradesh",
+      "vacancies": 170,
+      "salary": "21,700 - 69,100 (Level 3)",
+      "qualification": "12th Pass (Intermediate) from a recognized board",
+      "ageMin": 18,
+      "ageMax": 40,
+      "lastDate": "29 Jun 2026",
+      "examDate": "To be announced",
+      "status": "Apply: 09 Jun to 29 Jun 2026 — Closing Soon",
+      "applyLink": "https://upsssc.gov.in",
+      "officialWebsite": "https://upsssc.gov.in",
+      "description": "UPSSSC Vidhan Bhavan Rakshak (Council House Guard) & Vidhan Bhavan Agnik/Agnirakshak (Fireman/Fire Guard) Recruitment 2026 for 170 posts (120 Guard + 50 Fireman) under the UP Legislative Assembly Secretariat, Lucknow. Advertisement No. 09-Exam/2026. PET 2025 qualified candidates only.",
+      "highlights": [
+        "170 vacancies — 120 Guard + 50 Fireman posts",
+        "Posted at UP Vidhan Sabha (Legislative Assembly), Lucknow",
+        "PET 2025 qualified candidates only",
+        "12th Pass required — open to a wide pool of candidates",
+        "Age: 18-40 years",
+        "Closing soon — Apply by 29 Jun 2026"
+      ],
+      "selectionProcess": {
+        "PET Score Shortlisting": "UPSSSC PET 2025 normalized score based",
+        "Main Written Examination": "100 questions, 100 marks, 2 hours, 0.25 negative marking",
+        "Physical Measurement Test": "Qualifying stage for both Guard and Fireman posts",
+        "Document Verification": "Certificates and PET scorecard"
+      },
+      "syllabus": {
+        "General Hindi": "Grammar, comprehension, vocabulary",
+        "General Knowledge": "UP Current Affairs, National Affairs, History, Geography",
+        "General Science": "Basic science at 10th-12th standard level",
+        "Mathematics & Reasoning": "Basic arithmetic, series, analogies, logical reasoning"
+      },
+      "faq": [
+        {
+          "q": "What's the difference between Guard and Fireman posts?",
+          "a": "Guard (Rakshak) posts are for security duties at the Vidhan Bhavan and can be permanent or temporary. Fireman (Agnik/Agnirakshak) posts are fire safety roles and are primarily temporary in nature."
+        },
+        {
+          "q": "Is there a physical test?",
+          "a": "Yes, a Physical Measurement Test is conducted as a qualifying stage for both posts, in addition to the written examination."
+        },
+        {
+          "q": "Who gets preference in selection?",
+          "a": "Preference is given to candidates with a minimum of 2 years service in the Pradeshik Sena (Territorial Army), or those holding an NCC 'B' Certificate, all else being equal."
+        }
+      ],
+      "createdAt": "2026-06-22",
+      "lastUpdated": "2026-06-22",
+      "isActive": true,
+      "isTrending": false,
+      "isUrgent": true
     }
   ],
-  "lastUpdated": "2026-06-21",
+  "lastUpdated": "2026-06-22",
   "totalJobs": 34
 }

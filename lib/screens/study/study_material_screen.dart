@@ -2,12 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:async';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:provider/provider.dart';
 import 'package:examtrack/screens/study/study_data.dart';
 import 'package:examtrack/services/memory_box_service.dart';
 import 'package:examtrack/services/mock_test_service.dart';
+import 'package:examtrack/l10n/language_provider.dart';
+import 'package:examtrack/l10n/app_strings.dart';
 
 class StudyMaterialScreen extends StatefulWidget {
-  const StudyMaterialScreen({super.key});
+  final String? initialExam;
+  final int initialTabIndex;
+
+  const StudyMaterialScreen({
+    super.key,
+    this.initialExam,
+    this.initialTabIndex = 0,
+  });
+
   @override
   State<StudyMaterialScreen> createState() => _StudyMaterialScreenState();
 }
@@ -15,7 +26,7 @@ class StudyMaterialScreen extends StatefulWidget {
 class _StudyMaterialScreenState extends State<StudyMaterialScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  String _selectedExam = 'SSC CGL';
+  late String _selectedExam;
   final List<String> _exams = ['SSC CGL','SSC CHSL','RRB NTPC','Army Agniveer','Punjab Police','IBPS PO','UPSC CSE','Delhi Police','Haryana Police','NDA'];
 
   // PYQ state
@@ -50,7 +61,14 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 5, vsync: this);
+    _selectedExam = (widget.initialExam != null && _exams.contains(widget.initialExam))
+        ? widget.initialExam!
+        : _exams[0];
+    _tabController = TabController(
+      length: 5,
+      vsync: this,
+      initialIndex: widget.initialTabIndex,
+    );
     _loadMockTests();
   }
 
@@ -68,8 +86,8 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
     });
   }
 
-  // ── Firestore: load list of mock tests for current exam ──
   Future<void> _loadMockTests() async {
+    if (!mounted) return;
     setState(() {
       _mocksLoading = true;
       _mockLoadError = false;
@@ -99,11 +117,13 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
     });
   }
 
-  // ── Firestore: fetch full test (with questions) before starting ──
   Future<void> _startMockTest(Map<String,dynamic> testSummary, {required bool timed}) async {
+    if (!mounted) return;
     setState(() => _activeMockLoading = true);
+    final lang = context.read<LanguageProvider>().languageCode;
     final testId = testSummary['id'] as String? ?? testSummary['firestoreId'] as String?;
     if (testId == null) {
+      if (!mounted) return;
       setState(() => _activeMockLoading = false);
       return;
     }
@@ -113,7 +133,7 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
     if (fullTest == null || (fullTest['questions'] as List?)?.isEmpty == true) {
       setState(() => _activeMockLoading = false);
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text('Could not load this test. Please try again.', style: GoogleFonts.poppins(fontSize: 12)),
+        content: Text(AppStrings.get('could_not_load_test', lang), style: GoogleFonts.poppins(fontSize: 12)),
         backgroundColor: const Color(0xFFEF4444),
       ));
       return;
@@ -135,6 +155,7 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
   void _startTimer(int seconds) {
     _timeLeft = seconds;
     _timer = Timer.periodic(const Duration(seconds: 1), (t) {
+      if (!mounted) { t.cancel(); return; }
       if (_timeLeft <= 0) { t.cancel(); setState(() => _mockDone = true); }
       else setState(() => _timeLeft--);
     });
@@ -150,21 +171,22 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
 
   @override
   Widget build(BuildContext context) {
+    final lang = context.watch<LanguageProvider>().languageCode;
     return Scaffold(
       backgroundColor: const Color(0xFFF5F7FA),
       body: Column(children: [
-        _header(),
+        _header(lang),
         _examSelector(),
-        _tabBar(),
+        _tabBar(lang),
         Expanded(child: TabBarView(controller: _tabController, children: [
-          _notesTab(), _pyqTab(), _mockTab(), _qrTab(), _resourcesTab(),
+          _notesTab(lang), _pyqTab(lang), _mockTab(lang), _qrTab(), _resourcesTab(lang),
         ])),
       ]),
-      bottomNavigationBar: _bottomNav(),
+      bottomNavigationBar: _bottomNav(lang),
     );
   }
 
-  Widget _header() => Container(
+  Widget _header(String lang) => Container(
     decoration: const BoxDecoration(
       gradient: LinearGradient(colors: [Color(0xFF1565C0), Color(0xFF1976D2)]),
     ),
@@ -177,7 +199,7 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
           child: const Icon(Icons.arrow_back, color: Colors.white)),
       const SizedBox(width: 12),
       Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Text('Study Material', style: GoogleFonts.poppins(
+        Text(AppStrings.get('study_material_title', lang), style: GoogleFonts.poppins(
             color: Colors.white, fontSize: 19, fontWeight: FontWeight.w700)),
         Text(StudyData.getExamPattern(_selectedExam),
             style: GoogleFonts.poppins(color: Colors.white60, fontSize: 10),
@@ -212,6 +234,9 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
                 borderRadius: BorderRadius.circular(20),
                 border: Border.all(color: sel ? const Color(0xFF1565C0) : Colors.grey.shade300),
               ),
+              // Exam names (SSC CGL, etc.) are NOT translated — they are
+              // proper nouns / official exam codes, same convention used
+              // throughout the app.
               child: Text(e, style: GoogleFonts.poppins(
                   fontSize: 11, fontWeight: FontWeight.w500,
                   color: sel ? Colors.white : Colors.grey.shade600)),
@@ -222,7 +247,7 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
     ),
   );
 
-  Widget _tabBar() => Container(
+  Widget _tabBar(String lang) => Container(
     color: Colors.white,
     child: TabBar(
       controller: _tabController,
@@ -232,17 +257,17 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
       indicatorWeight: 3,
       labelStyle: GoogleFonts.poppins(fontSize: 11, fontWeight: FontWeight.w600),
       unselectedLabelStyle: GoogleFonts.poppins(fontSize: 11),
-      tabs: const [
-        Tab(icon: Icon(Icons.menu_book, size: 16), text: 'Notes'),
-        Tab(icon: Icon(Icons.history_edu, size: 16), text: 'PYQ'),
-        Tab(icon: Icon(Icons.quiz, size: 16), text: 'Mock Test'),
-        Tab(icon: Icon(Icons.flash_on, size: 16), text: 'Quick Rev'),
-        Tab(icon: Icon(Icons.link, size: 16), text: 'Resources'),
+      tabs: [
+        Tab(icon: const Icon(Icons.menu_book, size: 16), text: AppStrings.get('tab_notes', lang)),
+        Tab(icon: const Icon(Icons.history_edu, size: 16), text: AppStrings.get('tab_pyq', lang)),
+        Tab(icon: const Icon(Icons.quiz, size: 16), text: AppStrings.get('tab_mock_test', lang)),
+        Tab(icon: const Icon(Icons.flash_on, size: 16), text: AppStrings.get('tab_quick_rev', lang)),
+        Tab(icon: const Icon(Icons.link, size: 16), text: AppStrings.get('tab_resources', lang)),
       ],
     ),
   );
 
-  Widget _notesTab() => ListView(padding: const EdgeInsets.all(16), children: [
+  Widget _notesTab(String lang) => ListView(padding: const EdgeInsets.all(16), children: [
     Container(
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
@@ -252,10 +277,12 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
       child: Row(children: [
         const Icon(Icons.school_rounded, color: Colors.white, size: 28),
         const SizedBox(width: 12),
+        // NOTE: exam name + topic/note CONTENT below stays untranslated —
+        // real educational data from StudyData, not app UI chrome.
         Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text('$_selectedExam Notes', style: GoogleFonts.poppins(
+          Text('$_selectedExam ${AppStrings.get('notes_suffix', lang)}', style: GoogleFonts.poppins(
               color: Colors.white, fontSize: 14, fontWeight: FontWeight.w700)),
-          Text('${_sections.fold(0,(s,sec)=>s+(sec['topics'] as List).length)} topics • Exam level content',
+          Text('${_sections.fold(0,(s,sec)=>s+(sec['topics'] as List).length)} ${AppStrings.get('topics_exam_level', lang)}',
               style: GoogleFonts.poppins(color: Colors.white70, fontSize: 11)),
         ])),
       ]),
@@ -272,7 +299,7 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
           const SizedBox(width: 10),
           Expanded(child: Text(sec['title'] as String, style: GoogleFonts.poppins(
               fontSize: 13, fontWeight: FontWeight.w700, color: const Color(0xFF1A1A2E)))),
-          Text('${topics.length} topics', style: GoogleFonts.poppins(fontSize: 11, color: Colors.grey.shade500)),
+          Text('${topics.length} ${AppStrings.get('topics_suffix', lang)}', style: GoogleFonts.poppins(fontSize: 11, color: Colors.grey.shade500)),
         ]),
         const SizedBox(height: 8),
         ...topics.map((t) => GestureDetector(
@@ -315,30 +342,30 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
     }),
   ]);
 
-  Widget _pyqTab() {
-    if (!_quizStarted) return _quizStart();
-    if (_quizIndex >= _pyqs.length) return _result(false);
-    return _question(_pyqs[_quizIndex], false);
+  Widget _pyqTab(String lang) {
+    if (!_quizStarted) return _quizStart(lang);
+    if (_quizIndex >= _pyqs.length) return _result(false, lang);
+    return _question(_pyqs[_quizIndex], false, lang);
   }
 
-  Widget _quizStart() => Center(child: Padding(padding: const EdgeInsets.all(24), child: Column(
+  Widget _quizStart(String lang) => Center(child: Padding(padding: const EdgeInsets.all(24), child: Column(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
       Container(width: 90, height: 90,
           decoration: BoxDecoration(color: const Color(0xFF1565C0).withOpacity(0.1), shape: BoxShape.circle),
           child: const Icon(Icons.history_edu_rounded, size: 44, color: Color(0xFF1565C0))),
       const SizedBox(height: 20),
-      Text('Previous Year Questions', style: GoogleFonts.poppins(
+      Text(AppStrings.get('previous_year_questions', lang), style: GoogleFonts.poppins(
           fontSize: 19, fontWeight: FontWeight.w700, color: const Color(0xFF1A1A2E))),
       const SizedBox(height: 6),
-      Text('${_pyqs.length} questions • $_selectedExam • With explanations',
+      Text('${_pyqs.length} ${AppStrings.get('questions_exam_explanations', lang)} • $_selectedExam • ${AppStrings.get('with_explanations', lang)}',
           textAlign: TextAlign.center,
           style: GoogleFonts.poppins(fontSize: 12, color: Colors.grey.shade500)),
       const SizedBox(height: 24),
       Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-        _badge('${_pyqs.length}', 'Questions'),
+        _badge('${_pyqs.length}', AppStrings.get('questions_badge', lang)),
         const SizedBox(width: 12),
-        _badge('2024', 'Latest'),
+        _badge('2024', AppStrings.get('latest_badge', lang)),
       ]),
       const SizedBox(height: 28),
       SizedBox(width: double.infinity, child: ElevatedButton(
@@ -348,7 +375,7 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
           padding: const EdgeInsets.symmetric(vertical: 14),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         ),
-        child: Text('Start Practice', style: GoogleFonts.poppins(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600)),
+        child: Text(AppStrings.get('start_practice_btn', lang), style: GoogleFonts.poppins(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600)),
       )),
     ],
   )));
@@ -362,7 +389,7 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
     ]),
   );
 
-  Widget _question(Map<String,dynamic> q, bool isMock) {
+  Widget _question(Map<String,dynamic> q, bool isMock, String lang) {
     final opts    = q['opts'] as List;
     final correct = q['ans'] as int;
     final selAns  = isMock ? _mockAns : _selAns;
@@ -391,7 +418,7 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
             ]),
           ),
         Row(children: [
-          Text('Q ${idx+1}/$total', style: GoogleFonts.poppins(fontSize: 12, fontWeight: FontWeight.w600, color: const Color(0xFF1565C0))),
+          Text('${AppStrings.get('q_label', lang)} ${idx+1}/$total', style: GoogleFonts.poppins(fontSize: 12, fontWeight: FontWeight.w600, color: const Color(0xFF1565C0))),
           const SizedBox(width: 10),
           Expanded(child: LinearProgressIndicator(
             value: (idx+1)/total,
@@ -400,9 +427,11 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
             borderRadius: BorderRadius.circular(4), minHeight: 5,
           )),
           const SizedBox(width: 10),
-          Text('Score: $score', style: GoogleFonts.poppins(fontSize: 12, fontWeight: FontWeight.w600, color: const Color(0xFF10B981))),
+          Text('${AppStrings.get('score_label', lang)} $score', style: GoogleFonts.poppins(fontSize: 12, fontWeight: FontWeight.w600, color: const Color(0xFF10B981))),
         ]),
         const SizedBox(height: 10),
+        // Subject/year tags show REAL data (e.g. "Reasoning", "2023") —
+        // not translated, same as exam names.
         if (q.containsKey('subject')) Row(children: [
           _tag(q['subject'] as String, const Color(0xFF1565C0)),
           if (q.containsKey('year')) ...[const SizedBox(width: 6), _tag('${q['year']}', const Color(0xFF10B981))],
@@ -414,17 +443,16 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
             color: Colors.white, borderRadius: BorderRadius.circular(14),
             boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 8)],
           ),
+          // Question text itself is REAL exam content — not translated.
           child: Text(q['q'] as String, style: GoogleFonts.poppins(
               fontSize: 14, fontWeight: FontWeight.w600, color: const Color(0xFF1A1A2E), height: 1.5)),
         ),
         const SizedBox(height: 12),
-        // ── OPTIONS — Fixed answer highlighting ──
         ...opts.asMap().entries.map((e) {
           final i   = e.key;
           final opt = e.value as String;
           final lbl = ['A','B','C','D'][i];
 
-          // Default colors
           Color bg     = Colors.white;
           Color border = Colors.grey.shade200;
           Color txt    = const Color(0xFF374151);
@@ -433,7 +461,6 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
           Color? trailingColor;
 
           if (selAns != null) {
-            // Always make correct answer GREEN
             if (i == correct) {
               bg     = const Color(0xFF10B981).withOpacity(0.1);
               border = const Color(0xFF10B981);
@@ -442,7 +469,6 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
               trailingIcon  = Icons.check_circle;
               trailingColor = const Color(0xFF10B981);
             }
-            // If user selected wrong answer — make it RED
             else if (selAns == lbl && i != correct) {
               bg     = const Color(0xFFEF4444).withOpacity(0.1);
               border = const Color(0xFFEF4444);
@@ -472,9 +498,6 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
                 });
               }
 
-              // Memory Box: automatically save wrong answers from BOTH
-              // daily PYQ practice and mock tests. Safe no-op if the
-              // user isn't logged in (handled inside the service).
               if (!isCorrect) {
                 final qId = '${_selectedExam}_${q['subject'] ?? 'General'}_${q['id']}';
                 MemoryBoxService.saveWrongAnswer(
@@ -504,6 +527,7 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
                       fontSize: 11, fontWeight: FontWeight.w700, color: Colors.white))),
                 ),
                 const SizedBox(width: 10),
+                // Option text is REAL exam content — not translated.
                 Expanded(child: Text(opt, style: GoogleFonts.poppins(
                     fontSize: 13, color: txt,
                     fontWeight: selAns != null && i == correct ? FontWeight.w600 : FontWeight.w400))),
@@ -525,9 +549,10 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
               Row(children: [
                 const Icon(Icons.lightbulb_outline, color: Color(0xFF1565C0), size: 15),
                 const SizedBox(width: 5),
-                Text('Explanation', style: GoogleFonts.poppins(fontSize: 11, fontWeight: FontWeight.w700, color: const Color(0xFF1565C0))),
+                Text(AppStrings.get('explanation_label', lang), style: GoogleFonts.poppins(fontSize: 11, fontWeight: FontWeight.w700, color: const Color(0xFF1565C0))),
               ]),
               const SizedBox(height: 4),
+              // Explanation text is REAL exam content — not translated.
               Text(q['exp'] as String, style: GoogleFonts.poppins(fontSize: 12, color: const Color(0xFF374151), height: 1.4)),
             ]),
           ),
@@ -560,8 +585,8 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
             ),
             child: Text(
               isMock
-                  ? (_mockIndex < (_activeMock!['questions'] as List).length - 1 ? 'Next Question →' : 'See Results')
-                  : (_quizIndex < _pyqs.length - 1 ? 'Next Question →' : 'See Results'),
+                  ? (_mockIndex < (_activeMock!['questions'] as List).length - 1 ? AppStrings.get('next_question_btn', lang) : AppStrings.get('see_results_btn', lang))
+                  : (_quizIndex < _pyqs.length - 1 ? AppStrings.get('next_question_btn', lang) : AppStrings.get('see_results_btn', lang)),
               style: GoogleFonts.poppins(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w600),
             ),
           )),
@@ -576,8 +601,7 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
     child: Text(t, style: GoogleFonts.poppins(fontSize: 10, fontWeight: FontWeight.w600, color: c)),
   );
 
-  // ── MOCK TEST ANALYSER RESULT ──────────────────────────────
-  Widget _result(bool isMock) {
+  Widget _result(bool isMock, String lang) {
     final questions = isMock
         ? (_activeMock!['questions'] as List).cast<Map<String,dynamic>>()
         : _pyqs;
@@ -585,9 +609,8 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
     final s     = isMock ? _mockScore : _score;
     final pct   = total > 0 ? (s / total * 100).round() : 0;
     final c     = pct >= 70 ? const Color(0xFF10B981) : pct >= 50 ? const Color(0xFFF59E0B) : const Color(0xFFEF4444);
-    final msg   = pct >= 70 ? 'Excellent! 🎉' : pct >= 50 ? 'Good Effort! 👍' : 'Keep Practicing! 💪';
+    final msg   = pct >= 70 ? AppStrings.get('excellent_result', lang) : pct >= 50 ? AppStrings.get('good_effort_result', lang) : AppStrings.get('keep_practicing_result', lang);
 
-    // Build topic analysis from tracked answers
     final Map<String, int> topicCorrect = {};
     final Map<String, int> topicTotal   = {};
     if (isMock) {
@@ -601,7 +624,6 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
     return SingleChildScrollView(
       padding: const EdgeInsets.all(20),
       child: Column(children: [
-        // Score circle
         Container(
           width: 120, height: 120,
           decoration: BoxDecoration(
@@ -616,10 +638,9 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
         const SizedBox(height: 12),
         Text(msg, style: GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.w700, color: c)),
         const SizedBox(height: 4),
-        Text('$s out of $total correct', style: GoogleFonts.poppins(fontSize: 13, color: Colors.grey.shade500)),
+        Text('$s ${AppStrings.get('out_of_correct', lang)} $total ${AppStrings.get('correct_suffix', lang)}', style: GoogleFonts.poppins(fontSize: 13, color: Colors.grey.shade500)),
         const SizedBox(height: 20),
 
-        // Performance banner
         Container(
           width: double.infinity, padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
@@ -631,20 +652,19 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
             const SizedBox(width: 12),
             Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Text(
-                  pct >= 70 ? 'Outstanding Performance!' : pct >= 50 ? 'You are on the right track!' : "Don't give up — practice more!",
+                  pct >= 70 ? AppStrings.get('outstanding_performance', lang) : pct >= 50 ? AppStrings.get('on_right_track', lang) : AppStrings.get('dont_give_up', lang),
                   style: GoogleFonts.poppins(fontSize: 13, fontWeight: FontWeight.w700, color: c)),
               Text(
-                  pct >= 70 ? 'You are exam ready. Keep this pace!' : pct >= 50 ? 'Focus on weak areas to score 70%+' : 'Revise notes and attempt again',
+                  pct >= 70 ? AppStrings.get('exam_ready_msg', lang) : pct >= 50 ? AppStrings.get('focus_weak_areas', lang) : AppStrings.get('revise_attempt_again', lang),
                   style: GoogleFonts.poppins(fontSize: 11, color: Colors.grey.shade600)),
             ])),
           ]),
         ),
         const SizedBox(height: 20),
 
-        // Topic-wise analysis
         if (isMock && topicTotal.isNotEmpty) ...[
           Align(alignment: Alignment.centerLeft,
-              child: Text('📊 Topic-wise Analysis', style: GoogleFonts.poppins(
+              child: Text(AppStrings.get('topic_wise_analysis', lang), style: GoogleFonts.poppins(
                   fontSize: 15, fontWeight: FontWeight.w700, color: const Color(0xFF1A1A2E)))),
           const SizedBox(height: 10),
           ...topicTotal.entries.map((entry) {
@@ -653,7 +673,7 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
             final tCorrect = topicCorrect[subject] ?? 0;
             final tPct     = tTotal > 0 ? (tCorrect / tTotal * 100).round() : 0;
             final tColor   = tPct >= 70 ? const Color(0xFF10B981) : tPct >= 50 ? const Color(0xFFF59E0B) : const Color(0xFFEF4444);
-            final label    = tPct >= 70 ? '✅ Strong' : tPct >= 50 ? '⚠️ Average' : '❌ Weak';
+            final label    = tPct >= 70 ? AppStrings.get('strong_label', lang) : tPct >= 50 ? AppStrings.get('average_label', lang) : AppStrings.get('weak_label', lang);
             return Container(
               margin: const EdgeInsets.only(bottom: 10),
               padding: const EdgeInsets.all(14),
@@ -661,6 +681,8 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
                 color: Colors.white, borderRadius: BorderRadius.circular(12),
                 boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 6)],
               ),
+              // Subject name (e.g. "Reasoning") stays untranslated — real
+              // exam-subject data.
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                   Text(subject, style: GoogleFonts.poppins(fontSize: 13, fontWeight: FontWeight.w600, color: const Color(0xFF1A1A2E))),
@@ -685,15 +707,14 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
                   ),
                 ),
                 const SizedBox(height: 4),
-                Text('$tPct% accuracy', style: GoogleFonts.poppins(fontSize: 11, color: Colors.grey.shade500)),
+                Text('$tPct% ${AppStrings.get('accuracy_suffix', lang)}', style: GoogleFonts.poppins(fontSize: 11, color: Colors.grey.shade500)),
               ]),
             );
           }),
           const SizedBox(height: 20),
 
-          // Recommendations
           Align(alignment: Alignment.centerLeft,
-              child: Text('💡 Recommendations', style: GoogleFonts.poppins(
+              child: Text(AppStrings.get('recommendations_title', lang), style: GoogleFonts.poppins(
                   fontSize: 15, fontWeight: FontWeight.w700, color: const Color(0xFF1A1A2E)))),
           const SizedBox(height: 10),
           ...topicTotal.entries.where((e) {
@@ -708,6 +729,9 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
                 color: const Color(0xFFFFF8E7), borderRadius: BorderRadius.circular(12),
                 border: Border.all(color: const Color(0xFFF59E0B).withOpacity(0.3)),
               ),
+              // _getTip() content is substantial educational guidance —
+              // same treatment as syllabus/study content, NOT translated
+              // in this pass.
               child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 const Text('💡 ', style: TextStyle(fontSize: 16)),
                 Expanded(child: Text(_getTip(entry.key, tPct),
@@ -718,7 +742,6 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
           const SizedBox(height: 20),
         ],
 
-        // Buttons
         SizedBox(width: double.infinity, child: ElevatedButton(
           onPressed: () => isMock ? _resetMock() : _resetQuiz(),
           style: ElevatedButton.styleFrom(
@@ -726,7 +749,7 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
             padding: const EdgeInsets.symmetric(vertical: 14),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           ),
-          child: Text('Try Again', style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w600)),
+          child: Text(AppStrings.get('try_again_btn', lang), style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w600)),
         )),
         const SizedBox(height: 10),
         SizedBox(width: double.infinity, child: OutlinedButton(
@@ -736,7 +759,7 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
             side: const BorderSide(color: Color(0xFF1565C0)),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           ),
-          child: Text('Back to Tests', style: GoogleFonts.poppins(
+          child: Text(AppStrings.get('back_to_tests_btn', lang), style: GoogleFonts.poppins(
               color: const Color(0xFF1565C0), fontWeight: FontWeight.w600)),
         )),
         const SizedBox(height: 20),
@@ -744,6 +767,9 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
     );
   }
 
+  // _getTip() content remains in English — substantial educational
+  // guidance text, treated the same as syllabus/study material content,
+  // not in scope for this UI-strings translation pass.
   String _getTip(String subject, int pct) {
     switch (subject) {
       case 'Reasoning': return 'Reasoning: Practice Puzzles, Series, and Blood Relations daily. Aim for 20-25 correct in SSC CGL. Use Study Notes for shortcut tricks.';
@@ -756,63 +782,60 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
     }
   }
 
-  Widget _mockTab() {
-    // Currently inside an active test
+  Widget _mockTab(String lang) {
     if (_activeMock != null) {
-      if (_mockDone) return _result(true);
+      if (_mockDone) return _result(true, lang);
       final qList = _activeMock!['questions'] as List;
-      return _question(qList[_mockIndex] as Map<String,dynamic>, true);
+      return _question(qList[_mockIndex] as Map<String,dynamic>, true, lang);
     }
 
-    // Fetching the full test (with questions) after tapping Practice/Timed
     if (_activeMockLoading) {
       return const Center(child: CircularProgressIndicator(color: Color(0xFF1565C0)));
     }
 
-    // Loading the list of available tests for this exam
     if (_mocksLoading) {
       return const Center(child: CircularProgressIndicator(color: Color(0xFF1565C0)));
     }
 
-    // Failed to load list
     if (_mockLoadError) {
       return Center(child: Padding(
         padding: const EdgeInsets.all(24),
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           Icon(Icons.wifi_off_rounded, size: 48, color: Colors.grey.shade400),
           const SizedBox(height: 12),
-          Text('Could not load mock tests', style: GoogleFonts.poppins(
+          Text(AppStrings.get('could_not_load_mocks', lang), style: GoogleFonts.poppins(
               fontSize: 14, fontWeight: FontWeight.w600, color: const Color(0xFF374151))),
           const SizedBox(height: 6),
-          Text('Check your internet connection and try again.', textAlign: TextAlign.center,
+          Text(AppStrings.get('check_connection_retry', lang), textAlign: TextAlign.center,
               style: GoogleFonts.poppins(fontSize: 12, color: Colors.grey.shade500)),
           const SizedBox(height: 16),
           ElevatedButton(
             onPressed: _loadMockTests,
             style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFF1565C0)),
-            child: Text('Retry', style: GoogleFonts.poppins(color: Colors.white)),
+            child: Text(AppStrings.get('retry', lang), style: GoogleFonts.poppins(color: Colors.white)),
           ),
         ]),
       ));
     }
 
-    // No tests yet for this exam
     if (_mocks.isEmpty) {
       return Center(child: Padding(
         padding: const EdgeInsets.all(24),
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           Icon(Icons.quiz_outlined, size: 48, color: Colors.grey.shade400),
           const SizedBox(height: 12),
-          Text('No mock tests yet for $_selectedExam', textAlign: TextAlign.center,
+          Text('${AppStrings.get('no_mock_tests_yet', lang)} $_selectedExam', textAlign: TextAlign.center,
               style: GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w600, color: const Color(0xFF374151))),
           const SizedBox(height: 6),
-          Text('We\'re adding more tests soon — check back later!', textAlign: TextAlign.center,
+          Text(AppStrings.get('adding_tests_soon', lang), textAlign: TextAlign.center,
               style: GoogleFonts.poppins(fontSize: 12, color: Colors.grey.shade500)),
         ]),
       ));
     }
 
     return ListView(padding: const EdgeInsets.all(16), children: [
+      // mt['title']/mt['description'] are real Firestore mock-test
+      // content — not translated.
       ..._mocks.map((mt) => Container(
         margin: const EdgeInsets.only(bottom: 14),
         decoration: BoxDecoration(
@@ -828,7 +851,7 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
                   child: const Icon(Icons.quiz_outlined, color: Color(0xFF1565C0), size: 22)),
               const SizedBox(width: 12),
               Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text(mt['title'] as String? ?? 'Mock Test', style: GoogleFonts.poppins(fontSize: 13, fontWeight: FontWeight.w700, color: const Color(0xFF1A1A2E))),
+                Text(mt['title'] as String? ?? AppStrings.get('tab_mock_test', lang), style: GoogleFonts.poppins(fontSize: 13, fontWeight: FontWeight.w700, color: const Color(0xFF1A1A2E))),
                 Text(mt['description'] as String? ?? '', style: GoogleFonts.poppins(fontSize: 11, color: Colors.grey.shade500)),
               ])),
             ]),
@@ -839,7 +862,7 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
               Expanded(child: OutlinedButton.icon(
                 onPressed: () => _startMockTest(mt, timed: false),
                 icon: const Icon(Icons.psychology_outlined, size: 15),
-                label: Text('Practice', style: GoogleFonts.poppins(fontSize: 12)),
+                label: Text(AppStrings.get('practice_btn', lang), style: GoogleFonts.poppins(fontSize: 12)),
                 style: OutlinedButton.styleFrom(
                   foregroundColor: const Color(0xFF1565C0),
                   side: const BorderSide(color: Color(0xFF1565C0)),
@@ -851,7 +874,7 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
               Expanded(child: ElevatedButton.icon(
                 onPressed: () => _startMockTest(mt, timed: true),
                 icon: const Icon(Icons.timer_outlined, size: 15, color: Colors.white),
-                label: Text('Timed (${_fmt(mt['duration'] as int? ?? 1200)})', style: GoogleFonts.poppins(fontSize: 12, color: Colors.white)),
+                label: Text('${AppStrings.get('timed_btn', lang)} (${_fmt(mt['duration'] as int? ?? 1200)})', style: GoogleFonts.poppins(fontSize: 12, color: Colors.white)),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF1565C0),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -865,6 +888,8 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
     ]);
   }
 
+  // Quick Revision content (sec['title'], item text) is real study
+  // material — not translated in this pass.
   Widget _qrTab() => ListView(padding: const EdgeInsets.all(16), children: [
     ..._qr.map((sec) => Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text(sec['title'] as String, style: GoogleFonts.poppins(
@@ -896,7 +921,7 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
     ])),
   ]);
 
-  Widget _bottomNav() => BottomNavigationBar(
+  Widget _bottomNav(String lang) => BottomNavigationBar(
     currentIndex: 0,
     type: BottomNavigationBarType.fixed,
     selectedItemColor: const Color(0xFF1565C0),
@@ -912,16 +937,18 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
         case 4: Navigator.pushReplacementNamed(context, '/profile'); break;
       }
     },
-    items: const [
-      BottomNavigationBarItem(icon: Icon(Icons.home_outlined), activeIcon: Icon(Icons.home), label: 'Home'),
-      BottomNavigationBarItem(icon: Icon(Icons.work_outline), activeIcon: Icon(Icons.work), label: 'Jobs'),
-      BottomNavigationBarItem(icon: Icon(Icons.newspaper_outlined), activeIcon: Icon(Icons.newspaper), label: 'News'),
-      BottomNavigationBarItem(icon: Icon(Icons.bookmark_outline), activeIcon: Icon(Icons.bookmark), label: 'Saved'),
-      BottomNavigationBarItem(icon: Icon(Icons.person_outline), activeIcon: Icon(Icons.person), label: 'Profile'),
+    items: [
+      BottomNavigationBarItem(icon: const Icon(Icons.home_outlined), activeIcon: const Icon(Icons.home), label: AppStrings.get('nav_home', lang)),
+      BottomNavigationBarItem(icon: const Icon(Icons.work_outline), activeIcon: const Icon(Icons.work), label: AppStrings.get('nav_jobs', lang)),
+      BottomNavigationBarItem(icon: const Icon(Icons.newspaper_outlined), activeIcon: const Icon(Icons.newspaper), label: AppStrings.get('nav_news', lang)),
+      BottomNavigationBarItem(icon: const Icon(Icons.bookmark_outline), activeIcon: const Icon(Icons.bookmark), label: AppStrings.get('nav_saved', lang)),
+      BottomNavigationBarItem(icon: const Icon(Icons.person_outline), activeIcon: const Icon(Icons.person), label: AppStrings.get('nav_profile', lang)),
     ],
   );
 
   // ── FREE RESOURCES DATA (OFFICIAL SITES ONLY) ───────────────
+  // Resource titles/subtitles are proper-noun site descriptions —
+  // not translated, same convention as Job Detail's Papers tab.
   static const Map<String, List<Map<String, dynamic>>> _resources = {
     'SSC CGL': [
       {'category': 'Official Exam Website', 'icon': 'official', 'color': 0xFF1565C0, 'items': [
@@ -1038,8 +1065,7 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
     ],
   };
 
-  // ── RESOURCES TAB ────────────────────────────────────────────
-  Widget _resourcesTab() {
+  Widget _resourcesTab(String lang) {
     final examResources = _resources[_selectedExam] ?? _resources['SSC CGL']!;
     return ListView(
       padding: const EdgeInsets.all(16),
@@ -1054,9 +1080,9 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
             const Icon(Icons.auto_awesome, color: Colors.white, size: 28),
             const SizedBox(width: 12),
             Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text('Free Resources — $_selectedExam',
+              Text('${AppStrings.get('free_resources_for', lang)} $_selectedExam',
                   style: GoogleFonts.poppins(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w700)),
-              Text('Official government websites only',
+              Text(AppStrings.get('official_govt_sites_only', lang),
                   style: GoogleFonts.poppins(color: Colors.white70, fontSize: 11)),
             ])),
           ]),
@@ -1123,7 +1149,7 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
             const Icon(Icons.info_outline, color: Color(0xFFF59E0B), size: 16),
             const SizedBox(width: 8),
             Expanded(child: Text(
-              'All links open official government websites only. Internet connection required.',
+              AppStrings.get('resources_disclaimer', lang),
               style: GoogleFonts.poppins(fontSize: 10, color: const Color(0xFF92400E)),
             )),
           ]),

@@ -3,7 +3,12 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../services/job_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:provider/provider.dart';
 import 'dart:io';
+import '../study/study_material_screen.dart';
+import '../current_affairs/current_affairs_screen.dart';
+import '../../l10n/language_provider.dart';
+import '../../l10n/app_strings.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -19,6 +24,13 @@ class _HomeScreenState extends State<HomeScreen> {
   bool _isLoading = true;
   bool _hasInternet = true;
   String _userName = 'User';
+
+  // Exam list for the Mock Test quick-pick dialog — kept in sync with
+  // study_material_screen.dart's _exams list.
+  final List<String> _mockTestExams = [
+    'SSC CGL','SSC CHSL','RRB NTPC','Army Agniveer','Punjab Police',
+    'IBPS PO','UPSC CSE','Delhi Police','Haryana Police','NDA',
+  ];
 
   final List<Map<String, dynamic>> _upcomingExams = [
     {
@@ -131,8 +143,106 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
+  // ── Mock Test quick-pick: shows exam selector, then jumps straight
+  // into Study Material's Mock Test tab for that exam ──────────────
+  void _showMockTestExamPicker(String lang) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      builder: (ctx) => Container(
+        height: MediaQuery.of(ctx).size.height * 0.75,
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(24),
+            topRight: Radius.circular(24),
+          ),
+        ),
+        child: SafeArea(
+          top: false,
+          child: Column(
+            children: [
+              Container(
+                margin: const EdgeInsets.only(top: 12),
+                width: 40, height: 4,
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade300,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(20),
+                child: Row(children: [
+                  Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF1565C0).withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: const Icon(Icons.quiz_outlined,
+                        color: Color(0xFF1565C0), size: 22),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(AppStrings.get('choose_exam_title', lang),
+                          style: GoogleFonts.poppins(
+                              fontSize: 16, fontWeight: FontWeight.w700,
+                              color: const Color(0xFF1A1A2E))),
+                      Text(AppStrings.get('choose_exam_sub', lang),
+                          style: GoogleFonts.poppins(
+                              fontSize: 12, color: Colors.grey.shade500)),
+                    ],
+                  )),
+                ]),
+              ),
+              const Divider(height: 1),
+              Expanded(
+                child: ListView.builder(
+                  padding: const EdgeInsets.only(top: 8, bottom: 24),
+                  itemCount: _mockTestExams.length,
+                  itemBuilder: (_, i) {
+                    final exam = _mockTestExams[i];
+                    return ListTile(
+                      leading: Container(
+                        width: 38, height: 38,
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF1565C0).withOpacity(0.08),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: const Icon(Icons.menu_book_outlined,
+                            color: Color(0xFF1565C0), size: 18),
+                      ),
+                      title: Text(exam, style: GoogleFonts.poppins(
+                          fontSize: 14, fontWeight: FontWeight.w600,
+                          color: const Color(0xFF1A1A2E))),
+                      trailing: Icon(Icons.chevron_right,
+                          color: Colors.grey.shade400),
+                      onTap: () {
+                        Navigator.pop(ctx); // close the sheet
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (_) => StudyMaterialScreen(
+                            initialExam: exam,
+                            initialTabIndex: 2, // Mock Test tab
+                          ),
+                        ));
+                      },
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    final lang = context.watch<LanguageProvider>().languageCode;
     return Scaffold(
       backgroundColor: const Color(0xFFF5F7FA),
       body: SafeArea(
@@ -150,7 +260,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: Colors.white, size: 18),
                   const SizedBox(width: 8),
                   Expanded(child: Text(
-                    'No internet connection. Please check your network.',
+                    AppStrings.get('no_internet_banner', lang),
                     style: GoogleFonts.poppins(
                         color: Colors.white, fontSize: 12),
                   )),
@@ -160,7 +270,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       _loadLatestJobs();
                       _loadUserName();
                     },
-                    child: Text('Retry',
+                    child: Text(AppStrings.get('retry', lang),
                         style: GoogleFonts.poppins(
                             color: Colors.white,
                             fontSize: 12,
@@ -172,15 +282,15 @@ class _HomeScreenState extends State<HomeScreen> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    _buildHeader(),
-                    _buildSearchBar(),
-                    _buildCategories(),
-                    _buildSectionTitle('Latest Jobs', 'See All'),
-                    _buildJobCards(),
-                    _buildSectionTitle('Upcoming Exams', 'See All'),
-                    _buildExamCards(),
-                    _buildSectionTitle('Quick Tools', ''),
-                    _buildQuickTools(),
+                    _buildHeader(lang),
+                    _buildSearchBar(lang),
+                    _buildCategories(lang),
+                    _buildSectionTitle(AppStrings.get('latest_jobs', lang), AppStrings.get('see_all', lang)),
+                    _buildJobCards(lang),
+                    _buildSectionTitle(AppStrings.get('upcoming_exams', lang), AppStrings.get('see_all', lang)),
+                    _buildExamCards(lang),
+                    _buildSectionTitle(AppStrings.get('quick_tools_title', lang), ''),
+                    _buildQuickTools(lang),
                     const SizedBox(height: 80),
                   ],
                 ),
@@ -189,11 +299,11 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: _buildBottomNav(),
+      bottomNavigationBar: _buildBottomNav(lang),
     );
   }
 
-  Widget _buildHeader() {
+  Widget _buildHeader(String lang) {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: const BoxDecoration(
@@ -212,7 +322,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Hello! 👋',
+                  Text('${AppStrings.get('hello_greeting', lang)} 👋',
                       style: GoogleFonts.poppins(
                           color: Colors.white70, fontSize: 14)),
                   Text(_userName,
@@ -256,11 +366,11 @@ class _HomeScreenState extends State<HomeScreen> {
           const SizedBox(height: 20),
           Row(
             children: [
-              _headerStat('15+', 'States'),
+              _headerStat('15+', AppStrings.get('states_stat', lang)),
               const SizedBox(width: 24),
-              _headerStat('Daily', 'Updates'),
+              _headerStat(AppStrings.get('daily_stat', lang), AppStrings.get('updates_stat', lang)),
               const SizedBox(width: 24),
-              _headerMotivation(),
+              _headerMotivation(lang),
             ],
           ),
         ],
@@ -283,23 +393,23 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _headerMotivation() {
+  Widget _headerMotivation(String lang) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Dream Big,',
+        Text(AppStrings.get('dream_big', lang),
             style: GoogleFonts.poppins(
                 color: Colors.white,
                 fontSize: 13,
                 fontWeight: FontWeight.w700)),
-        Text('Work Hard!',
+        Text(AppStrings.get('work_hard', lang),
             style: GoogleFonts.poppins(
                 color: Colors.white70, fontSize: 12)),
       ],
     );
   }
 
-  Widget _buildSearchBar() {
+  Widget _buildSearchBar(String lang) {
     return Container(
       color: const Color(0xFF1565C0),
       padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
@@ -323,7 +433,7 @@ class _HomeScreenState extends State<HomeScreen> {
               const Icon(Icons.search,
                   color: Color(0xFF9CA3AF)),
               const SizedBox(width: 10),
-              Text('Search jobs, departments...',
+              Text(AppStrings.get('search_placeholder', lang),
                   style: GoogleFonts.poppins(
                       color: const Color(0xFF9CA3AF),
                       fontSize: 14)),
@@ -335,7 +445,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: const Color(0xFF1565C0).withOpacity(0.1),
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: Text('Filter',
+                child: Text(AppStrings.get('filter', lang),
                     style: GoogleFonts.poppins(
                         color: const Color(0xFF1565C0),
                         fontSize: 12,
@@ -348,16 +458,16 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildCategories() {
+  Widget _buildCategories(String lang) {
     final categories = [
-      {'name': 'Railway', 'icon': Icons.train, 'color': Color(0xFF1565C0)},
-      {'name': 'Police', 'icon': Icons.local_police, 'color': Color(0xFF1B5E20)},
-      {'name': 'Banking', 'icon': Icons.account_balance, 'color': Color(0xFF6A1B9A)},
-      {'name': 'SSC', 'icon': Icons.description, 'color': Color(0xFFE65100)},
-      {'name': 'Army', 'icon': Icons.military_tech, 'color': Color(0xFF33691E)},
-      {'name': 'Teaching', 'icon': Icons.school, 'color': Color(0xFF0277BD)},
-      {'name': 'Health', 'icon': Icons.local_hospital, 'color': Color(0xFFC62828)},
-      {'name': 'More', 'icon': Icons.grid_view, 'color': Color(0xFF455A64)},
+      {'name': 'Railway', 'key': 'cat_railway', 'icon': Icons.train, 'color': Color(0xFF1565C0)},
+      {'name': 'Police', 'key': 'cat_police', 'icon': Icons.local_police, 'color': Color(0xFF1B5E20)},
+      {'name': 'Banking', 'key': 'cat_banking', 'icon': Icons.account_balance, 'color': Color(0xFF6A1B9A)},
+      {'name': 'SSC', 'key': 'cat_ssc', 'icon': Icons.description, 'color': Color(0xFFE65100)},
+      {'name': 'Army', 'key': 'cat_army', 'icon': Icons.military_tech, 'color': Color(0xFF33691E)},
+      {'name': 'Teaching', 'key': 'cat_teaching', 'icon': Icons.school, 'color': Color(0xFF0277BD)},
+      {'name': 'Health', 'key': 'cat_health', 'icon': Icons.local_hospital, 'color': Color(0xFFC62828)},
+      {'name': 'More', 'key': 'cat_more', 'icon': Icons.grid_view, 'color': Color(0xFF455A64)},
     ];
 
     return Container(
@@ -374,6 +484,10 @@ class _HomeScreenState extends State<HomeScreen> {
             return GestureDetector(
               onTap: () => Navigator.pushNamed(
                 context, '/jobs',
+                // IMPORTANT: navigation argument stays the original
+                // English 'name' value always — this is the actual
+                // filter key the Jobs screen matches against, and
+                // must never change with language, or filtering breaks.
                 arguments: cat['name'] == 'More'
                     ? ''
                     : cat['name'] as String,
@@ -394,7 +508,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           size: 22),
                     ),
                     const SizedBox(height: 6),
-                    Text(cat['name'] as String,
+                    // Display text DOES translate — only the
+                    // navigation argument above stays English.
+                    Text(AppStrings.get(cat['key'] as String, lang),
                         style: GoogleFonts.poppins(
                             fontSize: 11,
                             color: const Color(0xFF374151),
@@ -434,7 +550,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildJobCards() {
+  Widget _buildJobCards(String lang) {
     if (_isLoading) {
       return const SizedBox(
         height: 175,
@@ -449,7 +565,7 @@ class _HomeScreenState extends State<HomeScreen> {
       return SizedBox(
         height: 175,
         child: Center(
-          child: Text('No jobs available',
+          child: Text(AppStrings.get('no_jobs_available', lang),
               style: GoogleFonts.poppins(
                   color: const Color(0xFF6B7280))),
         ),
@@ -464,6 +580,9 @@ class _HomeScreenState extends State<HomeScreen> {
         itemCount: _latestJobs.length,
         itemBuilder: (context, i) {
           final job = _latestJobs[i];
+          // NOTE: title/org come from Firestore job data, not app UI —
+          // these stay as-is for now (job content translation is a
+          // separate, larger task, scoped out of this UI-strings pass).
           final String title    = job['title']?.toString() ?? '';
           final String org      = job['organization']?.toString() ?? '';
           final String category = job['category']?.toString() ?? 'SSC';
@@ -515,7 +634,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             borderRadius:
                             BorderRadius.circular(20),
                           ),
-                          child: Text('NEW',
+                          child: Text(AppStrings.get('new_badge', lang),
                               style: GoogleFonts.poppins(
                                   color: Colors.white,
                                   fontSize: 10,
@@ -539,7 +658,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           fontSize: 11,
                           color: const Color(0xFF6B7280))),
                   const Spacer(),
-                  Text('$vacancies Posts',
+                  Text('$vacancies ${AppStrings.get('posts_label', lang)}',
                       style: GoogleFonts.poppins(
                           fontSize: 11,
                           color: const Color(0xFF374151),
@@ -553,7 +672,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildExamCards() {
+  Widget _buildExamCards(String lang) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
@@ -599,7 +718,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 fontWeight: FontWeight.w600,
                                 color:
                                 const Color(0xFF1A1A2E))),
-                        Text('Exam Date: ${exam['date']}',
+                        Text('${AppStrings.get('exam_date_label', lang)} ${exam['date']}',
                             style: GoogleFonts.poppins(
                                 fontSize: 12,
                                 color:
@@ -616,68 +735,82 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildQuickTools() {
+  Widget _buildQuickTools(String lang) {
     final tools = [
       {
+        'icon': Icons.quiz_outlined,
+        'title': AppStrings.get('mock_test', lang),
+        'subtitle': AppStrings.get('mock_test_sub', lang),
+        'color': Color(0xFF1565C0),
+        'isMockTest': true,
+      },
+      {
+        'icon': Icons.flash_on_outlined,
+        'title': AppStrings.get('quick_quiz', lang),
+        'subtitle': AppStrings.get('quick_quiz_sub', lang),
+        'color': Color(0xFFF59E0B),
+        'isQuickQuiz': true,
+      },
+      {
         'icon': Icons.psychology_alt_outlined,
-        'title': 'Memory Box',
-        'subtitle': 'Revise what you got wrong',
+        'title': AppStrings.get('memory_box', lang),
+        'subtitle': AppStrings.get('memory_box_sub', lang),
         'color': Color(0xFFEF4444),
         'route': '/memory-box',
       },
       {
         'icon': Icons.menu_book_outlined,
-        'title': 'Study Material',
-        'subtitle': 'Notes, PYQ & Mock Tests',
+        'title': AppStrings.get('study_material', lang),
+        'subtitle': AppStrings.get('study_material_sub', lang),
         'color': Color(0xFF6A1B9A),
         'route': '/study-material',
       },
       {
         'icon': Icons.emoji_events_outlined,
-        'title': 'Results',
-        'subtitle': 'Check exam results',
+        'title': AppStrings.get('results', lang),
+        'subtitle': AppStrings.get('results_sub', lang),
         'color': Color(0xFF10B981),
         'route': '/results',
       },
       {
         'icon': Icons.track_changes_outlined,
-        'title': 'Job Tracker',
-        'subtitle': 'Track applications',
+        'title': AppStrings.get('job_tracker', lang),
+        'subtitle': AppStrings.get('job_tracker_sub', lang),
         'color': Color(0xFFFF6B00),
         'route': '/tracker',
       },
       {
         'icon': Icons.article_outlined,
-        'title': 'Admit Cards',
-        'subtitle': 'Download hall tickets',
+        'title': AppStrings.get('admit_cards', lang),
+        'subtitle': AppStrings.get('admit_cards_sub', lang),
         'color': Color(0xFF1565C0),
         'route': '/admit-card',
       },
       {
         'icon': Icons.verified_user_outlined,
-        'title': 'Eligibility',
-        'subtitle': 'Which exams suit you',
+        'title': AppStrings.get('eligibility', lang),
+        'subtitle': AppStrings.get('eligibility_sub', lang),
         'color': Color(0xFF10B981),
         'route': '/eligibility',
       },
       {
         'icon': Icons.cake_outlined,
-        'title': 'Age Calculator',
-        'subtitle': 'Check age eligibility',
+        'title': AppStrings.get('age_calculator', lang),
+        'subtitle': AppStrings.get('age_calculator_sub', lang),
         'color': Color(0xFF1565C0),
         'route': '/tools',
       },
       {
         'icon': Icons.calendar_month_outlined,
-        'title': 'Exam Calendar',
-        'subtitle': 'Upcoming exam dates',
+        'title': AppStrings.get('exam_calendar', lang),
+        'subtitle': AppStrings.get('exam_calendar_sub', lang),
         'color': Color(0xFF880E4F),
         'route': '/calendar',
       },
       {
         'icon': Icons.newspaper_outlined,
-        'title': 'Current Affairs',
-        'subtitle': 'Daily news & quiz',
+        'title': AppStrings.get('current_affairs', lang),
+        'subtitle': AppStrings.get('current_affairs_sub', lang),
         'color': Color(0xFF880E4F),
         'route': '/current-affairs',
       },
@@ -699,9 +832,23 @@ class _HomeScreenState extends State<HomeScreen> {
         itemBuilder: (context, i) {
           final tool = tools[i];
           final Color color = tool['color'] as Color;
+          final bool isMockTest = tool['isMockTest'] == true;
+          final bool isQuickQuiz = tool['isQuickQuiz'] == true;
+
           return GestureDetector(
-            onTap: () => Navigator.pushNamed(
-                context, tool['route'] as String),
+            onTap: () {
+              if (isMockTest) {
+                _showMockTestExamPicker(lang);
+              } else if (isQuickQuiz) {
+                Navigator.push(context, MaterialPageRoute(
+                  builder: (_) => const CurrentAffairsScreen(
+                    initialTabIndex: 1, // Daily Quiz tab
+                  ),
+                ));
+              } else {
+                Navigator.pushNamed(context, tool['route'] as String);
+              }
+            },
             child: Container(
               padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(
@@ -756,7 +903,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildBottomNav() {
+  Widget _buildBottomNav(String lang) {
     return BottomNavigationBar(
       currentIndex: 0,
       type: BottomNavigationBarType.fixed,
@@ -774,12 +921,12 @@ class _HomeScreenState extends State<HomeScreen> {
           case 4: Navigator.pushReplacementNamed(context, '/profile'); break;
         }
       },
-      items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.home_outlined), activeIcon: Icon(Icons.home), label: 'Home'),
-        BottomNavigationBarItem(icon: Icon(Icons.work_outline), activeIcon: Icon(Icons.work), label: 'Jobs'),
-        BottomNavigationBarItem(icon: Icon(Icons.newspaper_outlined), activeIcon: Icon(Icons.newspaper), label: 'News'),
-        BottomNavigationBarItem(icon: Icon(Icons.bookmark_outline), activeIcon: Icon(Icons.bookmark), label: 'Saved'),
-        BottomNavigationBarItem(icon: Icon(Icons.person_outline), activeIcon: Icon(Icons.person), label: 'Profile'),
+      items: [
+        BottomNavigationBarItem(icon: const Icon(Icons.home_outlined), activeIcon: const Icon(Icons.home), label: AppStrings.get('nav_home', lang)),
+        BottomNavigationBarItem(icon: const Icon(Icons.work_outline), activeIcon: const Icon(Icons.work), label: AppStrings.get('nav_jobs', lang)),
+        BottomNavigationBarItem(icon: const Icon(Icons.newspaper_outlined), activeIcon: const Icon(Icons.newspaper), label: AppStrings.get('nav_news', lang)),
+        BottomNavigationBarItem(icon: const Icon(Icons.bookmark_outline), activeIcon: const Icon(Icons.bookmark), label: AppStrings.get('nav_saved', lang)),
+        BottomNavigationBarItem(icon: const Icon(Icons.person_outline), activeIcon: const Icon(Icons.person), label: AppStrings.get('nav_profile', lang)),
       ],
     );
   }

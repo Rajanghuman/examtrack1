@@ -1,10 +1,13 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:provider/provider.dart';
 import '../../services/auth_service.dart';
+import '../../l10n/language_provider.dart';
+import '../../l10n/app_strings.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -28,7 +31,8 @@ class _ProfileScreenState extends State<ProfileScreen>
   bool _notifyDeadlines  = true;
   bool _notifyAdmitCards = true;
   bool _notifyResults    = false;
-  String _selectedLanguage = 'English';
+  // NOTE: _selectedLanguage removed — language now lives in
+  // LanguageProvider (app-wide, persisted), not a local screen variable.
   List<String> _preferredCategories = [];
   String _userStateLocal = '';
 
@@ -76,6 +80,7 @@ class _ProfileScreenState extends State<ProfileScreen>
           final appliedJobs =
               data['appliedJobs'] as List<dynamic>? ?? [];
 
+          if (!mounted) return;
           setState(() {
             _userData       = data;
             _isLoading      = false;
@@ -89,6 +94,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                 data['state'] as String? ?? '';
           });
         } else {
+          if (!mounted) return;
           setState(() {
             _userData     = {};
             _isLoading    = false;
@@ -96,6 +102,7 @@ class _ProfileScreenState extends State<ProfileScreen>
           });
         }
       } catch (e) {
+        if (!mounted) return;
         setState(() => _isLoading = false);
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -107,6 +114,7 @@ class _ProfileScreenState extends State<ProfileScreen>
         }
       }
     } else {
+      if (!mounted) return;
       setState(() => _isLoading = false);
     }
   }
@@ -134,6 +142,7 @@ class _ProfileScreenState extends State<ProfileScreen>
         final appliedJobs =
             data['appliedJobs'] as List<dynamic>? ?? [];
 
+        if (!mounted) return;
         setState(() {
           _savedCount   = savedJobs.length;
           _appliedCount = appliedJobs.length;
@@ -144,6 +153,7 @@ class _ProfileScreenState extends State<ProfileScreen>
         });
       } else {
         // Doc doesn't exist yet — still count tracked
+        if (!mounted) return;
         setState(() {
           _trackedCount = trackedSnap.docs.length;
         });
@@ -174,22 +184,23 @@ class _ProfileScreenState extends State<ProfileScreen>
       _userData?['qualification'] ?? 'Graduate';
 
   Future<void> _logout() async {
+    final lang = context.read<LanguageProvider>().languageCode;
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16)),
-        title: Text('Logout',
+        title: Text(AppStrings.get('logout', lang),
             style: GoogleFonts.poppins(
                 fontWeight: FontWeight.w700, fontSize: 18)),
-        content: Text('Are you sure you want to logout?',
+        content: Text(AppStrings.get('logout_confirm', lang),
             style: GoogleFonts.poppins(
                 fontSize: 14,
                 color: const Color(0xFF6B7280))),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx),
-            child: Text('Cancel',
+            child: Text(AppStrings.get('cancel', lang),
                 style: GoogleFonts.poppins(
                     color: const Color(0xFF6B7280))),
           ),
@@ -205,7 +216,7 @@ class _ProfileScreenState extends State<ProfileScreen>
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8)),
             ),
-            child: Text('Logout',
+            child: Text(AppStrings.get('logout', lang),
                 style: GoogleFonts.poppins(
                     color: Colors.white,
                     fontWeight: FontWeight.w600)),
@@ -295,6 +306,10 @@ class _ProfileScreenState extends State<ProfileScreen>
 
   @override
   Widget build(BuildContext context) {
+    // Watch the language provider so this whole screen rebuilds
+    // automatically the instant the user flips the toggle.
+    final lang = context.watch<LanguageProvider>().languageCode;
+
     return Scaffold(
       backgroundColor: const Color(0xFFF5F7FA),
       body: _isLoading
@@ -304,17 +319,17 @@ class _ProfileScreenState extends State<ProfileScreen>
           : SingleChildScrollView(
         child: Column(
           children: [
-            _buildHeader(),
+            _buildHeader(lang),
             const SizedBox(height: 16),
-            _buildStatsRow(),
+            _buildStatsRow(lang),
             const SizedBox(height: 16),
-            _buildQuickAccess(),
+            _buildQuickAccess(lang),
             const SizedBox(height: 16),
-            _buildNotificationSettings(),
+            _buildNotificationSettings(lang),
             const SizedBox(height: 16),
-            _buildAppSettings(),
+            _buildAppSettings(lang),
             const SizedBox(height: 16),
-            _buildLogoutButton(),
+            _buildLogoutButton(lang),
             const SizedBox(height: 32),
             Text('ExamTrack v1.0.0',
                 style: GoogleFonts.poppins(
@@ -324,11 +339,11 @@ class _ProfileScreenState extends State<ProfileScreen>
           ],
         ),
       ),
-      bottomNavigationBar: _buildBottomNav(),
+      bottomNavigationBar: _buildBottomNav(lang),
     );
   }
 
-  Widget _buildHeader() {
+  Widget _buildHeader(String lang) {
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
@@ -350,7 +365,7 @@ class _ProfileScreenState extends State<ProfileScreen>
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('My Profile',
+              Text(AppStrings.get('my_profile', lang),
                   style: GoogleFonts.poppins(
                       color: Colors.white, fontSize: 20,
                       fontWeight: FontWeight.w700)),
@@ -363,7 +378,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                     color: Colors.white.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  child: Text('Edit',
+                  child: Text(AppStrings.get('edit', lang),
                       style: GoogleFonts.poppins(
                           color: Colors.white, fontSize: 13)),
                 ),
@@ -449,7 +464,7 @@ class _ProfileScreenState extends State<ProfileScreen>
   }
 
   // ── Stats row with real Firebase data ─────────────────
-  Widget _buildStatsRow() {
+  Widget _buildStatsRow(String lang) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Container(
@@ -465,16 +480,16 @@ class _ProfileScreenState extends State<ProfileScreen>
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            _statItem('$_savedCount', 'Saved',
+            _statItem('$_savedCount', AppStrings.get('saved_stat', lang),
                 const Color(0xFF1565C0)),
             _divider(),
-            _statItem('$_appliedCount', 'Applied',
+            _statItem('$_appliedCount', AppStrings.get('applied_stat', lang),
                 const Color(0xFF10B981)),
             _divider(),
-            _statItem('0', 'Selected',
+            _statItem('0', AppStrings.get('selected_stat', lang),
                 const Color(0xFFFF6B00)),
             _divider(),
-            _statItem('$_trackedCount', 'Tracked',
+            _statItem('$_trackedCount', AppStrings.get('tracked_stat', lang),
                 const Color(0xFF880E4F)),
           ],
         ),
@@ -959,16 +974,16 @@ class _ProfileScreenState extends State<ProfileScreen>
     }
   }
 
-  Widget _buildQuickAccess() {
+  Widget _buildQuickAccess(String lang) {
     final items = [
-      {'icon': Icons.bookmark_outline, 'title': 'Saved Jobs', 'route': '/saved'},
-      {'icon': Icons.menu_book_outlined, 'title': 'Study Material', 'route': '/study-material'},
-      {'icon': Icons.emoji_events_outlined, 'title': 'Results', 'route': '/results'},
-      {'icon': Icons.track_changes_outlined, 'title': 'Job Tracker', 'route': '/tracker'},
-      {'icon': Icons.article_outlined, 'title': 'Admit Cards', 'route': '/admit-card'},
-      {'icon': Icons.verified_user_outlined, 'title': 'Eligibility', 'route': '/eligibility'},
-      {'icon': Icons.cake_outlined, 'title': 'Age Calculator', 'route': '/tools'},
-      {'icon': Icons.newspaper_outlined, 'title': 'Current Affairs', 'route': '/current-affairs'},
+      {'icon': Icons.bookmark_outline, 'title': AppStrings.get('nav_saved', lang), 'route': '/saved'},
+      {'icon': Icons.menu_book_outlined, 'title': AppStrings.get('study_material', lang), 'route': '/study-material'},
+      {'icon': Icons.emoji_events_outlined, 'title': AppStrings.get('results', lang), 'route': '/results'},
+      {'icon': Icons.track_changes_outlined, 'title': AppStrings.get('job_tracker', lang), 'route': '/tracker'},
+      {'icon': Icons.article_outlined, 'title': AppStrings.get('admit_cards', lang), 'route': '/admit-card'},
+      {'icon': Icons.verified_user_outlined, 'title': AppStrings.get('eligibility', lang), 'route': '/eligibility'},
+      {'icon': Icons.cake_outlined, 'title': AppStrings.get('age_calculator', lang), 'route': '/tools'},
+      {'icon': Icons.newspaper_outlined, 'title': AppStrings.get('current_affairs', lang), 'route': '/current-affairs'},
     ];
 
     return Padding(
@@ -988,7 +1003,7 @@ class _ProfileScreenState extends State<ProfileScreen>
             Padding(
               padding:
               const EdgeInsets.fromLTRB(16, 16, 16, 8),
-              child: Text('Quick Access',
+              child: Text(AppStrings.get('quick_access', lang),
                   style: GoogleFonts.poppins(
                       fontSize: 15,
                       fontWeight: FontWeight.w700,
@@ -1038,7 +1053,7 @@ class _ProfileScreenState extends State<ProfileScreen>
     );
   }
 
-  Widget _buildNotificationSettings() {
+  Widget _buildNotificationSettings(String lang) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Container(
@@ -1056,7 +1071,7 @@ class _ProfileScreenState extends State<ProfileScreen>
             Padding(
               padding:
               const EdgeInsets.fromLTRB(16, 16, 16, 8),
-              child: Text('Notifications',
+              child: Text(AppStrings.get('notifications', lang),
                   style: GoogleFonts.poppins(
                       fontSize: 15,
                       fontWeight: FontWeight.w700,
@@ -1107,7 +1122,11 @@ class _ProfileScreenState extends State<ProfileScreen>
     );
   }
 
-  Widget _buildAppSettings() {
+  Widget _buildAppSettings(String lang) {
+    // Read the language provider here so the dropdown reflects and
+    // controls the REAL app-wide language, not a local placeholder.
+    final languageProvider = context.watch<LanguageProvider>();
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Container(
@@ -1125,7 +1144,7 @@ class _ProfileScreenState extends State<ProfileScreen>
             Padding(
               padding:
               const EdgeInsets.fromLTRB(16, 16, 16, 8),
-              child: Text('App Settings',
+              child: Text(AppStrings.get('app_settings', lang),
                   style: GoogleFonts.poppins(
                       fontSize: 15,
                       fontWeight: FontWeight.w700,
@@ -1141,13 +1160,16 @@ class _ProfileScreenState extends State<ProfileScreen>
               child: Row(
                 children: [
                   Expanded(
-                    child: Text('Language',
+                    child: Text(AppStrings.get('language', lang),
                         style: GoogleFonts.poppins(
                             fontSize: 14,
                             color: const Color(0xFF1A1A2E))),
                   ),
                   DropdownButton<String>(
-                    value: _selectedLanguage,
+                    // Display value is derived from the REAL provider
+                    // state, not a local variable — this is what makes
+                    // it actually reflect what's currently active.
+                    value: languageProvider.isHindi ? 'Hindi' : 'English',
                     underline: const SizedBox(),
                     style: GoogleFonts.poppins(
                         fontSize: 14,
@@ -1156,36 +1178,42 @@ class _ProfileScreenState extends State<ProfileScreen>
                         .map((l) => DropdownMenuItem(
                         value: l, child: Text(l)))
                         .toList(),
-                    onChanged: (v) {
-                      if (v == 'Hindi') {
+                    onChanged: (v) async {
+                      if (v == null) return;
+                      // This is the actual switch — setLanguage()
+                      // updates LanguageProvider, which notifies every
+                      // widget watching it, and persists the choice
+                      // via shared_preferences so it survives restart.
+                      await languageProvider.setLanguage(
+                          v == 'Hindi' ? 'hi' : 'en');
+                      if (mounted) {
                         _showToast(
-                            'Hindi language coming soon',
-                            success: false);
-                      } else {
-                        setState(
-                                () => _selectedLanguage = v!);
+                          v == 'Hindi'
+                              ? 'भाषा हिंदी में बदल दी गई'
+                              : 'Language switched to English',
+                        );
                       }
                     },
                   ),
                 ],
               ),
             ),
-            _settingsTile('Privacy Policy',
+            _settingsTile(AppStrings.get('privacy_policy', lang),
                 Icons.privacy_tip_outlined, () {
                   _launchURL(
                       'https://rajanghuman.github.io/examtrack-legal/privacy_policy.html');
                 }),
-            _settingsTile('Terms of Service',
+            _settingsTile(AppStrings.get('terms_of_service', lang),
                 Icons.description_outlined, () {
                   _launchURL(
                       'https://rajanghuman.github.io/examtrack-legal/terms_of_service.html');
                 }),
             _settingsTile(
-                'Rate the App', Icons.star_outline, () {
+                AppStrings.get('rate_the_app', lang), Icons.star_outline, () {
               _launchURL(
                   'https://play.google.com/store/apps/details?id=com.examtrack.app');
             }),
-            _settingsTile('Share with Friends',
+            _settingsTile(AppStrings.get('share_with_friends', lang),
                 Icons.share_outlined, () {
                   _shareApp();
                 }),
@@ -1225,7 +1253,7 @@ class _ProfileScreenState extends State<ProfileScreen>
     );
   }
 
-  Widget _buildLogoutButton() {
+  Widget _buildLogoutButton(String lang) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: SizedBox(
@@ -1234,7 +1262,7 @@ class _ProfileScreenState extends State<ProfileScreen>
         child: ElevatedButton.icon(
           onPressed: _logout,
           icon: const Icon(Icons.logout, color: Colors.white),
-          label: Text('Logout',
+          label: Text(AppStrings.get('logout', lang),
               style: GoogleFonts.poppins(
                   color: Colors.white, fontSize: 15,
                   fontWeight: FontWeight.w600)),
@@ -1249,7 +1277,7 @@ class _ProfileScreenState extends State<ProfileScreen>
     );
   }
 
-  Widget _buildBottomNav() {
+  Widget _buildBottomNav(String lang) {
     return BottomNavigationBar(
       currentIndex: 4,
       type: BottomNavigationBarType.fixed,
@@ -1267,12 +1295,12 @@ class _ProfileScreenState extends State<ProfileScreen>
           case 4: break;
         }
       },
-      items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.home_outlined), activeIcon: Icon(Icons.home), label: 'Home'),
-        BottomNavigationBarItem(icon: Icon(Icons.work_outline), activeIcon: Icon(Icons.work), label: 'Jobs'),
-        BottomNavigationBarItem(icon: Icon(Icons.newspaper_outlined), activeIcon: Icon(Icons.newspaper), label: 'News'),
-        BottomNavigationBarItem(icon: Icon(Icons.bookmark_outline), activeIcon: Icon(Icons.bookmark), label: 'Saved'),
-        BottomNavigationBarItem(icon: Icon(Icons.person_outline), activeIcon: Icon(Icons.person), label: 'Profile'),
+      items: [
+        BottomNavigationBarItem(icon: const Icon(Icons.home_outlined), activeIcon: const Icon(Icons.home), label: AppStrings.get('nav_home', lang)),
+        BottomNavigationBarItem(icon: const Icon(Icons.work_outline), activeIcon: const Icon(Icons.work), label: AppStrings.get('nav_jobs', lang)),
+        BottomNavigationBarItem(icon: const Icon(Icons.newspaper_outlined), activeIcon: const Icon(Icons.newspaper), label: AppStrings.get('nav_news', lang)),
+        BottomNavigationBarItem(icon: const Icon(Icons.bookmark_outline), activeIcon: const Icon(Icons.bookmark), label: AppStrings.get('nav_saved', lang)),
+        BottomNavigationBarItem(icon: const Icon(Icons.person_outline), activeIcon: const Icon(Icons.person), label: AppStrings.get('nav_profile', lang)),
       ],
     );
   }
