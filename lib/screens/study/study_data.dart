@@ -70,7 +70,7 @@ class StudyData {
       case 'SSC CGL':       return 'Tier 1: 100Q | 60 mins | 0.5 negative';
       case 'RRB NTPC':      return 'CBT 1: 100Q | 90 mins | 1/3 negative';
       case 'Army Agniveer': return 'CEE: 50Q | 60 mins | 0.25 negative';
-      case 'Punjab Police': return 'Paper 1: 100Q 2hrs | Paper 2: Punjabi 50Q';
+      case 'Punjab Police': return 'Paper I: 100Q/100M/2hrs (Scoring) | Paper II: Punjabi 50Q/50M/1hr (Qualifying, min 50%)';
       case 'IBPS PO':       return 'Prelims: 100Q | 60 mins | 0.25 negative';
       case 'SSC CHSL':      return 'Tier 1: 100Q | 60 mins | 0.5 negative';
       case 'UPSC CSE':      return 'Prelims: 100Q | 2 hrs | 1/3 negative';

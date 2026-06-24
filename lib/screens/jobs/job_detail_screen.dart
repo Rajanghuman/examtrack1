@@ -791,7 +791,7 @@ class _JobDetailScreenState extends State<JobDetailScreen>
             const SizedBox(width: 12),
             Expanded(child: _buildInfoCard(
                 AppStrings.get('qualification_label', lang), qualification,
-                Icons.school_rounded, Colors.purple)),
+                Icons.school_rounded, Colors.purple, allowExpand: true)),
           ]),
           const SizedBox(height: 20),
           _buildSection(AppStrings.get('age_limit_section', lang), Icons.cake_rounded,
@@ -1614,38 +1614,124 @@ class _JobDetailScreenState extends State<JobDetailScreen>
     );
   }
 
-  Widget _buildInfoCard(String label, String value,
-      IconData icon, Color color) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [BoxShadow(
-            color: Colors.black.withOpacity(0.06),
-            blurRadius: 8, offset: const Offset(0, 4))],
-      ),
-      child: Row(children: [
-        Container(
-          width: 40, height: 40,
-          decoration: BoxDecoration(
-            color: color.withOpacity(0.1),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Icon(icon, color: color, size: 22),
+  // Shows the complete, untruncated value in a bottom sheet — used when
+  // an info card's value is too long to display in the compact card
+  // (e.g. multi-branch qualification strings with several distinct
+  // requirements separated by "|").
+  void _showFullValueSheet(String label, String value, Color color) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      builder: (ctx) => Container(
+        constraints: BoxConstraints(
+          maxHeight: MediaQuery.of(ctx).size.height * 0.6,
         ),
-        const SizedBox(width: 12),
-        Expanded(child: Column(
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(24),
+            topRight: Radius.circular(24),
+          ),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(label, style: TextStyle(
-                fontSize: 11, color: Colors.grey.shade500)),
-            Text(value, style: const TextStyle(
-                fontSize: 13, fontWeight: FontWeight.bold,
-                color: Color(0xFF1A1A2E))),
+            Center(
+              child: Container(
+                margin: const EdgeInsets.only(top: 12),
+                width: 40, height: 4,
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade300,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 16, 20, 8),
+              child: Text(label,
+                  style: GoogleFonts.poppins(
+                      fontSize: 16, fontWeight: FontWeight.w700,
+                      color: color)),
+            ),
+            const Divider(height: 1),
+            Flexible(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.fromLTRB(20, 16, 20, 28),
+                // Splitting on "|" (the separator used for multi-branch
+                // / multi-category values) renders each part as its own
+                // line instead of one dense run-on paragraph.
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: value.split('|').map((part) => Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: Text(part.trim(),
+                        style: GoogleFonts.poppins(
+                            fontSize: 14, color: const Color(0xFF1A1A2E),
+                            height: 1.5)),
+                  )).toList(),
+                ),
+              ),
+            ),
           ],
-        )),
-      ]),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildInfoCard(String label, String value,
+      IconData icon, Color color, {bool allowExpand = false}) {
+    final bool isLong = value.length > 28;
+    return GestureDetector(
+      onTap: (allowExpand && isLong)
+          ? () => _showFullValueSheet(label, value, color)
+          : null,
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: [BoxShadow(
+              color: Colors.black.withOpacity(0.06),
+              blurRadius: 8, offset: const Offset(0, 4))],
+        ),
+        child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Container(
+            width: 40, height: 40,
+            decoration: BoxDecoration(
+              color: color.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Icon(icon, color: color, size: 22),
+          ),
+          const SizedBox(width: 12),
+          Expanded(child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(label, style: TextStyle(
+                  fontSize: 11, color: Colors.grey.shade500)),
+              // Capped at 2 lines with ellipsis — long compound values
+              // (e.g. multi-branch qualification strings) no longer
+              // stretch this card taller than its row partner.
+              Text(value,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                      fontSize: 13, fontWeight: FontWeight.bold,
+                      color: Color(0xFF1A1A2E))),
+              if (allowExpand && isLong)
+                Padding(
+                  padding: const EdgeInsets.only(top: 2),
+                  child: Text('Tap to see full details',
+                      style: TextStyle(
+                          fontSize: 10, color: color,
+                          fontWeight: FontWeight.w600)),
+                ),
+            ],
+          )),
+        ]),
+      ),
     );
   }
 

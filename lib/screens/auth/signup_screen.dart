@@ -228,6 +228,24 @@ class _SignupScreenState extends State<SignupScreen> {
     }
   }
 
+  // ── Sign in with Apple ──────────────────────────────────
+  // Mirrors _signInWithGoogle() exactly above, same pattern used on
+  // login_screen.dart's _signInWithApple() too.
+  Future<void> _signInWithApple() async {
+    setState(() => _isLoading = true);
+    final result = await _authService.signInWithApple();
+    setState(() => _isLoading = false);
+    if (result['success'] == true) {
+      if (result['profileComplete'] == false) {
+        Navigator.pushReplacementNamed(context, '/profile-setup');
+      } else {
+        Navigator.pushReplacementNamed(context, '/home');
+      }
+    } else if (result['error'] != 'cancelled') {
+      _showSnack('Apple sign-in failed. Please try again.', const Color(0xFFEF4444));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -398,6 +416,25 @@ class _SignupScreenState extends State<SignupScreen> {
                 onPressed: _isLoading ? null : _signInWithGoogle,
                 icon: const Icon(Icons.g_mobiledata, size: 28, color: Color(0xFF1565C0)),
                 label: Text('Continue with Google', style: GoogleFonts.poppins(
+                    color: const Color(0xFF1A1A2E), fontSize: 15,
+                    fontWeight: FontWeight.w500)),
+                style: OutlinedButton.styleFrom(
+                    side: const BorderSide(color: Color(0xFFE5E7EB)),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                    backgroundColor: Colors.white),
+              ),
+            ),
+            const SizedBox(height: 14),
+
+            // ── Apple button ────────────────────────────
+            // Required by App Store Guideline 4.8: since Google Sign-In
+            // is offered, Sign in with Apple must be offered as an
+            // equivalent option.
+            SizedBox(width: double.infinity, height: 54,
+              child: OutlinedButton.icon(
+                onPressed: _isLoading ? null : _signInWithApple,
+                icon: const Icon(Icons.apple, size: 26, color: Colors.black),
+                label: Text('Continue with Apple', style: GoogleFonts.poppins(
                     color: const Color(0xFF1A1A2E), fontSize: 15,
                     fontWeight: FontWeight.w500)),
                 style: OutlinedButton.styleFrom(
