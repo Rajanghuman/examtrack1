@@ -9,6 +9,8 @@ import '../study/study_material_screen.dart';
 import '../current_affairs/current_affairs_screen.dart';
 import '../../l10n/language_provider.dart';
 import '../../l10n/app_strings.dart';
+import 'package:examtrack/services/progress_service.dart';
+import 'package:examtrack/widgets/progress_widgets.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -24,6 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
   bool _isLoading = true;
   bool _hasInternet = true;
   String _userName = 'User';
+  Map<String, dynamic> _progress = {};
 
   // Exam list for the Mock Test quick-pick dialog — kept in sync with
   // study_material_screen.dart's _exams list.
@@ -58,6 +61,22 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     _loadLatestJobs();
     _loadUserName();
+    _recordDailyProgress();
+    _loadProgress();
+  }
+
+  Future<void> _recordDailyProgress() async {
+    final result = await ProgressService.recordDailyOpen();
+    if (!mounted) return;
+    if (result.hasUpdate) {
+      ProgressWidgets.handleResult(context, result);
+    }
+  }
+
+  Future<void> _loadProgress() async {
+    final progress = await ProgressService.getProgress();
+    if (!mounted) return;
+    setState(() => _progress = progress);
   }
 
   // ── Load user name from Firestore ──────────────────────
@@ -291,6 +310,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     _buildExamCards(lang),
                     _buildSectionTitle(AppStrings.get('quick_tools_title', lang), ''),
                     _buildQuickTools(lang),
+                    if (_progress.isNotEmpty)
+                      XPButton(progress: _progress),
                     const SizedBox(height: 80),
                   ],
                 ),
@@ -752,6 +773,13 @@ class _HomeScreenState extends State<HomeScreen> {
         'isQuickQuiz': true,
       },
       {
+        'icon': Icons.sports_esports_rounded,
+        'title': '1v1 Quiz Battle',
+        'subtitle': 'Challenge a friend',
+        'color': Color(0xFF7B1FA2),
+        'route': '/battle',
+      },
+      {
         'icon': Icons.psychology_alt_outlined,
         'title': AppStrings.get('memory_box', lang),
         'subtitle': AppStrings.get('memory_box_sub', lang),
@@ -765,6 +793,14 @@ class _HomeScreenState extends State<HomeScreen> {
         'color': Color(0xFF6A1B9A),
         'route': '/study-material',
       },
+      {
+        'icon': Icons.crop_rounded,
+        'title': 'Photo Resizer',
+        'subtitle': 'Resize for exam portals',
+        'color': Color(0xFF1565C0),
+        'route': '/photo-resizer',
+      },
+
       {
         'icon': Icons.emoji_events_outlined,
         'title': AppStrings.get('results', lang),

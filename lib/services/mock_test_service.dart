@@ -3,69 +3,104 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class MockTestService {
   static final FirebaseFirestore _db = FirebaseFirestore.instance;
 
-  // Fetch all mock tests for a given exam from Firestore
   static Future<List<Map<String, dynamic>>> getMockTests(String exam) async {
     try {
-      // Normalize exam name to use as Firestore document key
       final examKey = _examKey(exam);
 
-      final snapshot = await _db
+      // Try primary key first (space-based: "Punjab Police")
+      // then fall back to underscore key ("Punjab_Police")
+      // This handles both old and new upload conventions.
+      QuerySnapshot snapshot = await _db
           .collection('mockTests')
-          .doc(examKey)
+          .doc(exam) // try exact exam name first e.g. "Punjab Police"
           .collection('tests')
-          .orderBy('order')
           .get();
+
+      // If empty, try the underscore-normalized key
+      if (snapshot.docs.isEmpty) {
+        snapshot = await _db
+            .collection('mockTests')
+            .doc(examKey) // e.g. "Punjab_Police"
+            .collection('tests')
+            .get();
+      }
 
       if (snapshot.docs.isEmpty) return [];
 
-      return snapshot.docs.map((doc) {
-        final data = doc.data();
+      final results = snapshot.docs.map((doc) {
+        final data = doc.data() as Map<String, dynamic>;
         data['firestoreId'] = doc.id;
         return data;
       }).toList();
+
+      // Sort client-side by 'order' if present, otherwise by 'id'
+      results.sort((a, b) {
+        final aOrder = a['order'] as int? ?? 999;
+        final bOrder = b['order'] as int? ?? 999;
+        if (aOrder != bOrder) return aOrder.compareTo(bOrder);
+        // fallback: sort by id string
+        return (a['id'] as String? ?? '').compareTo(b['id'] as String? ?? '');
+      });
+
+      return results;
     } catch (e) {
       return [];
     }
   }
 
-  // Fetch a single mock test with all its questions
   static Future<Map<String, dynamic>?> getMockTestWithQuestions(
       String exam, String testId) async {
     try {
-      final examKey = _examKey(exam);
+      // Try both key formats
+      final keys = [exam, _examKey(exam)];
 
-      final testDoc = await _db
-          .collection('mockTests')
-          .doc(examKey)
-          .collection('tests')
-          .doc(testId)
-          .get();
+      for (final key in keys) {
+        final testDoc = await _db
+            .collection('mockTests')
+            .doc(key)
+            .collection('tests')
+            .doc(testId)
+            .get();
 
-      if (!testDoc.exists) return null;
+        if (!testDoc.exists) continue;
 
-      final data = testDoc.data()!;
+        final data = testDoc.data()!;
 
-      // Fetch questions subcollection
-      final questionsSnap = await _db
-          .collection('mockTests')
-          .doc(examKey)
-          .collection('tests')
-          .doc(testId)
-          .collection('questions')
-          .orderBy('order')
-          .get();
+        // Fetch questions — try orderBy('order'), fall back to no ordering
+        QuerySnapshot questionsSnap;
+        try {
+          questionsSnap = await _db
+              .collection('mockTests')
+              .doc(key)
+              .collection('tests')
+              .doc(testId)
+              .collection('questions')
+              .orderBy('order')
+              .get();
+        } catch (_) {
+          // No 'order' field — just fetch without ordering
+          questionsSnap = await _db
+              .collection('mockTests')
+              .doc(key)
+              .collection('tests')
+              .doc(testId)
+              .collection('questions')
+              .get();
+        }
 
-      data['questions'] = questionsSnap.docs
-          .map((q) => q.data())
-          .toList();
+        data['questions'] = questionsSnap.docs
+            .map((q) => q.data() as Map<String, dynamic>)
+            .toList();
 
-      return data;
+        return data;
+      }
+
+      return null;
     } catch (e) {
       return null;
     }
   }
 
-  // Convert exam name to Firestore-safe key
   static String _examKey(String exam) {
     return exam
         .replaceAll(' ', '_')

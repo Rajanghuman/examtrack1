@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:provider/provider.dart';
@@ -78,32 +79,62 @@ class _CurrentAffairsScreenState extends State<CurrentAffairsScreen>
     }
   }
 
-  // ── Load Quiz from Firestore ───────────────────────────
+  // ── Load Daily Quiz via Groq Cloud Function ───────────────
+  // Calls generateDailyQuiz Cloud Function which:
+  // 1. Checks Firestore cache (dailyQuiz/{today}) first
+  // 2. If cached → returns immediately (no Groq call)
+  // 3. If not cached → calls Groq → saves to cache → returns
+  // This means Groq is called at most ONCE per day for all users.
   Future<void> _loadQuizQuestions() async {
+    if (!mounted) return;
+    setState(() {
+      _isLoadingQuiz = true;
+      _quizQuestions = [];
+    });
+
     try {
-      QuerySnapshot snapshot = await FirebaseFirestore.instance
-          .collection('quiz')
-          .get();
+      // Call Cloud Function
+      final callable = FirebaseFunctions.instance
+          .httpsCallable('generateDailyQuiz');
+      final result = await callable.call();
 
-      List<Map<String, dynamic>> questions =
-      snapshot.docs.map((doc) {
-        Map<String, dynamic> data =
-        doc.data() as Map<String, dynamic>;
-        data['id'] = doc.id;
-        return data;
-      }).toList();
+      final data = result.data as Map;
+      final rawQuestions = data['questions'] as List;
 
-      questions.shuffle();
-      final selected = questions.take(10).toList();
+      final questions = rawQuestions
+          .map((q) => Map<String, dynamic>.from(q as Map))
+          .toList();
 
       if (!mounted) return;
       setState(() {
-        _quizQuestions = selected;
+        _quizQuestions = questions;
         _isLoadingQuiz = false;
       });
     } catch (e) {
-      if (!mounted) return;
-      setState(() => _isLoadingQuiz = false);
+      // Fallback to Firestore quiz collection if Cloud Function fails
+      try {
+        final snapshot = await FirebaseFirestore.instance
+            .collection('quiz')
+            .get();
+
+        final questions = snapshot.docs.map((doc) {
+          final data = doc.data();
+          data['id'] = doc.id;
+          return data;
+        }).toList();
+
+        questions.shuffle();
+        final selected = questions.take(15).toList();
+
+        if (!mounted) return;
+        setState(() {
+          _quizQuestions = selected;
+          _isLoadingQuiz = false;
+        });
+      } catch (_) {
+        if (!mounted) return;
+        setState(() => _isLoadingQuiz = false);
+      }
     }
   }
 
@@ -645,9 +676,21 @@ class _CurrentAffairsScreenState extends State<CurrentAffairsScreen>
   // from Firestore quiz content — real data, not translated.
   Widget _buildQuizTab(String lang) {
     if (_isLoadingQuiz) {
-      return const Center(
-        child: CircularProgressIndicator(
-            color: Color(0xFF1565C0)),
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const CircularProgressIndicator(color: Color(0xFF1565C0)),
+            const SizedBox(height: 16),
+            Text('Generating today\'s quiz with AI...',
+                style: GoogleFonts.poppins(
+                    fontSize: 13, color: Colors.grey.shade500)),
+            const SizedBox(height: 4),
+            Text('This may take a few seconds',
+                style: GoogleFonts.poppins(
+                    fontSize: 11, color: Colors.grey.shade400)),
+          ],
+        ),
       );
     }
 
@@ -1008,6 +1051,42 @@ class _CurrentAffairsScreenState extends State<CurrentAffairsScreen>
               ),
             ),
           ),
+          const SizedBox(height: 16),
+          // Come back tomorrow banner
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: const Color(0xFFFFF8E1),
+              borderRadius: BorderRadius.circular(14),
+              border: Border.all(
+                  color: const Color(0xFFFFC107).withOpacity(0.5)),
+            ),
+            child: Row(
+              children: [
+                const Text('🗓️', style: TextStyle(fontSize: 24)),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Come back tomorrow!',
+                          style: GoogleFonts.poppins(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w700,
+                              color: const Color(0xFF92400E))),
+                      Text(
+                          'Fresh AI-generated current affairs questions wait for you every day. New quiz drops at midnight IST.',
+                          style: GoogleFonts.poppins(
+                              fontSize: 11,
+                              color: const Color(0xFF92400E).withOpacity(0.8))),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 16),
         ],
       ),
     );

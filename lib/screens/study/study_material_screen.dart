@@ -6,8 +6,13 @@ import 'package:provider/provider.dart';
 import 'package:examtrack/screens/study/study_data.dart';
 import 'package:examtrack/services/memory_box_service.dart';
 import 'package:examtrack/services/mock_test_service.dart';
+import 'package:examtrack/services/progress_service.dart';
+import 'package:examtrack/widgets/progress_widgets.dart';
 import 'package:examtrack/l10n/language_provider.dart';
 import 'package:examtrack/l10n/app_strings.dart';
+import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
+import 'package:examtrack/services/study_material_service.dart';
+import 'package:examtrack/screens/study/mock_test_screen.dart';
 
 class StudyMaterialScreen extends StatefulWidget {
   final String? initialExam;
@@ -41,6 +46,11 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
   bool _mocksLoading = true;
   bool _mockLoadError = false;
 
+  // Firestore-backed sections state (Notes tab)
+  List<Map<String,dynamic>> _firestoreSections = [];
+  bool _sectionsLoading = true;
+  bool _sectionsLoadError = false;
+
   Map<String,dynamic>? _activeMock; // full test WITH questions, fetched on demand
   bool _activeMockLoading = false;
   int _mockIndex = 0;
@@ -53,7 +63,12 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
   int _timeLeft = 0;
   bool _timedMode = false;
 
-  List<Map<String,dynamic>> get _sections => StudyData.getSections(_selectedExam);
+  List<Map<String,dynamic>> get _sections {
+    if (StudyMaterialService.isFirestoreBacked(_selectedExam)) {
+      return _firestoreSections;
+    }
+    return StudyData.getSections(_selectedExam);
+  }
   List<Map<String,dynamic>> get _pyqs => StudyData.getPYQs(_selectedExam);
   List<Map<String,dynamic>> get _mocks => _firestoreMocks;
   List<Map<String,dynamic>> get _qr => StudyData.getQR(_selectedExam);
@@ -70,6 +85,7 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
       initialIndex: widget.initialTabIndex,
     );
     _loadMockTests();
+    _loadSections();
   }
 
   @override
@@ -108,6 +124,40 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
     }
   }
 
+  Future<void> _loadSections() async {
+    if (!StudyMaterialService.isFirestoreBacked(_selectedExam)) {
+      // Not Firestore-backed — local StudyData is used directly via
+      // the _sections getter, no async loading needed.
+      if (!mounted) return;
+      setState(() {
+        _sectionsLoading = false;
+        _sectionsLoadError = false;
+      });
+      return;
+    }
+
+    if (!mounted) return;
+    setState(() {
+      _sectionsLoading = true;
+      _sectionsLoadError = false;
+    });
+
+    try {
+      final sections = await StudyMaterialService.getSections(_selectedExam);
+      if (!mounted) return;
+      setState(() {
+        _firestoreSections = sections;
+        _sectionsLoading = false;
+      });
+    } catch (e) {
+      if (!mounted) return;
+      setState(() {
+        _sectionsLoading = false;
+        _sectionsLoadError = true;
+      });
+    }
+  }
+
   void _resetMock() {
     _timer?.cancel();
     setState(() {
@@ -139,17 +189,28 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
       return;
     }
 
-    setState(() {
-      _activeMock = fullTest;
-      _mockIndex = 0; _mockScore = 0;
-      _mockAns = null; _mockShowExp = false; _mockDone = false;
-      _timedMode = timed; _mockAnswers = {};
-      _activeMockLoading = false;
-    });
+    setState(() => _activeMockLoading = false);
 
-    if (timed) {
-      _startTimer(fullTest['duration'] as int? ?? 1200);
-    }
+    final durationSeconds = fullTest['duration'] as int? ?? 1200;
+    final questions = (fullTest['questions'] as List)
+        .cast<Map<String, dynamic>>();
+
+    if (!mounted) return;
+
+    // Navigate to the full-screen Testbook-style mock test
+    await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => MockTestScreen(
+          examName: _selectedExam,
+          testTitle: testSummary['title'] as String? ?? 'Mock Test',
+          questions: questions,
+          durationMinutes: (durationSeconds / 60).round(),
+          correctMarks: 2.0,
+          negativeMarks: 0.5,
+        ),
+      ),
+    );
   }
 
   void _startTimer(int seconds) {
@@ -224,6 +285,7 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
                 _selectedExam = e; _resetQuiz(); _resetMock();
               });
               _loadMockTests();
+              _loadSections();
             },
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 200),
@@ -267,80 +329,118 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
     ),
   );
 
-  Widget _notesTab(String lang) => ListView(padding: const EdgeInsets.all(16), children: [
-    Container(
-      padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(
-        gradient: const LinearGradient(colors: [Color(0xFF1565C0), Color(0xFF42A5F5)]),
-        borderRadius: BorderRadius.circular(14),
-      ),
-      child: Row(children: [
-        const Icon(Icons.school_rounded, color: Colors.white, size: 28),
-        const SizedBox(width: 12),
-        // NOTE: exam name + topic/note CONTENT below stays untranslated —
-        // real educational data from StudyData, not app UI chrome.
-        Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text('$_selectedExam ${AppStrings.get('notes_suffix', lang)}', style: GoogleFonts.poppins(
-              color: Colors.white, fontSize: 14, fontWeight: FontWeight.w700)),
-          Text('${_sections.fold(0,(s,sec)=>s+(sec['topics'] as List).length)} ${AppStrings.get('topics_exam_level', lang)}',
-              style: GoogleFonts.poppins(color: Colors.white70, fontSize: 11)),
-        ])),
-      ]),
-    ),
-    const SizedBox(height: 14),
-    ..._sections.map((sec) {
-      final topics = sec['topics'] as List;
-      final color = Color(sec['colorHex'] as int);
-      return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Row(children: [
-          Container(width: 34, height: 34,
-              decoration: BoxDecoration(color: color.withOpacity(0.12), borderRadius: BorderRadius.circular(10)),
-              child: Icon(Icons.circle_outlined, color: color, size: 18)),
-          const SizedBox(width: 10),
-          Expanded(child: Text(sec['title'] as String, style: GoogleFonts.poppins(
-              fontSize: 13, fontWeight: FontWeight.w700, color: const Color(0xFF1A1A2E)))),
-          Text('${topics.length} ${AppStrings.get('topics_suffix', lang)}', style: GoogleFonts.poppins(fontSize: 11, color: Colors.grey.shade500)),
-        ]),
-        const SizedBox(height: 8),
-        ...topics.map((t) => GestureDetector(
-          onTap: () => Navigator.push(context, MaterialPageRoute(
-            builder: (_) => _TopicScreen(topic: t as Map<String,dynamic>, color: color, section: sec['title'] as String),
-          )),
-          child: Container(
-            margin: const EdgeInsets.only(bottom: 8),
-            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
-            decoration: BoxDecoration(
-              color: Colors.white, borderRadius: BorderRadius.circular(12),
-              boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.04), blurRadius: 6)],
-            ),
-            child: Row(children: [
-              Container(width: 8, height: 8, decoration: BoxDecoration(color: color, shape: BoxShape.circle)),
-              const SizedBox(width: 12),
-              Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text(t['title'] as String, style: GoogleFonts.poppins(
-                    fontSize: 13, fontWeight: FontWeight.w600, color: const Color(0xFF1A1A2E))),
-                Text('${t['weightage']} • ${t['readTime']}', style: GoogleFonts.poppins(
-                    fontSize: 11, color: Colors.grey.shade500)),
-              ])),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                decoration: BoxDecoration(
-                  color: _diffColor(t['difficulty'] as String).withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(6),
-                ),
-                child: Text(t['difficulty'] as String, style: GoogleFonts.poppins(
-                    fontSize: 10, fontWeight: FontWeight.w600,
-                    color: _diffColor(t['difficulty'] as String))),
-              ),
-              const SizedBox(width: 6),
-              Icon(Icons.chevron_right, color: Colors.grey.shade400, size: 18),
-            ]),
+  // ============================================================
+  // NOTES TAB — rebuilt to show Subjects -> Parts (accordion) ->
+  // Chapters, instead of the old flat Subject -> Topics list.
+  // Tapping a Subject card opens _SubjectPartsScreen.
+  // ============================================================
+  Widget _notesTab(String lang) {
+    if (_sectionsLoading) {
+      return const Center(child: CircularProgressIndicator(color: Color(0xFF1565C0)));
+    }
+
+    if (_sectionsLoadError) {
+      return Center(child: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Icon(Icons.wifi_off_rounded, size: 48, color: Colors.grey.shade400),
+          const SizedBox(height: 12),
+          Text(AppStrings.get('could_not_load_mocks', lang), style: GoogleFonts.poppins(
+              fontSize: 14, fontWeight: FontWeight.w600, color: const Color(0xFF374151))),
+          const SizedBox(height: 6),
+          Text(AppStrings.get('check_connection_retry', lang), textAlign: TextAlign.center,
+              style: GoogleFonts.poppins(fontSize: 12, color: Colors.grey.shade500)),
+          const SizedBox(height: 16),
+          ElevatedButton(
+            onPressed: _loadSections,
+            style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFF1565C0)),
+            child: Text(AppStrings.get('retry', lang), style: GoogleFonts.poppins(color: Colors.white)),
           ),
-        )),
-        const SizedBox(height: 8),
-      ]);
-    }),
-  ]);
+        ]),
+      ));
+    }
+
+    return ListView(padding: const EdgeInsets.all(16), children: [
+      Container(
+        padding: const EdgeInsets.all(14),
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(colors: [Color(0xFF1565C0), Color(0xFF42A5F5)]),
+          borderRadius: BorderRadius.circular(14),
+        ),
+        child: Row(children: [
+          const Icon(Icons.school_rounded, color: Colors.white, size: 28),
+          const SizedBox(width: 12),
+          // NOTE: exam name + topic/note CONTENT below stays untranslated —
+          // real educational data from StudyData, not app UI chrome.
+          Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text('$_selectedExam ${AppStrings.get('notes_suffix', lang)}', style: GoogleFonts.poppins(
+                color: Colors.white, fontSize: 14, fontWeight: FontWeight.w700)),
+            Text('${_sections.length} ${AppStrings.get('topics_exam_level', lang)}',
+                style: GoogleFonts.poppins(color: Colors.white70, fontSize: 11)),
+          ])),
+        ]),
+      ),
+      const SizedBox(height: 14),
+      ..._sections.map((sec) {
+        final List<dynamic> parts = (sec['parts'] as List?) ?? [];
+        final color = Color(sec['colorHex'] as int);
+        final int totalChapters = parts.fold<int>(
+          0,
+              (sum, p) => sum + (((p as Map)['chapters'] as List?)?.length ?? 0),
+        );
+
+        return Container(
+          margin: const EdgeInsets.only(bottom: 14),
+          child: GestureDetector(
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => _SubjectPartsScreen(
+                  subjectTitle: sec['title'] as String,
+                  color: color,
+                  parts: parts,
+                ),
+              ),
+            ),
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(14),
+                boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 6)],
+              ),
+              child: Row(children: [
+                Container(
+                  width: 44, height: 44,
+                  decoration: BoxDecoration(
+                    color: color.withOpacity(0.12),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Icon(Icons.menu_book_rounded, color: color, size: 22),
+                ),
+                const SizedBox(width: 12),
+                Expanded(child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(sec['title'] as String, style: GoogleFonts.poppins(
+                        fontSize: 14, fontWeight: FontWeight.w700, color: const Color(0xFF1A1A2E))),
+                    const SizedBox(height: 2),
+                    Text(
+                      parts.isEmpty
+                          ? AppStrings.get('content_coming_soon', lang)
+                          : '${parts.length} parts • $totalChapters chapters',
+                      style: GoogleFonts.poppins(fontSize: 11, color: Colors.grey.shade500),
+                    ),
+                  ],
+                )),
+                Icon(Icons.chevron_right, color: Colors.grey.shade400),
+              ]),
+            ),
+          ),
+        );
+      }),
+    ]);
+  }
 
   Widget _pyqTab(String lang) {
     if (!_quizStarted) return _quizStart(lang);
@@ -498,6 +598,11 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
                 });
               }
 
+              // Award XP for answering a question
+              ProgressService.awardXP('pyq_answered', ProgressService.xpPYQAnswered).then((result) {
+                if (mounted && result.didRankUp) ProgressWidgets.handleResult(context, result);
+              });
+
               if (!isCorrect) {
                 final qId = '${_selectedExam}_${q['subject'] ?? 'General'}_${q['id']}';
                 MemoryBoxService.saveWrongAnswer(
@@ -566,6 +671,12 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
                     _mockIndex++; _mockAns = null; _mockShowExp = false;
                   } else {
                     _mockDone = true; _timer?.cancel();
+                    // Award XP for completing a mock test
+                    ProgressService.awardXP('mock_test_completed', ProgressService.xpMockCompleted).then((result) {
+                      if (mounted && result.hasUpdate) ProgressWidgets.handleResult(context, result);
+                    });
+                    // Add to exam history automatically
+                    ProgressService.addExamHistory(examName: _selectedExam, status: 'appeared', source: 'app');
                   }
                 });
               } else {
@@ -885,6 +996,36 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
           ],
         )),
       )),
+      // Coming soon banner — shown on all exams below existing tests
+      Container(
+        margin: const EdgeInsets.only(top: 4, bottom: 20),
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: const Color(0xFFF0F4FF),
+          borderRadius: BorderRadius.circular(14),
+          border: Border.all(color: const Color(0xFF1565C0).withOpacity(0.2)),
+        ),
+        child: Row(children: [
+          Container(
+            width: 40, height: 40,
+            decoration: BoxDecoration(
+              color: const Color(0xFF1565C0).withOpacity(0.1),
+              shape: BoxShape.circle,
+            ),
+            child: const Center(child: Text('🚀', style: TextStyle(fontSize: 20))),
+          ),
+          const SizedBox(width: 12),
+          Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text('More mock tests coming soon!',
+                style: GoogleFonts.poppins(
+                    fontSize: 13, fontWeight: FontWeight.w700,
+                    color: const Color(0xFF1565C0))),
+            Text('We are adding more full-length mock tests for $_selectedExam. Stay tuned!',
+                style: GoogleFonts.poppins(
+                    fontSize: 11, color: Colors.grey.shade500)),
+          ])),
+        ]),
+      ),
     ]);
   }
 
@@ -1177,47 +1318,285 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
   }
 
 }
-class _TopicScreen extends StatelessWidget {
-  final Map<String,dynamic> topic;
+
+// ============================================================
+// NEW SCREEN — shown after tapping a Subject card on the Notes
+// tab. Shows Parts as expandable accordion sections; Chapters
+// listed inside each Part. Tapping a Chapter opens _ChapterScreen.
+// Replaces the old flat-topic-list behavior.
+// ============================================================
+class _SubjectPartsScreen extends StatelessWidget {
+  final String subjectTitle;
   final Color color;
-  final String section;
-  const _TopicScreen({required this.topic, required this.color, required this.section});
+  final List<dynamic> parts;
+
+  const _SubjectPartsScreen({
+    required this.subjectTitle,
+    required this.color,
+    required this.parts,
+  });
+
+  static Color _diffColorStatic(String d) {
+    if (d.contains('Easy')) return const Color(0xFF10B981);
+    if (d.contains('Hard')) return const Color(0xFFEF4444);
+    return const Color(0xFFF59E0B);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF5F7FA),
       appBar: AppBar(
+        backgroundColor: color,
+        foregroundColor: Colors.white,
+        elevation: 0,
+        title: Text(subjectTitle, style: GoogleFonts.poppins(
+            color: Colors.white, fontWeight: FontWeight.w700, fontSize: 16)),
+      ),
+      body: parts.isEmpty
+          ? Center(
+        child: Padding(
+          padding: const EdgeInsets.all(32),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Icons.construction_rounded, size: 56, color: Colors.grey.shade300),
+              const SizedBox(height: 12),
+              Text('Content coming soon',
+                  style: GoogleFonts.poppins(
+                      fontSize: 14, fontWeight: FontWeight.w600,
+                      color: const Color(0xFF374151))),
+            ],
+          ),
+        ),
+      )
+          : ListView.builder(
+        padding: const EdgeInsets.all(16),
+        itemCount: parts.length,
+        itemBuilder: (context, i) {
+          final part = parts[i] as Map<String, dynamic>;
+          final List<dynamic> chapters = (part['chapters'] as List?) ?? [];
+
+          return Container(
+            margin: const EdgeInsets.only(bottom: 12),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(14),
+              boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 6)],
+            ),
+            child: ExpansionTile(
+              initiallyExpanded: i == 0,
+              leading: Container(
+                width: 36, height: 36,
+                decoration: BoxDecoration(
+                  color: color.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Icon(Icons.folder_open_rounded, color: color, size: 18),
+              ),
+              title: Text(part['title'] as String? ?? 'Part',
+                  style: GoogleFonts.poppins(
+                      fontSize: 14, fontWeight: FontWeight.w700,
+                      color: const Color(0xFF1A1A2E))),
+              subtitle: Text('${chapters.length} chapters',
+                  style: GoogleFonts.poppins(fontSize: 11, color: color)),
+              children: chapters.map((c) {
+                final chapter = c as Map<String, dynamic>;
+                return GestureDetector(
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => _ChapterScreen(chapter: chapter, color: color),
+                    ),
+                  ),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    decoration: BoxDecoration(
+                      border: Border(top: BorderSide(color: Colors.grey.shade100)),
+                    ),
+                    child: Row(children: [
+                      Container(
+                        width: 8, height: 8,
+                        decoration: BoxDecoration(color: color, shape: BoxShape.circle),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(chapter['title'] as String? ?? '',
+                              style: GoogleFonts.poppins(
+                                  fontSize: 13, fontWeight: FontWeight.w600,
+                                  color: const Color(0xFF1A1A2E))),
+                          if (chapter['weightage'] != null || chapter['readTime'] != null)
+                            Text(
+                              [
+                                if (chapter['weightage'] != null) chapter['weightage'],
+                                if (chapter['readTime'] != null) chapter['readTime'],
+                              ].join(' • '),
+                              style: GoogleFonts.poppins(fontSize: 11, color: Colors.grey.shade500),
+                            ),
+                        ],
+                      )),
+                      if (chapter['difficulty'] != null)
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                          decoration: BoxDecoration(
+                            color: _diffColorStatic(chapter['difficulty'] as String).withOpacity(0.1),
+                            borderRadius: BorderRadius.circular(6),
+                          ),
+                          child: Text(chapter['difficulty'] as String,
+                              style: GoogleFonts.poppins(
+                                  fontSize: 10, fontWeight: FontWeight.w600,
+                                  color: _diffColorStatic(chapter['difficulty'] as String))),
+                        ),
+                      const SizedBox(width: 6),
+                      Icon(Icons.chevron_right, color: Colors.grey.shade400, size: 18),
+                    ]),
+                  ),
+                );
+              }).toList(),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+// ============================================================
+// _ChapterScreen — FIXED.
+//
+// Root cause of the bug: the previous regex matched ANY
+// "**bold text**" as a section header — including single-letter
+// bold emphasis used inside bullet lists (e.g. "- **P** →
+// Proper..." in the Desi Mnemonic section). That fragmented
+// every chapter after "Examples" into broken mini-sections,
+// which is exactly the garbled/overlapping symptom reported.
+//
+// Fix: the header regex now ONLY matches bold text that begins
+// with one of the 6 known section-title keywords (Textbook
+// Definition, Simple Explanation, Examples, Key Core Concepts,
+// Desi Mnemonic, Memory Box). Single-letter or short emphasis
+// bold inside bullet lists no longer gets misidentified as a
+// new section.
+//
+// Requires: flutter_markdown_plus (already in pubspec.yaml)
+// Add this import at the top of study_material_screen.dart:
+//   import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
+// ============================================================
+
+class _ContentSection {
+  final String type;
+  final String? heading;
+  final String body;
+  _ContentSection({required this.type, this.heading, required this.body});
+}
+
+class _ChapterScreen extends StatefulWidget {
+  final Map<String, dynamic> chapter;
+  final Color color;
+
+  const _ChapterScreen({required this.chapter, required this.color});
+
+  @override
+  State<_ChapterScreen> createState() => _ChapterScreenState();
+}
+
+class _ChapterScreenState extends State<_ChapterScreen> {
+  Map<String, dynamic> get chapter => widget.chapter;
+  Color get color => widget.color;
+
+  @override
+  void initState() {
+    super.initState();
+    // Award XP when user opens a chapter — fire-and-forget,
+    // only show toast if a rank-up happens (avoid toast spam
+    // since users might open many chapters in one session).
+    ProgressService.awardXP('chapter_read', ProgressService.xpChapterRead).then((result) {
+      if (mounted && result.didRankUp) ProgressWidgets.handleResult(context, result);
+    });
+  }
+
+  // ── Section parser (fixed) ──────────────────────────────────
+  // Only matches "**...**" where the inside text starts with one
+  // of the known section keywords. This prevents short bold
+  // emphasis used for bullet styling (e.g. "**P**", "**C**")
+  // from being misidentified as a new section header.
+  static final RegExp _headerPattern = RegExp(
+    r'\*\*\s*(Textbook Definition|Simple Explanation|Examples?|Key Core Concepts(?:\s*&\s*Facts)?|Desi Mnemonic[^*]*|Memory Box[^*]*|Quick Reference[^*]*)\s*\*\*',
+    caseSensitive: false,
+  );
+
+  List<_ContentSection> _parseSections(String raw) {
+    final matches = _headerPattern.allMatches(raw).toList();
+
+    if (matches.isEmpty) {
+      return [_ContentSection(type: 'plain', body: raw.trim())];
+    }
+
+    final List<_ContentSection> sections = [];
+
+    for (int i = 0; i < matches.length; i++) {
+      final heading = matches[i].group(1)?.trim() ?? '';
+      final bodyStart = matches[i].end;
+      final bodyEnd = (i + 1 < matches.length) ? matches[i + 1].start : raw.length;
+      var body = raw.substring(bodyStart, bodyEnd).trim();
+      body = body.replaceFirst(RegExp(r'^\s+'), '');
+
+      sections.add(_ContentSection(
+        type: _classify(heading),
+        heading: heading,
+        body: body,
+      ));
+    }
+
+    return sections;
+  }
+
+  String _classify(String heading) {
+    final h = heading.toLowerCase();
+    if (h.contains('trap') || h.contains('memory box')) return 'trap';
+    if (h.contains('mnemonic')) return 'mnemonic';
+    if (h.contains('key core concepts') || h.contains('key concepts')) return 'concepts';
+    if (h.contains('example')) return 'examples';
+    if (h.contains('simple explanation')) return 'explanation';
+    if (h.contains('textbook definition') || h.contains('definition')) return 'definition';
+    return 'plain';
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final String rawContent = chapter['content'] as String? ?? '';
+    final sections = _parseSections(rawContent);
+
+    return Scaffold(
+      backgroundColor: const Color(0xFFF5F7FA),
+      appBar: AppBar(
         backgroundColor: color, foregroundColor: Colors.white, elevation: 0,
-        title: Text(topic['title'] as String, style: GoogleFonts.poppins(
+        title: Text(chapter['title'] as String? ?? '', style: GoogleFonts.poppins(
             color: Colors.white, fontWeight: FontWeight.w700, fontSize: 15)),
         actions: [
-          Padding(padding: const EdgeInsets.only(right: 12),
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                decoration: BoxDecoration(color: Colors.white.withOpacity(0.2), borderRadius: BorderRadius.circular(8)),
-                child: Text(topic['difficulty'] as String, style: GoogleFonts.poppins(color: Colors.white, fontSize: 11, fontWeight: FontWeight.w600)),
-              )),
+          if (chapter['difficulty'] != null)
+            Padding(padding: const EdgeInsets.only(right: 12),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  decoration: BoxDecoration(color: Colors.white.withOpacity(0.2), borderRadius: BorderRadius.circular(8)),
+                  child: Text(chapter['difficulty'] as String, style: GoogleFonts.poppins(color: Colors.white, fontSize: 11, fontWeight: FontWeight.w600)),
+                )),
         ],
       ),
       body: SingleChildScrollView(padding: const EdgeInsets.all(16), child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(children: [
-            _chip(Icons.bar_chart, '${topic['weightage']}', color),
-            const SizedBox(width: 8),
-            _chip(Icons.timer_outlined, topic['readTime'] as String, color),
+            if (chapter['weightage'] != null)
+              _chip(Icons.bar_chart, '${chapter['weightage']}', color),
+            if (chapter['weightage'] != null && chapter['readTime'] != null)
+              const SizedBox(width: 8),
+            if (chapter['readTime'] != null)
+              _chip(Icons.timer_outlined, chapter['readTime'] as String, color),
           ]),
-          const SizedBox(height: 14),
-          Container(
-            width: double.infinity, padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: Colors.white, borderRadius: BorderRadius.circular(14),
-              boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.04), blurRadius: 8)],
-            ),
-            child: SelectableText(topic['content'] as String, style: GoogleFonts.poppins(
-                fontSize: 13, color: const Color(0xFF374151), height: 1.7)),
-          ),
+          const SizedBox(height: 16),
+          ...sections.map((s) => _buildSectionCard(s)),
         ],
       )),
     );
@@ -1232,4 +1611,186 @@ class _TopicScreen extends StatelessWidget {
       Text(label, style: GoogleFonts.poppins(fontSize: 11, color: c, fontWeight: FontWeight.w600)),
     ]),
   );
+
+  Widget _buildSectionCard(_ContentSection section) {
+    switch (section.type) {
+      case 'trap':
+        return _sectionCard(
+          section: section,
+          icon: Icons.warning_amber_rounded,
+          label: section.heading ?? 'Memory Box "Trap"',
+          bg: const Color(0xFFFFEBEE),
+          border: const Color(0xFFEF5350),
+          borderWidth: 1.6,
+          labelColor: const Color(0xFFC62828),
+          iconColor: const Color(0xFFD32F2F),
+          elevated: true,
+        );
+      case 'mnemonic':
+        return _sectionCard(
+          section: section,
+          icon: Icons.psychology_alt_rounded,
+          label: section.heading ?? 'Desi Mnemonic',
+          bg: const Color(0xFFFFF8E1),
+          border: const Color(0xFFFFC107).withOpacity(0.5),
+          borderWidth: 1,
+          labelColor: const Color(0xFF92400E),
+          iconColor: const Color(0xFFF59E0B),
+        );
+      case 'concepts':
+        return _sectionCard(
+          section: section,
+          icon: Icons.key_rounded,
+          label: section.heading ?? 'Key Core Concepts & Facts',
+          bg: color.withOpacity(0.06),
+          border: color.withOpacity(0.25),
+          borderWidth: 1,
+          labelColor: color,
+          iconColor: color,
+        );
+      case 'examples':
+        return _sectionCard(
+          section: section,
+          icon: Icons.edit_note_rounded,
+          label: section.heading ?? 'Examples',
+          bg: Colors.white,
+          border: Colors.grey.shade300,
+          borderWidth: 1,
+          labelColor: const Color(0xFF374151),
+          iconColor: const Color(0xFF6B7280),
+          leftAccent: color,
+        );
+      case 'explanation':
+        return _sectionCard(
+          section: section,
+          icon: Icons.lightbulb_outline_rounded,
+          label: section.heading ?? 'Simple Explanation',
+          bg: const Color(0xFFE3F2FD),
+          border: const Color(0xFF1565C0).withOpacity(0.2),
+          borderWidth: 1,
+          labelColor: const Color(0xFF0D47A1),
+          iconColor: const Color(0xFF1565C0),
+        );
+      case 'definition':
+        return _sectionCard(
+          section: section,
+          icon: Icons.menu_book_rounded,
+          label: section.heading ?? 'Textbook Definition',
+          bg: Colors.grey.shade100,
+          border: Colors.grey.shade300,
+          borderWidth: 1,
+          labelColor: const Color(0xFF4B5563),
+          iconColor: const Color(0xFF6B7280),
+        );
+      default:
+        return Container(
+          margin: const EdgeInsets.only(bottom: 14),
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(14),
+            boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.04), blurRadius: 8)],
+          ),
+          child: _markdownBody(section.heading != null
+              ? '**${section.heading}**\n\n${section.body}'
+              : section.body),
+        );
+    }
+  }
+
+  Widget _sectionCard({
+    required _ContentSection section,
+    required IconData icon,
+    required String label,
+    required Color bg,
+    required Color border,
+    required double borderWidth,
+    required Color labelColor,
+    required Color iconColor,
+    Color? leftAccent,
+    bool elevated = false,
+  }) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 14),
+      decoration: BoxDecoration(
+        color: bg,
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: border, width: borderWidth),
+        boxShadow: elevated
+            ? [BoxShadow(color: const Color(0xFFEF5350).withOpacity(0.15), blurRadius: 12, offset: const Offset(0, 4))]
+            : [BoxShadow(color: Colors.black.withOpacity(0.03), blurRadius: 6)],
+      ),
+      child: IntrinsicHeight(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            if (leftAccent != null)
+              Container(width: 4,
+                  decoration: BoxDecoration(
+                    color: leftAccent,
+                    borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(14), bottomLeft: Radius.circular(14)),
+                  )),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Row(children: [
+                      Icon(icon, size: 18, color: iconColor),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Text(label,
+                            style: GoogleFonts.poppins(
+                                fontSize: 13, fontWeight: FontWeight.w700, color: labelColor)),
+                      ),
+                    ]),
+                    const SizedBox(height: 8),
+                    _markdownBody(section.body, dense: true),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _markdownBody(String data, {bool dense = false}) {
+    return MarkdownBody(
+      data: data,
+      selectable: true,
+      styleSheet: MarkdownStyleSheet(
+        p: GoogleFonts.poppins(
+          fontSize: dense ? 12.5 : 13, color: const Color(0xFF374151), height: 1.6,
+        ),
+        strong: GoogleFonts.poppins(
+          fontSize: dense ? 12.5 : 13, fontWeight: FontWeight.w700, color: const Color(0xFF1A1A2E),
+        ),
+        em: GoogleFonts.poppins(
+          fontSize: dense ? 12.5 : 13, fontStyle: FontStyle.italic, color: color,
+        ),
+        listBullet: GoogleFonts.poppins(
+          fontSize: dense ? 12.5 : 13, color: const Color(0xFF374151),
+        ),
+        tableHead: GoogleFonts.poppins(
+          fontSize: 12, fontWeight: FontWeight.w700, color: Colors.white,
+        ),
+        tableBody: GoogleFonts.poppins(
+          fontSize: 12, color: const Color(0xFF374151), height: 1.5,
+        ),
+        tableHeadAlign: TextAlign.left,
+        tableBorder: TableBorder.all(color: Colors.grey.shade300, width: 1),
+        tableCellsPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+        tableColumnWidth: const FlexColumnWidth(),
+        horizontalRuleDecoration: BoxDecoration(
+          border: Border(top: BorderSide(color: Colors.grey.shade300, width: 1)),
+        ),
+      ),
+      builders: {},
+    );
+  }
 }

@@ -1,4 +1,5 @@
-﻿import 'package:http/http.dart' as http;
+﻿import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:xml/xml.dart';
 
 class RssArticle {
@@ -131,7 +132,7 @@ class RssService {
         return [];
       }
 
-      final body = response.body;
+      final body = utf8.decode(response.bodyBytes);
       if (body.isEmpty) return [];
 
       final document = XmlDocument.parse(body);

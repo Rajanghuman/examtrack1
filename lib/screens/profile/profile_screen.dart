@@ -8,6 +8,8 @@ import 'package:provider/provider.dart';
 import '../../services/auth_service.dart';
 import '../../l10n/language_provider.dart';
 import '../../l10n/app_strings.dart';
+import 'package:examtrack/services/progress_service.dart';
+import 'package:examtrack/widgets/progress_widgets.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -31,6 +33,7 @@ class _ProfileScreenState extends State<ProfileScreen>
   bool _notifyDeadlines  = true;
   bool _notifyAdmitCards = true;
   bool _notifyResults    = false;
+  Map<String, dynamic> _progress = {};
   // NOTE: _selectedLanguage removed — language now lives in
   // LanguageProvider (app-wide, persisted), not a local screen variable.
   List<String> _preferredCategories = [];
@@ -41,6 +44,13 @@ class _ProfileScreenState extends State<ProfileScreen>
     super.initState();
     WidgetsBinding.instance.addObserver(this);
     _loadUserData();
+    _loadProgress();
+  }
+
+  Future<void> _loadProgress() async {
+    final progress = await ProgressService.getProgress();
+    if (!mounted) return;
+    setState(() => _progress = progress);
   }
 
   @override
@@ -322,6 +332,9 @@ class _ProfileScreenState extends State<ProfileScreen>
             _buildHeader(lang),
             const SizedBox(height: 16),
             _buildStatsRow(lang),
+            const SizedBox(height: 16),
+            if (_progress.isNotEmpty)
+              XPButton(progress: _progress),
             const SizedBox(height: 16),
             _buildQuickAccess(lang),
             const SizedBox(height: 16),

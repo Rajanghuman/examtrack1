@@ -25,7 +25,8 @@ import 'screens/admit_card/admit_card_screen.dart';
 import 'screens/results/results_screen.dart';
 import 'screens/study/study_material_screen.dart';
 import 'screens/study/memory_box_screen.dart';
-
+import 'screens/photo_resizer_screen.dart';
+import 'screens/battle/battle_setup_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -86,7 +87,9 @@ class ExamTrackApp extends StatelessWidget {
         '/results':         (context) => const ResultsScreen(),
         '/current-affairs': (context) => const CurrentAffairsScreen(),
         '/study-material':  (context) => const StudyMaterialScreen(),
+        '/photo-resizer':   (context) => const PhotoResizerScreen(),
         '/memory-box':      (context) => const MemoryBoxScreen(),
+        '/battle': (context) => const BattleSetupScreen(),
       },
     );
   }

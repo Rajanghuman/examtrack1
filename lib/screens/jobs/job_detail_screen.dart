@@ -8,6 +8,8 @@ import 'package:provider/provider.dart';
 import '../../constants/app_colors.dart';
 import '../../l10n/language_provider.dart';
 import '../../l10n/app_strings.dart';
+import 'package:examtrack/services/progress_service.dart';
+import 'package:examtrack/widgets/progress_widgets.dart';
 
 class JobDetailScreen extends StatefulWidget {
   const JobDetailScreen({super.key});
@@ -329,6 +331,13 @@ class _JobDetailScreenState extends State<JobDetailScreen>
       if (!mounted) return;
       setState(() => _isApplied = true);
       _showToast(context, AppStrings.get('marked_applied_toast', lang));
+
+      // Award XP for applying to a job
+      ProgressService.awardXP('job_applied', ProgressService.xpJobApplied).then((result) {
+        if (mounted && result.hasUpdate) ProgressWidgets.handleResult(context, result);
+      });
+      // Add to exam history
+      ProgressService.addExamHistory(examName: title, status: 'applied', source: 'app');
     } catch (e) {
       _showToast(context, AppStrings.get('generic_error_toast', lang), success: false);
     }
@@ -1749,6 +1758,19 @@ class _JobDetailScreenState extends State<JobDetailScreen>
             blurRadius: 20, offset: const Offset(0, -5))],
       ),
       child: Row(children: [
+        GestureDetector(
+          onTap: () => Navigator.pushNamed(context, '/photo-resizer'),
+          child: Container(
+            width: 52, height: 52,
+            decoration: BoxDecoration(
+              color: catColor.withOpacity(0.08),
+              border: Border.all(color: catColor.withOpacity(0.3)),
+              borderRadius: BorderRadius.circular(14),
+            ),
+            child: Icon(Icons.crop_rounded, color: catColor, size: 22),
+          ),
+        ),
+        const SizedBox(width: 10),
         Expanded(
           child: GestureDetector(
             onTap: _isApplied
@@ -1772,9 +1794,10 @@ class _JobDetailScreenState extends State<JobDetailScreen>
               child: Center(
                 child: Text(
                   _isApplied ? AppStrings.get('applied_check', lang) : AppStrings.get('mark_applied', lang),
-                  style: TextStyle(
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.poppins(
                       color: _isApplied ? Colors.white : const Color(0xFF10B981),
-                      fontSize: 14, fontWeight: FontWeight.bold),
+                      fontSize: 13, fontWeight: FontWeight.w700),
                 ),
               ),
             ),
