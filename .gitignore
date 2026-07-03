@@ -20,3 +20,6 @@ android/key.properties
 android/app/google-services.json
 
 serviceAccountKey.json
+
+lib/services/AuthKey_FRC567QY63.p8
+*.p8
