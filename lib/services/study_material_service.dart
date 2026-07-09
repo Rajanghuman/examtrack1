@@ -10,18 +10,31 @@ class StudyMaterialService {
 
   // Maps the app's display exam names (used in _selectedExam) to the
   // clean examId slugs used as Firestore document keys.
+  //
+  // EVERY exam in the app is now listed here. From this build onward,
+  // adding study material chapters for ANY exam — present or future —
+  // only requires uploading documents to Firestore. No app rebuild,
+  // no code change, no store update needed ever again for content.
+  //
+  // Exams with no Firestore content yet automatically fall back to
+  // the local StudyData content (see study_material_screen.dart's
+  // updated _sections getter) — so this is safe to ship even before
+  // every exam has real Firestore chapters uploaded.
   static const Map<String, String> _examIdMap = {
     'SSC CGL': 'ssc-cgl',
     'SSC CHSL': 'ssc-chsl',
+    'RRB NTPC': 'rrb-ntpc',
+    'Army Agniveer': 'army-agniveer',
     'Punjab Police': 'punjab-police-constable',
-    // Add more mappings here as more exams are migrated to Firestore.
-    // Any exam NOT listed here falls back to local StudyData (see
-    // study_material_screen.dart's _sections getter).
+    'IBPS PO': 'ibps-po',
+    'UPSC CSE': 'upsc-cse',
+    'Delhi Police': 'delhi-police',
+    'Haryana Police': 'haryana-police',
+    'NDA': 'nda',
   };
 
-  /// Returns true if this exam's study material has been migrated to
-  /// Firestore. Used by the screen to decide whether to call this
-  /// service or fall back to the local StudyData class.
+  /// Returns true if this exam has a Firestore examId mapping. As of
+  /// this build, every exam in the app returns true.
   static bool isFirestoreBacked(String exam) => _examIdMap.containsKey(exam);
 
   /// Fetches all chapters for a given exam (by its display name, e.g.
@@ -29,13 +42,17 @@ class StudyMaterialService {
   /// shape the UI expects, and returns it as a List<Map> matching
   /// exactly what StudyData.getSections() used to return locally.
   ///
+  /// Returns an EMPTY list if no chapters have been uploaded yet for
+  /// this exam — the screen falls back to local StudyData in that
+  /// case (see _sections getter in study_material_screen.dart).
+  ///
   /// Results are cached in memory per exam for the app session, so
   /// repeated calls (e.g. switching back to an already-loaded exam)
   /// don't re-fetch from Firestore.
   static Future<List<Map<String, dynamic>>> getSections(
-    String exam, {
-    bool forceRefresh = false,
-  }) async {
+      String exam, {
+        bool forceRefresh = false,
+      }) async {
     final examId = _examIdMap[exam];
     if (examId == null) return [];
 
@@ -83,8 +100,8 @@ class StudyMaterialService {
   // Subject -> Part -> Chapter structure the UI already expects
   // (same shape as the old StudyData.getSections() return value).
   static List<Map<String, dynamic>> _groupIntoSections(
-    List<Map<String, dynamic>> flatChapters,
-  ) {
+      List<Map<String, dynamic>> flatChapters,
+      ) {
     // Group by subjectId first, preserving subject order.
     final Map<String, Map<String, dynamic>> subjectsById = {};
 
@@ -92,24 +109,24 @@ class StudyMaterialService {
       final subjectId = ch['subjectId'] as String? ?? 'unknown';
 
       subjectsById.putIfAbsent(subjectId, () => {
-            'id': subjectId,
-            'title': ch['subjectTitle'] ?? '',
-            'colorHex': ch['subjectColorHex'] ?? 0xFF1565C0,
-            '_order': ch['subjectOrder'] ?? 0,
-            '_partsById': <String, Map<String, dynamic>>{},
-          });
+        'id': subjectId,
+        'title': ch['subjectTitle'] ?? '',
+        'colorHex': ch['subjectColorHex'] ?? 0xFF1565C0,
+        '_order': ch['subjectOrder'] ?? 0,
+        '_partsById': <String, Map<String, dynamic>>{},
+      });
 
       final subject = subjectsById[subjectId]!;
       final partsById =
-          subject['_partsById'] as Map<String, Map<String, dynamic>>;
+      subject['_partsById'] as Map<String, Map<String, dynamic>>;
       final partId = ch['partId'] as String? ?? 'unknown';
 
       partsById.putIfAbsent(partId, () => {
-            'id': partId,
-            'title': ch['partTitle'] ?? '',
-            '_order': ch['partOrder'] ?? 0,
-            '_chapters': <Map<String, dynamic>>[],
-          });
+        'id': partId,
+        'title': ch['partTitle'] ?? '',
+        '_order': ch['partOrder'] ?? 0,
+        '_chapters': <Map<String, dynamic>>[],
+      });
 
       final part = partsById[partId]!;
       final chaptersList = part['_chapters'] as List<Map<String, dynamic>>;
@@ -134,7 +151,7 @@ class StudyMaterialService {
 
     return sortedSubjects.map((subject) {
       final partsById =
-          subject['_partsById'] as Map<String, Map<String, dynamic>>;
+      subject['_partsById'] as Map<String, Map<String, dynamic>>;
       final sortedParts = partsById.values.toList()
         ..sort((a, b) => (a['_order'] as int).compareTo(b['_order'] as int));
 

@@ -64,7 +64,15 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
   bool _timedMode = false;
 
   List<Map<String,dynamic>> get _sections {
-    if (StudyMaterialService.isFirestoreBacked(_selectedExam)) {
+    // Firestore is the source of truth once content has been uploaded
+    // for this exam. If nothing has been uploaded yet (empty result),
+    // fall back to the local StudyData so the exam never shows a blank
+    // "coming soon" screen just because Firestore hasn't been
+    // populated yet. This is what lets you add Firestore content for
+    // any exam, at any time, without needing a rebuild — the app
+    // always has *something* to show either way.
+    if (StudyMaterialService.isFirestoreBacked(_selectedExam) &&
+        _firestoreSections.isNotEmpty) {
       return _firestoreSections;
     }
     return StudyData.getSections(_selectedExam);
