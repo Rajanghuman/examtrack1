@@ -4,11 +4,35 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+
+    <!-- Advertising ID / AdServices removal — ExamTrack does not use
+         advertising or ad-based attribution anywhere. firebase-analytics
+         auto-merges BOTH the legacy GMS advertising ID permission AND
+         the newer Android 13+ AdServices (Privacy Sandbox) permissions
+         and config property, even with zero ad code in the app. All
+         three must be explicitly removed for the "Does your app use
+         advertising ID?" = No declaration to be technically accurate,
+         not just the first one. If AdMob is added later, remove these
+         lines to restore normal ad-services behavior, then update the
+         Play Console declaration to Yes at that time. -->
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID" tools:node="remove" />
+    <uses-permission android:name="android.permission.ACCESS_ADSERVICES_AD_ID" tools:node="remove" />
+    <uses-permission android:name="android.permission.ACCESS_ADSERVICES_ATTRIBUTION" tools:node="remove" />
+
     <application
         android:label="examtrack"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
         tools:replace="android:label">
+
+        <!-- Removes the AD_SERVICES_CONFIG property that firebase-analytics
+             injects — this is what registers the app with Android's ad
+             attribution system and is likely what Play Console's automated
+             scanner actually keys off, separate from the permissions above. -->
+        <property
+            android:name="android.adservices.AD_SERVICES_CONFIG"
+            tools:node="remove" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

@@ -71,38 +71,24 @@ class _LiveBattleScreenState extends State<LiveBattleScreen> {
       setState(() => _timeLeft--);
       if (_timeLeft <= 0) {
         t.cancel();
-        if (!_answered) _submitAnswer(-1); // timed out
+        _onQuestionTimeUp();
       }
     });
   }
 
-  Future<void> _submitAnswer(int answerIndex) async {
-    if (_answered) return;
-    _questionTimer?.cancel();
+  // Called only when the full question duration has elapsed. This is the
+  // ONLY place that advances to the next question — answering early no
+  // longer skips ahead, it just locks in the player's choice and shows
+  // feedback while the clock keeps running for everyone.
+  Future<void> _onQuestionTimeUp() async {
+    if (!mounted) return;
+
+    // If the player never answered in time, record it as a timeout now.
+    if (!_answered) {
+      await _recordAnswer(-1);
+    }
 
     final questions = (_currentRoom ?? widget.room).questions;
-    final question = questions[_currentIndex];
-    final correctIndex = question['correctIndex'] as int;
-    final isCorrect = answerIndex == correctIndex;
-
-    setState(() {
-      _selectedAnswer = answerIndex;
-      _answered = true;
-      if (isCorrect) _myScore++;
-    });
-
-    // Submit to Firestore
-    await BattleService.submitAnswer(
-      roomCode: widget.room.roomCode,
-      playerKey: _myPlayerKey,
-      questionIndex: _currentIndex,
-      answerIndex: answerIndex,
-      isCorrect: isCorrect,
-    );
-
-    // Wait 1.5s to show correct answer, then move on
-    await Future.delayed(const Duration(milliseconds: 1500));
-    if (!mounted) return;
 
     if (_currentIndex < questions.length - 1) {
       setState(() {
@@ -119,6 +105,39 @@ class _LiveBattleScreenState extends State<LiveBattleScreen> {
         finalScore: _myScore,
       );
     }
+  }
+
+  // Records the player's answer (or a -1 timeout) immediately — updates
+  // local score and syncs to Firestore right away — but does NOT advance
+  // the question. Only _onQuestionTimeUp() does that.
+  Future<void> _recordAnswer(int answerIndex) async {
+    if (_answered) return;
+
+    final questions = (_currentRoom ?? widget.room).questions;
+    final question = questions[_currentIndex];
+    final correctIndex = question['correctIndex'] as int;
+    final isCorrect = answerIndex == correctIndex;
+
+    setState(() {
+      _selectedAnswer = answerIndex;
+      _answered = true;
+      if (isCorrect) _myScore++;
+    });
+
+    await BattleService.submitAnswer(
+      roomCode: widget.room.roomCode,
+      playerKey: _myPlayerKey,
+      questionIndex: _currentIndex,
+      answerIndex: answerIndex,
+      isCorrect: isCorrect,
+    );
+  }
+
+  // Tap handler for an option. Just records the answer and shows feedback
+  // (correct/incorrect highlighting) — the question stays on screen and the
+  // timer keeps counting down until the chosen duration (10s/15s/etc) is up.
+  void _submitAnswer(int answerIndex) {
+    _recordAnswer(answerIndex);
   }
 
   void _goToResults(BattleRoom room) {
