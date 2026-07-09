@@ -51,6 +51,10 @@
 	<true/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>ExamTrack needs access to your photo library to save resized photos and signatures for exam applications.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>ExamTrack needs permission to save resized photos and signatures to your photo library.</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UISupportedInterfaceOrientations</key>
@@ -65,6 +69,17 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.631082617337-l40lumnjbbrm8a4i1hkj2cj8b8ehblnu</string>
+			</array>
+		</dict>
 	</array>
 </dict>
 </plist>
