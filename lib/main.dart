@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
+import 'package:examtrack/firebase_options.dart';
 import 'constants/app_colors.dart';
 import 'services/notification_service.dart';
 import 'l10n/language_provider.dart';
@@ -31,7 +32,9 @@ import 'screens/battle/battle_setup_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   try {
-    await Firebase.initializeApp();
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
     await NotificationService.initialize();
     await NotificationService.subscribeToDefaultTopics();
   } catch (e) {

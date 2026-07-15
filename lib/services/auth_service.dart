@@ -106,7 +106,7 @@ class AuthService {
   // ── Sign in with Google ────────────────────────────────
   Future<Map<String, dynamic>> signInWithGoogle() async {
     try {
-      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      final GoogleSignInAccount? googleUser = await GoogleSignIn(clientId: "631082617337-l40lumnjbbrm8a4i1hkj2cj8b8ehblnu.apps.googleusercontent.com").signIn();
       if (googleUser == null) return {'success': false, 'error': 'cancelled'};
 
       final googleAuth = await googleUser.authentication;
