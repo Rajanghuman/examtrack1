@@ -281,12 +281,21 @@ class _AgeCalculatorScreenState extends State<AgeCalculatorScreen> {
           const SizedBox(height: 12),
           GestureDetector(
             onTap: () async {
+              // NOTE: locale is explicitly forced to en_GB (DD/MM/YYYY)
+              // here. Without this, the picker's manual text-entry mode
+              // falls back to whatever locale the device/app resolves
+              // to — which was rendering as MM/DD/YYYY on iOS, causing
+              // valid dates like "13/02/2004" to be rejected as invalid
+              // (13 isn't a valid month). Forcing en_GB makes the
+              // text-entry format match what users actually type,
+              // regardless of device region settings.
               final picked = await showDatePicker(
                 context: context,
                 initialDate: _selectedDOB ??
                     DateTime(2000, 1, 1),
                 firstDate: DateTime(1960),
                 lastDate: DateTime.now(),
+                locale: const Locale('en', 'GB'),
                 builder: (context, child) {
                   return Theme(
                     data: Theme.of(context).copyWith(

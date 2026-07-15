@@ -125,6 +125,11 @@ exports.generateBattleQuestions = onCall(
           throw new HttpsError("internal",
               "Could not generate questions. Please try again.");
         }
+      } else {
+        // Only shuffle Groq-generated questions — fallback bank
+        // questions are presumably already reviewed/correct as-is,
+        // so we leave those untouched.
+        questions = shuffleAllQuestions(questions, "correctIndex");
       }
 
       return {
@@ -817,7 +822,12 @@ exports.generateDailyQuiz = onCall(
       // Not cached — generate with Groq
       logger.info(`Generating fresh daily quiz for ${today}.`);
 
-      const prompt = buildDailyQuizPrompt(today);
+      // Fetch the last 10 days of quizzes so we can tell the model
+      // what's already been asked and steer it away from repeating
+      // the same "safe, well-known" facts every day.
+      const recentQuestions = await getRecentQuizQuestions(istDate, 10);
+
+      const prompt = buildDailyQuizPrompt(today, recentQuestions);
       let questions = null;
       let lastError = null;
 
@@ -844,6 +854,11 @@ exports.generateDailyQuiz = onCall(
             "Could not generate daily quiz. Please try again.");
       }
 
+      // Shuffle each question's options so the correct answer isn't
+      // predictably in position A — LLMs are biased toward putting
+      // it first, this guarantees a genuinely random distribution.
+      questions = shuffleAllQuestions(questions, "correct");
+
       // Save to Firestore cache — expires after 2 days
       const expiresAt = new Date(istDate);
       expiresAt.setDate(expiresAt.getDate() + 2);
@@ -865,8 +880,32 @@ exports.generateDailyQuiz = onCall(
     },
 );
 
+// ── Fetch recent daily quiz questions for dedup ──────────────────
+// Pulls question text from the last N days of dailyQuiz docs, so
+// the prompt can explicitly tell the model to avoid repeating them.
+async function getRecentQuizQuestions(istDate, daysBack) {
+  const questionTexts = [];
+  try {
+    for (let i = 1; i <= daysBack; i++) {
+      const pastDate = new Date(istDate);
+      pastDate.setDate(pastDate.getDate() - i);
+      const dateStr = pastDate.toISOString().split("T")[0];
+
+      const doc = await db.collection("dailyQuiz").doc(dateStr).get();
+      if (doc.exists) {
+        const qs = doc.data().questions || [];
+        qs.forEach((q) => questionTexts.push(q.question));
+      }
+    }
+  } catch (err) {
+    logger.warn(`Could not fetch recent quiz questions: ${err.message}`);
+    // Non-fatal — just proceed without the avoid-list if this fails
+  }
+  return questionTexts;
+}
+
 // ── Daily Quiz Prompt ─────────────────────────────────────────
-function buildDailyQuizPrompt(dateStr) {
+function buildDailyQuizPrompt(dateStr, recentQuestions) {
   // Parse date for context
   const date = new Date(dateStr);
   const months = ["January","February","March","April","May","June",
@@ -892,6 +931,14 @@ FOCUS ON (in order of priority):
 2. India-specific or India-relevant events
 3. Punjab and North India specific developments (important for your primary audience)
 4. Global events that affect India or that Indian exam setters commonly test
+
+${recentQuestions && recentQuestions.length > 0 ? `
+AVOID REPEATING THESE RECENTLY-ASKED QUESTIONS/TOPICS (last 10 days):
+${recentQuestions.map((q, i) => `${i + 1}. ${q}`).join("\n")}
+
+Generate genuinely DIFFERENT questions covering different events,
+people, or facts than the above list. Do not just reword these.
+` : ""}
 
 QUESTION QUALITY RULES:
 1. All 4 options must be from the SAME CATEGORY — no obviously wrong options
@@ -1059,6 +1106,43 @@ async function getFallbackQuestions(topic, count) {
     logger.error("Fallback fetch failed:", err);
     return null;
   }
+}
+
+// ── Shuffle a question's options so the correct answer isn't
+//    predictably in the same position every time ─────────────────
+//
+// LLMs have a well-documented bias toward placing the correct MCQ
+// answer in the first position when asked to generate both the
+// question and its own answer key. Rather than trying to prompt our
+// way out of this (unreliable), we shuffle deterministically in code
+// after generation — this guarantees a genuinely random distribution
+// regardless of what the model does.
+//
+// `indexField` is the name of the field holding the correct answer's
+// position — battle questions use "correctIndex", daily quiz
+// questions use "correct". Same shuffle logic, different field name.
+function shuffleQuestionOptions(question, indexField) {
+  const correctAnswerText = question.options[question[indexField]];
+
+  // Fisher-Yates shuffle
+  const shuffled = [...question.options];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+
+  const newCorrectIndex = shuffled.indexOf(correctAnswerText);
+
+  return {
+    ...question,
+    options: shuffled,
+    [indexField]: newCorrectIndex,
+  };
+}
+
+// Applies shuffleQuestionOptions to every question in an array.
+function shuffleAllQuestions(questions, indexField) {
+  return questions.map((q) => shuffleQuestionOptions(q, indexField));
 }
 
 function sleep(ms) {

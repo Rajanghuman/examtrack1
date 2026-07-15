@@ -269,4 +269,158 @@ class AuthService {
       return true;
     } catch (e) { return false; }
   }
+
+  // ============================================================
+  // ── Delete Account ──────────────────────────────────────
+  //
+  // Required by Apple App Store Guideline 5.1.1(v): any app that
+  // supports account creation must let users delete their account
+  // from inside the app, not just via email/website.
+  //
+  // Firebase requires a RECENT sign-in before allowing deletion —
+  // this is a security measure so a stolen/stale session token can't
+  // be used to delete someone's account. We handle re-authentication
+  // per sign-in method (password / Google / Apple) before deleting.
+  //
+  // Firestore data is deleted BEFORE the auth account, since once the
+  // auth account is gone, security rules keyed on request.auth.uid
+  // would block any further deletes tied to that uid.
+  // ============================================================
+  Future<Map<String, dynamic>> deleteAccount({String? password}) async {
+    try {
+      final user = _auth.currentUser;
+      if (user == null) return {'success': false, 'error': 'no-user'};
+
+      final providerId = user.providerData.isNotEmpty
+          ? user.providerData.first.providerId
+          : 'password';
+
+      AuthCredential? credential;
+
+      if (providerId == 'password') {
+        if (password == null || password.isEmpty) {
+          return {'success': false, 'error': 'password-required'};
+        }
+        if (user.email == null) {
+          return {'success': false, 'error': 'unknown'};
+        }
+        credential = EmailAuthProvider.credential(
+          email: user.email!,
+          password: password,
+        );
+      } else if (providerId == 'google.com') {
+        final googleUser = await GoogleSignIn().signIn();
+        if (googleUser == null) {
+          return {'success': false, 'error': 'cancelled'};
+        }
+        final googleAuth = await googleUser.authentication;
+        credential = GoogleAuthProvider.credential(
+          accessToken: googleAuth.accessToken,
+          idToken: googleAuth.idToken,
+        );
+      } else if (providerId == 'apple.com') {
+        final rawNonce = _generateNonce();
+        final nonce = _sha256ofString(rawNonce);
+        final appleCredential = await SignInWithApple.getAppleIDCredential(
+          scopes: [
+            AppleIDAuthorizationScopes.email,
+            AppleIDAuthorizationScopes.fullName,
+          ],
+          nonce: nonce,
+        );
+        credential = OAuthProvider('apple.com').credential(
+          idToken: appleCredential.identityToken,
+          rawNonce: rawNonce,
+          accessToken: appleCredential.authorizationCode,
+        );
+      }
+
+      if (credential != null) {
+        await user.reauthenticateWithCredential(credential);
+      }
+
+      // Clean up Firestore data first, while we still have a valid
+      // authenticated session.
+      await _deleteUserData(user.uid);
+
+      // Now delete the actual Firebase Auth account.
+      await user.delete();
+
+      return {'success': true};
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'requires-recent-login') {
+        return {'success': false, 'error': 'requires-recent-login'};
+      }
+      if (e.code == 'wrong-password' || e.code == 'invalid-credential') {
+        return {'success': false, 'error': 'wrong-password'};
+      }
+      return {'success': false, 'error': e.code};
+    } on SignInWithAppleAuthorizationException catch (e) {
+      if (e.code == AuthorizationErrorCode.canceled) {
+        return {'success': false, 'error': 'cancelled'};
+      }
+      return {'success': false, 'error': 'unknown'};
+    } catch (e) {
+      return {'success': false, 'error': 'unknown'};
+    }
+  }
+
+  // ── Delete all Firestore data tied to a user ───────────
+  // Covers the known collections/subcollections in ExamTrack's schema
+  // (users/{uid} document, trackedJobs and progress subcollections).
+  // If new user-scoped subcollections are added later, add their
+  // cleanup here too so account deletion stays complete.
+  Future<void> _deleteUserData(String uid) async {
+    final trackedSnap = await _db
+        .collection('users')
+        .doc(uid)
+        .collection('trackedJobs')
+        .get();
+    for (final doc in trackedSnap.docs) {
+      await doc.reference.delete();
+    }
+
+    final progressSnap = await _db
+        .collection('users')
+        .doc(uid)
+        .collection('progress')
+        .get();
+    for (final doc in progressSnap.docs) {
+      await doc.reference.delete();
+    }
+
+    await _db.collection('users').doc(uid).delete();
+  }
+
+  // ============================================================
+  // ── Clear Data ──────────────────────────────────────────
+  //
+  // A lighter alternative to full account deletion — resets the
+  // user's in-app progress (XP, rank, streak, achievements, battle
+  // history) WITHOUT deleting their account, login, saved jobs, or
+  // tracked applications. Useful for someone who wants a fresh start
+  // on gamification progress without losing their account entirely.
+  //
+  // Does not require re-authentication, since it's non-destructive
+  // to the account itself — the user stays logged in throughout.
+  // ============================================================
+  Future<Map<String, dynamic>> clearUserProgress() async {
+    try {
+      final user = _auth.currentUser;
+      if (user == null) return {'success': false, 'error': 'no-user'};
+
+      final progressSnap = await _db
+          .collection('users')
+          .doc(user.uid)
+          .collection('progress')
+          .get();
+      for (final doc in progressSnap.docs) {
+        await doc.reference.delete();
+      }
+
+      return {'success': true};
+    } catch (e) {
+      return {'success': false, 'error': 'unknown'};
+    }
+  }
 }

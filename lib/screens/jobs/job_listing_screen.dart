@@ -287,6 +287,24 @@ class _JobListingScreenState extends State<JobListingScreen> {
   List<Map<String, dynamic>> get _filteredJobs {
     List<Map<String, dynamic>> jobs = List.from(_allJobs);
 
+    // Hide jobs whose application closed more than 3 days ago from the
+    // main public listing — this is the ONLY filter that touches
+    // closed-job visibility. Users who already tracked a job before it
+    // closed still see it fine in their personal Tracker screen, since
+    // that reads from the separate trackedJobs subcollection, not from
+    // _allJobs/_filteredJobs here. daysLeft == -1 means "closed" with no
+    // parseable date (kept visible, since we can't tell how long ago).
+    // daysLeft == 999 means "not announced yet" (always kept visible).
+    jobs = jobs.where((j) {
+      final daysLeft = _calculateDaysLeft(j['lastDate']);
+      if (daysLeft == 999) return true; // not announced — always show
+      if (daysLeft > 0) return true; // still open — always show
+      if (daysLeft == -1) return true; // closed but date unparseable — show rather than risk hiding valid jobs
+      // daysLeft <= 0 here means we DID parse a real past date.
+      // -daysLeft = how many days ago it closed.
+      return -daysLeft <= 3;
+    }).toList();
+
     if (_selectedCategory != 'All') {
       jobs = jobs
           .where((j) => j['category'] == _selectedCategory)
@@ -1068,23 +1086,33 @@ class _JobListingScreenState extends State<JobListingScreen> {
                   ),
                   const SizedBox(height: 8),
                   Row(
-                    mainAxisAlignment:
-                    MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text(
-                        daysLeft == 999
-                            ? 'Last Date: Not Announced'
-                            : daysLeft <= 0
-                            ? 'Application Closed'
-                            : 'Last Date: $lastDate',
-                        style: GoogleFonts.poppins(
-                            fontSize: 11,
-                            color: daysLeft <= 7 &&
-                                daysLeft != 999
-                                ? const Color(0xFFEF4444)
-                                : Colors.grey.shade500),
+                      // Wrapped in Expanded so long text (e.g. "Application
+                      // Closed" combined with a long state name elsewhere)
+                      // shrinks and truncates instead of overflowing past
+                      // the card edge and colliding with the fee/category
+                      // badges on the right.
+                      Expanded(
+                        child: Text(
+                          daysLeft == 999
+                              ? 'Last Date: Not Announced'
+                              : daysLeft <= 0
+                              ? 'Application Closed'
+                              : 'Last Date: $lastDate',
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                          style: GoogleFonts.poppins(
+                              fontSize: 11,
+                              color: daysLeft <= 7 &&
+                                  daysLeft != 999
+                                  ? const Color(0xFFEF4444)
+                                  : Colors.grey.shade500),
+                        ),
                       ),
+                      const SizedBox(width: 8),
                       Row(
+                        mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(
                             fee == 0

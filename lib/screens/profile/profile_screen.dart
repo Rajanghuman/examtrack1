@@ -39,6 +39,12 @@ class _ProfileScreenState extends State<ProfileScreen>
   List<String> _preferredCategories = [];
   String _userStateLocal = '';
 
+  // Set while the delete-account flow is running, so we can show a
+  // blocking loading state and prevent double-taps.
+  bool _isDeletingAccount = false;
+  // Same idea for the lighter Clear Data action.
+  bool _isClearingData = false;
+
   @override
   void initState() {
     super.initState();
@@ -236,6 +242,163 @@ class _ProfileScreenState extends State<ProfileScreen>
     );
   }
 
+  // ============================================================
+  // ── Delete Account flow ─────────────────────────────────
+  //
+  // Required for Apple App Store Guideline 5.1.1(v) compliance —
+  // apps that support account creation must offer in-app deletion.
+  //
+  // Flow:
+  //   1. Warning confirmation dialog (explains permanence)
+  //   2. If the account uses email/password sign-in, a second
+  //      dialog asks for the password (needed for re-authentication,
+  //      since Firebase requires a recent sign-in before deletion —
+  //      Google/Apple accounts re-authenticate silently via their own
+  //      native flow instead, no extra dialog needed for those).
+  //   3. Blocking loading indicator while deletion runs.
+  //   4. On success: navigate to /login with the whole stack cleared.
+  //      On failure: show a toast explaining what went wrong.
+  // ============================================================
+  Future<void> _deleteAccount() async {
+    if (_isDeletingAccount) return;
+
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) return;
+
+    final providerId = user.providerData.isNotEmpty
+        ? user.providerData.first.providerId
+        : 'password';
+
+    // Step 1 — warning confirmation
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        title: Text('Delete Account?',
+            style: GoogleFonts.poppins(
+                fontWeight: FontWeight.w700, fontSize: 18)),
+        content: Text(
+          'This will permanently delete your account and all associated data — saved jobs, tracked applications, progress, XP, and battle history. This action cannot be undone.',
+          style: GoogleFonts.poppins(
+              fontSize: 14, color: const Color(0xFF6B7280)),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx, false),
+            child: Text('Cancel',
+                style: GoogleFonts.poppins(
+                    color: const Color(0xFF6B7280))),
+          ),
+          ElevatedButton(
+            onPressed: () => Navigator.pop(ctx, true),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0xFFEF4444),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8)),
+            ),
+            child: Text('Delete',
+                style: GoogleFonts.poppins(
+                    color: Colors.white, fontWeight: FontWeight.w600)),
+          ),
+        ],
+      ),
+    );
+
+    if (confirmed != true) return;
+    if (!mounted) return;
+
+    String? password;
+
+    // Step 2 — for email/password accounts, confirm identity with
+    // the actual password (Google/Apple accounts re-authenticate via
+    // their own native sign-in sheet instead, triggered later inside
+    // AuthService.deleteAccount()).
+    if (providerId == 'password') {
+      final passwordCtrl = TextEditingController();
+      password = await showDialog<String>(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          title: Text('Confirm Your Password',
+              style: GoogleFonts.poppins(
+                  fontWeight: FontWeight.w700, fontSize: 16)),
+          content: TextField(
+            controller: passwordCtrl,
+            obscureText: true,
+            autofocus: true,
+            decoration: InputDecoration(
+              hintText: 'Enter your password',
+              hintStyle: GoogleFonts.poppins(fontSize: 13),
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10)),
+            ),
+            style: GoogleFonts.poppins(fontSize: 14),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(ctx),
+              child: Text('Cancel',
+                  style: GoogleFonts.poppins(
+                      color: const Color(0xFF6B7280))),
+            ),
+            ElevatedButton(
+              onPressed: () => Navigator.pop(ctx, passwordCtrl.text),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFFEF4444),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8)),
+              ),
+              child: Text('Confirm',
+                  style: GoogleFonts.poppins(color: Colors.white)),
+            ),
+          ],
+        ),
+      );
+      if (password == null || password.isEmpty) return;
+    }
+
+    if (!mounted) return;
+    setState(() => _isDeletingAccount = true);
+
+    // Step 3 — blocking loading indicator during deletion
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (ctx) => const Center(
+        child: CircularProgressIndicator(color: Color(0xFF1565C0)),
+      ),
+    );
+
+    final result = await _authService.deleteAccount(password: password);
+
+    if (!mounted) return;
+    Navigator.pop(context); // close the loading dialog
+    setState(() => _isDeletingAccount = false);
+
+    if (result['success'] == true) {
+      Navigator.pushNamedAndRemoveUntil(
+          context, '/login', (route) => false);
+    } else {
+      final error = result['error'] as String?;
+      String message;
+      switch (error) {
+        case 'wrong-password':
+          message = 'Incorrect password. Please try again.';
+          break;
+        case 'requires-recent-login':
+          message =
+          'For security, please log out and log back in, then try deleting your account again.';
+          break;
+        case 'cancelled':
+          message = 'Account deletion cancelled.';
+          break;
+        default:
+          message = 'Could not delete account. Please try again.';
+      }
+      _showToast(message, success: false);
+    }
+  }
+
   // ── Custom Toast ──────────────────────────────────────
   void _showToast(String message, {bool success = true}) {
     showDialog(
@@ -342,6 +505,10 @@ class _ProfileScreenState extends State<ProfileScreen>
             const SizedBox(height: 16),
             _buildAppSettings(lang),
             const SizedBox(height: 16),
+            _buildDeleteAccountButton(lang),
+            const SizedBox(height: 10),
+            _buildClearDataButton(lang),
+            const SizedBox(height: 10),
             _buildLogoutButton(lang),
             const SizedBox(height: 32),
             Text('ExamTrack v1.0.0',
@@ -1264,6 +1431,128 @@ class _ProfileScreenState extends State<ProfileScreen>
         ),
       ),
     );
+  }
+
+  // ── Account action buttons: Delete Account, Clear Data, Sign Out ──
+  // All three share the exact same full-width button treatment as the
+  // original sign-out button, stacked together so they read as one
+  // related group of account-level actions rather than Delete Account
+  // being buried inside a settings row.
+  Widget _buildDeleteAccountButton(String lang) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: SizedBox(
+        width: double.infinity,
+        height: 52,
+        child: ElevatedButton.icon(
+          onPressed: _isDeletingAccount ? null : _deleteAccount,
+          icon: _isDeletingAccount
+              ? const SizedBox(
+              width: 18, height: 18,
+              child: CircularProgressIndicator(
+                  strokeWidth: 2, color: Colors.white))
+              : const Icon(Icons.delete_forever_outlined, color: Colors.white),
+          label: Text('Delete Account',
+              style: GoogleFonts.poppins(
+                  color: Colors.white, fontSize: 15,
+                  fontWeight: FontWeight.w600)),
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color(0xFFB91C1C), // darker red than Sign Out — the more destructive action
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(14)),
+            elevation: 2,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildClearDataButton(String lang) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: SizedBox(
+        width: double.infinity,
+        height: 52,
+        child: ElevatedButton.icon(
+          onPressed: _isClearingData ? null : _clearData,
+          icon: _isClearingData
+              ? const SizedBox(
+              width: 18, height: 18,
+              child: CircularProgressIndicator(
+                  strokeWidth: 2, color: Colors.white))
+              : const Icon(Icons.restart_alt, color: Colors.white),
+          label: Text('Clear Data',
+              style: GoogleFonts.poppins(
+                  color: Colors.white, fontSize: 15,
+                  fontWeight: FontWeight.w600)),
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color(0xFFF59E0B), // amber — noticeable but clearly less severe than the two red buttons
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(14)),
+            elevation: 2,
+          ),
+        ),
+      ),
+    );
+  }
+
+  // ── Clear Data flow ────────────────────────────────────
+  // Resets progress/XP/streak/achievements without touching the
+  // account itself — no re-authentication needed since nothing
+  // account-level is being changed, the user stays logged in.
+  Future<void> _clearData() async {
+    if (_isClearingData) return;
+
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        title: Text('Clear Data?',
+            style: GoogleFonts.poppins(
+                fontWeight: FontWeight.w700, fontSize: 18)),
+        content: Text(
+          'This will reset your XP, rank, streak, achievements, and battle history. Your account, saved jobs, and tracked applications will NOT be affected. This action cannot be undone.',
+          style: GoogleFonts.poppins(
+              fontSize: 14, color: const Color(0xFF6B7280)),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx, false),
+            child: Text('Cancel',
+                style: GoogleFonts.poppins(
+                    color: const Color(0xFF6B7280))),
+          ),
+          ElevatedButton(
+            onPressed: () => Navigator.pop(ctx, true),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0xFFF59E0B),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8)),
+            ),
+            child: Text('Clear',
+                style: GoogleFonts.poppins(
+                    color: Colors.white, fontWeight: FontWeight.w600)),
+          ),
+        ],
+      ),
+    );
+
+    if (confirmed != true) return;
+    if (!mounted) return;
+
+    setState(() => _isClearingData = true);
+
+    final result = await _authService.clearUserProgress();
+
+    if (!mounted) return;
+    setState(() => _isClearingData = false);
+
+    if (result['success'] == true) {
+      await _loadProgress();
+      _showToast('Data cleared successfully');
+    } else {
+      _showToast('Could not clear data. Please try again.', success: false);
+    }
   }
 
   Widget _buildLogoutButton(String lang) {
