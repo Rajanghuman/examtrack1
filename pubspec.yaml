@@ -37,7 +37,7 @@ dependencies:
   crypto: ^3.0.3
   flutter_markdown_plus: ^1.0.7
   image_picker: ^1.1.2
-  image_cropper: ^8.0.2
+  image_cropper: ^11.0.0
   image: ^4.2.0
   path_provider: ^2.1.5
   firebase_storage: ^12.2.0
