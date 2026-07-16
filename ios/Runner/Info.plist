@@ -51,6 +51,8 @@
 	<true/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
+	<key>NSCameraUsageDescription</key>
+	<string>ExamTrack needs camera access so you can take a photo directly for the passport/signature photo resizer feature.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>ExamTrack needs access to your photo library to save resized photos and signatures for exam applications.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
