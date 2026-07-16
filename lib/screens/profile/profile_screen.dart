@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:provider/provider.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:image_cropper/image_cropper.dart';
+import 'dart:io';
 import '../../services/auth_service.dart';
 import '../../l10n/language_provider.dart';
 import '../../l10n/app_strings.dart';
@@ -44,6 +48,10 @@ class _ProfileScreenState extends State<ProfileScreen>
   bool _isDeletingAccount = false;
   // Same idea for the lighter Clear Data action.
   bool _isClearingData = false;
+  // Profile photo state — null/empty means show the initial-letter
+  // avatar fallback instead of an image.
+  String? _photoUrl;
+  bool _isUploadingPhoto = false;
 
   @override
   void initState() {
@@ -108,6 +116,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                     data['categories'] ?? []);
             _userStateLocal =
                 data['state'] as String? ?? '';
+            _photoUrl = data['photoUrl'] as String?;
           });
         } else {
           if (!mounted) return;
@@ -399,7 +408,138 @@ class _ProfileScreenState extends State<ProfileScreen>
     }
   }
 
-  // ── Custom Toast ──────────────────────────────────────
+  // ============================================================
+  // ── Profile Photo Upload ─────────────────────────────────
+  //
+  // Fixes Apple App Review Guideline 2.1(a): the camera badge on
+  // the profile avatar previously had no onTap handler at all —
+  // tapping it did nothing, which is exactly the bug Apple's
+  // reviewer reported. This wires it up to a real, working flow:
+  // choose Camera or Gallery -> pick image -> crop to a square ->
+  // upload to Firebase Storage -> save the URL on the user's
+  // Firestore document -> update the avatar to show it.
+  // ============================================================
+  Future<void> _pickProfilePhoto() async {
+    if (_isUploadingPhoto) return;
+
+    final source = await showModalBottomSheet<ImageSource>(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (ctx) => Container(
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+        ),
+        child: SafeArea(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                margin: const EdgeInsets.only(top: 12),
+                width: 40, height: 4,
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade300,
+                  borderRadius: BorderRadius.circular(2),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 20, 20, 8),
+                child: Text('Update Profile Photo',
+                    style: GoogleFonts.poppins(
+                        fontSize: 16, fontWeight: FontWeight.w700,
+                        color: const Color(0xFF1A1A2E))),
+              ),
+              ListTile(
+                leading: const Icon(Icons.camera_alt_outlined,
+                    color: Color(0xFF1565C0)),
+                title: Text('Take Photo',
+                    style: GoogleFonts.poppins(fontSize: 14)),
+                onTap: () => Navigator.pop(ctx, ImageSource.camera),
+              ),
+              ListTile(
+                leading: const Icon(Icons.photo_library_outlined,
+                    color: Color(0xFF1565C0)),
+                title: Text('Choose from Gallery',
+                    style: GoogleFonts.poppins(fontSize: 14)),
+                onTap: () => Navigator.pop(ctx, ImageSource.gallery),
+              ),
+              const SizedBox(height: 8),
+            ],
+          ),
+        ),
+      ),
+    );
+
+    if (source == null) return;
+    if (!mounted) return;
+
+    try {
+      final picker = ImagePicker();
+      final pickedFile = await picker.pickImage(
+        source: source,
+        imageQuality: 85,
+      );
+      if (pickedFile == null) return; // user cancelled
+      if (!mounted) return;
+
+      // Crop to a square — matches how the avatar is displayed
+      final cropped = await ImageCropper().cropImage(
+        sourcePath: pickedFile.path,
+        aspectRatio: const CropAspectRatio(ratioX: 1, ratioY: 1),
+        uiSettings: [
+          AndroidUiSettings(
+            toolbarTitle: 'Crop Photo',
+            toolbarColor: const Color(0xFF1565C0),
+            toolbarWidgetColor: Colors.white,
+            lockAspectRatio: true,
+          ),
+          IOSUiSettings(
+            title: 'Crop Photo',
+            aspectRatioLockEnabled: true,
+          ),
+        ],
+      );
+      if (cropped == null) return; // user cancelled the crop step
+      if (!mounted) return;
+
+      setState(() => _isUploadingPhoto = true);
+
+      final user = FirebaseAuth.instance.currentUser;
+      if (user == null) {
+        setState(() => _isUploadingPhoto = false);
+        return;
+      }
+
+      // Upload to Firebase Storage under a path unique to this user
+      // — overwrites any previous photo at the same path, so we
+      // don't accumulate orphaned old images over time.
+      final storageRef = FirebaseStorage.instance
+          .ref()
+          .child('profile_photos')
+          .child('${user.uid}.jpg');
+
+      await storageRef.putFile(File(cropped.path));
+      final downloadUrl = await storageRef.getDownloadURL();
+
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .update({'photoUrl': downloadUrl});
+
+      if (!mounted) return;
+      setState(() {
+        _photoUrl = downloadUrl;
+        _isUploadingPhoto = false;
+      });
+      _showToast('Profile photo updated');
+    } catch (e) {
+      if (!mounted) return;
+      setState(() => _isUploadingPhoto = false);
+      _showToast('Could not update photo. Please try again.', success: false);
+    }
+  }
+
+
   void _showToast(String message, {bool success = true}) {
     showDialog(
       context: context,
@@ -572,7 +712,11 @@ class _ProfileScreenState extends State<ProfileScreen>
                 radius: 45,
                 backgroundColor:
                 Colors.white.withOpacity(0.3),
-                child: Text(
+                backgroundImage: _photoUrl != null && _photoUrl!.isNotEmpty
+                    ? NetworkImage(_photoUrl!)
+                    : null,
+                child: (_photoUrl == null || _photoUrl!.isEmpty)
+                    ? Text(
                   _userName.isNotEmpty
                       ? _userName[0].toUpperCase()
                       : 'U',
@@ -580,17 +724,27 @@ class _ProfileScreenState extends State<ProfileScreen>
                       fontSize: 36,
                       fontWeight: FontWeight.w700,
                       color: Colors.white),
-                ),
+                )
+                    : null,
               ),
               Positioned(
                 bottom: 0, right: 0,
-                child: Container(
-                  width: 28, height: 28,
-                  decoration: const BoxDecoration(
-                      color: Color(0xFFFF6B00),
-                      shape: BoxShape.circle),
-                  child: const Icon(Icons.camera_alt,
-                      color: Colors.white, size: 14),
+                child: GestureDetector(
+                  onTap: _pickProfilePhoto,
+                  child: Container(
+                    width: 28, height: 28,
+                    decoration: const BoxDecoration(
+                        color: Color(0xFFFF6B00),
+                        shape: BoxShape.circle),
+                    child: _isUploadingPhoto
+                        ? const Padding(
+                      padding: EdgeInsets.all(6),
+                      child: CircularProgressIndicator(
+                          strokeWidth: 2, color: Colors.white),
+                    )
+                        : const Icon(Icons.camera_alt,
+                        color: Colors.white, size: 14),
+                  ),
                 ),
               ),
             ],

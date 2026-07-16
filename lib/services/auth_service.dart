@@ -27,10 +27,11 @@ class AuthService {
     required String email,
     required String password,
     required String phone,
-    required String dob,
     required String state,
     required String qualification,
-    required String gender,
+    String? dob,       // Optional — Apple Guideline 5.1.1(v): not
+    // core to app function, must not be required
+    String? gender,     // Optional — same reasoning as dob
   }) async {
     try {
       // Check duplicate email
@@ -52,10 +53,10 @@ class AuthService {
           'fullName':      fullName,
           'email':         email.trim(),
           'phone':         phone,
-          'dob':           dob,
+          'dob':           dob ?? '',
           'state':         state,
           'qualification': qualification,
-          'gender':        gender,
+          'gender':        gender ?? '',
           'category':      'General',
           'savedJobs':     [],
           'appliedJobs':   [],
@@ -106,7 +107,7 @@ class AuthService {
   // ── Sign in with Google ────────────────────────────────
   Future<Map<String, dynamic>> signInWithGoogle() async {
     try {
-      final GoogleSignInAccount? googleUser = await GoogleSignIn(clientId: "631082617337-l40lumnjbbrm8a4i1hkj2cj8b8ehblnu.apps.googleusercontent.com").signIn();
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
       if (googleUser == null) return {'success': false, 'error': 'cancelled'};
 
       final googleAuth = await googleUser.authentication;

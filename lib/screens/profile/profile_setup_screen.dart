@@ -2,7 +2,11 @@
 import 'package:flutter/services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:image_cropper/image_cropper.dart';
+import 'dart:io';
 import '../../constants/app_colors.dart';
 import '../../utils/dob_formatter.dart';
 
@@ -53,6 +57,11 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
     {'title': 'Preferences',      'icon': Icons.tune_rounded},
   ];
 
+  // Profile photo state — same pattern as ProfileScreen. Null/empty
+  // means show the placeholder person icon instead of a real photo.
+  String? _photoUrl;
+  bool _isUploadingPhoto = false;
+
   @override
   void initState() {
     super.initState();
@@ -83,6 +92,8 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
               _selectedQualification = data['qualification'];
             if (data['gender'] != null)
               _selectedGender = data['gender'];
+            if (data['photoUrl'] != null)
+              _photoUrl = data['photoUrl'] as String?;
           });
         }
       }
@@ -146,6 +157,128 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
     }
     setState(() => _isSaving = false);
     Navigator.pushReplacementNamed(context, '/home');
+  }
+
+  // ============================================================
+  // ── Profile Photo Upload ─────────────────────────────────
+  // Same flow as ProfileScreen's version — fixes Apple Guideline
+  // 2.1(a): this camera badge previously had no onTap at all.
+  // ============================================================
+  Future<void> _pickProfilePhoto() async {
+    if (_isUploadingPhoto) return;
+
+    final source = await showModalBottomSheet<ImageSource>(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (ctx) => Container(
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+        ),
+        child: SafeArea(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                margin: const EdgeInsets.only(top: 12),
+                width: 40, height: 4,
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade300,
+                  borderRadius: BorderRadius.circular(2),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 20, 20, 8),
+                child: Text('Update Profile Photo',
+                    style: GoogleFonts.poppins(
+                        fontSize: 16, fontWeight: FontWeight.w700,
+                        color: const Color(0xFF1A1A2E))),
+              ),
+              ListTile(
+                leading: Icon(Icons.camera_alt_outlined,
+                    color: AppColors.primary),
+                title: Text('Take Photo',
+                    style: GoogleFonts.poppins(fontSize: 14)),
+                onTap: () => Navigator.pop(ctx, ImageSource.camera),
+              ),
+              ListTile(
+                leading: Icon(Icons.photo_library_outlined,
+                    color: AppColors.primary),
+                title: Text('Choose from Gallery',
+                    style: GoogleFonts.poppins(fontSize: 14)),
+                onTap: () => Navigator.pop(ctx, ImageSource.gallery),
+              ),
+              const SizedBox(height: 8),
+            ],
+          ),
+        ),
+      ),
+    );
+
+    if (source == null) return;
+    if (!mounted) return;
+
+    try {
+      final picker = ImagePicker();
+      final pickedFile = await picker.pickImage(
+        source: source,
+        imageQuality: 85,
+      );
+      if (pickedFile == null) return;
+      if (!mounted) return;
+
+      final cropped = await ImageCropper().cropImage(
+        sourcePath: pickedFile.path,
+        aspectRatio: const CropAspectRatio(ratioX: 1, ratioY: 1),
+        uiSettings: [
+          AndroidUiSettings(
+            toolbarTitle: 'Crop Photo',
+            toolbarColor: AppColors.primary,
+            toolbarWidgetColor: Colors.white,
+            lockAspectRatio: true,
+          ),
+          IOSUiSettings(
+            title: 'Crop Photo',
+            aspectRatioLockEnabled: true,
+          ),
+        ],
+      );
+      if (cropped == null) return;
+      if (!mounted) return;
+
+      setState(() => _isUploadingPhoto = true);
+
+      final user = FirebaseAuth.instance.currentUser;
+      if (user == null) {
+        setState(() => _isUploadingPhoto = false);
+        return;
+      }
+
+      final storageRef = FirebaseStorage.instance
+          .ref()
+          .child('profile_photos')
+          .child('${user.uid}.jpg');
+
+      await storageRef.putFile(File(cropped.path));
+      final downloadUrl = await storageRef.getDownloadURL();
+
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .set({'photoUrl': downloadUrl}, SetOptions(merge: true));
+
+      if (!mounted) return;
+      setState(() {
+        _photoUrl = downloadUrl;
+        _isUploadingPhoto = false;
+      });
+    } catch (e) {
+      if (!mounted) return;
+      setState(() => _isUploadingPhoto = false);
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Could not update photo. Please try again.')),
+      );
+    }
   }
 
   // ── Build page with buttons inside ────────────────────
@@ -409,7 +542,9 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
           ),
           const SizedBox(height: 20),
 
-          // Profile picture
+          // Profile picture — now wired to a real upload flow.
+          // Previously this camera badge had no onTap handler at
+          // all (Apple Guideline 2.1(a) bug report).
           Center(
             child: Stack(
               children: [
@@ -424,21 +559,41 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
                       width: 2,
                     ),
                   ),
-                  child: Icon(Icons.person_rounded,
+                  child: (_photoUrl != null && _photoUrl!.isNotEmpty)
+                      ? ClipOval(
+                    child: Image.network(
+                      _photoUrl!,
+                      width: 100, height: 100,
+                      fit: BoxFit.cover,
+                      errorBuilder: (_, __, ___) => Icon(
+                          Icons.person_rounded,
+                          size: 50, color: AppColors.primary),
+                    ),
+                  )
+                      : Icon(Icons.person_rounded,
                       size: 50, color: AppColors.primary),
                 ),
                 Positioned(
                   bottom: 0, right: 0,
-                  child: Container(
-                    width: 32, height: 32,
-                    decoration: BoxDecoration(
-                      color: AppColors.primary,
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                          color: Colors.white, width: 2),
+                  child: GestureDetector(
+                    onTap: _pickProfilePhoto,
+                    child: Container(
+                      width: 32, height: 32,
+                      decoration: BoxDecoration(
+                        color: AppColors.primary,
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                            color: Colors.white, width: 2),
+                      ),
+                      child: _isUploadingPhoto
+                          ? const Padding(
+                        padding: EdgeInsets.all(7),
+                        child: CircularProgressIndicator(
+                            strokeWidth: 2, color: Colors.white),
+                      )
+                          : const Icon(Icons.camera_alt_rounded,
+                          size: 16, color: Colors.white),
                     ),
-                    child: const Icon(Icons.camera_alt_rounded,
-                        size: 16, color: Colors.white),
                   ),
                 ),
               ],
@@ -454,7 +609,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
           ),
           const SizedBox(height: 16),
 
-          _buildLabel('Date of Birth'),
+          _buildLabel('Date of Birth (Optional)'),
           Container(
             decoration: BoxDecoration(
               color: Colors.white,
@@ -489,7 +644,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
           ),
           const SizedBox(height: 16),
 
-          _buildLabel('Gender'),
+          _buildLabel('Gender (Optional)'),
           Row(
             children: _genders.map((gender) {
               final isSelected = _selectedGender == gender;

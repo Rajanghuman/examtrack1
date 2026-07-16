@@ -35,7 +35,10 @@ class _SignupScreenState extends State<SignupScreen> {
 
   String? _selectedState;
   String? _selectedQualification;
-  String  _selectedGender = 'Male';
+  // Gender is now nullable with NO default — Apple Guideline
+  // 5.1.1(v): this must be optional, not silently pre-filled with
+  // 'Male' for every account that doesn't explicitly change it.
+  String? _selectedGender;
 
   final List<String> _states = [
     'Punjab', 'Haryana', 'Himachal Pradesh', 'Delhi',
@@ -83,8 +86,13 @@ class _SignupScreenState extends State<SignupScreen> {
   bool _isValidEmail(String email) =>
       RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$').hasMatch(email);
 
+  // DOB is now OPTIONAL — Apple Guideline 5.1.1(v): date of birth is
+  // not core to ExamTrack's function (exam tracking), so it must not
+  // block account creation. An empty DOB is valid; if the user DOES
+  // enter something, we still validate the format/plausibility so we
+  // don't save garbage data.
   String? _validateDOB(String dob) {
-    if (dob.isEmpty) return 'Please enter your date of birth';
+    if (dob.isEmpty) return null; // optional — empty is fine
     if (dob.length != 10) return 'Enter complete date DD/MM/YYYY';
     final parts = dob.split('/');
     if (parts.length != 3) return 'Use format DD/MM/YYYY';
@@ -135,7 +143,7 @@ class _SignupScreenState extends State<SignupScreen> {
         valid = false;
       } else { _phoneError = null; }
 
-      // DOB
+      // DOB (optional — only validated if something was entered)
       _dobError = _validateDOB(_dobController.text.trim());
       if (_dobError != null) valid = false;
 
@@ -198,7 +206,10 @@ class _SignupScreenState extends State<SignupScreen> {
       email:         _emailController.text.trim(),
       password:      _passwordController.text,
       phone:         _phoneController.text.trim(),
-      dob:           _dobController.text.trim(),
+      // Pass null instead of an empty string when left blank —
+      // matches AuthService's optional dob/gender parameters.
+      dob:           _dobController.text.trim().isEmpty
+          ? null : _dobController.text.trim(),
       state:         _selectedState ?? 'Punjab',
       qualification: _selectedQualification ?? 'Graduate',
       gender:        _selectedGender,
@@ -289,9 +300,9 @@ class _SignupScreenState extends State<SignupScreen> {
                 style: GoogleFonts.poppins(fontSize: 11, color: Colors.grey.shade400)),
             const SizedBox(height: 14),
 
-            // ── DOB ────────────────────────────────────
+            // ── DOB (Optional) ─────────────────────────
             _buildField(controller: _dobController,
-                label: 'Date of Birth (DD/MM/YYYY)',
+                label: 'Date of Birth (DD/MM/YYYY) — Optional',
                 icon: Icons.cake_outlined,
                 inputType: TextInputType.number, errorText: _dobError,
                 formatters: [DOBInputFormatter(), LengthLimitingTextInputFormatter(10)],
@@ -300,14 +311,19 @@ class _SignupScreenState extends State<SignupScreen> {
                 })),
             const SizedBox(height: 14),
 
-            // ── Gender ─────────────────────────────────
-            Text('Gender', style: GoogleFonts.poppins(fontSize: 13,
+            // ── Gender (Optional) ──────────────────────
+            Text('Gender (Optional)', style: GoogleFonts.poppins(fontSize: 13,
                 fontWeight: FontWeight.w500, color: const Color(0xFF374151))),
             const SizedBox(height: 8),
             Row(children: _genders.map((g) {
               final sel = _selectedGender == g;
               return Expanded(child: GestureDetector(
-                onTap: () => setState(() => _selectedGender = g),
+                // Tapping an already-selected option deselects it —
+                // this is the genuine "skip/prefer not to say" path,
+                // since there's no separate skip button in this
+                // compact 3-button row layout.
+                onTap: () => setState(
+                        () => _selectedGender = sel ? null : g),
                 child: Container(
                   margin: const EdgeInsets.only(right: 8),
                   padding: const EdgeInsets.symmetric(vertical: 12),
