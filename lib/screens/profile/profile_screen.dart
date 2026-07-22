@@ -482,6 +482,15 @@ class _ProfileScreenState extends State<ProfileScreen>
       if (pickedFile == null) return; // user cancelled
       if (!mounted) return;
 
+      // Workaround for a known image_cropper issue (GitHub #605) where
+      // the crop screen fails to appear after camera capture on iOS —
+      // gallery works fine, only camera is affected. Giving the camera
+      // picker's dismissal animation time to finish before presenting
+      // the cropper resolves it in most reported cases.
+      if (source == ImageSource.camera) {
+        await Future.delayed(const Duration(milliseconds: 500));
+      }
+
       // Crop to a square — matches how the avatar is displayed
       final cropped = await ImageCropper().cropImage(
         sourcePath: pickedFile.path,

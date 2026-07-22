@@ -227,6 +227,15 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
       if (pickedFile == null) return;
       if (!mounted) return;
 
+      // Workaround for a known image_cropper issue (GitHub #605) where
+      // the crop screen fails to appear after camera capture on iOS —
+      // gallery works fine, only camera is affected. Giving the camera
+      // picker's dismissal animation time to finish before presenting
+      // the cropper resolves it in most reported cases.
+      if (source == ImageSource.camera) {
+        await Future.delayed(const Duration(milliseconds: 500));
+      }
+
       final cropped = await ImageCropper().cropImage(
         sourcePath: pickedFile.path,
         aspectRatio: const CropAspectRatio(ratioX: 1, ratioY: 1),
