@@ -1,11 +1,9 @@
 name: examtrack
 description: India's smartest govt exam guide
 publish_to: 'none'
-version: 1.0.0+10
-
+version: 1.0.0+12
 environment:
   sdk: '>=3.0.0 <4.0.0'
-
 dependencies:
   flutter:
     sdk: flutter
@@ -46,10 +44,15 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^4.0.0
-
+  flutter_launcher_icons: ^0.13.1
 flutter:
   uses-material-design: true
   assets:
     - assets/images/
     - assets/animations/
     - assets/icons/
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-1024.png"
